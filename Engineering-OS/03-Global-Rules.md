@@ -34,7 +34,7 @@
 - **[REQUIRED]** Código de pagos, auth o datos de clientes: no se toca sin leer
   [16-Security.md](16-Security.md) y sin plan de rollback.
 - **[REQUIRED]** Secretos jamás en código, commits, logs ni respuestas de chat. Existencia de un
-  secreto se reporta como "existe X en <archivo>", nunca con su valor.
+  secreto se reporta como "existe X en `<archivo>`", nunca con su valor.
 - **[REQUIRED]** Simplificar es un entregable: si una IA toca un módulo y puede eliminar código
   muerto o una dependencia sin riesgo, lo propone en la misma sesión.
 

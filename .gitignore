@@ -20,3 +20,7 @@ Desktop.ini
 .env
 .env.*
 .dev.vars
+
+# Sitio VitePress (E:\ENGINEERING_HANDBOOK\.vitepress) — generado, no se versiona
+.vitepress/cache/
+.vitepress/dist/

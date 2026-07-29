@@ -312,13 +312,13 @@ La IA generativa (ChatGPT, Copilot) está transformando Internet nuevamente:
 
 | Lección | Fundamento histórico | Documento del handbook |
 |---------|---------------------|----------------------|
-| Los protocolos abiertos ganan | TCP/IP vs protocolos propietarios | [`../03_API/`](../03_API/), [`../04_Database/`](../04_Database/) |
-| La descentralización da resiliencia | Conmutación de paquetes, DNS distribuido | [`../08_Cloud/`](../08_Cloud/), [`../Engineering-OS/06-Architecture.md`](../Engineering-OS/06-Architecture.md) |
-| Los estándares abiertos aceleran la innovación | HTTP/HTML públicos vs propietarios | [`../01_Frontend/`](../01_Frontend/), [`../13_AI_Rules/`](../13_AI_Rules/) |
-| HTTPS no es opcional | Transición 2015+ de texto plano a cifrado | [`../05_Security/`](../05_Security/) |
-| El cloud eliminó la fricción de escalar | AWS 2006 cambió la economía del software | [`../07_DevOps/`](../07_DevOps/), [`../08_Cloud/`](../08_Cloud/) |
-| Las APIs son el nuevo HTML | REST → GraphQL → gRPC | [`../03_API/`](../03_API/) |
-| La seguridad debe diseñarse desde el principio | Internet nació sin seguridad (TCP/IP años 70) | [`../05_Security/`](../05_Security/) |
+| Los protocolos abiertos ganan | TCP/IP vs protocolos propietarios | [`../03_API/`](../03_API/README.md), [`../04_Database/`](../04_Database/README.md) |
+| La descentralización da resiliencia | Conmutación de paquetes, DNS distribuido | [`../08_Cloud/`](../08_Cloud/README.md), [`../Engineering-OS/06-Architecture.md`](../Engineering-OS/06-Architecture.md) |
+| Los estándares abiertos aceleran la innovación | HTTP/HTML públicos vs propietarios | [`../01_Frontend/`](../01_Frontend/Core/FRONTEND_ENGINEERING_STANDARD.md), [`../13_AI_Rules/`](../13_AI_Rules/README.md) |
+| HTTPS no es opcional | Transición 2015+ de texto plano a cifrado | [`../05_Security/`](../05_Security/README.md) |
+| El cloud eliminó la fricción de escalar | AWS 2006 cambió la economía del software | [`../07_DevOps/`](../07_DevOps/README.md), [`../08_Cloud/`](../08_Cloud/README.md) |
+| Las APIs son el nuevo HTML | REST → GraphQL → gRPC | [`../03_API/`](../03_API/README.md) |
+| La seguridad debe diseñarse desde el principio | Internet nació sin seguridad (TCP/IP años 70) | [`../05_Security/`](../05_Security/README.md) |
 
 ---
 

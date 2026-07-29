@@ -8,9 +8,15 @@
     "build-index": "node tools/build-index.mjs",
     "verify-index": "node tools/verify-index-fresh.mjs",
     "lint": "node tools/lint-handbook.mjs",
-    "check": "npm run lint && npm run build-index"
+    "check": "npm run lint && npm run build-index",
+    "docs:dev": "vitepress dev .",
+    "docs:build": "vitepress build .",
+    "docs:preview": "vitepress preview ."
   },
   "dependencies": {
     "gray-matter": "^4.0.3"
+  },
+  "devDependencies": {
+    "vitepress": "^1.6.4"
   }
 }

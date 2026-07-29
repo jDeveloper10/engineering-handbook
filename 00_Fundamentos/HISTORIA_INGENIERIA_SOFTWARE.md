@@ -265,13 +265,13 @@ Cada sección del handbook existe porque la historia demostró que sin ella, el 
 
 | Lección | Fundamento histórico | Documento del handbook |
 |---------|---------------------|----------------------|
-| Los requisitos cambian — el proceso debe acomodarlo | Crisis del software + Agile | [`../02_Backend/`](../02_Backend/), [`../03_API/`](../03_API/) |
-| El testing no es opcional — es ingeniería | Crash del Ariane 5 (1996), Therac-25 (1987) | [`../06_Testing/`](../06_Testing/) |
+| Los requisitos cambian — el proceso debe acomodarlo | Crisis del software + Agile | [`../02_Backend/`](../02_Backend/BACKEND_ENGINEERING_STANDARD.md), [`../03_API/`](../03_API/README.md) |
+| El testing no es opcional — es ingeniería | Crash del Ariane 5 (1996), Therac-25 (1987) | [`../06_Testing/`](../06_Testing/README.md) |
 | Los estándares reducen complejidad accidental | Brooks, *No Silver Bullet* | Todos los documentos |
-| La automatización elimina errores humanos | DevOps, deploys manuales → accidentes | [`../07_DevOps/`](../07_DevOps/), [`../Engineering-OS/23-Automations.md`](../Engineering-OS/23-Automations.md) |
-| El código se lee más de lo que se escribe | Clean Code (Martin), Refactoring (Fowler) | [`../01_Frontend/`](../01_Frontend/), [`../14_DX/`](../14_DX/) |
-| Sin seguridad desde el diseño, el costo es 10x mayor | OWASP Top 10, incidentes reales | [`../05_Security/`](../05_Security/) |
-| El software se escribe para humanos primero | Dijkstra, programación estructurada | [`../01_Frontend/`](../01_Frontend/), [`../13_AI_Rules/`](../13_AI_Rules/) |
+| La automatización elimina errores humanos | DevOps, deploys manuales → accidentes | [`../07_DevOps/`](../07_DevOps/README.md), [`../Engineering-OS/23-Automations.md`](../Engineering-OS/23-Automations.md) |
+| El código se lee más de lo que se escribe | Clean Code (Martin), Refactoring (Fowler) | [`../01_Frontend/`](../01_Frontend/Core/FRONTEND_ENGINEERING_STANDARD.md), [`../14_DX/`](../14_DX/DX_STANDARD.md) |
+| Sin seguridad desde el diseño, el costo es 10x mayor | OWASP Top 10, incidentes reales | [`../05_Security/`](../05_Security/README.md) |
+| El software se escribe para humanos primero | Dijkstra, programación estructurada | [`../01_Frontend/`](../01_Frontend/Core/FRONTEND_ENGINEERING_STANDARD.md), [`../13_AI_Rules/`](../13_AI_Rules/README.md) |
 
 ---
 

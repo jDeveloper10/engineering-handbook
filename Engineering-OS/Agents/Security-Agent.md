@@ -42,7 +42,7 @@ días desde última auditoría de worker-pago.
 Dinero (pagos) > datos de clientes > cuentas/infra > todo lo demás.
 
 ## Ejemplo BUENO
-"CRÍTICO: <repo>/config.js:12 hardcodea clave tipo service-role (eyJhbG…). Fix: mover a secret del
+"CRÍTICO: `<repo>`/config.js:12 hardcodea clave tipo service-role (eyJhbG…). Fix: mover a secret del
 worker + rotar en dashboard Supabase HOY (la clave ya estuvo en 4 commits públicos). BLOQUEO de
 deploy de ese repo hasta rotación."
 

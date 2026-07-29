@@ -70,7 +70,7 @@ ejecuta: se pospone para siempre o se come el día.
 ### 2.2 Presupuesto de salida [REQUIRED]
 
 **Regla:** la sesión produce **0 a 2 RESEARCH_NOTEs**, nunca más. Si no hubo nada relevante,
-la salida legítima es una línea en el registro de la sesión: "revisado <área> <mes>: sin cambios
+la salida legítima es una línea en el registro de la sesión: "revisado `<área>` `<mes>`: sin cambios
 que nos afecten" — eso también es un entregable (evita re-revisar lo mismo el próximo ciclo).
 
 **Por qué:** hereda el criterio de Knowledge-Agent ("la mayoría de sesiones producen CERO
