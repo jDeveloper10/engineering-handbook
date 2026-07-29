@@ -1,3 +1,13 @@
+---
+title: "Guía de Automatización de QA"
+category: 06_Testing
+tags: [testing, automatizacion, setup, vitest, playwright]
+summary: "Setup de QA copy-paste en menos de una hora: estructura de carpetas de tests, scripts de package.json como contrato, y configuración de Vitest, Playwright, ESLint y Lighthouse."
+keywords: [setup, vitest, playwright, eslint, lighthouse, scripts, automatizacion]
+updated: 2026-07-27
+status: current
+---
+
 # 07 — AUTOMATION GUIDE: SETUP QA COPY-PASTE (<1 HORA)
 
 > Documento del dominio Testing (06). Sigue las convenciones de [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md). Este es el documento **operativo**: dota a cualquier proyecto nuevo del stack (React+Vite+TS, Workers, Supabase) del sistema QA completo en menos de una hora, copiando y ajustando lo mínimo. Los criterios de *qué* testear y los umbrales de calidad viven en los demás documentos de esta carpeta (estrategia, [08_QUALITY_STANDARDS.md](../Strategy/08_QUALITY_STANDARDS.md)); los workflows que consumen esto viven en [03_CI_CD.md](../Pipelines/03_CI_CD.md).

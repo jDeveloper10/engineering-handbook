@@ -2,6 +2,9 @@
 title: "Reglas de Análisis Estático (Linter)"
 category: 10_Code_Quality
 tags: [eslint, prettier, static analysis]
+summary: "Base conceptual de la configuración de análisis estático: reglas core de ESLint, formateo con Prettier y la configuración estricta de TypeScript."
+keywords: [eslint, prettier, static-analysis, analisis, estatico, linter, base, conceptual, configuracion, core, formateo, estricta, typescript]
+updated: 2026-07-27
 status: current
 ---
 

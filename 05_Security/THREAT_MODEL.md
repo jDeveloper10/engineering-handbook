@@ -1,3 +1,13 @@
+---
+title: "Modelo de Amenazas — SaaS de Developer Solo"
+category: 05_Security
+tags: [seguridad, threat-model, amenazas, hardening]
+summary: "Ocho amenazas realistas para un developer solo sobre Cloudflare y Supabase, cada una con cómo ocurre, prevención, señales de detección, respuesta y recuperación, más un checklist de hardening priorizado."
+keywords: [threat-model, amenazas, phishing, credential-stuffing, supply-chain, hardening]
+updated: 2026-07-21
+status: current
+---
+
 # THREAT MODEL — SaaS de developer solo sobre Cloudflare + Supabase
 
 > Nivel 2 del dominio Security. Hereda todo de [SECURITY_ENGINEERING_STANDARD.md](SECURITY_ENGINEERING_STANDARD.md) — no repite reglas de código; este documento modela **amenazas concretas** y qué hacer ante cada una. El runbook detallado de la primera hora vive en [INCIDENT_RESPONSE.md](INCIDENT_RESPONSE.md).

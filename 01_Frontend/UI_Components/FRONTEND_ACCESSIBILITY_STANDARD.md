@@ -1,3 +1,13 @@
+---
+title: "Estándar de Accesibilidad Web"
+category: 01_Frontend
+tags: [frontend, accesibilidad, wcag, aria]
+summary: "Nivel de conformidad objetivo y su implementación: base semántica, navegación por teclado, gestión de foco, la regla de oro de ARIA, contraste y respeto por prefers-reduced-motion."
+keywords: [accesibilidad, wcag, aria, teclado, foco, contraste, reduced-motion]
+updated: 2026-07-27
+status: current
+---
+
 # FRONTEND ACCESSIBILITY STANDARD
 
 > Nivel 2 del handbook, depende de [FRONTEND_ENGINEERING_STANDARD.md](../Core/FRONTEND_ENGINEERING_STANDARD.md) (Nivel 1, sección 13 — que se mantiene como el resumen `REQUIRED` de siempre) y de [FRONTEND_HTML_STRUCTURE_STANDARD.md](../Core/FRONTEND_HTML_STRUCTURE_STANDARD.md) (la base semántica de la que depende toda accesibilidad real). Sigue el formato de [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md).

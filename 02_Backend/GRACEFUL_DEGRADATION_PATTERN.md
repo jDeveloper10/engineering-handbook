@@ -2,6 +2,9 @@
 title: "Patrón Graceful Degradation"
 category: 02_Backend
 tags: [resiliencia, api, fallback, bulkhead]
+summary: "Degradación elegante con bulkhead y fallback: aislar lo no vital para que su fallo no tumbe la aplicación, tanto en el gateway de Workers como en componentes resilientes del frontend."
+keywords: [resiliencia, api, fallback, bulkhead, graceful, degradation, degradacion, elegante, aislar, vital, fallo, tumbe, aplicacion, gateway]
+updated: 2026-07-27
 status: current
 ---
 

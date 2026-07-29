@@ -2,6 +2,9 @@
 title: "Patrón Drag & Drop"
 category: 01_Frontend
 tags: [dnd-kit, drag-drop, kanban, react, optimistic]
+summary: "Drag and drop accesible con dnd-kit: tablero Kanban completo, helpers de manipulación de columnas e integración con mutaciones optimistas."
+keywords: [dnd-kit, drag-drop, kanban, react, optimistic, drag, drop, accesible, tablero, completo, helpers, manipulacion, columnas, integracion]
+updated: 2026-07-29
 status: current
 ---
 

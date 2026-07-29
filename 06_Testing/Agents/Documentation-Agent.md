@@ -1,3 +1,13 @@
+---
+title: "Agente de Documentación"
+category: 06_Testing
+tags: [testing, qa, agente, documentacion]
+summary: "Ficha del agente de QA de documentación: verifica que la documentación de API, el CHANGELOG y los docs de proyecto digan la verdad y nada más."
+keywords: [documentacion, agente, changelog, api-docs, qa]
+updated: 2026-07-21
+status: current
+---
+
 # Documentation-Agent (QA de documentación)
 
 **Objetivo:** que la documentación cambie junto al código que documenta — READMEs de workers

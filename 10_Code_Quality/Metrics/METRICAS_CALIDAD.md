@@ -2,6 +2,9 @@
 title: "Métricas de Calidad de Código"
 category: 10_Code_Quality
 tags: [metrics, coverage, complexity]
+summary: "Límites objetivos para medir deuda técnica y saber cuándo detener el desarrollo: complejidad ciclomática, cobertura de tests, tamaño del bundle y profundidad de componentes."
+keywords: [metrics, coverage, complexity, metricas, calidad, codigo, limites, objetivos, medir, deuda, tecnica, saber, detener, desarrollo]
+updated: 2026-07-27
 status: current
 ---
 

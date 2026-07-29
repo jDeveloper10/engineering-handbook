@@ -1,3 +1,13 @@
+---
+title: "Estándar de Rendimiento Frontend"
+category: 01_Frontend
+tags: [frontend, performance, core-web-vitals, lcp]
+summary: "Core Web Vitals tratados como objetivos de diseño: identificación y optimización del elemento LCP, prevención de CLS, control de INP y estrategia de imágenes, fuentes y bundle."
+keywords: [core-web-vitals, lcp, cls, inp, lazy-loading, imagenes, bundle, preload]
+updated: 2026-07-27
+status: current
+---
+
 # FRONTEND PERFORMANCE STANDARD
 
 > Nivel 2 del handbook, depende de [FRONTEND_ENGINEERING_STANDARD.md](../Core/FRONTEND_ENGINEERING_STANDARD.md) (Nivel 1, secciones 1.7, 8.2, 11 y 17) y se coordina con [FRONTEND_RESPONSIVE_STANDARD.md](../Core/FRONTEND_RESPONSIVE_STANDARD.md) (sección 6, imágenes responsive). Sigue el formato de [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md).

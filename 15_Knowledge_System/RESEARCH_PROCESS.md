@@ -1,3 +1,13 @@
+---
+title: "Proceso de Investigación Tecnológica Continua"
+category: 15_Knowledge_System
+tags: [knowledge, investigacion, proceso, fuentes]
+summary: "Cadencia y presupuesto de la investigación tecnológica, disparadores ad-hoc fuera de cadencia, el entregable RESEARCH_NOTE y la jerarquía de fuentes primarias admitidas."
+keywords: [investigacion, cadencia, research-note, fuentes-primarias, disparadores]
+updated: 2026-07-21
+status: current
+---
+
 # RESEARCH_PROCESS — Investigación tecnológica continua
 
 > **Propósito:** definir el proceso ejecutable por una IA (sesión dedicada de Claude Code) para

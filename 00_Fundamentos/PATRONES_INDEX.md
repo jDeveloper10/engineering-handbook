@@ -2,6 +2,9 @@
 title: "Índice de Patrones (Resolución Rápida)"
 category: 00_Fundamentos
 tags: [index, patrones, faq, arquitectura]
+summary: "Tabla de resolución rápida que mapea un caso de uso concreto al patrón y al documento del handbook que lo resuelve, para no empezar buscando en Google."
+keywords: [index, patrones, faq, arquitectura, indice, resolucion, rapida, tabla, mapea, caso, concreto, handbook, resuelve, empezar]
+updated: 2026-07-27
 status: current
 ---
 

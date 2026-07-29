@@ -1,3 +1,13 @@
+---
+title: "Agentes QA — Índice y Mapa de Consolidación"
+category: 06_Testing
+tags: [testing, qa, agentes, indice]
+summary: "Por qué los 18 agentes de QA pedidos se consolidaron en 8, con el mapa de correspondencia, el flujo de colaboración entre ellos y la convención de las fichas."
+keywords: [agentes, qa, consolidacion, flujo, fichas]
+updated: 2026-07-21
+status: current
+---
+
 # Agentes QA — índice y mapa de consolidación
 
 > Estos "agentes" no son personas ni procesos daemon: son **roles que una IA (Claude Code) asume**

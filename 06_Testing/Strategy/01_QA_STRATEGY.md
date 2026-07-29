@@ -1,3 +1,13 @@
+---
+title: "Estrategia de QA"
+category: 06_Testing
+tags: [testing, estrategia, piramide, qa]
+summary: "Pirámide de tests adaptada a un dev solo, qué se automatiza porque bloquea frente al riesgo residual documentado, y matriz de herramientas elegidas con su justificación y descartes."
+keywords: [piramide, estrategia, automatizacion, riesgo-residual, herramientas, cobertura]
+updated: 2026-07-27
+status: current
+---
+
 # 01 — QA STRATEGY
 
 > Nivel 1 del dominio Testing. Define **qué** se testea, **con qué**, **cuándo** y **qué no** — los documentos 02–08 implementan cada pieza. Sigue [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md): regla agnóstica primero, implementación de referencia después (stack actual: React 19 + Vite + TypeScript, Cloudflare Workers, Supabase).

@@ -2,6 +2,9 @@
 title: "Optimización D1 (Base de Datos)"
 category: 04_Database
 tags: [d1, sqlite, optimización, rendimiento]
+summary: "Reglas O-026 en adelante para Cloudflare D1: índices parciales y compuestos con el orden de columnas correcto, vistas materializadas y comportamiento del write-ahead log."
+keywords: [d1, sqlite, optimizacion, rendimiento, base, datos, o-026, adelante, cloudflare, indices, parciales, compuestos, orden, columnas]
+updated: 2026-07-29
 status: current
 ---
 

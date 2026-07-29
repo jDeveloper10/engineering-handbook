@@ -2,6 +2,9 @@
 title: "Patrones Arquitectónicos"
 category: 09_Architecture
 tags: [patterns, cloudflare, edge, jamstack]
+summary: "Arquitectura general de los proyectos sobre edge y Jamstack, y cuándo aplicar patrones específicos: event-driven con colas, coordinación de estado con Durable Objects y capas de caché."
+keywords: [patterns, cloudflare, edge, jamstack, arquitectonicos, arquitectura, general, proyectos, aplicar, especificos, event-driven, colas, coordinacion, estado]
+updated: 2026-07-27
 status: current
 ---
 

@@ -1,3 +1,13 @@
+---
+title: "Estándar de Color y Contraste (Dark y Light Mode)"
+category: 01_Frontend
+tags: [frontend, color, contraste, dark-mode, wcag]
+summary: "Tokens de color por rol en lugar de colores sueltos, construcción de light y dark mode, contraste mínimo exigido por WCAG y paleta semántica de estados."
+keywords: [color, contraste, wcag, dark-mode, light-mode, tokens, paleta]
+updated: 2026-07-27
+status: current
+---
+
 # FRONTEND COLOR & CONTRAST STANDARD (Dark Mode / Light Mode)
 
 > Nivel 2 del handbook, depende de [FRONTEND_ENGINEERING_STANDARD.md](../Core/FRONTEND_ENGINEERING_STANDARD.md) (Nivel 1, secciones 1.2 y 1.9) y de [FRONTEND_ACCESSIBILITY_STANDARD.md](FRONTEND_ACCESSIBILITY_STANDARD.md) (sección 6, contraste). Sigue el formato de [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md).

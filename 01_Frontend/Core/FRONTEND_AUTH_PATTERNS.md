@@ -1,3 +1,13 @@
+---
+title: "Patrones de Autenticación en Frontend"
+category: 01_Frontend
+tags: [frontend, auth, login, ux, formularios]
+summary: "Patrones de UI para autenticación: layouts de login y registro, orden de campos, minimización de datos en el alta y UX de contraseñas."
+keywords: [login, registro, auth, password, formularios, layout, ux]
+updated: 2026-07-27
+status: current
+---
+
 # FRONTEND AUTHENTICATION PATTERNS
 
 > Nivel 2 del handbook, depende de [FRONTEND_ENGINEERING_STANDARD.md](FRONTEND_ENGINEERING_STANDARD.md) (Nivel 1, especialmente secciones 09 Forms y 13 Accessibility). Sigue el formato de [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md).

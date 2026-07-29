@@ -1,3 +1,13 @@
+---
+title: "Estándar de Controles de Formulario"
+category: 01_Frontend
+tags: [frontend, componentes, formularios, accesibilidad]
+summary: "Reglas transversales a todo control y especificación de cada uno: button, input, textarea, select nativo frente a custom, checkbox, radio, switch y combobox con autocompletado."
+keywords: [button, input, textarea, select, checkbox, radio, switch, combobox, autocomplete]
+updated: 2026-07-27
+status: current
+---
+
 # FRONTEND FORM CONTROLS STANDARD
 
 > Nivel 2 del handbook, depende de [FRONTEND_ENGINEERING_STANDARD.md](../Core/FRONTEND_ENGINEERING_STANDARD.md) (Nivel 1: secciones 01 tokens, 04 Component Rules, 09 Forms Rules, 13 Accessibility). Sigue el formato de [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md).

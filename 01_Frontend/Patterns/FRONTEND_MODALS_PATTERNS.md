@@ -1,3 +1,13 @@
+---
+title: "Patrones de Modales y Drawers"
+category: 01_Frontend
+tags: [frontend, modal, drawer, accesibilidad]
+summary: "Árbol de decisión entre modal, drawer y página, cuándo no usar un modal, anatomía, confirmación de acciones destructivas y requisitos de accesibilidad."
+keywords: [modal, drawer, dialog, confirmacion, destructiva, focus-trap, accesibilidad]
+updated: 2026-07-27
+status: current
+---
+
 # FRONTEND MODALS & DRAWERS PATTERNS
 
 > Nivel 2 del handbook, depende de [FRONTEND_ENGINEERING_STANDARD.md](../Core/FRONTEND_ENGINEERING_STANDARD.md) (Nivel 1, sección 13 Accessibility). Sigue el formato de [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md).

@@ -1,3 +1,13 @@
+---
+title: "Infraestructura como Código"
+category: 07_DevOps
+tags: [devops, iac, terraform, wrangler]
+summary: "Reglas IaC-001 a IaC-004: toda la infraestructura de Cloudflare y Supabase definida en código con Terraform o Wrangler, nunca configurada a mano desde un panel."
+keywords: [iac, terraform, wrangler, infraestructura, reproducible, dashboard]
+updated: 2026-07-27
+status: current
+---
+
 # Infraestructura como Código (IaC-001 a IaC-004)
 
 ## 🎯 Objetivo

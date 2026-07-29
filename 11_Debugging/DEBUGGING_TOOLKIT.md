@@ -2,6 +2,9 @@
 title: "Debugging Toolkit"
 category: 11_Debugging
 tags: [tools, devtools, debugging]
+summary: "Manual rápido de qué herramienta usar para diagnosticar antes de tocar código, dividido en frontend y navegador, backend en el edge, y base de datos."
+keywords: [tools, devtools, debugging, toolkit, rapido, herramienta, diagnosticar, tocar, codigo, dividido, frontend, navegador, backend, edge]
+updated: 2026-07-27
 status: current
 ---
 

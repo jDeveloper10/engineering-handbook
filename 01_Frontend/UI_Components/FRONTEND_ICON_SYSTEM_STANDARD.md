@@ -1,3 +1,13 @@
+---
+title: "Estándar de Sistema de Iconos"
+category: 01_Frontend
+tags: [frontend, iconos, accesibilidad]
+summary: "Tamaño de icono ligado a la tipografía que acompaña, nombre accesible según sea decorativo o significativo, y anti-patrones del uso de iconos."
+keywords: [iconos, lucide, tamano, aria-hidden, nombre-accesible]
+updated: 2026-07-27
+status: current
+---
+
 # FRONTEND ICON SYSTEM STANDARD
 
 > Nivel 2 del handbook, depende de [FRONTEND_ENGINEERING_STANDARD.md](../Core/FRONTEND_ENGINEERING_STANDARD.md) (Nivel 1, sección 1.4 — ya exige una sola librería de iconos; este documento profundiza) y de [FRONTEND_ACCESSIBILITY_STANDARD.md](FRONTEND_ACCESSIBILITY_STANDARD.md) (nombre accesible). Sigue el formato de [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md).

@@ -2,6 +2,9 @@
 title: "Patrón Formularios Multi-Step"
 category: 01_Frontend
 tags: [react, formularios, wizard, zod, ux]
+summary: "Formularios largos divididos en pasos tipo wizard para reducir abandono: hook useMultiStepForm, validación por paso con Zod, persistencia del progreso y patrones de navegación."
+keywords: [react, formularios, wizard, zod, ux, multi-step, largos, divididos, pasos, tipo, reducir, abandono, hook, usemultistepform]
+updated: 2026-07-29
 status: current
 ---
 

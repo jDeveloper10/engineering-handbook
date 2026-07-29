@@ -1,3 +1,13 @@
+---
+title: "Patrones de Formularios"
+category: 01_Frontend
+tags: [frontend, formularios, validacion, ux]
+summary: "Anatomía del campo, validación en tres momentos con una sola fuente de reglas, tratamiento de errores de servidor, submit, contraseñas y códigos OTP para MFA."
+keywords: [formularios, validacion, zod, errores, submit, password, otp, mfa]
+updated: 2026-07-27
+status: current
+---
+
 # FRONTEND FORMS PATTERNS
 
 > Nivel 2 del handbook, depende de [FRONTEND_ENGINEERING_STANDARD.md](../Core/FRONTEND_ENGINEERING_STANDARD.md) (Nivel 1, especialmente secciones 09 Forms y 13 Accessibility). Sigue el formato de [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md).

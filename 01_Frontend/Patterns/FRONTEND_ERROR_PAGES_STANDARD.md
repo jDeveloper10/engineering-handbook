@@ -1,3 +1,13 @@
+---
+title: "Estándar de Páginas de Error (404, 403, 500)"
+category: 01_Frontend
+tags: [frontend, errores, 404, ux]
+summary: "Qué debe decir y ofrecer cada página de error: ruta inexistente, falta de permisos y error no capturado, con los anti-patrones habituales."
+keywords: [404, 403, 500, error, error-boundary, microcopy]
+updated: 2026-07-27
+status: current
+---
+
 # FRONTEND ERROR PAGES STANDARD (404 / 500 / Sin acceso)
 
 > Nivel 2 del handbook, depende de [FRONTEND_ENGINEERING_STANDARD.md](../Core/FRONTEND_ENGINEERING_STANDARD.md) (Nivel 1, sección 2.2 Error Boundaries) y de [FRONTEND_STATES_PATTERNS.md](FRONTEND_STATES_PATTERNS.md) (errores a nivel de componente). Sigue el formato de [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md).

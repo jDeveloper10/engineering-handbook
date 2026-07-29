@@ -1,3 +1,13 @@
+---
+title: "Métricas de QA"
+category: 06_Testing
+tags: [testing, metricas, coverage, web-vitals]
+summary: "Las métricas que se miden y las dos reglas que gobiernan su uso: coverage, duración del pipeline, tasa de tests inestables, Web Vitals de producción y tasa de éxito de despliegue."
+keywords: [metricas, coverage, pipeline, flaky-rate, web-vitals, deployment-success]
+updated: 2026-07-27
+status: current
+---
+
 # 09 — METRICS
 
 > Las métricas de calidad que le importan a un developer solo, cómo se recolectan **automáticamente** y — lo central — **qué decisión dispara cada una**. Sigue [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md). Los números concretos son heurísticas atadas a un objetivo (formato §3): se recalibran si el objetivo lo pide, nunca por comodidad.

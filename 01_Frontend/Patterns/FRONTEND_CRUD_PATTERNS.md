@@ -1,3 +1,13 @@
+---
+title: "Patrones de Pantallas CRUD"
+category: 01_Frontend
+tags: [frontend, crud, patrones, ux]
+summary: "Anatomía de un módulo CRUD completo: vista de listado, decisión entre modal y página dedicada para crear o editar, vista de detalle, borrado y acciones en lote."
+keywords: [crud, listado, detalle, modal, eliminar, bulk, paginacion]
+updated: 2026-07-27
+status: current
+---
+
 # FRONTEND CRUD PATTERNS
 
 > Nivel 2 del handbook, depende de [FRONTEND_ENGINEERING_STANDARD.md](../Core/FRONTEND_ENGINEERING_STANDARD.md) (Nivel 1) y de [FRONTEND_UI_PATTERNS.md](FRONTEND_UI_PATTERNS.md) sección 3.3. Sigue el formato de [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md).

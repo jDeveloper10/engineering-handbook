@@ -1,3 +1,13 @@
+---
+title: "Patrones de Notificaciones en Interfaz"
+category: 01_Frontend
+tags: [frontend, notificaciones, toast, accesibilidad]
+summary: "Cuándo corresponde un toast, un banner, un badge o un centro de notificaciones, según si la información requiere acción inmediata, y sus requisitos de accesibilidad."
+keywords: [toast, banner, badge, centro-notificaciones, aria-live, accesibilidad]
+updated: 2026-07-27
+status: current
+---
+
 # FRONTEND NOTIFICATIONS PATTERNS
 
 > Nivel 2 del handbook, depende de [FRONTEND_ENGINEERING_STANDARD.md](../Core/FRONTEND_ENGINEERING_STANDARD.md) (Nivel 1). Sigue el formato de [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md).

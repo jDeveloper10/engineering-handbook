@@ -1,6 +1,6 @@
 ---
 title: "AI WORKFLOW — Protocolo de razonamiento antes de escribir código"
-category: ai-rules
+category: 13_AI_Rules
 tags:
   - conventions
   - standards

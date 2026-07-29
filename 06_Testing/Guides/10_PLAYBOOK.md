@@ -1,3 +1,13 @@
+---
+title: "Playbook de QA por Situación"
+category: 06_Testing
+tags: [testing, playbook, qa, operacion]
+summary: "Procedimientos por situación concreta: proyecto nuevo, bug en producción, test E2E inestable, pipeline lento y cómo saltarse un gate en una emergencia dejando rastro."
+keywords: [playbook, flaky, pipeline-lento, emergencia, gate, bug-produccion]
+updated: 2026-07-27
+status: current
+---
+
 # 10 — PLAYBOOK
 
 > Procedimientos operativos del departamento de QA: qué hacer, en qué orden, con qué comandos. Sigue [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md). Cada procedimiento es ejecutable por el dev o por un agente IA (Claude Code) sin contexto adicional al de este handbook. Los runbooks de **incidentes de infraestructura** (Cloudflare caído, DNS, datos corruptos) NO están aquí — viven en `07_DevOps/DEPLOY_AND_FAILURES_STANDARD.md` Parte B y este playbook los invoca cuando toca.

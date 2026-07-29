@@ -2,6 +2,9 @@
 title: "Patrón: React Query + Supabase Realtime"
 category: 01_Frontend
 tags: [react-query, realtime, supabase, websockets]
+summary: "Cómo conviven Supabase Realtime y React Query sin pisarse: hook de suscripción que invalida la caché en lugar de escribir estado en paralelo."
+keywords: [react-query, realtime, supabase, websockets, react, query, conviven, pisarse, hook, suscripcion, invalida, cache, lugar, escribir]
+updated: 2026-07-29
 status: current
 ---
 

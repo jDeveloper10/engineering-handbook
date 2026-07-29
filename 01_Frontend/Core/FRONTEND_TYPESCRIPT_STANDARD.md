@@ -1,3 +1,13 @@
+---
+title: "Estándar de TypeScript en Frontend"
+category: 01_Frontend
+tags: [frontend, typescript, tipos, zod]
+summary: "Configuración base de tsconfig y reglas de tipado: prohibición de any con sus alternativas, tipos de dominio derivados y nunca redeclarados, props, eventos y la decisión entre type e interface."
+keywords: [typescript, tsconfig, any, unknown, zod, props, type, interface]
+updated: 2026-07-27
+status: current
+---
+
 # FRONTEND TYPESCRIPT STANDARD
 
 > Nivel 2 del handbook. Depende de [FRONTEND_ENGINEERING_STANDARD.md](FRONTEND_ENGINEERING_STANDARD.md) (Nivel 1, en especial su sección 07 — TypeScript Rules) y sigue las convenciones de [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md). **Nada de lo que el Nivel 1 ya regula se repite** — se declara "hereda de Frontend §X" y se profundiza.

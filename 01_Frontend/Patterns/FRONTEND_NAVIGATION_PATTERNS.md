@@ -1,3 +1,13 @@
+---
+title: "Patrones de Navegación"
+category: 01_Frontend
+tags: [frontend, navegacion, navbar, sidebar]
+summary: "Árbol y matriz de decisión para elegir el patrón de navegación principal según el tipo de producto, reglas transversales y patrones complementarios fuera del navbar y el sidebar."
+keywords: [navegacion, navbar, sidebar, menu, breadcrumb, tabs, decision]
+updated: 2026-07-27
+status: current
+---
+
 # FRONTEND NAVIGATION PATTERNS
 
 > Nivel 2 del handbook, depende de [FRONTEND_ENGINEERING_STANDARD.md](../Core/FRONTEND_ENGINEERING_STANDARD.md) (Nivel 1). Sigue el formato de [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md).

@@ -2,6 +2,9 @@
 title: "Incident Playbook: Upload Fail"
 category: 11_Debugging
 tags: [incident, playbook, upload, r2, timeout]
+summary: "Playbook ante subidas de archivo que nunca terminan: diagnóstico en 30 segundos, causas ligadas a límites y timeouts, y hook de upload blindado con cancelación."
+keywords: [incident, playbook, upload, r2, timeout, fail, ante, subidas, archivo, terminan, diagnostico, segundos, causas, ligadas]
+updated: 2026-07-29
 status: current
 ---
 

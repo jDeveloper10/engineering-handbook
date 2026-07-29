@@ -1,6 +1,6 @@
 ---
 title: "00_Fundamentos — Historia de Internet"
-category: fundamentals
+category: 00_Fundamentos
 tags:
   - history
   - internet

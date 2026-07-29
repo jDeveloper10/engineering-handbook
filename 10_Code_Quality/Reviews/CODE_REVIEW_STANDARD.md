@@ -2,6 +2,9 @@
 title: "Estándar de Code Review"
 category: 10_Code_Quality
 tags: [code review, pr, pull request]
+summary: "Reglas de oro de la revisión de código con checklist separado para el autor antes de pedir review y para el revisor, más el código de conducta de los comentarios."
+keywords: [code-review, pr, pull-request, code, review, revision, codigo, checklist, separado, autor, pedir, revisor, conducta, comentarios]
+updated: 2026-07-27
 status: current
 ---
 

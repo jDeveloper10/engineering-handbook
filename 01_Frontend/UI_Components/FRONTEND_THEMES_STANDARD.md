@@ -2,6 +2,9 @@
 title: "Patrón Sistema de Temas (Claro/Oscuro)"
 category: 01_Frontend
 tags: [react, tailwind, css-variables, dark-mode, ux]
+summary: "Sistema de temas claro, oscuro y automático: variables CSS con Tailwind, script anti-flash en el head, contexto de React y el conmutador de tema en la interfaz."
+keywords: [react, tailwind, css-variables, dark-mode, ux, sistema, temas, claro, oscuro, automatico, variables, script, anti-flash, head]
+updated: 2026-07-27
 status: current
 ---
 

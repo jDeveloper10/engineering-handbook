@@ -2,6 +2,9 @@
 title: "Autenticación MFA: TOTP, Passkeys y Magic Links"
 category: 05_Security
 tags: [mfa, totp, webauthn, passkeys, magic-link, auth, supabase]
+summary: "Autenticación de segundo factor completa: TOTP con aplicaciones de autenticación, passkeys WebAuthn biométricas, y magic links de login e invitaciones a equipo con sus TTL y reglas de un solo uso."
+keywords: [mfa, totp, webauthn, passkeys, magic-link, auth, supabase, autenticacion, magic, links, segundo, factor, completa, aplicaciones]
+updated: 2026-07-29
 status: current
 ---
 

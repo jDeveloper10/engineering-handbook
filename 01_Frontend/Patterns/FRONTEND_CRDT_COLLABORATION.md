@@ -2,6 +2,9 @@
 title: "Colaboración en Tiempo Real (CRDTs + Supabase)"
 category: 01_Frontend
 tags: [yjs, crdt, realtime, collaboration, cursors, supabase]
+summary: "Colaboración simultánea con CRDTs y Yjs: proveedor de sincronización sobre Supabase, integración con TipTap, cursores y avatares de colaboradores en vivo."
+keywords: [yjs, crdt, realtime, collaboration, cursors, supabase, colaboracion, tiempo, real, crdts, simultanea, proveedor, sincronizacion, integracion]
+updated: 2026-07-29
 status: current
 ---
 

@@ -1,3 +1,13 @@
+---
+title: "Estándar de Diseño Responsive"
+category: 01_Frontend
+tags: [frontend, responsive, breakpoints, mobile-first]
+summary: "Breakpoints estándar y su forma conceptual, tamaños fluidos en vez de fijos, comportamiento responsive por componente, áreas táctiles e imágenes adaptativas."
+keywords: [responsive, breakpoints, mobile-first, fluido, touch, imagenes]
+updated: 2026-07-27
+status: current
+---
+
 # FRONTEND RESPONSIVE STANDARD
 
 > Nivel 2 del handbook, depende de [FRONTEND_ENGINEERING_STANDARD.md](FRONTEND_ENGINEERING_STANDARD.md) (Nivel 1, secciones 1.4 y 1.8) y de [FRONTEND_HTML_STRUCTURE_STANDARD.md](FRONTEND_HTML_STRUCTURE_STANDARD.md). Sigue el formato de [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md).

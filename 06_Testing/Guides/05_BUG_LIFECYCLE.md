@@ -1,3 +1,13 @@
+---
+title: "Ciclo de Vida de un Bug"
+category: 06_Testing
+tags: [testing, bugs, issues, proceso]
+summary: "De la captura al cierre: toda fuente termina en el mismo lugar, registro mínimo de un issue de bug, criterios objetivos de severidad P0 a P3 y la regla de que todo fix deja un test de regresión."
+keywords: [bug, issue, severidad, p0, regresion, triage, gh]
+updated: 2026-07-27
+status: current
+---
+
 # 05 — BUG LIFECYCLE
 
 > Ciclo de vida del bug para un developer solo, ejecutable por herramientas + agentes IA. Sigue [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md). Complementa, no duplica: los **incidentes** de producción (rollback, runbooks de fallos) son de `07_DevOps/DEPLOY_AND_FAILURES_STANDARD.md`; los incidentes de **seguridad** son de `05_Security/INCIDENT_RESPONSE.md`. Este documento cubre el bug como *unidad de trabajo*: desde que existe hasta que deja un test que impide su regreso.

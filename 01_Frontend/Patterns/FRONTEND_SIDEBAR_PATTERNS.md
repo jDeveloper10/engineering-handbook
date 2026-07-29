@@ -1,3 +1,13 @@
+---
+title: "Patrones de Sidebar"
+category: 01_Frontend
+tags: [frontend, sidebar, navegacion, responsive]
+summary: "Patrones de barra lateral, jerarquía interna del contenido, reglas de agrupación, comportamiento responsive y anti-patrones frecuentes."
+keywords: [sidebar, navegacion, colapsable, jerarquia, responsive, anti-patrones]
+updated: 2026-07-27
+status: current
+---
+
 # FRONTEND SIDEBAR PATTERNS
 
 > Nivel 2 del handbook, depende de [FRONTEND_ENGINEERING_STANDARD.md](../Core/FRONTEND_ENGINEERING_STANDARD.md) (Nivel 1) y extiende [FRONTEND_NAVIGATION_PATTERNS.md](FRONTEND_NAVIGATION_PATTERNS.md) sección 4.7. Sigue el formato de [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md).

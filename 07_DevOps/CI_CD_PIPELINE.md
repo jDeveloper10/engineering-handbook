@@ -1,3 +1,13 @@
+---
+title: "Estándar de CI/CD para Monorepo"
+category: 07_DevOps
+tags: [devops, ci-cd, monorepo, pipeline]
+summary: "Reglas CI-001 a CI-006 para automatizar lint, test, build y deploy en monorepos con múltiples servicios, con checklist previo al despliegue."
+keywords: [ci-cd, monorepo, lint, build, deploy, workers, pipeline]
+updated: 2026-07-27
+status: current
+---
+
 # Estándar de CI/CD para Monorepo (CI-001 a CI-006)
 
 ## 🎯 Objetivo

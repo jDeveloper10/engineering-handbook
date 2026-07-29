@@ -1,6 +1,6 @@
 ---
 title: "Knowledge System Standard"
-category: knowledge
+category: 15_Knowledge_System
 tags:
   - knowledge-management
   - rag

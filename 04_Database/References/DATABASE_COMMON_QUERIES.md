@@ -2,6 +2,9 @@
 title: "Queries Comunes Optimizadas"
 category: 04_Database
 tags: [sql, postgres, queries, supabase]
+summary: "Recetas de SQL y de cliente Supabase para operaciones diarias que suelen implementarse mal: paginación por cursor, búsqueda de texto completo, CTEs y upserts."
+keywords: [sql, postgres, queries, supabase, comunes, optimizadas, recetas, cliente, operaciones, diarias, suelen, implementarse, paginacion, cursor]
+updated: 2026-07-27
 status: current
 ---
 

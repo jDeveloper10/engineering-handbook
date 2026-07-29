@@ -2,6 +2,9 @@
 title: "Patrón Chat en Tiempo Real (Supabase)"
 category: 01_Frontend
 tags: [react, realtime, chat, supabase, websockets]
+summary: "Chat en tiempo real sobre Supabase Realtime: esquema SQL con RLS, hook useChat con broadcast e indicador de escritura, y ventana de chat virtualizada."
+keywords: [react, realtime, chat, supabase, websockets, tiempo, real, esquema, hook, usechat, broadcast, indicador, escritura, ventana]
+updated: 2026-07-29
 status: current
 ---
 

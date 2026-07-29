@@ -1,3 +1,13 @@
+---
+title: "Engineering Intelligence — Auto-análisis del Trabajo"
+category: 15_Knowledge_System
+tags: [knowledge, metricas, proceso, mejora-continua]
+summary: "Rutina operativa mensual que recolecta señales pasivas del propio trabajo, sin instrumentación nueva, y produce hallazgos que alimentan a los agentes existentes."
+keywords: [auto-analisis, senales, mensual, hallazgos, mejora-continua, metricas]
+updated: 2026-07-21
+status: current
+---
+
 # ENGINEERING_INTELLIGENCE — Auto-análisis del propio trabajo
 
 > **Propósito:** definir el proceso ejecutable por una IA (sesión dedicada de Claude Code) que

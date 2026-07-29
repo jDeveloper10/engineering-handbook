@@ -2,6 +2,9 @@
 title: "Estándar de Rate Limiting"
 category: 05_Security
 tags: [rate-limit, ddos, seguridad, workers]
+summary: "Rate limiting en Cloudflare Workers contra fuerza bruta, password spraying y enumeración de identificadores, con las reglas inquebrantables de por dónde y cómo aplicarlo."
+keywords: [rate-limit, ddos, seguridad, workers, rate, limiting, cloudflare, contra, fuerza, bruta, password, spraying, enumeracion, identificadores]
+updated: 2026-07-27
 status: current
 ---
 

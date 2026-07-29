@@ -1,3 +1,13 @@
+---
+title: "Estándar de Desarrollo Mobile (React Native + Expo)"
+category: 01_Frontend
+tags: [mobile, react-native, expo, offline, biometria]
+summary: "Reglas MOB-001 a MOB-006 para apps móviles con React Native y Expo: prohibición de WebView para funcionalidad core, offline-first, biometría, push, deep links y captura de fotos con OCR."
+keywords: [react-native, expo, webview, offline, watermelondb, biometria, push, deep-links, ocr]
+updated: 2026-07-29
+status: current
+---
+
 # Estándar de Desarrollo Mobile (MOB-001 a MOB-006)
 
 > 🔒 **Este documento define cómo se construye la app, no qué la mantiene segura.** Las reglas de seguridad del APK (cero secretos en el bundle, firma del artefacto, TLS obligatorio, tokens en Keystore, componentes exportados, OTA firmado) viven en [05_Security/MOBILE_SECURITY_STANDARD.md](../../05_Security/MOBILE_SECURITY_STANDARD.md) (`MSEC-001` a `MSEC-012`) y son de lectura obligatoria antes de publicar. En particular, `MOB-003` (biometría) solo es seguro implementado según `MSEC-009`. Ante conflicto, manda el documento de seguridad.

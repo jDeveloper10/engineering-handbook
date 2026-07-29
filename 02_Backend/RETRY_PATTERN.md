@@ -2,6 +2,9 @@
 title: "Patrón Retry (Exponential Backoff + Jitter)"
 category: 02_Backend
 tags: [resiliencia, api, retry, backoff, jitter]
+summary: "Reintentos con backoff exponencial y jitter: qué errores se reintentan y cuáles no, por qué el backoff lineal provoca thundering herd, e implementación integrada con una API crítica."
+keywords: [resiliencia, api, retry, backoff, jitter, exponential, reintentos, exponencial, errores, reintentan, lineal, provoca, thundering, herd]
+updated: 2026-07-29
 status: current
 ---
 

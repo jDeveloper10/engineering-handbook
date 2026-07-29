@@ -1,3 +1,13 @@
+---
+title: "Agente de Code Review"
+category: 06_Testing
+tags: [testing, qa, agente, code-review]
+summary: "Ficha del agente de revisión de código: responsabilidades, herramientas, cuándo se activa, checklist de ejecución, qué errores detecta y cuáles quedan fuera de su alcance."
+keywords: [code-review, agente, revision, checklist, alcance]
+updated: 2026-07-21
+status: current
+---
+
 # Code-Review-Agent
 
 **Objetivo:** revisar cada diff contra los estándares escritos del handbook (`01_Frontend`,

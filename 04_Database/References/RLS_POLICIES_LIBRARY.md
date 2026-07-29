@@ -2,6 +2,9 @@
 title: "Librería de Políticas RLS"
 category: 04_Database
 tags: [rls, security, supabase, postgres]
+summary: "Políticas RLS probadas y listas para copiar: acceso del usuario solo a sus propios datos, lectura pública con escritura restringida al propietario, y acceso por roles."
+keywords: [rls, security, supabase, postgres, libreria, politicas, probadas, listas, copiar, acceso, usuario, datos, lectura, publica]
+updated: 2026-07-27
 status: current
 ---
 

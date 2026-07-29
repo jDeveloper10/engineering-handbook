@@ -1,3 +1,13 @@
+---
+title: "Pipeline de Testing por Capa"
+category: 06_Testing
+tags: [testing, pipeline, vitest, playwright]
+summary: "Estándar técnico capa por capa: unitarios con Vitest, integración de Worker con datos, tests de componente con Testing Library, E2E con Playwright, regresión visual y reglas anti-flakiness."
+keywords: [unit, integracion, componentes, e2e, regresion-visual, flaky, pipeline]
+updated: 2026-07-21
+status: current
+---
+
 # 02 — Testing Pipeline: estándar técnico por capa
 
 > **Propósito:** definir CÓMO se escribe cada tipo de test (unit, integration, component, E2E, visual) en el stack actual: React 19 + Vite + TypeScript, Cloudflare Workers, Supabase, PWA. Herramientas: **Vitest** (unit/integration), **Testing Library** (componentes), **Playwright** (E2E + visual).

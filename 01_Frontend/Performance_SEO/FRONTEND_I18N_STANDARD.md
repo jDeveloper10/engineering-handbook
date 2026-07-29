@@ -2,6 +2,9 @@
 title: "Patrón de Internacionalización (i18n)"
 category: 01_Frontend
 tags: [react, i18next, idiomas, traducciones]
+summary: "Internacionalización con react-i18next: estructura de archivos de traducción, configuración base, uso en componentes y formatos localizados de fecha y moneda."
+keywords: [react, i18next, idiomas, traducciones, internacionalizacion, i18n, react-i18next, estructura, archivos, traduccion, configuracion, base, componentes, formatos]
+updated: 2026-07-27
 status: current
 ---
 

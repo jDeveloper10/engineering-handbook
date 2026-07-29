@@ -1,3 +1,13 @@
+---
+title: "Patrones de Dashboard"
+category: 01_Frontend
+tags: [frontend, dashboard, kpi, patrones]
+summary: "Composición de un dashboard: tiles de KPI, gráficos, filtros de rango de fecha, densidad de información y cómo comunicar la frescura de los datos."
+keywords: [dashboard, kpi, graficos, filtros, densidad, frescura]
+updated: 2026-07-27
+status: current
+---
+
 # FRONTEND DASHBOARD PATTERNS
 
 > Nivel 2 del handbook, depende de [FRONTEND_ENGINEERING_STANDARD.md](../Core/FRONTEND_ENGINEERING_STANDARD.md) (Nivel 1) y de [FRONTEND_UI_PATTERNS.md](FRONTEND_UI_PATTERNS.md) sección 3.2. Sigue el formato de [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md).

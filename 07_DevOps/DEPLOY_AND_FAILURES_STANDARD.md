@@ -1,3 +1,13 @@
+---
+title: "Estándar de Despliegue y Fallos"
+category: 07_DevOps
+tags: [devops, deploy, migraciones, rollback]
+summary: "Pipeline mínimo que todo cambio atraviesa antes de producción, despliegue de Workers y Pages, variables por entorno y migraciones de base de datos con el patrón expandir, migrar y contraer."
+keywords: [deploy, wrangler, pages, entornos, migraciones, expand-contract, rollback]
+updated: 2026-07-21
+status: current
+---
+
 # DEPLOY AND FAILURES STANDARD
 
 > Nivel 1 del handbook para el dominio DevOps — cómo se despliega y qué hacer cuando algo falla en producción. Sigue las convenciones de [00_HANDBOOK_FORMAT.md](../00_HANDBOOK_FORMAT.md): cada regla es `[REQUIRED]` o `[RECOMMENDED]`, primero agnóstica de plataforma y después con implementación de referencia en el stack actual (Cloudflare Pages + Workers vía wrangler, Supabase como DB, VPS Contabo con n8n).

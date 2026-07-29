@@ -1,3 +1,13 @@
+---
+title: "Checklist de Arranque de Proyecto"
+category: 14_DX
+tags: [dx, checklist, bootstrap, setup]
+summary: "Arranque de un proyecto nuevo paso a paso: prerequisitos por máquina, creación del repositorio desde plantilla, identidad del proyecto y colocación de cada secreto en su lugar."
+keywords: [bootstrap, checklist, setup, repo, secretos, gh, plantilla]
+updated: 2026-07-27
+status: current
+---
+
 # PROJECT BOOTSTRAP CHECKLIST — proyecto nuevo, paso a paso
 
 > Documento operativo del dominio DX (14). Es la ejecución del `[REQUIRED]` de bootstrap de [DX_STANDARD.md §01](DX_STANDARD.md): copy-paste de arriba a abajo, en orden. Cada paso tiene su comando (PowerShell, Windows) y su verificación — **no avanzas al siguiente hasta que la verificación pase**. Tiempo objetivo del checklist completo: < 1 hora (anotar el real — métrica de [DX_STANDARD §08](DX_STANDARD.md)).

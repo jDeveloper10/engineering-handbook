@@ -2,6 +2,9 @@
 title: "Búsqueda Vectorial y Semántica (pgvector)"
 category: 04_Database
 tags: [pgvector, embeddings, búsqueda-semántica, openai, postgres]
+summary: "Búsqueda semántica con pgvector: configuración de la base, generación y guardado de embeddings desde un Worker, endpoint que combina full-text y semántica, y búsqueda difusa."
+keywords: [pgvector, embeddings, busqueda-semantica, openai, postgres, busqueda, vectorial, semantica, configuracion, base, generacion, guardado, worker, endpoint]
+updated: 2026-07-29
 status: current
 ---
 

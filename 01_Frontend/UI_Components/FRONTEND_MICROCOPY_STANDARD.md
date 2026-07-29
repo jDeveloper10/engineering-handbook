@@ -1,3 +1,13 @@
+---
+title: "Estándar de Microcopy y UX Writing"
+category: 01_Frontend
+tags: [frontend, microcopy, ux-writing, tono]
+summary: "Tono consistente en todo el producto, glosario de un concepto una palabra, capitalización de botones y etiquetas, redacción de CTAs y límites de longitud y puntuación."
+keywords: [microcopy, ux-writing, tono, glosario, cta, capitalizacion]
+updated: 2026-07-27
+status: current
+---
+
 # FRONTEND MICROCOPY / UX WRITING STANDARD
 
 > Nivel 2 del handbook, depende de [FRONTEND_ENGINEERING_STANDARD.md](../Core/FRONTEND_ENGINEERING_STANDARD.md) (Nivel 1, sección 3.2 — código en inglés, contenido en español). Sigue el formato de [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md).

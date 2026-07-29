@@ -2,6 +2,9 @@
 title: "Incident Playbook: Error 500 Global"
 category: 11_Debugging
 tags: [incident, playbook, error-500, crash, workers]
+summary: "Playbook ante error 500 global: diagnóstico en 30 segundos, causas frecuentes de crash en Workers y manejador de errores global blindado."
+keywords: [incident, playbook, error-500, crash, workers, error, global, ante, diagnostico, segundos, causas, frecuentes, manejador, errores]
+updated: 2026-07-27
 status: current
 ---
 

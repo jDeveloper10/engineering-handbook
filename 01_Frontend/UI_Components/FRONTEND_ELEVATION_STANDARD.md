@@ -1,3 +1,13 @@
+---
+title: "Estándar de Elevación y Z-Index"
+category: 01_Frontend
+tags: [frontend, z-index, sombras, elevacion]
+summary: "Escala fija de elevación y z-index para que ninguna capa se invente su valor, con su implementación en configuración de Tailwind y los anti-patrones que genera no tenerla."
+keywords: [z-index, elevacion, sombras, capas, tailwind, overlay]
+updated: 2026-07-27
+status: current
+---
+
 # FRONTEND ELEVATION STANDARD (Z-Index)
 
 > Nivel 2 del handbook, depende de [FRONTEND_ENGINEERING_STANDARD.md](../Core/FRONTEND_ENGINEERING_STANDARD.md) (Nivel 1, sección 01 Design System). Sigue el formato de [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md).

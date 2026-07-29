@@ -1,3 +1,13 @@
+---
+title: "CI/CD — El Pipeline de QA por Etapas"
+category: 06_Testing
+tags: [testing, ci-cd, github-actions, pipeline]
+summary: "Qué corre en cada push y qué no, presupuesto de tiempo del pipeline y cómo defenderlo, política ante un gate fallido y los workflows de integración y de despliegue."
+keywords: [ci-cd, github-actions, cache, gates, workflow, deploy, presupuesto]
+updated: 2026-07-27
+status: current
+---
+
 # 03 — CI/CD: EL PIPELINE DE QA POR ETAPAS
 
 > Documento del dominio Testing (06). Sigue las convenciones de [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md): reglas `[REQUIRED]`/`[RECOMMENDED]`, capa agnóstica + implementación de referencia (GitHub Actions, React+Vite+TS en Cloudflare Pages, Workers con wrangler, Supabase).

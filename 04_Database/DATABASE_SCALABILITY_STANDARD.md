@@ -2,6 +2,9 @@
 title: "Estándar de Escalabilidad de Base de Datos"
 category: 04_Database
 tags: [postgresql, escalabilidad, rendimiento, integridad]
+summary: "Reglas DB-010 a DB-025 sobre los cuatro pilares de una base de datos escalable: esquema sin huecos, rendimiento quirúrgico, integridad absoluta y operabilidad."
+keywords: [postgresql, escalabilidad, rendimiento, integridad, base, datos, db-010, db-025, cuatro, pilares, escalable, esquema, huecos, quirurgico]
+updated: 2026-07-27
 status: current
 ---
 

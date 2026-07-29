@@ -1,3 +1,13 @@
+---
+title: "Respuesta a Incidentes — Runbook de la Primera Hora"
+category: 05_Security
+tags: [seguridad, incidentes, runbook, operacion]
+summary: "Runbook operativo de la primera hora ante un incidente: triage en 60 segundos y tres procedimientos encadenables para secreto filtrado, actividad anómala en la base de datos y deploy comprometido."
+keywords: [incidente, runbook, triage, secreto-filtrado, rotacion, deploy-comprometido]
+updated: 2026-07-21
+status: current
+---
+
 # INCIDENT RESPONSE — runbook de la primera hora
 
 > Nivel 2 del dominio Security. Hereda de [SECURITY_ENGINEERING_STANDARD.md](SECURITY_ENGINEERING_STANDARD.md); las amenazas que llevan a cada escenario están modeladas en [THREAT_MODEL.md](THREAT_MODEL.md). Este documento es un **runbook operativo**: qué hacer, en qué orden, con qué comando — pensado para leerse bajo estrés, por vos o por una IA asistiendo en vivo.

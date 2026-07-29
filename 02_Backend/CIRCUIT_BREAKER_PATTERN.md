@@ -2,6 +2,9 @@
 title: "Patrón Circuit Breaker"
 category: 02_Backend
 tags: [resiliencia, api, circuit-breaker, fallos, dependencias]
+summary: "Circuit breaker para dependencias externas: los tres estados del interruptor, umbrales recomendados de apertura y recuperación, implementación en TypeScript e integración con Stripe."
+keywords: [resiliencia, api, circuit-breaker, fallos, dependencias, circuit, breaker, externas, tres, estados, interruptor, umbrales, recomendados, apertura]
+updated: 2026-07-27
 status: current
 ---
 

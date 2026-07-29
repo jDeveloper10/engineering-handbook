@@ -2,6 +2,9 @@
 title: "Patrón Progressive Web App (PWA) Offline-First"
 category: 01_Frontend
 tags: [pwa, offline, service-worker, workbox, dexie]
+summary: "Convertir la aplicación en PWA instalable y offline-first: manifest, service worker con Workbox y sus estrategias de caché, lógica de red en React y notificaciones push nativas."
+keywords: [pwa, offline, service-worker, workbox, dexie, progressive, offline-first, convertir, aplicacion, instalable, manifest, service, worker, estrategias]
+updated: 2026-07-29
 status: current
 ---
 

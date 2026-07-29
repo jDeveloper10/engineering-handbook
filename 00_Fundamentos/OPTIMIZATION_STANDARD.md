@@ -2,6 +2,9 @@
 title: "Estándar de Optimización Quirúrgica"
 category: 00_Fundamentos
 tags: [optimización, rendimiento, costos, clean-code]
+summary: "Reglas O-001 en adelante sobre los tres pilares de la optimización real: código más corto y legible (early returns, destructuring, operadores modernos), rendimiento medido y reducción de costo de infraestructura."
+keywords: [optimizacion, rendimiento, costos, clean-code, quirurgica, o-001, adelante, tres, pilares, real, codigo, corto, legible, early]
+updated: 2026-07-29
 status: current
 ---
 

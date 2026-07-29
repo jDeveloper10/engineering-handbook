@@ -2,6 +2,9 @@
 title: "Incident Playbook: Spinner Infinito"
 category: 11_Debugging
 tags: [incident, playbook, ui, loading, react]
+summary: "Playbook ante una interfaz colgada en estado de carga: diagnóstico en 30 segundos, causas habituales y checklist de diez puntos de depuración."
+keywords: [incident, playbook, ui, loading, react, spinner, infinito, ante, interfaz, colgada, estado, carga, diagnostico, segundos]
+updated: 2026-07-27
 status: current
 ---
 

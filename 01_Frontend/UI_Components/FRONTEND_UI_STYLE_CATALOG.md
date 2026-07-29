@@ -1,3 +1,13 @@
+---
+title: "Catálogo de Estilos Visuales"
+category: 01_Frontend
+tags: [frontend, estilos, design-tokens, tailwind]
+summary: "Catálogo de 30 estilos visuales con criterio de elección y el procedimiento para convertir un estilo del catálogo en tokens semánticos de Tailwind."
+keywords: [estilos, catalogo, paleta, tokens, tailwind, design-system]
+updated: 2026-07-27
+status: current
+---
+
 # FRONTEND UI STYLE CATALOG
 
 > Nivel 2 del handbook, depende de [FRONTEND_ENGINEERING_STANDARD.md](../Core/FRONTEND_ENGINEERING_STANDARD.md) sección 01 (Design System). Este documento **no define reglas de estructura** (eso lo hace el estándar de Nivel 1) — es un catálogo de datos de referencia (identidades visuales), no un conjunto de reglas REQUIRED/RECOMMENDED como el resto del handbook. La única regla dura del documento está marcada explícitamente en la sección "Cómo elegir un estilo".

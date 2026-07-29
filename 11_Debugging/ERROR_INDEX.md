@@ -2,6 +2,9 @@
 title: "Índice de Errores Global"
 category: 11_Debugging
 tags: [errors, debugging, troubleshooting]
+summary: "Índice unificado de los 20 errores más frecuentes de todo el stack con su causa y solución, agrupados por frontend, backend en el edge y base de datos."
+keywords: [errors, debugging, troubleshooting, indice, errores, global, unificado, frecuentes, stack, causa, solucion, agrupados, frontend, backend]
+updated: 2026-07-27
 status: current
 ---
 

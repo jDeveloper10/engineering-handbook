@@ -1,3 +1,13 @@
+---
+title: "Plantilla de ADR (Architecture Decision Record)"
+category: 12_Documentation
+tags: [documentation, plantilla, adr, arquitectura]
+summary: "Plantilla para registrar una decisión arquitectónica: contexto y problema, opciones evaluadas, decisión adoptada y sus consecuencias."
+keywords: [adr, plantilla, decision, arquitectura, consecuencias]
+updated: 2026-07-27
+status: current
+---
+
 # [Título corto de la decisión arquitectónica]
 
 - **Estado:** [Propuesto | Aceptado | Rechazado | Deprecado]

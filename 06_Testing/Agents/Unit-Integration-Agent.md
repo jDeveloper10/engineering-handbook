@@ -1,3 +1,13 @@
+---
+title: "Agente de Tests Unitarios e Integración"
+category: 06_Testing
+tags: [testing, qa, agente, vitest]
+summary: "Ficha del agente que fusiona Vitest, tests unitarios e integración: unitarios para funciones puras, integración para workers y endpoints con sus dependencias reales."
+keywords: [vitest, unitarios, integracion, workers, endpoints, agente]
+updated: 2026-07-21
+status: current
+---
+
 # Unit-Integration-Agent (fusiona: Vitest + Unit Test + Integration Test)
 
 **Objetivo:** que toda lógica no trivial tenga tests Vitest que fallen cuando la lógica se rompe —

@@ -2,6 +2,9 @@
 title: "Editor de Texto Enriquecido (WYSIWYG)"
 category: 01_Frontend
 tags: [tiptap, editor, wysiwyg, react, markdown]
+summary: "Editor WYSIWYG con TipTap: configuración base, hook useDocumentEditor con autoguardado, componente de editor y serialización del contenido hacia Supabase."
+keywords: [tiptap, editor, wysiwyg, react, markdown, texto, enriquecido, configuracion, base, hook, usedocumenteditor, autoguardado, componente, serializacion]
+updated: 2026-07-29
 status: current
 ---
 

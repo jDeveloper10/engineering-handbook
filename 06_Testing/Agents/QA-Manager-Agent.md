@@ -1,3 +1,13 @@
+---
+title: "Agente Orquestador de QA"
+category: 06_Testing
+tags: [testing, qa, agente, orquestador]
+summary: "Ficha del agente que orquesta el departamento de QA: matriz que decide qué agentes activar según el diff y emite un único veredicto GO o NO-GO contra los quality gates."
+keywords: [orquestador, go-no-go, gates, matriz, diff, agente]
+updated: 2026-07-21
+status: current
+---
+
 # QA-Manager-Agent (orquestador del departamento QA)
 
 **Objetivo:** decidir qué agentes de QA corren ante cada cambio, consolidar sus reportes en un

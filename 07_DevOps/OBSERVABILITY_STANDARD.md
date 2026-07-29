@@ -1,3 +1,13 @@
+---
+title: "Estándar de Observabilidad"
+category: 07_DevOps
+tags: [devops, observabilidad, logs, trazas]
+summary: "Reglas para que cualquier fallo en producción se diagnostique y resuelva en menos de 15 minutos incluso en arquitecturas distribuidas, con el stack de observabilidad recomendado."
+keywords: [observabilidad, logs, trazas, metricas, alertas, correlacion, mttr]
+updated: 2026-07-27
+status: current
+---
+
 # Estándar de Observabilidad (OBS)
 
 ## 🎯 Objetivo

@@ -1,3 +1,13 @@
+---
+title: "Quality Gates del Build"
+category: 06_Testing
+tags: [testing, quality-gates, accesibilidad, performance, seguridad]
+summary: "Principios de diseño de los gates y su definición numérica: accesibilidad, rendimiento, seguridad de build, dependencias y calidad de código."
+keywords: [quality-gates, accesibilidad, performance, seguridad, dependencias, umbrales]
+updated: 2026-07-27
+status: current
+---
+
 # QUALITY STANDARDS — Quality Gates del build
 
 > Documento del dominio `06_Testing`. Sigue el formato de [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md).

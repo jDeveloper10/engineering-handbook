@@ -2,6 +2,9 @@
 title: "Feature Kickstart (El Checklist Maestro)"
 category: 00_Fundamentos
 tags: [checklist, kickoff, feature, arquitectura]
+summary: "Checklist maestro de 77 preguntas obligatorio antes de programar cualquier feature, organizado por fases: definición, base de datos, API y backend, frontend y los casos de borde que siempre se olvidan."
+keywords: [checklist, kickoff, feature, arquitectura, kickstart, maestro, preguntas, obligatorio, programar, organizado, fases, definicion, base, datos]
+updated: 2026-07-27
 status: current
 ---
 

@@ -1,3 +1,13 @@
+---
+title: "Proceso de Release para un Dev Solo"
+category: 06_Testing
+tags: [testing, release, semver, changelog]
+summary: "Proceso completo de release: versionado SemVer pragmático, CHANGELOG generado con release-please, tags y GitHub Releases, y qué cuenta como release."
+keywords: [release, semver, changelog, release-please, tags, github-releases]
+updated: 2026-07-27
+status: current
+---
+
 # 04 — RELEASE PROCESS: RELEASES PARA UN DEV SOLO
 
 > Documento del dominio Testing (06). Sigue las convenciones de [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md): reglas `[REQUIRED]`/`[RECOMMENDED]`, capa agnóstica + implementación de referencia (GitHub, conventional commits según [`07_DevOps/GITHUB_STANDARD.md`](../../07_DevOps/GITHUB_STANDARD.md) sección 02, deploy según [`07_DevOps/DEPLOY_AND_FAILURES_STANDARD.md`](../../07_DevOps/DEPLOY_AND_FAILURES_STANDARD.md)).

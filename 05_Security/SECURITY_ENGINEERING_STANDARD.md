@@ -2,6 +2,9 @@
 title: "Estándar de Seguridad e Integridad"
 category: 05_Security
 tags: [seguridad, owasp, auth, cifrado, cors]
+summary: "Estándar base del dominio: reglas S-001 a S-014 organizadas en siete capas de defensa, desde validación de entrada, CORS, autenticación y autorización hasta rate limiting, cifrado y cabeceras de seguridad."
+keywords: [seguridad, owasp, auth, cifrado, cors, integridad, base, dominio, s-001, s-014, organizadas, siete, defensa, validacion]
+updated: 2026-07-29
 status: current
 ---
 

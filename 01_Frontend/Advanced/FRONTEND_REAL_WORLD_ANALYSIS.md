@@ -1,3 +1,13 @@
+---
+title: "Análisis de Design Systems Públicos del Mundo Real"
+category: 01_Frontend
+tags: [frontend, design-system, analisis, spacing, tipografia]
+summary: "Análisis comparado de design systems públicos (Atlassian, Material, otros): por qué la grilla operativa real es de 4px y no de 8, cómo estructuran tipografía, color en tres capas y librerías de componentes."
+keywords: [design-system, spacing, grilla-4px, tipografia, tokens, dark-mode, componentes]
+updated: 2026-07-27
+status: current
+---
+
 # FRONTEND REAL WORLD ANALYSIS — Cómo construyen UI los mejores design systems públicos
 
 > Nivel 2 del handbook, depende de [FRONTEND_ENGINEERING_STANDARD.md](../Core/FRONTEND_ENGINEERING_STANDARD.md) sección 01 y complementa [FRONTEND_UI_STYLE_CATALOG.md](../UI_Components/FRONTEND_UI_STYLE_CATALOG.md): el catálogo describe *identidades visuales* (qué se ve); este documento analiza *decisiones de sistema* (por qué los productos de referencia se ven profesionales). Sigue el formato de [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md).

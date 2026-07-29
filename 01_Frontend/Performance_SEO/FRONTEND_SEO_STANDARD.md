@@ -1,3 +1,13 @@
+---
+title: "Estándar de SEO Técnico"
+category: 01_Frontend
+tags: [frontend, seo, meta-tags, json-ld]
+summary: "SEO técnico para aplicaciones renderizadas en cliente: la limitación de las dos olas de indexación, head mínimo por página, Open Graph, datos estructurados JSON-LD, URLs y jerarquía de headings."
+keywords: [seo, csr, crawler, meta-tags, open-graph, json-ld, slugs, headings]
+updated: 2026-07-27
+status: current
+---
+
 # FRONTEND SEO STANDARD (SEO técnico)
 
 > Nivel 2 del handbook, depende de [FRONTEND_ENGINEERING_STANDARD.md](../Core/FRONTEND_ENGINEERING_STANDARD.md). Sigue el formato de [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md). Relacionados: [FRONTEND_HTML_STRUCTURE_STANDARD.md](../Core/FRONTEND_HTML_STRUCTURE_STANDARD.md) (headings/semántica), [FRONTEND_ACCESSIBILITY_STANDARD.md](../UI_Components/FRONTEND_ACCESSIBILITY_STANDARD.md) (alt), `../06_Testing/08_QUALITY_STANDARDS.md` (gates de Core Web Vitals).

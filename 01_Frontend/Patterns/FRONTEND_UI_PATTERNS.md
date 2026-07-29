@@ -1,3 +1,13 @@
+---
+title: "Patrones de UI por Tipo de Contenido"
+category: 01_Frontend
+tags: [frontend, ui, patrones, cards]
+summary: "Tabla de decisión que mapea tipo de contenido a patrón de presentación, patrones por tipo de página o módulo, cuándo sí corresponde una card y reglas de prueba social."
+keywords: [patrones, cards, listas, comparacion, social-proof, decision, maquetado]
+updated: 2026-07-27
+status: current
+---
+
 # FRONTEND UI PATTERNS
 
 > Nivel 2 del handbook, depende de [FRONTEND_ENGINEERING_STANDARD.md](../Core/FRONTEND_ENGINEERING_STANDARD.md) (Nivel 1). Sigue el formato de [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md).

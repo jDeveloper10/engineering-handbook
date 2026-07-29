@@ -2,6 +2,9 @@
 title: "Recetas de Migraciones de Base de Datos"
 category: 04_Database
 tags: [migrations, sql, supabase, zero-downtime]
+summary: "Recetas de migración sin downtime: añadir una columna obligatoria, renombrar una columna y crear índices de forma segura sobre tablas en producción."
+keywords: [migrations, sql, supabase, zero-downtime, recetas, migraciones, base, datos, migracion, downtime, anadir, columna, obligatoria, renombrar]
+updated: 2026-07-27
 status: current
 ---
 

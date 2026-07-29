@@ -1,3 +1,13 @@
+---
+title: "Agente de Quality Gates"
+category: 06_Testing
+tags: [testing, qa, agente, accesibilidad, performance]
+summary: "Ficha del agente que fusiona accesibilidad y rendimiento: verifica los gates con números medidos y reporta cumple o no cumple, nunca opiniones."
+keywords: [quality-gates, accesibilidad, performance, lighthouse, axe, agente]
+updated: 2026-07-21
+status: current
+---
+
 # Quality-Gates-Agent (fusiona: Accessibility + Performance)
 
 **Objetivo:** medir accesibilidad (axe) y performance (Lighthouse + budgets) contra los umbrales

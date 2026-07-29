@@ -1,3 +1,13 @@
+---
+title: "Librería de Prompts del Handbook"
+category: 13_AI_Rules
+tags: [ai-rules, prompts, ia, plantillas]
+summary: "Prompts reutilizables y parametrizados para las tareas recurrentes del handbook: crear componentes, páginas completas de landing, dashboard y CRUD, endpoints con migración y refactorizaciones."
+keywords: [prompts, ia, plantillas, componente, landing, dashboard, crud, refactor]
+updated: 2026-07-21
+status: current
+---
+
 # AI PROMPTS LIBRARY — Prompts reutilizables del handbook
 
 > Nivel 2 del dominio `13_AI_Rules`, depende de [AI_WORKFLOW.md](AI_WORKFLOW.md) (Nivel 1). Sigue las convenciones de [00_HANDBOOK_FORMAT.md](../00_HANDBOOK_FORMAT.md).

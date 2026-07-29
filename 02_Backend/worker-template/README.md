@@ -1,3 +1,13 @@
+---
+title: "Worker Template (Implementación de Referencia)"
+category: 02_Backend
+tags: [backend, template, workers, referencia]
+summary: "Implementación de referencia que cumple todos los puntos del estándar de backend: arquitectura de carpetas, comandos disponibles y configuración inicial."
+keywords: [template, worker, referencia, arquitectura, comandos, setup]
+updated: 2026-07-10
+status: current
+---
+
 # Worker Template (Reference Implementation)
 
 Este proyecto es una implementación de referencia (`template`) que cumple con todos los puntos exigidos en el `BACKEND_ENGINEERING_STANDARD.md`. 

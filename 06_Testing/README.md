@@ -1,3 +1,13 @@
+---
+title: "Dominio Testing — Departamento de QA"
+category: 06_Testing
+tags: [testing, qa, indice]
+summary: "Índice del departamento de QA: principio rector, mapa de documentos, qué leer para cada situación y relación con los demás dominios."
+keywords: [qa, testing, indice, mapa, estrategia]
+updated: 2026-07-27
+status: current
+---
+
 # 06_Testing — Departamento de QA
 
 > Índice del dominio Testing/QA del handbook. Sigue las convenciones de [00_HANDBOOK_FORMAT.md](../00_HANDBOOK_FORMAT.md). Contexto: **developer solo, sin testers ni QA humano** — el departamento de QA es un sistema de herramientas + agentes IA (Claude Code) que ejecutan estos documentos. Ningún procedimiento de esta carpeta puede tener como paso obligatorio "un humano revisa manualmente".

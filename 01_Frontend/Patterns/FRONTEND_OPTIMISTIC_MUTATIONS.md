@@ -2,6 +2,9 @@
 title: "Patrón Optimistic Mutations"
 category: 01_Frontend
 tags: [react-query, ux, mutations, optimistic-ui]
+summary: "Mutaciones optimistas con React Query: hook genérico que actualiza la caché al instante, hace rollback ante error y ofrece deshacer, con tres ejemplos reales de UX instantánea."
+keywords: [react-query, ux, mutations, optimistic-ui, optimistic, mutaciones, optimistas, react, query, hook, generico, actualiza, cache, instante]
+updated: 2026-07-29
 status: current
 ---
 

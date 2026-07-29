@@ -1,3 +1,13 @@
+---
+title: "Estándar de Animación y Movimiento"
+category: 01_Frontend
+tags: [frontend, animacion, motion, accesibilidad]
+summary: "Escala de duración y easing para animaciones, reutilización mediante variantes, respeto obligatorio por prefers-reduced-motion y prohibición de animaciones que bloqueen la interacción."
+keywords: [animacion, motion, duracion, easing, framer-motion, reduced-motion]
+updated: 2026-07-27
+status: current
+---
+
 # FRONTEND MOTION STANDARD (Animación)
 
 > Nivel 2 del handbook, depende de [FRONTEND_ENGINEERING_STANDARD.md](../Core/FRONTEND_ENGINEERING_STANDARD.md) (Nivel 1) y de [FRONTEND_ACCESSIBILITY_STANDARD.md](FRONTEND_ACCESSIBILITY_STANDARD.md) sección 8 (`prefers-reduced-motion`, no se repite aquí). Sigue el formato de [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md).

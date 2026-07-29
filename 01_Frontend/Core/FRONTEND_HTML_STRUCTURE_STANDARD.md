@@ -1,3 +1,13 @@
+---
+title: "Estándar de Estructura HTML Semántica"
+category: 01_Frontend
+tags: [frontend, html, semantica, accesibilidad]
+summary: "Estructura base de una página con HTML5 semántico: qué etiqueta usa cada región, jerarquía de headings, un solo h1 por página y cuándo corresponde button frente a enlace."
+keywords: [html5, semantica, landmarks, headings, h1, button, accesibilidad]
+updated: 2026-07-27
+status: current
+---
+
 # FRONTEND HTML STRUCTURE STANDARD (Semantic HTML)
 
 > Nivel 2 del handbook, depende de [FRONTEND_ENGINEERING_STANDARD.md](FRONTEND_ENGINEERING_STANDARD.md) (Nivel 1, sección 13.1) y del estándar [W3C/WHATWG HTML Living Standard](https://html.spec.whatwg.org/) — este documento no inventa reglas, traduce el estándar oficial de la plataforma web a reglas verificables. Sigue el formato de [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md).

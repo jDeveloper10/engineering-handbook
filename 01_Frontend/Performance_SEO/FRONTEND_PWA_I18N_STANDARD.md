@@ -1,3 +1,13 @@
+---
+title: "Estándar de PWA e Internacionalización"
+category: 01_Frontend
+tags: [frontend, pwa, i18n, service-worker]
+summary: "Criterio para adoptar PWA, manifest, estrategias de service worker por tipo de recurso, qué nunca debe cachearse, flujo de actualización sin forzar y límites reales en iOS."
+keywords: [pwa, manifest, service-worker, cache, update-flow, ios, i18n]
+updated: 2026-07-27
+status: current
+---
+
 # FRONTEND PWA & I18N STANDARD
 
 > Nivel 2 del handbook, depende de [FRONTEND_ENGINEERING_STANDARD.md](../Core/FRONTEND_ENGINEERING_STANDARD.md) (Nivel 1) y se coordina con [FRONTEND_PERFORMANCE_STANDARD.md](FRONTEND_PERFORMANCE_STANDARD.md) y con la política de cache de [08_Cloud/CLOUDFLARE_PLATFORM_STANDARD.md](../../08_Cloud/CLOUDFLARE_PLATFORM_STANDARD.md) §08. Sigue el formato de [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md).

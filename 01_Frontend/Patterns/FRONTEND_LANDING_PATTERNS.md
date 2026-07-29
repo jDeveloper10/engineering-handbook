@@ -1,6 +1,6 @@
 ---
 title: "FRONTEND LANDING PAGE STANDARD"
-category: frontend
+category: 01_Frontend
 tags:
   - landing-pages
   - patterns

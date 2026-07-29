@@ -1,3 +1,13 @@
+---
+title: "Estándar de Uso de Git y GitHub"
+category: 07_DevOps
+tags: [devops, git, github, seguridad]
+summary: "Uso de Git y GitHub como plataforma: estrategia de ramas trunk-based simplificada, convención de commits, protección de main, seguridad de la cuenta y escaneo de secretos con push protection."
+keywords: [git, github, trunk-based, commits, branch-protection, secret-scanning]
+updated: 2026-07-27
+status: current
+---
+
 # GITHUB STANDARD
 
 > Nivel 1 del handbook para el dominio DevOps — Git como herramienta y GitHub como plataforma. Sigue las convenciones de [00_HANDBOOK_FORMAT.md](../00_HANDBOOK_FORMAT.md): cada regla es `[REQUIRED]` o `[RECOMMENDED]`, escrita primero de forma agnóstica (aplica a cualquier forge: GitHub, GitLab, Gitea) y después con la implementación de referencia en el stack actual (GitHub, cuenta `JCDIGITALL`, gh CLI).

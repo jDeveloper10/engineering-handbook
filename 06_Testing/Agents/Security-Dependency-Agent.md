@@ -1,3 +1,13 @@
+---
+title: "Agente de Seguridad y Dependencias"
+category: 06_Testing
+tags: [testing, qa, agente, seguridad, dependencias]
+summary: "Ficha del agente que fusiona escaneo de seguridad y auditoría de dependencias, detecta licencias problemáticas y escala al dominio de seguridad cuando corresponde."
+keywords: [seguridad, dependencias, audit, licencias, escalado, agente]
+updated: 2026-07-21
+status: current
+---
+
 # Security-Dependency-Agent (fusiona: Security Scanner + Dependency)
 
 **Objetivo:** que ningún deploy salga con secretos expuestos, dependencias vulnerables/abandonadas

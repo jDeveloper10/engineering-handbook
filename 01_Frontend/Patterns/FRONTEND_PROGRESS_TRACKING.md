@@ -2,6 +2,9 @@
 title: "Patrón Progress Tracking"
 category: 01_Frontend
 tags: [react, ux, background-jobs, sse, websockets, polling]
+summary: "Seguimiento de trabajos largos que no pueden resolverse con un spinner: cuándo usar polling, Server-Sent Events o WebSockets, con implementación de cada estrategia y componente de barra de progreso."
+keywords: [react, ux, background-jobs, sse, websockets, polling, progress, tracking, seguimiento, trabajos, largos, resolverse, spinner, server-sent]
+updated: 2026-07-27
 status: current
 ---
 

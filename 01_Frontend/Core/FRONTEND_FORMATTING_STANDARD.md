@@ -1,3 +1,13 @@
+---
+title: "Estándar de Formateo de Números, Moneda y Fechas"
+category: 01_Frontend
+tags: [frontend, formato, intl, moneda, fechas]
+summary: "Cómo se muestran números, moneda, porcentajes y fechas en la interfaz: uso de la API Intl, fecha absoluta frente a relativa y manejo de zona horaria."
+keywords: [intl, numberformat, datetimeformat, moneda, porcentaje, fechas, timezone]
+updated: 2026-07-27
+status: current
+---
+
 # FRONTEND FORMATTING STANDARD (Números, Moneda y Fechas)
 
 > Nivel 2 del handbook, depende de [FRONTEND_ENGINEERING_STANDARD.md](FRONTEND_ENGINEERING_STANDARD.md) (Nivel 1). Sigue el formato de [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md).

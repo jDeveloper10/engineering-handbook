@@ -1,3 +1,13 @@
+---
+title: "Referencia de Elementos HTML"
+category: 01_Frontend
+tags: [frontend, html, referencia, semantica]
+summary: "Referencia elemento por elemento con tabla de conversión de div-soup al elemento correcto: estructura, controles nativos, formularios, contenido y el landmark de búsqueda."
+keywords: [html, referencia, div-soup, semantica, landmarks, formularios, search]
+updated: 2026-07-27
+status: current
+---
+
 # FRONTEND HTML ELEMENTS REFERENCE (Referencia por elemento)
 
 > Nivel 2 del handbook. Complementa a [FRONTEND_HTML_STRUCTURE_STANDARD.md](../Core/FRONTEND_HTML_STRUCTURE_STANDARD.md): aquel documento define la estructura de página (landmarks, jerarquía de headings, un `<main>`/`<h1>`); este baja al nivel de **elemento individual** — los elementos que las IAs usan mal o directamente ignoran. Sigue el formato de [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md).

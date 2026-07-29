@@ -1,3 +1,13 @@
+---
+title: "Estándar de Developer Experience"
+category: 14_DX
+tags: [dx, tooling, scripts, editor]
+summary: "Un solo procedimiento de arranque de proyecto, scripts npm idénticos en todos los repositorios, configuración de editor versionada y snippets para los patrones repetidos."
+keywords: [dx, bootstrap, scripts, npm, editor, snippets, template]
+updated: 2026-07-27
+status: current
+---
+
 # DX STANDARD
 
 > Documento del dominio Developer Experience (14). Sigue las convenciones de [00_HANDBOOK_FORMAT.md](../00_HANDBOOK_FORMAT.md): reglas `[REQUIRED]`/`[RECOMMENDED]`, capa agnóstica + implementación de referencia (Windows 10 + PowerShell, VS Code + Claude Code, React+Vite+TS / Cloudflare Workers / Supabase, GitHub).

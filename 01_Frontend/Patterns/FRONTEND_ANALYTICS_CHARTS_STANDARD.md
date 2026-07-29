@@ -1,3 +1,13 @@
+---
+title: "Estándar de Analítica y Gráficos"
+category: 01_Frontend
+tags: [frontend, charts, analytics, accesibilidad]
+summary: "Reglas para visualización de datos: integridad del dato, el color nunca como único indicador, interactividad, accesibilidad de la información graficada y comportamiento responsive."
+keywords: [charts, graficos, analytics, color, accesibilidad, responsive, anti-patrones]
+updated: 2026-07-27
+status: current
+---
+
 # FRONTEND ANALYTICS & CHARTS STANDARD
 
 > Nivel 2 del handbook, depende de [FRONTEND_ENGINEERING_STANDARD.md](../Core/FRONTEND_ENGINEERING_STANDARD.md) (Nivel 1) y de [FRONTEND_DASHBOARD_PATTERNS.md](FRONTEND_DASHBOARD_PATTERNS.md) sección 3 (elección de tipo de gráfico según el dato — ese punto no se repite aquí). Sigue el formato de [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md).

@@ -1,3 +1,13 @@
+---
+title: "Estándar de Desarrollo Desktop (Tauri)"
+category: 01_Frontend
+tags: [desktop, tauri, rust, react, offline]
+summary: "Reglas DESK-001 a DESK-005 para apps de escritorio con Tauri v2 + React + Rust: lógica pesada en Rust, comunicación IPC, offline con SQLite, auto-updater e impresión directa."
+keywords: [tauri, rust, ipc, sqlite, offline, updater, desktop, impresion]
+updated: 2026-07-29
+status: current
+---
+
 # Estándar de Desarrollo Desktop (DESK-001 a DESK-005)
 
 > 🔒 **Este documento define cómo se construye la app, no qué la mantiene segura.** Las reglas de seguridad del runtime de escritorio (ACL de IPC, validación de comandos nativos, CSP del webview, secretos en el keychain, updater firmado, code signing) viven en [05_Security/DESKTOP_SECURITY_STANDARD.md](../../05_Security/DESKTOP_SECURITY_STANDARD.md) (`DSEC-001` a `DSEC-011`) y son de lectura obligatoria antes de exponer cualquier comando al webview. Ante conflicto, manda el documento de seguridad.

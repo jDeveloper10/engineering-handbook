@@ -2,6 +2,9 @@
 title: "Estándar de Monorepo (Turborepo)"
 category: 09_Architecture
 tags: [monorepo, turborepo, nx, typescript, ci, pnpm]
+summary: "Monorepo con Turborepo: estructura de directorios, configuración base, diseño de los paquetes compartidos que son su razón de ser, y flujo de despliegue selectivo en CI."
+keywords: [monorepo, turborepo, nx, typescript, ci, pnpm, estructura, directorios, configuracion, base, diseno, paquetes, compartidos, razon]
+updated: 2026-07-27
 status: current
 ---
 

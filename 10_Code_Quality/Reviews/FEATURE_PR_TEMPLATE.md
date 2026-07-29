@@ -2,6 +2,9 @@
 title: "Plantilla OBLIGATORIA de Pull Request"
 category: 10_Code_Quality
 tags: [pr, code-review, checklist, github]
+summary: "Plantilla obligatoria de pull request para configurar en el repositorio: descripción del feature, checklist que no admite saltos, validación de reglas inquebrantables y evidencia visual."
+keywords: [pr, code-review, checklist, github, plantilla, obligatoria, pull, request, configurar, repositorio, descripcion, feature, admite, saltos]
+updated: 2026-07-29
 status: current
 ---
 
@@ -64,6 +67,7 @@ Este documento debe configurarse como plantilla predeterminada en `.github/pull_
 - [ ] **FE-TS:** Juro que no inyecté deuda técnica de TypeScript con `any`.
 
 ---
+
 ## Evidencia Visual (Opcional pero muy recomendado)
 [Adjuntar capturas de pantalla o un video corto en MP4 mostrando el feature (Estados vacío, loading y error!)]
 ```

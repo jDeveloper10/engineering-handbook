@@ -1,3 +1,13 @@
+---
+title: "Estándar de Cómputo Pesado"
+category: 02_Backend
+tags: [backend, workers, containers, performance]
+summary: "Reglas HC-001 a HC-004 para trabajo que excede el límite de CPU de un Worker: Workers para lógica ligera, Containers para cómputo pesado, con árbol de decisión rápida."
+keywords: [cpu, limite, workers, containers, computo-pesado, colas]
+updated: 2026-07-27
+status: current
+---
+
 # Estándar de Cómputo Pesado (HC-001 a HC-004)
 
 ## 🎯 Problema

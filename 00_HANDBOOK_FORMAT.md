@@ -1,3 +1,13 @@
+---
+title: "Formato y Convenciones del Handbook"
+category: root
+tags: [formato, convenciones, meta, estilo]
+summary: "Convenciones de escritura de todo el handbook: etiquetado REQUIRED/RECOMMENDED, regla agnóstica separada de la implementación de referencia, jerarquía de especialización en 3 niveles y frontmatter de trazabilidad."
+keywords: [required, recommended, convenciones, niveles, frontmatter, trazabilidad]
+updated: 2026-07-27
+status: current
+---
+
 # ENGINEERING HANDBOOK — Formato y convenciones
 
 > Este documento define **cómo está escrito** cada estándar del handbook, no reglas de código. Se lee una sola vez y se aplica a todos los dominios (`01_Frontend`, `02_Backend`, ...). Cualquier documento nuevo que se agregue al handbook sigue estas convenciones.

@@ -2,6 +2,9 @@
 title: "Architecture Decision Log (ADR)"
 category: 09_Architecture
 tags: [adr, architecture, decisions, stack]
+summary: "Registro central de las decisiones arquitectónicas inquebrantables del stack, cada una con su contexto y alternativas descartadas: Workers frente a Node, Supabase frente a Firebase, React Query frente a useEffect."
+keywords: [adr, architecture, decisions, stack, decision, registro, central, decisiones, arquitectonicas, inquebrantables, contexto, alternativas, descartadas, workers]
+updated: 2026-07-27
 status: current
 ---
 

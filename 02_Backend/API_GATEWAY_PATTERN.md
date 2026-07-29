@@ -1,3 +1,13 @@
+---
+title: "Patrón API Gateway para Microservicios"
+category: 02_Backend
+tags: [backend, api-gateway, microservicios, arquitectura]
+summary: "Reglas API-007 a API-012: por qué exponer 8 o más microservicios directamente falla y cómo un gateway como punto único de entrada resuelve enrutado, autenticación y agregación."
+keywords: [api-gateway, microservicios, enrutado, punto-unico, agregacion]
+updated: 2026-07-27
+status: current
+---
+
 # Patrón API Gateway para Microservicios (API-007 a API-012)
 
 ## 🎯 Problema

@@ -1,3 +1,13 @@
+---
+title: "Agente de Regresión Visual"
+category: 06_Testing
+tags: [testing, qa, agente, visual-regression]
+summary: "Ficha del agente de regresión visual: compara contra baselines aprobados y nunca aprueba un baseline nuevo por su cuenta, porque esa es una decisión humana."
+keywords: [regresion-visual, baseline, screenshots, aprobacion, agente]
+updated: 2026-07-21
+status: current
+---
+
 # Visual-Regression-Agent
 
 **Objetivo:** detectar cambios visuales no intencionales comparando screenshots contra baselines

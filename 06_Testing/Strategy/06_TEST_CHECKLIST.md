@@ -1,3 +1,13 @@
+---
+title: "Checklists de Test por Momento"
+category: 06_Testing
+tags: [testing, checklist, proceso]
+summary: "Qué corre antes de commit, de push, de merge, de release, de deploy y después del deploy, cada uno con su presupuesto de tiempo explícito."
+keywords: [checklist, commit, push, merge, release, deploy, presupuesto]
+updated: 2026-07-21
+status: current
+---
+
 # 06 — Test Checklists: qué corre en cada momento
 
 > **Propósito:** checklists operativos copy-paste por momento del ciclo (commit → push → merge → release → deploy → post-deploy), más las plantillas de cobertura para features nuevas y bugs. El CÓMO de cada tipo de test vive en `02_TESTING_PIPELINE.md`; este documento solo dice **qué corre cuándo y con qué comando**.

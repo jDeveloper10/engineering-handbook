@@ -1,3 +1,13 @@
+---
+title: "Engineering Handbook — Portada"
+category: root
+tags: [meta, indice, handbook]
+summary: "Portada del handbook: qué es, estado de madurez por dominio y el stack de referencia que da contexto a todos los documentos."
+keywords: [handbook, indice, estado, dominios, stack, portada]
+updated: 2026-07-27
+status: current
+---
+
 # ENGINEERING HANDBOOK
 
 Manual de cómo desarrollar software — no un conjunto de prompts sueltos. Cada dominio (`01_Frontend`, `02_Backend`, ...) tiene sus propios documentos de estándares, escritos para que una IA (o yo) tome las mismas decisiones que tomaría un ingeniero senior consistente, en cualquier proyecto nuevo.

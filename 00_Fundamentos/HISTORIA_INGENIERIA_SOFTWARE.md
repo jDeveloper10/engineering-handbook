@@ -1,6 +1,6 @@
 ---
 title: "00_Fundamentos — Historia de la Ingeniería de Software"
-category: fundamentals
+category: 00_Fundamentos
 tags:
   - history
   - foundations

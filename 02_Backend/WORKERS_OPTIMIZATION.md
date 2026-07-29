@@ -1,7 +1,10 @@
 ---
 title: "Optimización Workers"
-category: 08_Cloud
+category: 02_Backend
 tags: [cloudflare, workers, optimización, edge]
+summary: "Reglas O-032 a O-035 de optimización avanzada de Cloudflare Workers: eliminar cold starts, no saturar los 128MB de memoria, perfilado de CPU y procesamiento con Web Streams."
+keywords: [cloudflare, workers, optimizacion, edge, o-032, o-035, avanzada, eliminar, cold, starts, saturar, 128mb, memoria, perfilado]
+updated: 2026-07-29
 status: current
 ---
 

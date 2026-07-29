@@ -1,3 +1,13 @@
+---
+title: "Patrones de Tablas"
+category: 01_Frontend
+tags: [frontend, tablas, paginacion, patrones]
+summary: "Anatomía de una tabla, decisión entre paginación y scroll infinito, diseño de columnas, ordenamiento, selección y estados de fila."
+keywords: [tabla, paginacion, scroll-infinito, columnas, ordenamiento, seleccion]
+updated: 2026-07-27
+status: current
+---
+
 # FRONTEND TABLE PATTERNS
 
 > Nivel 2 del handbook, depende de [FRONTEND_ENGINEERING_STANDARD.md](../Core/FRONTEND_ENGINEERING_STANDARD.md) (Nivel 1) y de [FRONTEND_UI_PATTERNS.md](FRONTEND_UI_PATTERNS.md) sección 2 (Datos tabulares). Sigue el formato de [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md).
