@@ -1,0 +1,21 @@
+{
+  "name": "worker-template",
+  "version": "1.0.0",
+  "description": "Reference implementation for BACKEND_ENGINEERING_STANDARD",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240320.0",
+    "typescript": "^5.0.0",
+    "vitest": "^1.0.0",
+    "wrangler": "^3.0.0"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0",
+    "zod": "^3.22.0"
+  }
+}

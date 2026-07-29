@@ -1,0 +1,8 @@
+name = "worker-template"
+main = "src/index.ts"
+compatibility_date = "2024-03-20"
+compatibility_flags = ["nodejs_compat"]
+
+# Variables de entorno no sensibles (los secretos usar: wrangler secret put)
+[vars]
+# SUPABASE_URL = "https://your-project.supabase.co"

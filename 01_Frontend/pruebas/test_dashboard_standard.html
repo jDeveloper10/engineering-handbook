@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dashboard — TradePulse</title>
+
+<!-- Aplica el tema ANTES del primer paint — evita el flash de tema incorrecto.
+     FRONTEND_COLOR_CONTRAST_STANDARD.md sección 9: Light/Dark/Sistema. -->
+<script>
+  (function () {
+    const saved = localStorage.getItem("theme"); // "light" | "dark" | "system" | null
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const isDark = saved === "dark" || (saved !== "light" && prefersDark);
+    document.documentElement.classList.toggle("dark", isDark);
+  })();
+</script>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  // Estrategia por clase — FRONTEND_ENGINEERING_STANDARD.md 1.9 [REQUIRED]
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {                                                                                                
+        colors: {
+          // Tokens por rol resueltos vía CSS custom properties — ver FRONTEND_COLOR_CONTRAST_STANDARD.md sección 2.
+          // Ningún elemento del HTML necesita clase dark: — cambiar .dark en <html> cambia los 4 valores a la vez.
+          brand: { 400: "var(--brand-400)", 500: "var(--brand-500)", 600: "var(--brand-600)", tint: "var(--brand-tint)", border: "var(--brand-border)" },
+          bg: { deep: "var(--bg-deep)", base: "var(--bg-base)", card: "var(--bg-card)" },
+          ink: { 50: "var(--ink-50)", 300: "var(--ink-300)", 400: "var(--ink-400)", 500: "var(--ink-500)" },
+          danger: { 400: "var(--danger-400)", 500: "var(--danger-500)" },
+          warning: { 400: "var(--warning-400)", 500: "var(--warning-500)" },
+          line: "var(--line)",
+        },
+        // Escala de capas — FRONTEND_ELEVATION_STANDARD.md sección 2
+        zIndex: { sticky: "10", dropdown: "20", overlay: "30", "modal-backdrop": "40", modal: "41", toast: "50", tooltip: "60" },
+      },
+    },
+  };
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  body { font-family: "Inter", system-ui, sans-serif; }
+  .btn-focus:focus-visible { outline: 2px solid #34d399; outline-offset: 2px; }
+  @keyframes toast-in { from { opacity:0; transform: translateY(-8px);} to {opacity:1; transform:translateY(0);} }
+  .toast-enter { animation: toast-in .2s ease-out; }
+
+  /* FRONTEND_COLOR_CONTRAST_STANDARD.md secciones 3-4: light no es blanco puro forzado,
+     dark no es negro puro; superficie sube de luminosidad respecto al fondo en ambos modos. */
+  :root {
+    --brand-400: #34d399; --brand-500: #10b981; --brand-600: #059669;
+    --brand-tint: rgba(16,185,129,0.10); --brand-border: rgba(16,185,129,0.35);
+    --bg-deep: #f1f5f9; --bg-base: #f8fafc; --bg-card: #ffffff;
+    --ink-50: #0f172a; --ink-300: #334155; --ink-400: #64748b; --ink-500: #94a3b8;
+    --danger-400: #f87171; --danger-500: #dc2626;
+    --warning-400: #f59e0b; --warning-500: #d97706;
+    --line: #e2e8f0;
+  }
+  .dark {
+    --brand-400: #34d399; --brand-500: #10b981; --brand-600: #059669;
+    --brand-tint: rgba(16,185,129,0.10); --brand-border: rgba(16,185,129,0.35);
+    --bg-deep: #0b1220; --bg-base: #0f172a; --bg-card: #131f35;
+    --ink-50: #f8fafc; --ink-300: #cbd5e1; --ink-400: #94a3b8; --ink-500: #64748b;
+    --danger-400: #f87171; --danger-500: #ef4444;
+    --warning-400: #fbbf24; --warning-500: #d97706;
+    --line: #1e293b;
+  }
+</style>
+</head>
+<body class="bg-bg-deep text-ink-50 antialiased transition-colors duration-200">
+
+  <!-- ============================================================
+       NOTA DE PRUEBA — no forma parte del entregable
+       Combina 5 documentos de Nivel 2 en una sola pantalla real:
+         · FRONTEND_NAVIGATION_PATTERNS.md 4.8 — Top + Sidebar
+         · FRONTEND_DASHBOARD_PATTERNS.md — KPI con delta, freshness,
+           tipo de gráfico según el dato (línea = tendencia temporal)
+         · FRONTEND_TABLE_PATTERNS.md — paginación, ordenamiento,
+           acción inline (1 sola acción por fila), responsive
+         · FRONTEND_STATES_PATTERNS.md — loading (skeleton, botón
+           "Simular carga"), empty state por filtro (busca "XYZ")
+         · FRONTEND_NOTIFICATIONS_PATTERNS.md — toast al marcar una
+           señal como ejecutada, aria-live polite, auto-dismiss
+  ============================================================ -->
+
+  <div class="flex min-h-screen">
+
+    <!-- Sidebar desktop — FRONTEND_NAVIGATION_PATTERNS.md 4.7/4.8 -->
+    <aside class="hidden lg:flex w-60 shrink-0 flex-col border-r border-line bg-bg-base p-4">
+      <a href="#" class="btn-focus text-lg font-bold tracking-tight px-2">TradePulse</a>
+      <nav aria-label="Principal" class="mt-8 flex-1 space-y-1">
+        <a href="#" class="flex items-center gap-2.5 px-3 py-2 rounded-lg bg-brand-tint text-brand-500 text-sm font-medium">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+          Dashboard
+        </a>
+        <a href="#" class="btn-focus flex items-center gap-2.5 px-3 py-2 rounded-lg text-ink-400 hover:text-ink-50 hover:bg-bg-card text-sm font-medium transition-colors">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M7 14l4-4 3 3 5-6"/></svg>
+          Señales
+        </a>
+        <a href="#" class="btn-focus flex items-center gap-2.5 px-3 py-2 rounded-lg text-ink-400 hover:text-ink-50 hover:bg-bg-card text-sm font-medium transition-colors">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          Historial
+        </a>
+        <a href="#" class="btn-focus flex items-center gap-2.5 px-3 py-2 rounded-lg text-ink-400 hover:text-ink-50 hover:bg-bg-card text-sm font-medium transition-colors">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06A1.65 1.65 0 004.6 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06A1.65 1.65 0 009 4.6a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+          Configuración
+        </a>
+      </nav>
+      <div class="flex items-center gap-2.5 px-2 pt-4 border-t border-line">
+        <img src="https://picsum.photos/seed/avatar-user/32/32" alt="" width="32" height="32" class="rounded-full" />
+        <div class="min-w-0"><p class="text-sm font-medium truncate">Marcos R.</p><p class="text-xs text-ink-500">Plan Pro</p></div>
+      </div>
+    </aside>
+
+    <!-- Sidebar mobile (drawer) — FRONTEND_NAVIGATION_PATTERNS.md 3.5, nunca copia desktop tal cual -->
+    <div id="mobile-sidebar" class="hidden fixed inset-0 z-overlay lg:hidden">
+      <div id="mobile-sidebar-backdrop" class="absolute inset-0 bg-black/60"></div>
+      <aside class="absolute left-0 top-0 bottom-0 w-64 bg-bg-base border-r border-line p-4 flex flex-col">
+        <div class="flex items-center justify-between">
+          <span class="text-lg font-bold tracking-tight">TradePulse</span>
+          <button id="mobile-sidebar-close" aria-label="Cerrar menú" class="btn-focus p-1.5 text-ink-400"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg></button>
+        </div>
+        <nav aria-label="Principal mobile" class="mt-6 space-y-1">
+          <a href="#" class="block px-3 py-2 rounded-lg bg-brand-tint text-brand-500 text-sm font-medium">Dashboard</a>
+          <a href="#" class="block px-3 py-2 rounded-lg text-ink-400 text-sm font-medium">Señales</a>
+          <a href="#" class="block px-3 py-2 rounded-lg text-ink-400 text-sm font-medium">Historial</a>
+          <a href="#" class="block px-3 py-2 rounded-lg text-ink-400 text-sm font-medium">Configuración</a>
+        </nav>
+      </aside>
+    </div>
+
+    <div class="flex-1 flex flex-col min-w-0">
+
+      <!-- Top bar -->
+      <header class="h-16 shrink-0 border-b border-line bg-bg-base sticky top-0 z-sticky flex items-center justify-between px-4 sm:px-6">
+        <div class="flex items-center gap-3">
+          <button id="sidebar-toggle" aria-label="Abrir menú" class="btn-focus lg:hidden p-1.5 text-ink-300"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+          <div class="relative hidden sm:block">
+            <svg class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-ink-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+            <input type="search" placeholder="Buscar..." class="btn-focus w-56 rounded-lg bg-bg-card border border-line pl-9 pr-3 py-2 text-sm placeholder:text-ink-500 focus:border-brand-500 outline-none" />
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          <!-- Selector de tema — FRONTEND_COLOR_CONTRAST_STANDARD.md sección 9: Claro / Oscuro / Sistema -->
+          <div id="theme-switcher" class="flex items-center gap-0.5 bg-bg-card border border-line rounded-lg p-0.5" role="group" aria-label="Tema">
+            <button type="button" data-theme-choice="light" aria-label="Tema claro" aria-pressed="false" class="theme-btn btn-focus p-1.5 rounded-md text-ink-400">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+            </button>
+            <button type="button" data-theme-choice="dark" aria-label="Tema oscuro" aria-pressed="false" class="theme-btn btn-focus p-1.5 rounded-md text-ink-400">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+            </button>
+            <button type="button" data-theme-choice="system" aria-label="Tema del sistema" aria-pressed="false" class="theme-btn btn-focus p-1.5 rounded-md text-ink-400">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </button>
+          </div>
+          <button aria-label="Notificaciones, 3 sin leer" class="btn-focus relative p-1.5 text-ink-300 hover:text-ink-50">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg>
+            <span class="absolute -top-0.5 -right-0.5 bg-danger-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">3</span>
+          </button>
+          <img src="https://picsum.photos/seed/avatar-user/32/32" alt="Perfil de Marcos R." width="32" height="32" class="rounded-full lg:hidden" />
+        </div>
+      </header>
+
+      <main class="flex-1 p-4 sm:p-6 lg:p-8 space-y-8">
+
+        <!-- Header: título + rango de fecha + freshness — FRONTEND_DASHBOARD_PATTERNS.md 4/6 -->
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h1 class="text-2xl font-bold tracking-tight">Dashboard</h1>
+            <p class="mt-1 text-xs text-ink-500" id="last-updated"></p>
+          </div>
+          <div class="flex gap-1.5 bg-bg-card border border-line rounded-lg p-1 w-fit" role="group" aria-label="Rango de fecha">
+            <button class="range-btn px-3 py-1.5 rounded-md text-xs font-medium bg-brand-500 text-slate-950" data-range="7d">7 días</button>
+            <button class="range-btn px-3 py-1.5 rounded-md text-xs font-medium text-ink-400 hover:text-ink-50" data-range="30d">30 días</button>
+            <button class="range-btn px-3 py-1.5 rounded-md text-xs font-medium text-ink-400 hover:text-ink-50" data-range="90d">90 días</button>
+          </div>
+        </div>
+
+        <!-- KPI row — FRONTEND_DASHBOARD_PATTERNS.md sección 2: siempre con delta/contexto -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="bg-bg-card border border-line rounded-xl p-5">
+            <p class="text-xs text-ink-500">Señales activas</p>
+            <p class="mt-1.5 text-2xl font-extrabold">12</p>
+            <p class="mt-1 text-xs text-ink-400">3 abiertas hoy</p>
+          </div>
+          <div class="bg-bg-card border border-line rounded-xl p-5">
+            <p class="text-xs text-ink-500">Tasa de acierto</p>
+            <p class="mt-1.5 text-2xl font-extrabold">78%</p>
+            <p class="mt-1 text-xs text-brand-500">▲ +3% vs mes pasado</p>
+          </div>
+          <div class="bg-bg-card border border-line rounded-xl p-5">
+            <p class="text-xs text-ink-500">P&amp;L simulado del mes</p>
+            <p class="mt-1.5 text-2xl font-extrabold text-brand-500">+$2,340</p>
+            <p class="mt-1 text-xs text-brand-500">▲ +18% vs mes pasado</p>
+          </div>
+          <div class="bg-bg-card border border-line rounded-xl p-5">
+            <p class="text-xs text-ink-500">Alertas hoy</p>
+            <p class="mt-1.5 text-2xl font-extrabold">5</p>
+            <p class="mt-1 text-xs text-danger-400">▼ -2 vs ayer</p>
+          </div>
+        </div>
+
+        <!-- Gráfico — línea porque el dato es tendencia en el tiempo (sección 3 del doc) -->
+        <section class="bg-bg-card border border-line rounded-xl p-6">
+          <h2 class="text-sm font-semibold text-ink-300">Rendimiento acumulado</h2>
+          <svg viewBox="0 0 600 160" class="mt-4 w-full h-40" preserveAspectRatio="none" role="img" aria-label="Gráfico de línea mostrando rendimiento acumulado creciente en los últimos 30 días">
+            <polyline fill="none" stroke="#10b981" stroke-width="2"
+              points="0,140 40,132 80,138 120,110 160,118 200,95 240,100 280,80 320,88 360,60 400,68 440,45 480,50 520,28 560,20 600,10" />
+            <polygon fill="url(#chartGradient)" opacity="0.25"
+              points="0,140 40,132 80,138 120,110 160,118 200,95 240,100 280,80 320,88 360,60 400,68 440,45 480,50 520,28 560,20 600,10 600,160 0,160" />
+            <defs>
+              <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#10b981" />
+                <stop offset="100%" stop-color="#10b981" stop-opacity="0" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </section>
+
+        <!-- Tabla — FRONTEND_TABLE_PATTERNS.md -->
+        <section class="bg-bg-card border border-line rounded-xl overflow-hidden">
+          <div class="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-line">
+            <h2 class="text-sm font-semibold">Señales recientes</h2>
+            <div class="flex items-center gap-2">
+              <input id="table-search" type="search" placeholder="Buscar por par..." class="btn-focus rounded-lg bg-bg-deep border border-line px-3 py-1.5 text-xs placeholder:text-ink-500 focus:border-brand-500 outline-none w-40" />
+              <button id="simulate-loading" class="btn-focus text-xs text-ink-400 hover:text-ink-50 border border-line rounded-lg px-3 py-1.5">Simular carga</button>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="text-left text-xs text-ink-500 border-b border-line">
+                  <th class="px-4 sm:px-5 py-3 font-medium">
+                    <button id="sort-par" class="btn-focus flex items-center gap-1 hover:text-ink-50">Par <span id="sort-icon">▾</span></button>
+                  </th>
+                  <th class="px-4 py-3 font-medium">Tipo</th>
+                  <th class="px-4 py-3 font-medium hidden sm:table-cell">Entrada</th>
+                  <th class="px-4 py-3 font-medium hidden md:table-cell">Stop / Objetivo</th>
+                  <th class="px-4 py-3 font-medium">Estado</th>
+                  <th class="px-4 py-3 font-medium text-right">Acción</th>
+                </tr>
+              </thead>
+              <tbody id="table-body"></tbody>
+            </table>
+          </div>
+
+          <!-- Paginación — FRONTEND_TABLE_PATTERNS.md sección 3: numerada, no scroll infinito -->
+          <div class="flex items-center justify-between px-4 sm:px-5 py-3 border-t border-line text-xs text-ink-500">
+            <span id="pagination-info">Mostrando 1-6 de 6</span>
+            <div class="flex items-center gap-1">
+              <button class="btn-focus px-2.5 py-1 rounded-md border border-line text-ink-500 cursor-not-allowed" disabled>Anterior</button>
+              <button class="btn-focus px-2.5 py-1 rounded-md bg-brand-500 text-slate-950 font-medium">1</button>
+              <button class="btn-focus px-2.5 py-1 rounded-md border border-line text-ink-500 cursor-not-allowed" disabled>Siguiente</button>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Toast container — FRONTEND_NOTIFICATIONS_PATTERNS.md -->
+  <div id="toast-container" class="fixed top-4 right-4 z-toast space-y-2 w-72" aria-live="polite"></div>
+
+  <script>
+    const SIGNALS = [
+      { par: "BTC/USDT", tipo: "Compra", entrada: "$61,200", stop: "$59,800", objetivo: "$64,500", estado: "activa" },
+      { par: "ETH/USDT", tipo: "Venta", entrada: "$3,180", stop: "$3,260", objetivo: "$2,950", estado: "activa" },
+      { par: "EUR/USD", tipo: "Compra", entrada: "1.0820", stop: "1.0780", objetivo: "1.0910", estado: "ganadora" },
+      { par: "XAU/USD", tipo: "Compra", entrada: "$2,340", stop: "$2,310", objetivo: "$2,410", estado: "activa" },
+      { par: "SOL/USDT", tipo: "Venta", entrada: "$142.5", stop: "$148.0", objetivo: "$128.0", estado: "perdedora" },
+      { par: "GBP/USD", tipo: "Compra", entrada: "1.2650", stop: "1.2600", objetivo: "1.2760", estado: "ganadora" },
+    ];
+
+    const badgeClass = {
+      activa: "bg-brand-tint text-brand-500",
+      ganadora: "bg-brand-tint text-brand-500",
+      perdedora: "bg-danger-500/10 text-danger-400",
+    };
+    const badgeLabel = { activa: "Activa", ganadora: "Cerrada · Ganadora", perdedora: "Cerrada · Perdedora" };
+
+    const tbody = document.getElementById("table-body");
+
+    function rowHtml(s, i) {
+      return `
+        <tr class="border-b border-line last:border-0 hover:bg-bg-deep/50 transition-colors">
+          <td class="px-4 sm:px-5 py-3 font-medium">${s.par}</td>
+          <td class="px-4 py-3">
+            <span class="text-xs font-medium ${s.tipo === "Compra" ? "text-brand-500" : "text-danger-400"}">${s.tipo}</span>
+          </td>
+          <td class="px-4 py-3 hidden sm:table-cell text-ink-300">${s.entrada}</td>
+          <td class="px-4 py-3 hidden md:table-cell text-ink-400 text-xs">${s.stop} / ${s.objetivo}</td>
+          <td class="px-4 py-3">
+            <span class="inline-flex px-2 py-0.5 rounded-full text-xs font-medium ${badgeClass[s.estado]}">${badgeLabel[s.estado]}</span>
+          </td>
+          <td class="px-4 py-3 text-right">
+            ${s.estado === "activa"
+              ? `<button data-idx="${i}" class="btn-focus mark-executed text-xs font-medium text-brand-500 hover:text-brand-400 border border-brand-border rounded-md px-2.5 py-1">Marcar ejecutada</button>`
+              : `<span class="text-xs text-ink-500">—</span>`}
+          </td>
+        </tr>`;
+    }
+
+    function skeletonRow() {
+      return `<tr class="border-b border-line last:border-0">
+        ${Array.from({ length: 6 }).map(() => `<td class="px-4 sm:px-5 py-3"><div class="h-3.5 bg-line rounded animate-pulse w-3/4"></div></td>`).join("")}
+      </tr>`;
+    }
+
+    function emptyRow(query) {
+      return `<tr><td colspan="6" class="px-5 py-10 text-center">
+        <p class="text-sm text-ink-300">No encontramos resultados para "${query}"</p>
+        <button id="clear-search" class="btn-focus mt-2 text-xs text-brand-500 hover:text-brand-400 font-medium">Limpiar búsqueda</button>
+      </td></tr>`;
+    }
+
+    function renderTable(list) {
+      if (list.length === 0) {
+        tbody.innerHTML = emptyRow(document.getElementById("table-search").value);
+        document.getElementById("clear-search").addEventListener("click", () => {
+          document.getElementById("table-search").value = "";
+          renderTable(SIGNALS);
+        });
+        document.getElementById("pagination-info").textContent = "Mostrando 0 de 6";
+        return;
+      }
+      tbody.innerHTML = list.map(rowHtml).join("");
+      document.getElementById("pagination-info").textContent = `Mostrando 1-${list.length} de 6`;
+      tbody.querySelectorAll(".mark-executed").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const par = SIGNALS[btn.dataset.idx].par;
+          btn.closest("tr").style.opacity = "0.5";
+          btn.disabled = true;
+          btn.textContent = "Ejecutada";
+          showToast(`Señal ${par} marcada como ejecutada.`, "success");
+        });
+      });
+    }
+    renderTable(SIGNALS);
+
+    // Búsqueda en tabla — demuestra el empty state por filtro
+    document.getElementById("table-search").addEventListener("input", (e) => {
+      const q = e.target.value.trim().toLowerCase();
+      renderTable(q ? SIGNALS.filter((s) => s.par.toLowerCase().includes(q)) : SIGNALS);
+    });
+
+    // Ordenamiento (visual) por columna Par
+    let sortAsc = true;
+    document.getElementById("sort-par").addEventListener("click", () => {
+      sortAsc = !sortAsc;
+      document.getElementById("sort-icon").textContent = sortAsc ? "▾" : "▴";
+      const sorted = [...SIGNALS].sort((a, b) => sortAsc ? a.par.localeCompare(b.par) : b.par.localeCompare(a.par));
+      renderTable(sorted);
+    });
+
+    // Loading state — FRONTEND_STATES_PATTERNS.md: skeleton, no spinner que reemplaza toda la tabla
+    document.getElementById("simulate-loading").addEventListener("click", () => {
+      tbody.innerHTML = Array.from({ length: 6 }).map(skeletonRow).join("");
+      setTimeout(() => renderTable(SIGNALS), 900);
+    });
+
+    // Rango de fecha (visual)
+    document.querySelectorAll(".range-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".range-btn").forEach((b) => b.className = "range-btn px-3 py-1.5 rounded-md text-xs font-medium text-ink-400 hover:text-ink-50");
+        btn.className = "range-btn px-3 py-1.5 rounded-md text-xs font-medium bg-brand-500 text-slate-950";
+      });
+    });
+
+    // Sidebar mobile — FRONTEND_NAVIGATION_PATTERNS.md 3.5
+    const mobileSidebar = document.getElementById("mobile-sidebar");
+    document.getElementById("sidebar-toggle").addEventListener("click", () => mobileSidebar.classList.remove("hidden"));
+    document.getElementById("mobile-sidebar-close").addEventListener("click", () => mobileSidebar.classList.add("hidden"));
+    document.getElementById("mobile-sidebar-backdrop").addEventListener("click", () => mobileSidebar.classList.add("hidden"));
+
+    // Toasts — FRONTEND_NOTIFICATIONS_PATTERNS.md: aria-live polite, cerrable, auto-dismiss ~5s
+    function showToast(message, tone) {
+      const container = document.getElementById("toast-container");
+      const toast = document.createElement("div");
+      toast.className = "toast-enter flex items-start gap-2 rounded-lg border px-4 py-3 text-sm shadow-lg " +
+        (tone === "success" ? "bg-bg-card border-brand-border text-brand-400" : "bg-bg-card border-line text-ink-300");
+      toast.innerHTML = `<span class="flex-1">${message}</span>
+        <button aria-label="Cerrar notificación" class="btn-focus text-ink-500 hover:text-ink-50">✕</button>`;
+      toast.querySelector("button").addEventListener("click", () => toast.remove());
+      container.appendChild(toast);
+      setTimeout(() => toast.remove(), 5000);
+    }
+
+    // Selector de tema Claro/Oscuro/Sistema — FRONTEND_COLOR_CONTRAST_STANDARD.md sección 9
+    const mediaDark = window.matchMedia("(prefers-color-scheme: dark)");
+    const themeButtons = document.querySelectorAll(".theme-btn");
+
+    function applyTheme(choice) {
+      const isDark = choice === "dark" || (choice === "system" && mediaDark.matches);
+      document.documentElement.classList.toggle("dark", isDark);
+      themeButtons.forEach((btn) => {
+        const active = btn.dataset.themeChoice === choice;
+        btn.setAttribute("aria-pressed", String(active));
+        btn.classList.toggle("bg-brand-tint", active);
+        btn.classList.toggle("text-brand-500", active);
+        btn.classList.toggle("text-ink-400", !active);
+      });
+    }
+
+    function setTheme(choice) {
+      localStorage.setItem("theme", choice);
+      applyTheme(choice);
+    }
+
+    themeButtons.forEach((btn) => btn.addEventListener("click", () => setTheme(btn.dataset.themeChoice)));
+
+    // Si el usuario dejó "Sistema" activo, seguir el cambio de preferencia en vivo (sin recargar)
+    mediaDark.addEventListener("change", () => {
+      if ((localStorage.getItem("theme") || "system") === "system") applyTheme("system");
+    });
+
+    applyTheme(localStorage.getItem("theme") || "system");
+
+    // "Actualizado hace X min" calculado, no hardcodeado — FRONTEND_FORMATTING_STANDARD.md sección 5
+    const rtf = new Intl.RelativeTimeFormat("es", { numeric: "auto" });
+    const lastFetchedAt = Date.now() - 2 * 60 * 1000; // simula que los datos llegaron hace 2 minutos
+    function renderLastUpdated() {
+      const minutesAgo = Math.round((Date.now() - lastFetchedAt) / 60000);
+      document.getElementById("last-updated").textContent =
+        "Actualizado " + rtf.format(-minutesAgo, "minute");
+    }
+    renderLastUpdated();
+    setInterval(renderLastUpdated, 30000);
+  </script>
+</body>
+</html>

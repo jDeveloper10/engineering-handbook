@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Iniciar sesión — TradePulse</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  // Mismos tokens que la landing — ver FRONTEND_ENGINEERING_STANDARD.md sección 01
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: { 400: "#34d399", 500: "#10b981", 600: "#059669" },
+          bg: { deep: "#0b1220", base: "#0f172a", card: "#131f35" },
+          ink: { 50: "#f8fafc", 300: "#cbd5e1", 400: "#94a3b8", 500: "#64748b" },
+          danger: { 400: "#f87171", 500: "#ef4444" },
+          warning: { 400: "#fbbf24" },
+          line: "#1e293b",
+        },
+      },
+    },
+  };
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<link rel="preload" as="image" href="https://picsum.photos/seed/tradepulse-auth/1200/1400" fetchpriority="high" />
+
+<style>
+  body { font-family: "Inter", system-ui, sans-serif; }
+  .btn-focus:focus-visible { outline: 2px solid #34d399; outline-offset: 2px; }
+</style>
+</head>
+<body class="bg-bg-deep text-ink-50 antialiased">
+
+  <!-- ============================================================
+       NOTA DE PRUEBA — no forma parte del entregable
+       Aplica FRONTEND_AUTH_PATTERNS.md:
+         · 1/2.1 Split Screen — TradePulse es SaaS, el panel izquierdo
+           refuerza propuesta de valor; en mobile se oculta (colapsa).
+         · 3 Reglas REQUIRED: un h1, un solo CTA primario, logo clicable,
+           labels visibles, password oculta con toggle, Enter envía,
+           estados loading/error/éxito, responsive.
+         · 4 Orden de campos: Email → Password → Remember/Forgot →
+           Login → Divider → Social → Create account.
+         · 6/7 Password UX + validación de email en tiempo real.
+         · 9 Mensajes de error accionables, no técnicos.
+         · 10 Social login debajo del formulario, nunca arriba.
+         · 13 Seguridad UX: mensaje genérico (no revela si el correo
+           existe) + bloqueo temporal tras 3 intentos fallidos.
+         · 14 Accesibilidad: aria-live en errores, aria-describedby,
+           focus-visible, navegable por teclado.
+       Credenciales demo: demo@tradepulse.com / Demo1234
+  ============================================================ -->
+
+  <div class="min-h-screen grid lg:grid-cols-2">
+
+    <!-- Panel izquierdo — branding, contenido secundario respecto a la tarea principal (login) -->
+    <!-- FRONTEND_HTML_STRUCTURE_STANDARD.md sección 3: <aside> para contenido secundario -->
+    <aside class="hidden lg:flex relative flex-col justify-between p-12 overflow-hidden">
+      <img
+        src="https://picsum.photos/seed/tradepulse-auth/1200/1400"
+        alt=""
+        class="absolute inset-0 w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-bg-deep/80"></div>
+
+      <a href="#" class="btn-focus relative z-10 text-lg font-bold tracking-tight">TradePulse</a>
+
+      <div class="relative z-10 max-w-md">
+        <blockquote class="text-2xl font-medium leading-snug">
+          "Dejé 4 grupos de señales por esto. Menos alertas, pero las que llegan son buenas."
+        </blockquote>
+        <p class="mt-4 text-sm text-ink-400">Marcos R. — Trader independiente</p>
+        <div class="mt-10 grid grid-cols-3 gap-6 pt-6 border-t border-line">
+          <div><p class="text-2xl font-extrabold text-brand-500">+2,400</p><p class="text-xs text-ink-500 mt-1">Traders</p></div>
+          <div><p class="text-2xl font-extrabold text-brand-500">$18M</p><p class="text-xs text-ink-500 mt-1">Volumen</p></div>
+          <div><p class="text-2xl font-extrabold text-brand-500">4.9★</p><p class="text-xs text-ink-500 mt-1">Calificación</p></div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Panel derecho — contenido principal de la pantalla (el formulario) -->
+    <main class="flex items-center justify-center p-6 sm:p-12">
+      <div class="w-full max-w-sm">
+
+        <a href="#" class="btn-focus lg:hidden inline-block mb-8 text-lg font-bold tracking-tight">TradePulse</a>
+
+        <h1 class="text-2xl sm:text-3xl font-bold tracking-tight">Bienvenido de nuevo</h1>
+        <p class="mt-2 text-sm text-ink-400">Inicia sesión para ver tus señales activas.</p>
+
+        <!-- Banner de error/bloqueo — aria-live para lectores de pantalla -->
+        <div id="form-banner" class="hidden mt-5 rounded-lg border px-4 py-3 text-sm" role="alert" aria-live="assertive"></div>
+
+        <form id="login-form" class="mt-6 space-y-5" novalidate>
+          <div>
+            <label for="email" class="block text-sm font-medium text-ink-300">Email</label>
+            <input
+              id="email" name="email" type="email" autocomplete="email" required
+              aria-describedby="email-error"
+              class="btn-focus mt-1.5 w-full rounded-lg bg-bg-card border border-line px-4 py-2.5 text-sm text-ink-50 placeholder:text-ink-500 focus:border-brand-500 outline-none transition-colors"
+              placeholder="tu@correo.com"
+            />
+            <p id="email-error" class="hidden mt-1.5 text-xs text-danger-400"></p>
+          </div>
+
+          <div>
+            <div class="flex items-center justify-between">
+              <label for="password" class="block text-sm font-medium text-ink-300">Password</label>
+              <a href="#forgot" class="btn-focus text-xs text-brand-500 hover:text-brand-400">¿Olvidaste tu contraseña?</a>
+            </div>
+            <div class="relative mt-1.5">
+              <input
+                id="password" name="password" type="password" autocomplete="current-password" required
+                class="btn-focus w-full rounded-lg bg-bg-card border border-line px-4 py-2.5 pr-11 text-sm text-ink-50 placeholder:text-ink-500 focus:border-brand-500 outline-none transition-colors"
+                placeholder="••••••••"
+              />
+              <button
+                type="button" id="toggle-password" aria-label="Mostrar contraseña" aria-pressed="false"
+                class="btn-focus absolute right-0 top-0 h-full px-3 text-ink-500 hover:text-ink-300"
+              >
+                <svg id="eye-open" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg id="eye-closed" class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.94 10.94 0 0112 20c-7 0-11-7-11-7a20.3 20.3 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 7 11 7a20.4 20.4 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><path d="M1 1l22 22"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <label class="flex items-center gap-2 text-sm text-ink-400 cursor-pointer">
+            <input type="checkbox" class="btn-focus rounded border-line bg-bg-card text-brand-500 focus:ring-0" />
+            Recordarme
+          </label>
+
+          <button
+            type="submit" id="submit-btn" data-cta="login-primary"
+            class="btn-focus w-full rounded-lg bg-brand-500 hover:bg-brand-400 disabled:opacity-60 disabled:cursor-not-allowed text-slate-950 text-sm font-semibold py-3 transition-colors"
+          >
+            <span id="submit-label">Iniciar sesión</span>
+          </button>
+        </form>
+
+        <div class="mt-6 flex items-center gap-3">
+          <div class="h-px flex-1 bg-line"></div>
+          <span class="text-xs text-ink-500">o continúa con</span>
+          <div class="h-px flex-1 bg-line"></div>
+        </div>
+
+        <div class="mt-6 grid grid-cols-3 gap-3">
+          <button type="button" class="btn-focus flex items-center justify-center rounded-lg border border-line py-2.5 text-ink-300 hover:border-ink-500 transition-colors" aria-label="Continuar con Google">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18a8 8 0 110-16 8 8 0 010 16z"/></svg>
+          </button>
+          <button type="button" class="btn-focus flex items-center justify-center rounded-lg border border-line py-2.5 text-ink-300 hover:border-ink-500 transition-colors" aria-label="Continuar con GitHub">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-3.16 19.5c.5.1.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.1.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.4 9.4 0 015 0c1.91-1.3 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0012 2z"/></svg>
+          </button>
+          <button type="button" class="btn-focus flex items-center justify-center rounded-lg border border-line py-2.5 text-ink-300 hover:border-ink-500 transition-colors" aria-label="Continuar con Microsoft">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="9" height="9"/><rect x="13" y="2" width="9" height="9"/><rect x="2" y="13" width="9" height="9"/><rect x="13" y="13" width="9" height="9"/></svg>
+          </button>
+        </div>
+
+        <p class="mt-8 text-center text-sm text-ink-400">
+          ¿No tienes cuenta? <a href="#register" class="btn-focus text-brand-500 hover:text-brand-400 font-medium">Crear cuenta</a>
+        </p>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const form = document.getElementById("login-form");
+    const emailInput = document.getElementById("email");
+    const emailError = document.getElementById("email-error");
+    const passwordInput = document.getElementById("password");
+    const toggleBtn = document.getElementById("toggle-password");
+    const eyeOpen = document.getElementById("eye-open");
+    const eyeClosed = document.getElementById("eye-closed");
+    const submitBtn = document.getElementById("submit-btn");
+    const submitLabel = document.getElementById("submit-label");
+    const banner = document.getElementById("form-banner");
+
+    const DEMO_EMAIL = "demo@tradepulse.com";
+    const DEMO_PASSWORD = "Demo1234";
+    let failedAttempts = 0;
+    let lockedUntil = 0;
+
+    // 6/7 — Password UX: mostrar/ocultar
+    toggleBtn.addEventListener("click", () => {
+      const isHidden = passwordInput.type === "password";
+      passwordInput.type = isHidden ? "text" : "password";
+      eyeOpen.classList.toggle("hidden", isHidden);
+      eyeClosed.classList.toggle("hidden", !isHidden);
+      toggleBtn.setAttribute("aria-label", isHidden ? "Ocultar contraseña" : "Mostrar contraseña");
+      toggleBtn.setAttribute("aria-pressed", String(isHidden));
+    });
+
+    // 7 — Validación de email en tiempo real
+    function validateEmail() {
+      const value = emailInput.value.trim();
+      const looksValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+      if (value.length === 0) {
+        emailError.classList.add("hidden");
+        emailInput.removeAttribute("aria-invalid");
+        return true;
+      }
+      if (!looksValid) {
+        emailError.textContent = value.includes("@") && !value.split("@")[1]?.includes(".")
+          ? "Falta el dominio."
+          : "Ese correo no parece válido.";
+        emailError.classList.remove("hidden");
+        emailInput.setAttribute("aria-invalid", "true");
+        return false;
+      }
+      emailError.classList.add("hidden");
+      emailInput.removeAttribute("aria-invalid");
+      return true;
+    }
+    emailInput.addEventListener("input", validateEmail);
+    emailInput.addEventListener("blur", validateEmail);
+
+    function showBanner(message, tone) {
+      banner.textContent = message;
+      banner.className = "mt-5 rounded-lg border px-4 py-3 text-sm " + (
+        tone === "error"
+          ? "border-danger-500/40 bg-danger-500/10 text-danger-400"
+          : tone === "warning"
+          ? "border-warning-400/40 bg-warning-400/10 text-warning-400"
+          : "border-brand-500/40 bg-brand-500/10 text-brand-400"
+      );
+    }
+    function hideBanner() { banner.classList.add("hidden"); }
+
+    // 9/13 — Estados + seguridad UX: mensaje genérico + bloqueo temporal tras 3 intentos
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      hideBanner();
+
+      if (Date.now() < lockedUntil) return;
+      if (!validateEmail() || !emailInput.value || !passwordInput.value) {
+        showBanner("Completa email y contraseña para continuar.", "warning");
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitLabel.textContent = "Entrando...";
+
+      setTimeout(() => {
+        const ok = emailInput.value.trim() === DEMO_EMAIL && passwordInput.value === DEMO_PASSWORD;
+
+        if (ok) {
+          submitLabel.textContent = "Redirigiendo...";
+          showBanner("Sesión iniciada correctamente. Redirigiendo...", "success");
+          return; // se queda deshabilitado simulando la redirección
+        }
+
+        failedAttempts++;
+        submitLabel.textContent = "Iniciar sesión";
+
+        if (failedAttempts >= 3) {
+          let seconds = 10;
+          lockedUntil = Date.now() + seconds * 1000;
+          submitBtn.disabled = true;
+          const tick = () => {
+            showBanner(`Demasiados intentos. Inténtalo de nuevo en ${seconds}s.`, "warning");
+            seconds--;
+            if (seconds < 0) {
+              clearInterval(interval);
+              submitBtn.disabled = false;
+              failedAttempts = 0;
+              hideBanner();
+            }
+          };
+          tick();
+          const interval = setInterval(tick, 1000);
+        } else {
+          // Nunca revela si el correo existe o no — mensaje siempre genérico (sección 13)
+          showBanner("Correo o contraseña incorrectos.", "error");
+          submitBtn.disabled = false;
+        }
+      }, 700);
+    });
+  </script>
+</body>
+</html>

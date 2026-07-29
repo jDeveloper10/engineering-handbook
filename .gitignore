@@ -1,0 +1,22 @@
+# Dependencias
+node_modules/
+
+# Backups y archivos comprimidos (no versionar: el repo YA es el respaldo)
+*.rar
+*.zip
+*.7z
+
+# Sistema operativo
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Editores
+.vscode/
+.idea/
+*.swp
+
+# Entorno
+.env
+.env.*
+.dev.vars

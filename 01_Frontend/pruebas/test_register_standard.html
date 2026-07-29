@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Crear cuenta — TradePulse</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  // Mismos tokens que login/landing — ver FRONTEND_ENGINEERING_STANDARD.md sección 01
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: { 400: "#34d399", 500: "#10b981", 600: "#059669" },
+          bg: { deep: "#0b1220", base: "#0f172a", card: "#131f35" },
+          ink: { 50: "#f8fafc", 300: "#cbd5e1", 400: "#94a3b8", 500: "#64748b" },
+          danger: { 400: "#f87171", 500: "#ef4444" },
+          warning: { 400: "#fbbf24" },
+          line: "#1e293b",
+        },
+      },
+    },
+  };
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<link rel="preload" as="image" href="https://picsum.photos/seed/tradepulse-register/1200/1400" fetchpriority="high" />
+
+<style>
+  body { font-family: "Inter", system-ui, sans-serif; }
+  .btn-focus:focus-visible { outline: 2px solid #34d399; outline-offset: 2px; }
+</style>
+</head>
+<body class="bg-bg-deep text-ink-50 antialiased">
+
+  <!-- ============================================================
+       NOTA DE PRUEBA — no forma parte del entregable
+       Aplica FRONTEND_AUTH_PATTERNS.md sección 5 (Registro) además de
+       lo ya validado en el login:
+         · Orden de campos: Nombre → Email → Password → Confirmar →
+           Aceptar términos → Crear cuenta.
+         · REQUIRED: NO se pide teléfono, dirección ni empresa —
+           minimización de datos, no son necesarios para usar el
+           producto desde el primer momento.
+         · 6 Password UX: checklist de requisitos EN VIVO mientras se
+           escribe (a diferencia del login, que no lo necesita).
+         · 7 Validación en tiempo real: email, confirmación de
+           password.
+         · 12 Onboarding: tras un registro exitoso NO se manda directo
+           a un dashboard vacío — se muestra el paso "Verifica tu
+           email" (patrón Verify Email de la sección 15).
+         · 14 Accesibilidad: cada requisito de password anuncia su
+           estado (cumplido/pendiente) para lectores de pantalla.
+  ============================================================ -->
+
+  <div class="min-h-screen grid lg:grid-cols-2">
+
+    <!-- Panel izquierdo — branding, contenido secundario respecto a la tarea principal (registro) -->
+    <!-- FRONTEND_HTML_STRUCTURE_STANDARD.md sección 3: <aside> para contenido secundario -->
+    <aside class="hidden lg:flex relative flex-col justify-between p-12 overflow-hidden">
+      <img src="https://picsum.photos/seed/tradepulse-register/1200/1400" alt="" class="absolute inset-0 w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-bg-deep/80"></div>
+
+      <a href="#" class="btn-focus relative z-10 text-lg font-bold tracking-tight">TradePulse</a>
+
+      <div class="relative z-10 max-w-md">
+        <h2 class="text-2xl font-bold leading-snug">Empieza a operar con señales claras</h2>
+        <ul class="mt-5 space-y-3 text-sm text-ink-300">
+          <li class="flex gap-2"><span class="text-brand-500">✔</span> Señales validadas por algoritmo, sin ruido</li>
+          <li class="flex gap-2"><span class="text-brand-500">✔</span> Historial completo y transparente</li>
+          <li class="flex gap-2"><span class="text-brand-500">✔</span> Sin tarjeta de crédito para empezar</li>
+        </ul>
+        <div class="mt-10 grid grid-cols-3 gap-6 pt-6 border-t border-line">
+          <div><p class="text-2xl font-extrabold text-brand-500">+2,400</p><p class="text-xs text-ink-500 mt-1">Traders</p></div>
+          <div><p class="text-2xl font-extrabold text-brand-500">$18M</p><p class="text-xs text-ink-500 mt-1">Volumen</p></div>
+          <div><p class="text-2xl font-extrabold text-brand-500">4.9★</p><p class="text-xs text-ink-500 mt-1">Calificación</p></div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Panel derecho — contenido principal de la pantalla (formulario / confirmación) -->
+    <main class="flex items-center justify-center p-6 sm:p-12">
+      <div class="w-full max-w-sm">
+
+        <!-- Vista 1: formulario de registro -->
+        <div id="register-view">
+          <a href="#" class="btn-focus lg:hidden inline-block mb-8 text-lg font-bold tracking-tight">TradePulse</a>
+
+          <h1 class="text-2xl sm:text-3xl font-bold tracking-tight">Crea tu cuenta</h1>
+          <p class="mt-2 text-sm text-ink-400">Gratis, sin tarjeta de crédito. Cancela cuando quieras.</p>
+
+          <div id="form-banner" class="hidden mt-5 rounded-lg border px-4 py-3 text-sm" role="alert" aria-live="assertive"></div>
+
+          <form id="register-form" class="mt-6 space-y-5" novalidate>
+            <div>
+              <label for="name" class="block text-sm font-medium text-ink-300">Nombre</label>
+              <input
+                id="name" name="name" type="text" autocomplete="name" required
+                class="btn-focus mt-1.5 w-full rounded-lg bg-bg-card border border-line px-4 py-2.5 text-sm text-ink-50 placeholder:text-ink-500 focus:border-brand-500 outline-none transition-colors"
+                placeholder="Tu nombre"
+              />
+            </div>
+
+            <div>
+              <label for="email" class="block text-sm font-medium text-ink-300">Email</label>
+              <input
+                id="email" name="email" type="email" autocomplete="email" required
+                aria-describedby="email-error"
+                class="btn-focus mt-1.5 w-full rounded-lg bg-bg-card border border-line px-4 py-2.5 text-sm text-ink-50 placeholder:text-ink-500 focus:border-brand-500 outline-none transition-colors"
+                placeholder="tu@correo.com"
+              />
+              <p id="email-error" class="hidden mt-1.5 text-xs text-danger-400"></p>
+            </div>
+
+            <div>
+              <label for="password" class="block text-sm font-medium text-ink-300">Password</label>
+              <div class="relative mt-1.5">
+                <input
+                  id="password" name="password" type="password" autocomplete="new-password" required
+                  aria-describedby="password-requirements"
+                  class="btn-focus w-full rounded-lg bg-bg-card border border-line px-4 py-2.5 pr-11 text-sm text-ink-50 placeholder:text-ink-500 focus:border-brand-500 outline-none transition-colors"
+                  placeholder="••••••••"
+                />
+                <button type="button" id="toggle-password" aria-label="Mostrar contraseña" aria-pressed="false" class="btn-focus absolute right-0 top-0 h-full px-3 text-ink-500 hover:text-ink-300">
+                  <svg id="eye-open" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+                  <svg id="eye-closed" class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.94 10.94 0 0112 20c-7 0-11-7-11-7a20.3 20.3 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 7 11 7a20.4 20.4 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><path d="M1 1l22 22"/></svg>
+                </button>
+              </div>
+              <!-- Checklist en vivo — FRONTEND_AUTH_PATTERNS.md sección 6 -->
+              <ul id="password-requirements" class="mt-2 grid grid-cols-2 gap-x-3 gap-y-1 text-xs text-ink-500">
+                <li data-req="length" class="flex items-center gap-1.5"><span class="req-icon" aria-hidden="true">○</span> 8 caracteres <span class="sr-only">pendiente</span></li>
+                <li data-req="upper" class="flex items-center gap-1.5"><span class="req-icon" aria-hidden="true">○</span> Una mayúscula <span class="sr-only">pendiente</span></li>
+                <li data-req="number" class="flex items-center gap-1.5"><span class="req-icon" aria-hidden="true">○</span> Un número <span class="sr-only">pendiente</span></li>
+                <li data-req="symbol" class="flex items-center gap-1.5"><span class="req-icon" aria-hidden="true">○</span> Un símbolo <span class="sr-only">pendiente</span></li>
+              </ul>
+            </div>
+
+            <div>
+              <label for="confirm-password" class="block text-sm font-medium text-ink-300">Confirmar password</label>
+              <input
+                id="confirm-password" name="confirm-password" type="password" autocomplete="new-password" required
+                aria-describedby="confirm-error"
+                class="btn-focus mt-1.5 w-full rounded-lg bg-bg-card border border-line px-4 py-2.5 text-sm text-ink-50 placeholder:text-ink-500 focus:border-brand-500 outline-none transition-colors"
+                placeholder="••••••••"
+              />
+              <p id="confirm-error" class="hidden mt-1.5 text-xs text-danger-400"></p>
+            </div>
+
+            <label class="flex items-start gap-2 text-sm text-ink-400 cursor-pointer">
+              <input id="terms" type="checkbox" required class="btn-focus mt-0.5 rounded border-line bg-bg-card text-brand-500 focus:ring-0" />
+              Acepto los <a href="#" class="btn-focus text-brand-500 hover:text-brand-400">Términos y condiciones</a>
+            </label>
+
+            <button type="submit" id="submit-btn" data-cta="register-primary" class="btn-focus w-full rounded-lg bg-brand-500 hover:bg-brand-400 disabled:opacity-60 disabled:cursor-not-allowed text-slate-950 text-sm font-semibold py-3 transition-colors">
+              <span id="submit-label">Crear cuenta</span>
+            </button>
+          </form>
+
+          <div class="mt-6 flex items-center gap-3">
+            <div class="h-px flex-1 bg-line"></div>
+            <span class="text-xs text-ink-500">o regístrate con</span>
+            <div class="h-px flex-1 bg-line"></div>
+          </div>
+
+          <div class="mt-6 grid grid-cols-3 gap-3">
+            <button type="button" class="btn-focus flex items-center justify-center rounded-lg border border-line py-2.5 text-ink-300 hover:border-ink-500 transition-colors" aria-label="Continuar con Google">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18a8 8 0 110-16 8 8 0 010 16z"/></svg>
+            </button>
+            <button type="button" class="btn-focus flex items-center justify-center rounded-lg border border-line py-2.5 text-ink-300 hover:border-ink-500 transition-colors" aria-label="Continuar con GitHub">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-3.16 19.5c.5.1.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.1.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.4 9.4 0 015 0c1.91-1.3 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0012 2z"/></svg>
+            </button>
+            <button type="button" class="btn-focus flex items-center justify-center rounded-lg border border-line py-2.5 text-ink-300 hover:border-ink-500 transition-colors" aria-label="Continuar con Microsoft">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="9" height="9"/><rect x="13" y="2" width="9" height="9"/><rect x="2" y="13" width="9" height="9"/><rect x="13" y="13" width="9" height="9"/></svg>
+            </button>
+          </div>
+
+          <p class="mt-8 text-center text-sm text-ink-400">
+            ¿Ya tienes cuenta? <a href="test_login_standard.html" class="btn-focus text-brand-500 hover:text-brand-400 font-medium">Iniciar sesión</a>
+          </p>
+        </div>
+
+        <!-- Vista 2: patrón Verify Email — reemplaza el form tras registro exitoso -->
+        <div id="verify-view" class="hidden text-center">
+          <div class="mx-auto w-14 h-14 rounded-full bg-brand-500/10 flex items-center justify-center">
+            <svg class="w-7 h-7 text-brand-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg>
+          </div>
+          <h1 class="mt-5 text-2xl font-bold tracking-tight">Verifica tu email</h1>
+          <p class="mt-2 text-sm text-ink-400">Enviamos un enlace de confirmación a <span id="verify-email" class="text-ink-200 font-medium"></span>. Ábrelo para activar tu cuenta.</p>
+          <button type="button" id="resend-btn" class="btn-focus mt-6 text-sm text-brand-500 hover:text-brand-400 font-medium">Reenviar correo</button>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const emailError = document.getElementById("email-error");
+    const passwordInput = document.getElementById("password");
+    const confirmInput = document.getElementById("confirm-password");
+    const confirmError = document.getElementById("confirm-error");
+    const termsInput = document.getElementById("terms");
+    const toggleBtn = document.getElementById("toggle-password");
+    const eyeOpen = document.getElementById("eye-open");
+    const eyeClosed = document.getElementById("eye-closed");
+    const form = document.getElementById("register-form");
+    const submitBtn = document.getElementById("submit-btn");
+    const submitLabel = document.getElementById("submit-label");
+    const banner = document.getElementById("form-banner");
+    const registerView = document.getElementById("register-view");
+    const verifyView = document.getElementById("verify-view");
+
+    toggleBtn.addEventListener("click", () => {
+      const isHidden = passwordInput.type === "password";
+      passwordInput.type = isHidden ? "text" : "password";
+      eyeOpen.classList.toggle("hidden", isHidden);
+      eyeClosed.classList.toggle("hidden", !isHidden);
+      toggleBtn.setAttribute("aria-label", isHidden ? "Ocultar contraseña" : "Mostrar contraseña");
+      toggleBtn.setAttribute("aria-pressed", String(isHidden));
+    });
+
+    function validateEmail() {
+      const value = emailInput.value.trim();
+      if (value.length === 0) { emailError.classList.add("hidden"); return true; }
+      const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+      emailError.textContent = value.includes("@") && !value.split("@")[1]?.includes(".") ? "Falta el dominio." : "Ese correo no parece válido.";
+      emailError.classList.toggle("hidden", valid);
+      emailInput.toggleAttribute("aria-invalid", !valid);
+      return valid;
+    }
+    emailInput.addEventListener("input", validateEmail);
+    emailInput.addEventListener("blur", validateEmail);
+
+    // Checklist de password en vivo
+    const requirements = {
+      length: (v) => v.length >= 8,
+      upper: (v) => /[A-Z]/.test(v),
+      number: (v) => /[0-9]/.test(v),
+      symbol: (v) => /[^A-Za-z0-9]/.test(v),
+    };
+    function updatePasswordChecklist() {
+      const value = passwordInput.value;
+      let allMet = true;
+      Object.entries(requirements).forEach(([key, check]) => {
+        const li = document.querySelector(`[data-req="${key}"]`);
+        const icon = li.querySelector(".req-icon");
+        const status = li.querySelector(".sr-only");
+        const met = check(value);
+        if (!met) allMet = false;
+        icon.textContent = met ? "✔" : "○";
+        li.classList.toggle("text-brand-500", met);
+        li.classList.toggle("text-ink-500", !met);
+        status.textContent = met ? "cumplido" : "pendiente";
+      });
+      return allMet;
+    }
+    passwordInput.addEventListener("input", () => { updatePasswordChecklist(); validateConfirm(); });
+
+    function validateConfirm() {
+      if (confirmInput.value.length === 0) { confirmError.classList.add("hidden"); return true; }
+      const match = confirmInput.value === passwordInput.value;
+      confirmError.textContent = "Las contraseñas no coinciden.";
+      confirmError.classList.toggle("hidden", match);
+      confirmInput.toggleAttribute("aria-invalid", !match);
+      return match;
+    }
+    confirmInput.addEventListener("input", validateConfirm);
+
+    function showBanner(message, tone) {
+      banner.textContent = message;
+      banner.className = "mt-5 rounded-lg border px-4 py-3 text-sm " + (
+        tone === "error" ? "border-danger-500/40 bg-danger-500/10 text-danger-400" : "border-warning-400/40 bg-warning-400/10 text-warning-400"
+      );
+    }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const passwordOk = updatePasswordChecklist();
+      const emailOk = validateEmail();
+      const confirmOk = validateConfirm();
+
+      if (!nameInput.value.trim()) { showBanner("Ingresa tu nombre.", "warning"); nameInput.focus(); return; }
+      if (!emailOk || !emailInput.value) { showBanner("Revisa tu email.", "warning"); emailInput.focus(); return; }
+      if (!passwordOk) { showBanner("Tu contraseña no cumple los requisitos.", "warning"); passwordInput.focus(); return; }
+      if (!confirmOk || !confirmInput.value) { showBanner("Confirma tu contraseña correctamente.", "warning"); confirmInput.focus(); return; }
+      if (!termsInput.checked) { showBanner("Debes aceptar los Términos y condiciones.", "warning"); termsInput.focus(); return; }
+
+      banner.classList.add("hidden");
+      submitBtn.disabled = true;
+      submitLabel.textContent = "Creando cuenta...";
+
+      setTimeout(() => {
+        // 12 — Onboarding: no se manda al dashboard directo, se pide verificar el correo
+        document.getElementById("verify-email").textContent = emailInput.value.trim();
+        registerView.classList.add("hidden");
+        verifyView.classList.remove("hidden");
+      }, 700);
+    });
+
+    document.getElementById("resend-btn").addEventListener("click", (e) => {
+      e.target.textContent = "Correo reenviado";
+      setTimeout(() => { e.target.textContent = "Reenviar correo"; }, 2000);
+    });
+  </script>
+</body>
+</html>

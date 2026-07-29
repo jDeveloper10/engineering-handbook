@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Backend Engineering Standard — Demostración Visual</title>
+
+<!-- Tema antes del primer paint -->
+<script>
+  (function () {
+    const saved = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const isDark = saved === "dark" || (saved !== "light" && prefersDark);
+    document.documentElement.classList.toggle("dark", isDark);
+  })();
+</script>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          brand:   { 400: "var(--brand-400)", 500: "var(--brand-500)", 600: "var(--brand-600)", tint: "var(--brand-tint)", border: "var(--brand-border)" },
+          bg:      { deep: "var(--bg-deep)", base: "var(--bg-base)", card: "var(--bg-card)" },
+          ink:     { 50: "var(--ink-50)", 300: "var(--ink-300)", 400: "var(--ink-400)", 500: "var(--ink-500)" },
+          danger:  { 400: "var(--danger-400)", 500: "var(--danger-500)" },
+          warning: { 400: "var(--warning-400)", 500: "var(--warning-500)" },
+          violet:  { 400: "var(--violet-400)", tint: "var(--violet-tint)" },
+          amber:   { 400: "var(--amber-400)", tint: "var(--amber-tint)" },
+          line:    "var(--line)",
+        },
+        zIndex: { sticky: "10", dropdown: "20", overlay: "30", "modal-backdrop": "40", modal: "41", toast: "50" },
+        fontFamily: { mono: ["'JetBrains Mono'", "monospace"] },
+      },
+    },
+  };
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+  body { font-family: "Inter", system-ui, sans-serif; }
+  .btn-focus:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 2px; }
+
+  :root {
+    --brand-400: #34d399; --brand-500: #10b981; --brand-600: #059669;
+    --brand-tint: rgba(16,185,129,0.10); --brand-border: rgba(16,185,129,0.35);
+    --bg-deep: #f1f5f9; --bg-base: #f8fafc; --bg-card: #ffffff;
+    --ink-50: #0f172a; --ink-300: #334155; --ink-400: #64748b; --ink-500: #94a3b8;
+    --danger-400: #f87171; --danger-500: #dc2626;
+    --warning-400: #f59e0b; --warning-500: #d97706;
+    --violet-400: #a78bfa; --violet-tint: rgba(167,139,250,0.10);
+    --amber-400: #fbbf24;  --amber-tint: rgba(251,191,36,0.10);
+    --line: #e2e8f0;
+  }
+  .dark {
+    --brand-400: #34d399; --brand-500: #10b981; --brand-600: #059669;
+    --brand-tint: rgba(16,185,129,0.10); --brand-border: rgba(16,185,129,0.35);
+    --bg-deep: #0b1220; --bg-base: #0f172a; --bg-card: #131f35;
+    --ink-50: #f8fafc; --ink-300: #cbd5e1; --ink-400: #94a3b8; --ink-500: #64748b;
+    --danger-400: #f87171; --danger-500: #ef4444;
+    --warning-400: #fbbf24; --warning-500: #d97706;
+    --violet-400: #a78bfa; --violet-tint: rgba(167,139,250,0.10);
+    --amber-400: #fbbf24;  --amber-tint: rgba(251,191,36,0.10);
+    --line: #1e293b;
+  }
+
+  /* Code block */
+  pre { font-family: "JetBrains Mono", monospace; }
+  .token-keyword  { color: var(--violet-400); }
+  .token-fn       { color: var(--brand-400); }
+  .token-string   { color: var(--amber-400); }
+  .token-comment  { color: var(--ink-500); font-style: italic; }
+  .token-type     { color: #60a5fa; }
+
+  /* Animations */
+  @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  .pulse-dot { animation: pulse-dot 2s cubic-bezier(0.4,0,0.6,1) infinite; }
+  @keyframes slide-in { from{opacity:0;transform:translateX(12px)} to{opacity:1;transform:translateX(0)} }
+  .slide-in { animation: slide-in .25s ease-out; }
+  @keyframes response-flash { 0%,100%{background:transparent} 20%{background:var(--brand-tint)} }
+  .response-flash { animation: response-flash .9s ease; }
+  @keyframes fade-in { from{opacity:0;transform:translateY(4px)} to{opacity:1;transform:translateY(0)} }
+  .fade-in { animation: fade-in .2s ease-out; }
+
+  /* Layer indicators */
+  .layer-arrow { position:relative }
+  .layer-arrow::after { content:"↓"; position:absolute; bottom:-22px; left:50%; transform:translateX(-50%); color:var(--ink-500); font-size:14px; }
+
+  /* HTTP badge */
+  .method-get    { background:rgba(96,165,250,0.12); color:#60a5fa; }
+  .method-post   { background:var(--brand-tint); color:var(--brand-400); }
+  .method-put    { background:var(--amber-tint); color:var(--amber-400); }
+  .method-delete { background:rgba(248,113,113,0.12); color:var(--danger-400); }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width:6px; height:6px; }
+  ::-webkit-scrollbar-track { background:transparent; }
+  ::-webkit-scrollbar-thumb { background:var(--line); border-radius:3px; }
+
+  /* Sidebar nav item */
+  .nav-item { display:flex; align-items:center; gap:10px; padding:8px 12px; border-radius:8px; font-size:0.8125rem; font-weight:500; color:var(--ink-400); cursor:pointer; transition:all .15s; }
+  .nav-item:hover { color:var(--ink-50); background:var(--bg-card); }
+  .nav-item.active { background:var(--brand-tint); color:var(--brand-500); }
+
+  /* Rule badge */
+  .badge-req  { background:rgba(16,185,129,0.12); color:var(--brand-500); border:1px solid var(--brand-border); padding:2px 8px; border-radius:9999px; font-size:0.6875rem; font-weight:600; }
+  .badge-rec  { background:var(--amber-tint); color:var(--amber-400); border:1px solid rgba(251,191,36,0.3); padding:2px 8px; border-radius:9999px; font-size:0.6875rem; font-weight:600; }
+
+  /* Status indicator */
+  .status-ok   { color:var(--brand-400); }
+  .status-fail { color:var(--danger-400); }
+  .status-warn { color:var(--warning-400); }
+</style>
+</head>
+
+<!-- ============================================================
+     NOTA DE PRUEBA — no forma parte de ningún entregable de producción.
+     Demuestra en una pantalla real las reglas del
+     BACKEND_ENGINEERING_STANDARD.md (secciones 01-16).
+
+     Reglas cubiertas:
+       01 — API Response Format (simulador de ok/fail)
+       02 — Arquitectura de capas (diagrama interactivo)
+       03 — CORS centralizado (inspector de cabeceras)
+       04 — Autenticación (flujo Bearer token)
+       05 — Validación con Zod (formulario + schema)
+       06 — Variables de entorno (panel de env check)
+       09 — Manejo de errores (galería de error codes)
+       10 — Logging estructurado (live log feed)
+       11 — Rate Limiting (contador de requests)
+       12 — Webhooks (verificación de firma)
+       13 — Acceso a datos / Supabase (select explícito)
+============================================================ -->
+<body class="bg-bg-deep text-ink-50 antialiased transition-colors duration-200">
+
+  <div class="flex min-h-screen">
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="hidden lg:flex w-64 shrink-0 flex-col border-r border-line bg-bg-base p-5 sticky top-0 h-screen overflow-y-auto">
+      <div class="mb-6">
+        <div class="flex items-center gap-2.5 mb-1">
+          <div class="w-7 h-7 rounded-lg bg-brand-tint border border-brand-border flex items-center justify-center">
+            <svg class="w-4 h-4 text-brand-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <span class="font-bold tracking-tight text-sm">Backend Standard</span>
+        </div>
+        <p class="text-xs text-ink-500 ml-9">Demostración visual</p>
+      </div>
+
+      <nav class="flex-1 space-y-0.5" id="sidebar-nav">
+        <div onclick="showSection('s01')" class="nav-item active" data-section="s01">
+          <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          01 · Formato de respuesta
+        </div>
+        <div onclick="showSection('s02')" class="nav-item" data-section="s02">
+          <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="6" height="6" rx="1"/><rect x="15" y="3" width="6" height="6" rx="1"/><rect x="9" y="15" width="6" height="6" rx="1"/><path d="M6 9v3m12-3v3M9 18H6m6 0h6"/></svg>
+          02 · Arquitectura de capas
+        </div>
+        <div onclick="showSection('s03')" class="nav-item" data-section="s03">
+          <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.66 0 3-4.03 3-9s-1.34-9-3-9m0 18c-1.66 0-3-4.03-3-9s1.34-9 3-9"/></svg>
+          03 · CORS centralizado
+        </div>
+        <div onclick="showSection('s04')" class="nav-item" data-section="s04">
+          <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          04 · Autenticación
+        </div>
+        <div onclick="showSection('s05')" class="nav-item" data-section="s05">
+          <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0 0h18"/></svg>
+          05 · Validación (Zod)
+        </div>
+        <div onclick="showSection('s06')" class="nav-item" data-section="s06">
+          <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M5.34 17.66l-1.41 1.41M2 12h2M20 12h2M17.66 5.34l1.41-1.41M4.93 19.07l1.41-1.41M12 2v2m0 18v-2"/></svg>
+          06 · Variables de entorno
+        </div>
+        <div onclick="showSection('s09')" class="nav-item" data-section="s09">
+          <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          09 · Manejo de errores
+        </div>
+        <div onclick="showSection('s10')" class="nav-item" data-section="s10">
+          <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 10h16M4 14h8M4 18h8"/></svg>
+          10 · Logging estructurado
+        </div>
+        <div onclick="showSection('s11')" class="nav-item" data-section="s11">
+          <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          11 · Rate Limiting
+        </div>
+        <div onclick="showSection('s12')" class="nav-item" data-section="s12">
+          <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          12 · Webhooks
+        </div>
+        <div onclick="showSection('s13')" class="nav-item" data-section="s13">
+          <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          13 · Acceso a datos
+        </div>
+      </nav>
+
+      <!-- Theme switcher -->
+      <div class="mt-6 pt-4 border-t border-line">
+        <div class="flex items-center gap-0.5 bg-bg-card border border-line rounded-lg p-0.5" role="group" aria-label="Tema">
+          <button type="button" data-theme-choice="light" class="theme-btn btn-focus flex-1 p-1.5 rounded-md text-ink-400 text-xs font-medium" aria-pressed="false">Claro</button>
+          <button type="button" data-theme-choice="dark" class="theme-btn btn-focus flex-1 p-1.5 rounded-md text-ink-400 text-xs font-medium" aria-pressed="false">Oscuro</button>
+          <button type="button" data-theme-choice="system" class="theme-btn btn-focus flex-1 p-1.5 rounded-md text-ink-400 text-xs font-medium" aria-pressed="false">Sistema</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ===== MAIN ===== -->
+    <div class="flex-1 flex flex-col min-w-0">
+
+      <!-- Top bar -->
+      <header class="h-14 shrink-0 border-b border-line bg-bg-base sticky top-0 z-sticky flex items-center justify-between px-6">
+        <div class="flex items-center gap-3">
+          <span class="text-sm font-semibold" id="section-title">01 · Formato de respuesta API</span>
+          <span class="hidden sm:block text-xs text-ink-500">BACKEND_ENGINEERING_STANDARD.md</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-ink-500">Cloudflare Workers · Supabase · TypeScript</span>
+          <div class="w-2 h-2 rounded-full bg-brand-500 pulse-dot"></div>
+        </div>
+      </header>
+
+      <main class="flex-1 p-6 lg:p-8 space-y-6" id="main-content">
+
+        <!-- ============================================================
+             SECCIÓN 01 — API Response Format
+        ============================================================ -->
+        <section id="s01" class="space-y-6">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <h1 class="text-xl font-bold">Formato de respuesta API</h1>
+              <p class="mt-1 text-sm text-ink-400">Helper único para toda respuesta HTTP — sin JSON.stringify repetido.</p>
+            </div>
+            <span class="badge-req shrink-0">REQUIRED</span>
+          </div>
+
+          <!-- Playground -->
+          <div class="grid lg:grid-cols-2 gap-4">
+            <!-- Input -->
+            <div class="bg-bg-card border border-line rounded-xl p-5 space-y-4">
+              <p class="text-xs font-semibold text-ink-500 uppercase tracking-wider">Construir respuesta</p>
+              <div class="flex gap-2">
+                <button id="resp-ok-btn" onclick="buildResponse('ok')" class="btn-focus flex-1 rounded-lg bg-brand-tint border border-brand-border text-brand-500 text-sm font-semibold py-2 hover:bg-brand-500 hover:text-white transition-colors">
+                  ok(data)
+                </button>
+                <button id="resp-fail-btn" onclick="buildResponse('fail')" class="btn-focus flex-1 rounded-lg bg-danger-500/10 border border-danger-400/30 text-danger-400 text-sm font-semibold py-2 hover:bg-danger-500 hover:text-white transition-colors">
+                  fail(code, msg, status)
+                </button>
+              </div>
+
+              <div id="resp-fail-inputs" class="hidden space-y-2">
+                <div class="flex gap-2">
+                  <div class="flex-1">
+                    <label class="text-xs text-ink-500 block mb-1">code</label>
+                    <select id="resp-code" class="btn-focus w-full bg-bg-deep border border-line rounded-lg px-3 py-2 text-xs focus:border-brand-500 outline-none">
+                      <option>UNAUTHORIZED</option>
+                      <option>VALIDATION_ERROR</option>
+                      <option>NOT_FOUND</option>
+                      <option>INTERNAL_ERROR</option>
+                    </select>
+                  </div>
+                  <div class="w-20">
+                    <label class="text-xs text-ink-500 block mb-1">status</label>
+                    <input id="resp-status" type="number" value="401" class="btn-focus w-full bg-bg-deep border border-line rounded-lg px-3 py-2 text-xs focus:border-brand-500 outline-none" />
+                  </div>
+                </div>
+                <div>
+                  <label class="text-xs text-ink-500 block mb-1">message (en español, seguro para el usuario)</label>
+                  <input id="resp-msg" type="text" value="Token inválido o expirado." class="btn-focus w-full bg-bg-deep border border-line rounded-lg px-3 py-2 text-xs focus:border-brand-500 outline-none" />
+                </div>
+              </div>
+
+              <div class="text-xs text-ink-500">
+                Contrato compartido con el frontend:<br/>
+                <code class="text-violet-400">&#123; success: true, data &#125;</code> ó <code class="text-violet-400">&#123; success: false, error: &#123; code, message &#125; &#125;</code>
+              </div>
+            </div>
+
+            <!-- Output -->
+            <div class="bg-bg-card border border-line rounded-xl p-5 space-y-3">
+              <div class="flex items-center justify-between">
+                <p class="text-xs font-semibold text-ink-500 uppercase tracking-wider">Respuesta generada</p>
+                <div id="resp-http-badge" class="text-xs font-bold px-2 py-0.5 rounded method-post">HTTP 200</div>
+              </div>
+              <pre id="resp-output" class="text-xs leading-6 font-mono bg-bg-deep rounded-lg p-4 overflow-auto min-h-28"><code><span class="token-type">// Presiona un botón ←</span></code></pre>
+              <p id="resp-rule-note" class="text-xs text-ink-500 hidden">
+                ✓ Nunca <code class="text-danger-400">JSON.stringify(body) + headers repetidos</code> — ese patrón está en los 13 workers actuales como deuda técnica.
+              </p>
+            </div>
+          </div>
+
+          <!-- Código de referencia -->
+          <div class="bg-bg-card border border-line rounded-xl overflow-hidden">
+            <div class="px-5 py-3 border-b border-line flex items-center gap-2">
+              <svg class="w-4 h-4 text-ink-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              <span class="text-xs font-semibold text-ink-400">src/lib/response.ts</span>
+            </div>
+            <pre class="p-5 text-xs leading-6 overflow-auto"><code><span class="token-keyword">function</span> <span class="token-fn">jsonResponse</span>(body, status, corsHeaders) {
+  <span class="token-keyword">return new</span> <span class="token-type">Response</span>(<span class="token-type">JSON</span>.stringify(body), {
+    status,
+    headers: { <span class="token-string">"Content-Type"</span>: <span class="token-string">"application/json"</span>, ...corsHeaders },
+  });
+}
+
+<span class="token-comment">// ✓ Todos los workers usan estos dos helpers, nunca JSON.stringify a mano</span>
+<span class="token-keyword">export const</span> <span class="token-fn">ok</span>   = (data, cors) => <span class="token-fn">jsonResponse</span>({ success: <span class="token-keyword">true</span>,  data }, <span class="token-string">200</span>, cors);
+<span class="token-keyword">export const</span> <span class="token-fn">fail</span> = (code, msg, status, cors) =>
+  <span class="token-fn">jsonResponse</span>({ success: <span class="token-keyword">false</span>, error: { code, message: msg } }, status, cors);</code></pre>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             SECCIÓN 02 — Arquitectura de capas
+        ============================================================ -->
+        <section id="s02" class="hidden space-y-6">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <h1 class="text-xl font-bold">Arquitectura de capas</h1>
+              <p class="mt-1 text-sm text-ink-400">Router → Middleware → Handler → Service → Datos. Nunca todo en <code class="text-violet-400">fetch()</code>.</p>
+            </div>
+            <span class="badge-req shrink-0">REQUIRED</span>
+          </div>
+
+          <!-- Simulador de request -->
+          <div class="bg-bg-card border border-line rounded-xl p-6">
+            <div class="flex items-center justify-between mb-5">
+              <p class="text-sm font-semibold">Flujo de un request a través de las capas</p>
+              <button onclick="animateLayers()" id="animate-btn" class="btn-focus text-xs font-semibold px-3 py-1.5 rounded-lg bg-brand-tint border border-brand-border text-brand-500 hover:bg-brand-500 hover:text-white transition-colors">
+                ▶ Simular request
+              </button>
+            </div>
+
+            <div class="flex flex-col gap-0 relative">
+
+              <div id="layer-client" class="flex items-center gap-4 p-4 rounded-xl border border-line bg-bg-deep transition-all duration-300">
+                <div class="w-9 h-9 rounded-lg bg-violet-tint border border-violet-400/30 flex items-center justify-center shrink-0">
+                  <svg class="w-4 h-4 text-violet-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm font-semibold">Cliente</p>
+                  <p class="text-xs text-ink-500 truncate">POST /api/example · body JSON · Authorization: Bearer eyJ...</p>
+                </div>
+                <div id="layer-client-badge" class="text-xs px-2 py-0.5 rounded-full border border-line text-ink-500">esperando</div>
+              </div>
+
+              <div class="flex justify-center py-1.5"><div class="w-px h-5 bg-line"></div></div>
+
+              <div id="layer-router" class="flex items-center gap-4 p-4 rounded-xl border border-line bg-bg-deep transition-all duration-300">
+                <div class="w-9 h-9 rounded-lg bg-bg-card border border-line flex items-center justify-center shrink-0">
+                  <svg class="w-4 h-4 text-ink-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M3 12h4m10 0h4M12 3v4m0 10v4"/></svg>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm font-semibold">Router — <code class="text-xs font-mono text-violet-400">src/index.ts</code></p>
+                  <p class="text-xs text-ink-500">Valida env, despacha a handler. Atrapa errores globales.</p>
+                </div>
+                <div id="layer-router-badge" class="text-xs px-2 py-0.5 rounded-full border border-line text-ink-500">—</div>
+              </div>
+
+              <div class="flex justify-center py-1.5"><div class="w-px h-5 bg-line"></div></div>
+
+              <div id="layer-mid" class="flex items-center gap-4 p-4 rounded-xl border border-line bg-bg-deep transition-all duration-300">
+                <div class="w-9 h-9 rounded-lg bg-bg-card border border-line flex items-center justify-center shrink-0">
+                  <svg class="w-4 h-4 text-ink-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm font-semibold">Middleware — <code class="text-xs font-mono text-violet-400">cors.ts · auth.ts</code></p>
+                  <p class="text-xs text-ink-500">Verifica token Bearer con Supabase. Si falla → 401. Si ok → contexto de usuario.</p>
+                </div>
+                <div id="layer-mid-badge" class="text-xs px-2 py-0.5 rounded-full border border-line text-ink-500">—</div>
+              </div>
+
+              <div class="flex justify-center py-1.5"><div class="w-px h-5 bg-line"></div></div>
+
+              <div id="layer-handler" class="flex items-center gap-4 p-4 rounded-xl border border-line bg-bg-deep transition-all duration-300">
+                <div class="w-9 h-9 rounded-lg bg-bg-card border border-line flex items-center justify-center shrink-0">
+                  <svg class="w-4 h-4 text-ink-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18"/></svg>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm font-semibold">Handler — <code class="text-xs font-mono text-violet-400">exampleHandler.ts</code></p>
+                  <p class="text-xs text-ink-500">Deserializa JSON, valida con Zod, llama al service, devuelve ok/fail.</p>
+                </div>
+                <div id="layer-handler-badge" class="text-xs px-2 py-0.5 rounded-full border border-line text-ink-500">—</div>
+              </div>
+
+              <div class="flex justify-center py-1.5"><div class="w-px h-5 bg-line"></div></div>
+
+              <div id="layer-service" class="flex items-center gap-4 p-4 rounded-xl border border-line bg-bg-deep transition-all duration-300">
+                <div class="w-9 h-9 rounded-lg bg-bg-card border border-line flex items-center justify-center shrink-0">
+                  <svg class="w-4 h-4 text-ink-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm font-semibold">Service — <code class="text-xs font-mono text-violet-400">exampleService.ts</code></p>
+                  <p class="text-xs text-ink-500">Lógica de negocio pura. No sabe nada de HTTP. Accede a Supabase.</p>
+                </div>
+                <div id="layer-service-badge" class="text-xs px-2 py-0.5 rounded-full border border-line text-ink-500">—</div>
+              </div>
+
+              <div class="flex justify-center py-1.5"><div class="w-px h-5 bg-line"></div></div>
+
+              <div id="layer-db" class="flex items-center gap-4 p-4 rounded-xl border border-line bg-bg-deep transition-all duration-300">
+                <div class="w-9 h-9 rounded-lg bg-bg-card border border-line flex items-center justify-center shrink-0">
+                  <svg class="w-4 h-4 text-ink-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm font-semibold">Supabase / Datos</p>
+                  <p class="text-xs text-ink-500">select('id, title, created_at') — columnas explícitas, nunca *.</p>
+                </div>
+                <div id="layer-db-badge" class="text-xs px-2 py-0.5 rounded-full border border-line text-ink-500">—</div>
+              </div>
+            </div>
+
+            <div id="layer-result" class="hidden mt-4 p-3 rounded-lg border border-brand-border bg-brand-tint text-xs text-brand-400 font-mono response-flash"></div>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             SECCIÓN 03 — CORS
+        ============================================================ -->
+        <section id="s03" class="hidden space-y-6">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <h1 class="text-xl font-bold">CORS Centralizado</h1>
+              <p class="mt-1 text-sm text-ink-400"><code class="text-violet-400">getCorsHeaders()</code> en un solo módulo, nunca copiada por worker.</p>
+            </div>
+            <span class="badge-req shrink-0">REQUIRED</span>
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-4">
+            <!-- Anti-pattern -->
+            <div class="bg-bg-card border border-danger-400/20 rounded-xl overflow-hidden">
+              <div class="px-5 py-3 border-b border-danger-400/20 bg-danger-500/5 flex items-center gap-2">
+                <svg class="w-4 h-4 text-danger-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                <span class="text-xs font-semibold text-danger-400">Anti-patrón (deuda actual)</span>
+                <span class="ml-auto text-xs text-ink-500">6 copias en 6 workers</span>
+              </div>
+              <pre class="p-5 text-xs leading-6 overflow-auto"><code><span class="token-comment">// auth-worker/src/index.js — COPIA 1</span>
+<span class="token-keyword">function</span> <span class="token-fn">getCorsHeaders</span>() {
+  <span class="token-keyword">return</span> {
+    <span class="token-string">"Access-Control-Allow-Origin"</span>: <span class="token-string">"*"</span>,
+    <span class="token-string">"Access-Control-Allow-Methods"</span>: <span class="token-string">"GET, POST"</span>,
+  };
+}
+
+<span class="token-comment">// user-worker/src/index.js — COPIA 2 (empieza a divergir)</span>
+<span class="token-keyword">function</span> <span class="token-fn">getCorsHeaders</span>() {
+  <span class="token-keyword">return</span> {
+    <span class="token-string">"Access-Control-Allow-Origin"</span>: <span class="token-string">"*"</span>,
+    <span class="token-string">"Access-Control-Allow-Methods"</span>: <span class="token-string">"GET, POST, PUT, DELETE"</span>,
+    <span class="token-comment">// ← accidentalmente falta Credentials aquí</span>
+  };
+}</code></pre>
+            </div>
+
+            <!-- Correcto -->
+            <div class="bg-bg-card border border-brand-border rounded-xl overflow-hidden">
+              <div class="px-5 py-3 border-b border-brand-border bg-brand-tint flex items-center gap-2">
+                <svg class="w-4 h-4 text-brand-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                <span class="text-xs font-semibold text-brand-400">Estándar — módulo único</span>
+              </div>
+              <pre class="p-5 text-xs leading-6 overflow-auto"><code><span class="token-comment">// src/middleware/cors.ts — UN SOLO LUGAR</span>
+<span class="token-keyword">export const</span> corsHeaders = {
+  <span class="token-string">"Access-Control-Allow-Origin"</span>:  <span class="token-string">"*"</span>,
+  <span class="token-string">"Access-Control-Allow-Methods"</span>: <span class="token-string">"GET, POST, PUT, PATCH, DELETE, OPTIONS"</span>,
+  <span class="token-string">"Access-Control-Allow-Headers"</span>: <span class="token-string">"Content-Type, Authorization"</span>,
+  <span class="token-string">"Access-Control-Max-Age"</span>:       <span class="token-string">"86400"</span>,
+};
+
+<span class="token-comment">// Todos los workers importan de este módulo.
+// Cambiar aquí = cambiar en todos a la vez.</span></code></pre>
+            </div>
+          </div>
+
+          <!-- Inspector de headers -->
+          <div class="bg-bg-card border border-line rounded-xl p-5">
+            <p class="text-xs font-semibold text-ink-500 uppercase tracking-wider mb-3">Inspector de cabeceras CORS (simulado)</p>
+            <div class="space-y-2">
+              <div class="flex items-center gap-3 p-3 rounded-lg bg-bg-deep text-xs">
+                <span class="font-mono text-ink-400 w-64 shrink-0">Access-Control-Allow-Origin</span>
+                <span class="font-mono text-brand-400">*</span>
+                <span class="ml-auto text-ink-500">Permitir todos los orígenes</span>
+              </div>
+              <div class="flex items-center gap-3 p-3 rounded-lg bg-bg-deep text-xs">
+                <span class="font-mono text-ink-400 w-64 shrink-0">Access-Control-Allow-Methods</span>
+                <span class="font-mono text-brand-400">GET, POST, PUT, PATCH, DELETE, OPTIONS</span>
+              </div>
+              <div class="flex items-center gap-3 p-3 rounded-lg bg-bg-deep text-xs">
+                <span class="font-mono text-ink-400 w-64 shrink-0">Access-Control-Allow-Headers</span>
+                <span class="font-mono text-brand-400">Content-Type, Authorization</span>
+              </div>
+              <div class="flex items-center gap-3 p-3 rounded-lg bg-bg-deep text-xs">
+                <span class="font-mono text-ink-400 w-64 shrink-0">Access-Control-Max-Age</span>
+                <span class="font-mono text-brand-400">86400</span>
+                <span class="ml-auto text-ink-500">24h de caché preflight</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             SECCIÓN 04 — Autenticación
+        ============================================================ -->
+        <section id="s04" class="hidden space-y-6">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <h1 class="text-xl font-bold">Autenticación — middleware único</h1>
+              <p class="mt-1 text-sm text-ink-400"><code class="text-violet-400">requireAuth()</code> reutilizado en cada handler que necesite auth.</p>
+            </div>
+            <span class="badge-req shrink-0">REQUIRED</span>
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-4">
+            <!-- Simulador -->
+            <div class="bg-bg-card border border-line rounded-xl p-5 space-y-4">
+              <p class="text-xs font-semibold text-ink-500 uppercase tracking-wider">Simulador de token</p>
+              <div>
+                <label class="text-xs text-ink-500 block mb-1">Authorization header</label>
+                <input id="auth-token-input" type="text" value="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzEyMyJ9.valid"
+                  class="btn-focus w-full bg-bg-deep border border-line rounded-lg px-3 py-2 text-xs font-mono focus:border-brand-500 outline-none" />
+              </div>
+              <div class="flex gap-2">
+                <button onclick="simulateAuth(true)" class="btn-focus flex-1 rounded-lg bg-brand-tint border border-brand-border text-brand-500 text-xs font-semibold py-2 hover:bg-brand-500 hover:text-white transition-colors">Token válido ✓</button>
+                <button onclick="simulateAuth(false)" class="btn-focus flex-1 rounded-lg bg-danger-500/10 border border-danger-400/30 text-danger-400 text-xs font-semibold py-2 hover:bg-danger-500 hover:text-white transition-colors">Token inválido ✗</button>
+              </div>
+              <div id="auth-result" class="hidden rounded-lg p-3 text-xs font-mono"></div>
+            </div>
+
+            <!-- Código -->
+            <div class="bg-bg-card border border-line rounded-xl overflow-hidden">
+              <div class="px-5 py-3 border-b border-line flex items-center gap-2">
+                <span class="text-xs font-semibold text-ink-400">src/middleware/auth.ts</span>
+              </div>
+              <pre class="p-5 text-xs leading-6 overflow-auto"><code><span class="token-keyword">export async function</span> <span class="token-fn">requireAuth</span>(req, env) {
+  <span class="token-keyword">const</span> header = req.headers.<span class="token-fn">get</span>(<span class="token-string">"Authorization"</span>);
+
+  <span class="token-keyword">if</span> (!header?.startsWith(<span class="token-string">"Bearer "</span>))
+    <span class="token-keyword">return</span> { success: <span class="token-keyword">false</span>, errorResponse: <span class="token-fn">fail</span>(<span class="token-string">"UNAUTHORIZED"</span>, ...) };
+
+  <span class="token-keyword">const</span> token = header.replace(<span class="token-string">"Bearer "</span>, <span class="token-string">""</span>);
+  <span class="token-keyword">const</span> supabase = <span class="token-fn">createClient</span>(env.SUPABASE_URL, env.SERVICE_KEY);
+  <span class="token-keyword">const</span> { data: { user }, error } = <span class="token-keyword">await</span> supabase.auth.<span class="token-fn">getUser</span>(token);
+
+  <span class="token-keyword">if</span> (error || !user)
+    <span class="token-keyword">return</span> { success: <span class="token-keyword">false</span>, errorResponse: <span class="token-fn">fail</span>(<span class="token-string">"UNAUTHORIZED"</span>, ...) };
+
+  <span class="token-keyword">return</span> { success: <span class="token-keyword">true</span>, context: { user, supabase } };
+}</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             SECCIÓN 05 — Validación
+        ============================================================ -->
+        <section id="s05" class="hidden space-y-6">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <h1 class="text-xl font-bold">Validación de entrada (Zod)</h1>
+              <p class="mt-1 text-sm text-ink-400">Schema de Zod en el servidor, independiente de lo que el frontend ya validó.</p>
+            </div>
+            <span class="badge-req shrink-0">REQUIRED</span>
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-4">
+            <!-- Form playground -->
+            <div class="bg-bg-card border border-line rounded-xl p-5 space-y-4">
+              <p class="text-xs font-semibold text-ink-500 uppercase tracking-wider">Simular request body</p>
+              <div class="space-y-3">
+                <div>
+                  <label class="text-xs text-ink-500 block mb-1">title <span class="text-danger-400">*</span> <span class="text-ink-500">(min 3, max 100)</span></label>
+                  <input id="zod-title" type="text" placeholder="e.g. Mi signal de BTC" class="btn-focus w-full bg-bg-deep border border-line rounded-lg px-3 py-2 text-sm focus:border-brand-500 outline-none" />
+                </div>
+                <div>
+                  <label class="text-xs text-ink-500 block mb-1">description <span class="text-ink-500">(max 500, opcional)</span></label>
+                  <textarea id="zod-desc" rows="2" placeholder="Descripción opcional..." class="btn-focus w-full bg-bg-deep border border-line rounded-lg px-3 py-2 text-sm focus:border-brand-500 outline-none resize-none"></textarea>
+                </div>
+                <button onclick="runZodValidation()" class="btn-focus w-full rounded-lg bg-brand-tint border border-brand-border text-brand-500 text-sm font-semibold py-2 hover:bg-brand-500 hover:text-white transition-colors">
+                  Validar con Zod →
+                </button>
+              </div>
+            </div>
+
+            <!-- Result -->
+            <div class="bg-bg-card border border-line rounded-xl p-5 space-y-3">
+              <p class="text-xs font-semibold text-ink-500 uppercase tracking-wider">Resultado de validación</p>
+              <pre id="zod-result" class="text-xs leading-6 font-mono bg-bg-deep rounded-lg p-4 min-h-28"><code class="text-ink-500">// Resultado aquí...</code></pre>
+              <p class="text-xs text-ink-500">El backend nunca confía en que el frontend ya validó — la validación del cliente es solo UX.</p>
+            </div>
+          </div>
+
+          <!-- Schema -->
+          <div class="bg-bg-card border border-line rounded-xl overflow-hidden">
+            <div class="px-5 py-3 border-b border-line"><span class="text-xs font-semibold text-ink-400">src/handlers/exampleHandler.ts — Schema Zod</span></div>
+            <pre class="p-5 text-xs leading-6 overflow-auto"><code><span class="token-keyword">import</span> { z } <span class="token-keyword">from</span> <span class="token-string">"zod"</span>;
+
+<span class="token-keyword">const</span> createExampleSchema = z.object({
+  title:       z.string().<span class="token-fn">min</span>(<span class="token-string">3</span>, <span class="token-string">"El título debe tener al menos 3 caracteres."</span>).<span class="token-fn">max</span>(<span class="token-string">100</span>),
+  description: z.string().<span class="token-fn">max</span>(<span class="token-string">500</span>).optional().<span class="token-fn">default</span>(<span class="token-string">""</span>),
+});
+
+<span class="token-comment">// Mismo schema que usa el frontend — mismo contrato, sin traducción en el medio</span>
+<span class="token-keyword">const</span> parsed = createExampleSchema.<span class="token-fn">safeParse</span>(body);
+<span class="token-keyword">if</span> (!parsed.success) {
+  <span class="token-keyword">const</span> msg = parsed.error.issues.<span class="token-fn">map</span>(i => i.message).<span class="token-fn">join</span>(<span class="token-string">" "</span>);
+  <span class="token-keyword">return</span> <span class="token-fn">fail</span>(<span class="token-string">"VALIDATION_ERROR"</span>, msg, <span class="token-string">400</span>, corsHeaders);
+}</code></pre>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             SECCIÓN 06 — Variables de entorno
+        ============================================================ -->
+        <section id="s06" class="hidden space-y-6">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <h1 class="text-xl font-bold">Variables de entorno</h1>
+              <p class="mt-1 text-sm text-ink-400">Validadas una vez al inicio del worker — fail-fast antes de cualquier request.</p>
+            </div>
+            <span class="badge-req shrink-0">REQUIRED</span>
+          </div>
+
+          <!-- Env checker -->
+          <div class="bg-bg-card border border-line rounded-xl p-5 space-y-4">
+            <p class="text-xs font-semibold text-ink-500 uppercase tracking-wider">Panel de variables requeridas</p>
+            <div class="space-y-2" id="env-list">
+              <!-- rendered by JS -->
+            </div>
+            <div class="flex gap-2">
+              <button onclick="toggleEnv('SUPABASE_SERVICE_ROLE_KEY')" class="btn-focus text-xs px-3 py-1.5 rounded-lg border border-line text-ink-400 hover:border-brand-border hover:text-brand-400 transition-colors">Toggle SERVICE_ROLE_KEY</button>
+              <button onclick="toggleEnv('SUPABASE_URL')" class="btn-focus text-xs px-3 py-1.5 rounded-lg border border-line text-ink-400 hover:border-brand-border hover:text-brand-400 transition-colors">Toggle SUPABASE_URL</button>
+            </div>
+            <div id="env-status" class="rounded-lg p-3 text-xs font-mono bg-brand-tint border border-brand-border text-brand-400">
+              ✓ Entorno válido — worker listo para recibir requests.
+            </div>
+          </div>
+
+          <div class="bg-bg-card border border-line rounded-xl overflow-hidden">
+            <div class="px-5 py-3 border-b border-line"><span class="text-xs font-semibold text-ink-400">src/lib/env.ts + src/index.ts</span></div>
+            <pre class="p-5 text-xs leading-6 overflow-auto"><code><span class="token-comment">// lib/env.ts — valida al importar</span>
+<span class="token-keyword">export function</span> <span class="token-fn">validateEnv</span>(env) {
+  <span class="token-keyword">if</span> (!env.SUPABASE_URL || !env.SUPABASE_SERVICE_ROLE_KEY)
+    <span class="token-keyword">throw new</span> <span class="token-type">Error</span>(<span class="token-string">"Missing required environment variables."</span>);
+}
+
+<span class="token-comment">// index.ts — llamado UNA SOLA VEZ al inicio de fetch()</span>
+<span class="token-keyword">async</span> fetch(request, env, ctx) {
+  <span class="token-fn">validateEnv</span>(env); <span class="token-comment">// ← fail rápido, no por ruta</span>
+  <span class="token-comment">// ...router...</span>
+}</code></pre>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             SECCIÓN 09 — Manejo de errores
+        ============================================================ -->
+        <section id="s09" class="hidden space-y-6">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <h1 class="text-xl font-bold">Manejo de errores</h1>
+              <p class="mt-1 text-sm text-ink-400">Códigos estables para el frontend, mensajes en español, nunca stack traces al cliente.</p>
+            </div>
+            <span class="badge-req shrink-0">REQUIRED</span>
+          </div>
+
+          <!-- Error code gallery -->
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            <div class="bg-bg-card border border-line rounded-xl p-4 space-y-2">
+              <div class="flex items-center justify-between">
+                <code class="text-xs font-mono text-violet-400 font-bold">UNAUTHORIZED</code>
+                <span class="text-xs px-2 py-0.5 rounded-full bg-line text-ink-400">HTTP 401</span>
+              </div>
+              <p class="text-xs text-ink-400">Token inválido, ausente o expirado.</p>
+              <div class="text-xs font-mono bg-bg-deep rounded p-2 text-ink-400">msg: "No autorizado."</div>
+            </div>
+            <div class="bg-bg-card border border-line rounded-xl p-4 space-y-2">
+              <div class="flex items-center justify-between">
+                <code class="text-xs font-mono text-violet-400 font-bold">VALIDATION_ERROR</code>
+                <span class="text-xs px-2 py-0.5 rounded-full bg-line text-ink-400">HTTP 400</span>
+              </div>
+              <p class="text-xs text-ink-400">El body no cumple el schema de Zod.</p>
+              <div class="text-xs font-mono bg-bg-deep rounded p-2 text-ink-400">msg: "El título debe tener al menos 3..."</div>
+            </div>
+            <div class="bg-bg-card border border-line rounded-xl p-4 space-y-2">
+              <div class="flex items-center justify-between">
+                <code class="text-xs font-mono text-violet-400 font-bold">NOT_FOUND</code>
+                <span class="text-xs px-2 py-0.5 rounded-full bg-line text-ink-400">HTTP 404</span>
+              </div>
+              <p class="text-xs text-ink-400">Recurso o ruta no existe.</p>
+              <div class="text-xs font-mono bg-bg-deep rounded p-2 text-ink-400">msg: "La ruta solicitada no existe."</div>
+            </div>
+            <div class="bg-bg-card border border-line rounded-xl p-4 space-y-2">
+              <div class="flex items-center justify-between">
+                <code class="text-xs font-mono text-violet-400 font-bold">INTERNAL_ERROR</code>
+                <span class="text-xs px-2 py-0.5 rounded-full bg-line text-ink-400">HTTP 500</span>
+              </div>
+              <p class="text-xs text-ink-400">Error no controlado — detalle solo en logs.</p>
+              <div class="text-xs font-mono bg-bg-deep rounded p-2 text-ink-400">msg: "Ocurrió un error interno."</div>
+            </div>
+            <div class="bg-bg-card border border-line rounded-xl p-4 space-y-2">
+              <div class="flex items-center justify-between">
+                <code class="text-xs font-mono text-violet-400 font-bold">RATE_LIMITED</code>
+                <span class="text-xs px-2 py-0.5 rounded-full bg-line text-ink-400">HTTP 429</span>
+              </div>
+              <p class="text-xs text-ink-400">Se superó el límite de peticiones.</p>
+              <div class="text-xs font-mono bg-bg-deep rounded p-2 text-ink-400">msg: "Demasiadas solicitudes."</div>
+            </div>
+            <div class="bg-bg-card border border-line rounded-xl p-4 space-y-2">
+              <div class="flex items-center justify-between">
+                <code class="text-xs font-mono text-violet-400 font-bold">FORBIDDEN</code>
+                <span class="text-xs px-2 py-0.5 rounded-full bg-line text-ink-400">HTTP 403</span>
+              </div>
+              <p class="text-xs text-ink-400">Autenticado pero sin permiso de acceso.</p>
+              <div class="text-xs font-mono bg-bg-deep rounded p-2 text-ink-400">msg: "No tienes permiso para esto."</div>
+            </div>
+          </div>
+
+          <!-- Anti-pattern -->
+          <div class="bg-bg-card border border-danger-400/20 rounded-xl overflow-hidden">
+            <div class="px-5 py-3 border-b border-danger-400/20 bg-danger-500/5 flex items-center gap-2">
+              <svg class="w-4 h-4 text-danger-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+              <span class="text-xs font-semibold text-danger-400">Nunca enviar al cliente</span>
+            </div>
+            <pre class="p-5 text-xs leading-6 overflow-auto"><code><span class="token-comment">// ✗ Anti-patrón — stack trace expuesto al usuario</span>
+<span class="token-keyword">return</span> <span class="token-keyword">new</span> <span class="token-type">Response</span>(<span class="token-string">`Error: PostgresError: duplicate key value violates
+  unique constraint "users_email_key"
+  at Object.query (.../node_modules/pg/...)
+  at processTicksAndRejections (...)`</span>);
+
+<span class="token-comment">// ✓ Correcto — log interno del detalle, mensaje genérico al cliente</span>
+logger.<span class="token-fn">error</span>(<span class="token-string">"DB insert failed"</span>, error, { userId });
+<span class="token-keyword">return</span> <span class="token-fn">fail</span>(<span class="token-string">"INTERNAL_ERROR"</span>, <span class="token-string">"Ocurrió un error al procesar tu solicitud."</span>, 500);</code></pre>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             SECCIÓN 10 — Logging
+        ============================================================ -->
+        <section id="s10" class="hidden space-y-6">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <h1 class="text-xl font-bold">Logging estructurado</h1>
+              <p class="mt-1 text-sm text-ink-400">Objeto JSON, nunca string concatenado. Secretos nunca se loguean.</p>
+            </div>
+            <span class="badge-req shrink-0">REQUIRED</span>
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-4">
+            <div class="bg-bg-card border border-line rounded-xl p-5 space-y-3">
+              <p class="text-xs font-semibold text-ink-500 uppercase tracking-wider">Generar log de ejemplo</p>
+              <div class="flex gap-2 flex-wrap">
+                <button onclick="addLog('info')" class="btn-focus text-xs px-3 py-1.5 rounded-lg bg-blue-500/10 border border-blue-500/30 text-blue-400 font-semibold hover:bg-blue-500 hover:text-white transition-colors">info</button>
+                <button onclick="addLog('warn')" class="btn-focus text-xs px-3 py-1.5 rounded-lg bg-amber-tint border border-amber-400/30 text-amber-400 font-semibold hover:bg-amber-400 hover:text-slate-950 transition-colors">warn</button>
+                <button onclick="addLog('error')" class="btn-focus text-xs px-3 py-1.5 rounded-lg bg-danger-500/10 border border-danger-400/30 text-danger-400 font-semibold hover:bg-danger-500 hover:text-white transition-colors">error</button>
+                <button onclick="clearLogs()" class="btn-focus text-xs px-3 py-1.5 rounded-lg border border-line text-ink-500 hover:text-ink-300 transition-colors ml-auto">Limpiar</button>
+              </div>
+              <div id="log-feed" class="space-y-2 font-mono text-xs max-h-72 overflow-y-auto"></div>
+            </div>
+
+            <div class="bg-bg-card border border-line rounded-xl overflow-hidden">
+              <div class="px-5 py-3 border-b border-line"><span class="text-xs font-semibold text-ink-400">src/lib/logger.ts</span></div>
+              <pre class="p-5 text-xs leading-6 overflow-auto"><code><span class="token-keyword">export const</span> logger = {
+  <span class="token-fn">info</span>: (event, ctx?) =>
+    console.<span class="token-fn">log</span>(<span class="token-type">JSON</span>.<span class="token-fn">stringify</span>({
+      level: <span class="token-string">"info"</span>, event, ...ctx,
+      timestamp: <span class="token-keyword">new</span> <span class="token-type">Date</span>().<span class="token-fn">toISOString</span>(),
+    })),
+
+  <span class="token-fn">error</span>: (event, err?, ctx?) => {
+    <span class="token-comment">// ✓ Token truncado — nunca completo en logs</span>
+    <span class="token-keyword">const</span> safe = err <span class="token-keyword">instanceof</span> <span class="token-type">Error</span> ? err.message : <span class="token-type">String</span>(err);
+    console.<span class="token-fn">error</span>(<span class="token-type">JSON</span>.<span class="token-fn">stringify</span>({
+      level: <span class="token-string">"error"</span>, event, error: safe, ...ctx,
+      timestamp: <span class="token-keyword">new</span> <span class="token-type">Date</span>().<span class="token-fn">toISOString</span>(),
+    }));
+  }
+};</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             SECCIÓN 11 — Rate Limiting
+        ============================================================ -->
+        <section id="s11" class="hidden space-y-6">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <h1 class="text-xl font-bold">Rate Limiting</h1>
+              <p class="mt-1 text-sm text-ink-400">Todo endpoint público sin auth previa debe tener un límite de tasa.</p>
+            </div>
+            <span class="badge-req shrink-0">REQUIRED</span>
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-4">
+            <!-- Counter -->
+            <div class="bg-bg-card border border-line rounded-xl p-5 space-y-4">
+              <p class="text-xs font-semibold text-ink-500 uppercase tracking-wider">Simulador — límite 5 req/10 seg</p>
+              <div class="text-center py-4">
+                <div id="rate-count" class="text-5xl font-extrabold tabular-nums text-brand-400">0</div>
+                <div class="text-xs text-ink-500 mt-1">requests en ventana actual</div>
+                <div class="mt-3 w-full h-2 bg-line rounded-full overflow-hidden">
+                  <div id="rate-bar" class="h-full bg-brand-500 rounded-full transition-all duration-300" style="width:0%"></div>
+                </div>
+                <div class="flex justify-between text-xs text-ink-500 mt-1">
+                  <span>0</span><span class="text-ink-400 font-semibold">Límite: 5</span>
+                </div>
+              </div>
+              <div class="flex gap-2">
+                <button onclick="rateRequest()" id="rate-btn" class="btn-focus flex-1 rounded-lg bg-brand-tint border border-brand-border text-brand-500 text-sm font-semibold py-2 hover:bg-brand-500 hover:text-white transition-colors">
+                  Enviar request
+                </button>
+                <button onclick="rateReset()" class="btn-focus px-3 rounded-lg border border-line text-ink-400 text-sm hover:text-ink-50 transition-colors">
+                  Reset
+                </button>
+              </div>
+              <div id="rate-status" class="text-xs text-center text-ink-500">Ventana activa por 10 segundos tras el primer request.</div>
+            </div>
+
+            <!-- Code -->
+            <div class="bg-bg-card border border-line rounded-xl overflow-hidden">
+              <div class="px-5 py-3 border-b border-line"><span class="text-xs font-semibold text-ink-400">Patrón — contador en KV</span></div>
+              <pre class="p-5 text-xs leading-6 overflow-auto"><code><span class="token-keyword">async function</span> <span class="token-fn">checkRateLimit</span>(ip, env) {
+  <span class="token-keyword">const</span> key   = <span class="token-string">`rl:<span class="token-fn">${ip}</span>`</span>;
+  <span class="token-keyword">const</span> count = <span class="token-type">parseInt</span>((<span class="token-keyword">await</span> env.KV.<span class="token-fn">get</span>(key)) ?? <span class="token-string">"0"</span>);
+
+  <span class="token-keyword">if</span> (count >= <span class="token-string">5</span>)
+    <span class="token-keyword">return</span> <span class="token-fn">fail</span>(<span class="token-string">"RATE_LIMITED"</span>, <span class="token-string">"Demasiadas solicitudes."</span>, <span class="token-string">429</span>);
+
+  <span class="token-comment">// Incr con TTL de ventana (10 s) — idempotente</span>
+  <span class="token-keyword">await</span> env.KV.<span class="token-fn">put</span>(key, <span class="token-type">String</span>(count + <span class="token-string">1</span>), { expirationTtl: <span class="token-string">10</span> });
+  <span class="token-keyword">return null</span>; <span class="token-comment">// ok, continuar</span>
+}</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             SECCIÓN 12 — Webhooks
+        ============================================================ -->
+        <section id="s12" class="hidden space-y-6">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <h1 class="text-xl font-bold">Webhooks — firma + idempotencia</h1>
+              <p class="mt-1 text-sm text-ink-400">Verificar firma antes de procesar. El mismo evento dos veces no debe tener doble efecto.</p>
+            </div>
+            <span class="badge-req shrink-0">REQUIRED</span>
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-4">
+            <!-- Signature sim -->
+            <div class="bg-bg-card border border-line rounded-xl p-5 space-y-4">
+              <p class="text-xs font-semibold text-ink-500 uppercase tracking-wider">Verificar firma HMAC</p>
+              <div class="space-y-2">
+                <div>
+                  <label class="text-xs text-ink-500 block mb-1">Firma recibida (X-Signature header)</label>
+                  <input id="wh-sig" type="text" value="sha256=a3f5c2d1..." class="btn-focus w-full bg-bg-deep border border-line rounded-lg px-3 py-2 text-xs font-mono focus:border-brand-500 outline-none" />
+                </div>
+                <div>
+                  <label class="text-xs text-ink-500 block mb-1">Event ID (para idempotencia)</label>
+                  <input id="wh-eid" type="text" value="evt_01HXQ7..." class="btn-focus w-full bg-bg-deep border border-line rounded-lg px-3 py-2 text-xs font-mono focus:border-brand-500 outline-none" />
+                </div>
+              </div>
+              <div class="flex gap-2">
+                <button onclick="verifyWebhook(true)" class="btn-focus flex-1 rounded-lg bg-brand-tint border border-brand-border text-brand-500 text-xs font-semibold py-2 hover:bg-brand-500 hover:text-white transition-colors">Firma válida ✓</button>
+                <button onclick="verifyWebhook(false)" class="btn-focus flex-1 rounded-lg bg-danger-500/10 border border-danger-400/30 text-danger-400 text-xs font-semibold py-2 hover:bg-danger-500 hover:text-white transition-colors">Firma inválida ✗</button>
+              </div>
+              <div id="wh-result" class="hidden rounded-lg p-3 text-xs font-mono"></div>
+            </div>
+
+            <!-- Code -->
+            <div class="bg-bg-card border border-line rounded-xl overflow-hidden">
+              <div class="px-5 py-3 border-b border-line"><span class="text-xs font-semibold text-ink-400">Patrón idempotente</span></div>
+              <pre class="p-5 text-xs leading-6 overflow-auto"><code><span class="token-comment">// 1. Verificar firma HMAC antes de procesar</span>
+<span class="token-keyword">const</span> sig = request.headers.<span class="token-fn">get</span>(<span class="token-string">"X-Signature"</span>);
+<span class="token-keyword">const</span> expected = <span class="token-keyword">await</span> <span class="token-fn">hmac</span>(env.WEBHOOK_SECRET, body);
+<span class="token-keyword">if</span> (!<span class="token-fn">timingSafeEqual</span>(sig, expected))
+  <span class="token-keyword">return</span> <span class="token-fn">fail</span>(<span class="token-string">"UNAUTHORIZED"</span>, <span class="token-string">"Firma inválida."</span>, <span class="token-string">401</span>);
+
+<span class="token-comment">// 2. Idempotencia con KV — mismo event_id = no-op</span>
+<span class="token-keyword">const</span> already = <span class="token-keyword">await</span> env.KV.<span class="token-fn">get</span>(<span class="token-string">`processed:<span class="token-fn">${payload.event_id}</span>`</span>);
+<span class="token-keyword">if</span> (already) <span class="token-keyword">return</span> <span class="token-fn">ok</span>({ status: <span class="token-string">"already_processed"</span> });
+
+<span class="token-comment">// 3. Ack inmediato — procesamiento pesado en Queue</span>
+ctx.<span class="token-fn">waitUntil</span>(<span class="token-fn">processAsync</span>(payload, env));</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             SECCIÓN 13 — Acceso a datos
+        ============================================================ -->
+        <section id="s13" class="hidden space-y-6">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <h1 class="text-xl font-bold">Acceso a datos (Supabase)</h1>
+              <p class="mt-1 text-sm text-ink-400">SERVICE_ROLE solo server-side. Columnas explícitas, nunca <code class="text-danger-400">select('*')</code>.</p>
+            </div>
+            <span class="badge-req shrink-0">REQUIRED</span>
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-4">
+            <!-- Anti-pattern -->
+            <div class="bg-bg-card border border-danger-400/20 rounded-xl overflow-hidden">
+              <div class="px-5 py-3 border-b border-danger-400/20 bg-danger-500/5 flex items-center gap-2">
+                <svg class="w-4 h-4 text-danger-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                <span class="text-xs font-semibold text-danger-400">Anti-patrón</span>
+              </div>
+              <pre class="p-5 text-xs leading-6 overflow-auto"><code><span class="token-comment">// ✗ Trae toda la fila — incluye columnas sensibles
+//   (password_hash, internal_flags, billing_data...)</span>
+<span class="token-keyword">const</span> { data } = <span class="token-keyword">await</span> supabase
+  .from(<span class="token-string">"users"</span>)
+  .<span class="token-fn">select</span>(<span class="token-string">"*"</span>)  <span class="token-comment">// ← nunca</span>
+  .eq(<span class="token-string">"id"</span>, userId)
+  .single();</code></pre>
+            </div>
+
+            <!-- Correcto -->
+            <div class="bg-bg-card border border-brand-border rounded-xl overflow-hidden">
+              <div class="px-5 py-3 border-b border-brand-border bg-brand-tint flex items-center gap-2">
+                <svg class="w-4 h-4 text-brand-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                <span class="text-xs font-semibold text-brand-400">Estándar — columnas explícitas</span>
+              </div>
+              <pre class="p-5 text-xs leading-6 overflow-auto"><code><span class="token-comment">// ✓ Solo las columnas que esta ruta realmente necesita</span>
+<span class="token-keyword">const</span> { data } = <span class="token-keyword">await</span> supabase
+  .from(<span class="token-string">"users"</span>)
+  .<span class="token-fn">select</span>(<span class="token-string">"id, display_name, avatar_url, plan"</span>)
+  .eq(<span class="token-string">"id"</span>, userId)
+  .single();</code></pre>
+            </div>
+          </div>
+
+          <!-- Query builder -->
+          <div class="bg-bg-card border border-line rounded-xl p-5 space-y-4">
+            <p class="text-xs font-semibold text-ink-500 uppercase tracking-wider">Constructor de query con columnas explícitas</p>
+            <div class="space-y-3">
+              <div>
+                <p class="text-xs text-ink-500 mb-2">Columnas disponibles en <code class="text-violet-400">users</code></p>
+                <div class="flex flex-wrap gap-2" id="col-checkboxes">
+                  <label class="flex items-center gap-1.5 text-xs cursor-pointer select-none">
+                    <input type="checkbox" value="id" checked class="col-check accent-emerald-500" /> id
+                  </label>
+                  <label class="flex items-center gap-1.5 text-xs cursor-pointer select-none">
+                    <input type="checkbox" value="display_name" checked class="col-check accent-emerald-500" /> display_name
+                  </label>
+                  <label class="flex items-center gap-1.5 text-xs cursor-pointer select-none">
+                    <input type="checkbox" value="avatar_url" class="col-check accent-emerald-500" /> avatar_url
+                  </label>
+                  <label class="flex items-center gap-1.5 text-xs cursor-pointer select-none">
+                    <input type="checkbox" value="plan" class="col-check accent-emerald-500" /> plan
+                  </label>
+                  <label class="flex items-center gap-1.5 text-xs cursor-pointer select-none text-danger-400">
+                    <input type="checkbox" value="password_hash" class="col-check accent-red-500" /> password_hash ⚠
+                  </label>
+                  <label class="flex items-center gap-1.5 text-xs cursor-pointer select-none text-danger-400">
+                    <input type="checkbox" value="service_role_used_at" class="col-check accent-red-500" /> service_role_used_at ⚠
+                  </label>
+                </div>
+              </div>
+              <pre id="query-preview" class="text-xs font-mono bg-bg-deep rounded-lg p-3 overflow-auto"></pre>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Toast container -->
+  <div id="toast-container" class="fixed top-4 right-4 z-toast space-y-2 w-72" aria-live="polite"></div>
+
+  <script>
+    // ============================================================
+    // THEME
+    // ============================================================
+    const mediaDark = window.matchMedia("(prefers-color-scheme: dark)");
+    const themeButtons = document.querySelectorAll(".theme-btn");
+    function applyTheme(choice) {
+      const isDark = choice === "dark" || (choice === "system" && mediaDark.matches);
+      document.documentElement.classList.toggle("dark", isDark);
+      themeButtons.forEach(btn => {
+        const active = btn.dataset.themeChoice === choice;
+        btn.setAttribute("aria-pressed", String(active));
+        btn.classList.toggle("bg-brand-tint", active);
+        btn.classList.toggle("text-brand-500", active);
+        btn.classList.toggle("text-ink-400", !active);
+      });
+    }
+    function setTheme(choice) { localStorage.setItem("theme", choice); applyTheme(choice); }
+    themeButtons.forEach(btn => btn.addEventListener("click", () => setTheme(btn.dataset.themeChoice)));
+    mediaDark.addEventListener("change", () => { if ((localStorage.getItem("theme") || "system") === "system") applyTheme("system"); });
+    applyTheme(localStorage.getItem("theme") || "system");
+
+    // ============================================================
+    // SIDEBAR NAV
+    // ============================================================
+    const SECTIONS = ['s01','s02','s03','s04','s05','s06','s09','s10','s11','s12','s13'];
+    const TITLES = {
+      s01: '01 · Formato de respuesta API', s02: '02 · Arquitectura de capas',
+      s03: '03 · CORS centralizado', s04: '04 · Autenticación (Bearer + Supabase)',
+      s05: '05 · Validación de entrada (Zod)', s06: '06 · Variables de entorno',
+      s09: '09 · Manejo de errores', s10: '10 · Logging estructurado',
+      s11: '11 · Rate Limiting', s12: '12 · Webhooks', s13: '13 · Acceso a datos (Supabase)',
+    };
+    function showSection(id) {
+      SECTIONS.forEach(s => {
+        document.getElementById(s).classList.toggle('hidden', s !== id);
+        document.querySelector(`[data-section="${s}"]`)?.classList.toggle('active', s === id);
+      });
+      document.getElementById('section-title').textContent = TITLES[id];
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ============================================================
+    // S01 — Response builder
+    // ============================================================
+    function buildResponse(type) {
+      const inputs = document.getElementById('resp-fail-inputs');
+      const badge = document.getElementById('resp-http-badge');
+      const note = document.getElementById('resp-rule-note');
+      const out = document.getElementById('resp-output');
+
+      if (type === 'ok') {
+        inputs.classList.add('hidden');
+        badge.className = 'text-xs font-bold px-2 py-0.5 rounded method-post';
+        badge.textContent = 'HTTP 200';
+        const body = { success: true, data: { id: 'example_123', title: 'Mi señal', created_at: new Date().toISOString() } };
+        out.innerHTML = `<code>${syntaxJSON(JSON.stringify(body, null, 2))}</code>`;
+        note.classList.remove('hidden');
+      } else {
+        inputs.classList.remove('hidden');
+        const code = document.getElementById('resp-code').value;
+        const status = parseInt(document.getElementById('resp-status').value) || 401;
+        const msg = document.getElementById('resp-msg').value || 'Error.';
+        badge.className = 'text-xs font-bold px-2 py-0.5 rounded method-delete';
+        badge.textContent = `HTTP ${status}`;
+        const body = { success: false, error: { code, message: msg } };
+        out.innerHTML = `<code>${syntaxJSON(JSON.stringify(body, null, 2))}</code>`;
+        note.classList.remove('hidden');
+      }
+      out.closest('div').classList.add('response-flash');
+      setTimeout(() => out.closest('div').classList.remove('response-flash'), 1000);
+    }
+
+    function syntaxJSON(str) {
+      return str
+        .replace(/"([^"]+)":/g, '<span class="text-violet-400">"$1"</span>:')
+        .replace(/: "([^"]+)"/g, ': <span class="token-string">"$1"</span>')
+        .replace(/: (true|false|null)/g, ': <span class="token-keyword">$1</span>')
+        .replace(/: (\d+)/g, ': <span class="text-amber-400">$1</span>');
+    }
+
+    // ============================================================
+    // S02 — Layer animation
+    // ============================================================
+    const LAYER_STEPS = [
+      { id: 'layer-client',  badge: '→ enviando',    cls: 'border-violet-400/40 bg-violet-tint', delay: 0 },
+      { id: 'layer-router',  badge: '▸ routing...',  cls: 'border-brand-border bg-brand-tint',   delay: 600 },
+      { id: 'layer-mid',     badge: '▸ auth ok ✓',  cls: 'border-brand-border bg-brand-tint',   delay: 1200 },
+      { id: 'layer-handler', badge: '▸ validating', cls: 'border-brand-border bg-brand-tint',   delay: 1800 },
+      { id: 'layer-service', badge: '▸ processing', cls: 'border-brand-border bg-brand-tint',   delay: 2400 },
+      { id: 'layer-db',      badge: '▸ querying..', cls: 'border-brand-border bg-brand-tint',   delay: 3000 },
+    ];
+    function animateLayers() {
+      const btn = document.getElementById('animate-btn');
+      btn.disabled = true;
+      const result = document.getElementById('layer-result');
+      result.classList.add('hidden');
+
+      // Reset
+      LAYER_STEPS.forEach(s => {
+        const el = document.getElementById(s.id);
+        el.className = el.className.replace(/border-\S+|bg-\S+/g, '').trim();
+        el.className += ' border border-line bg-bg-deep';
+        document.getElementById(`${s.id}-badge`).textContent = '—';
+        document.getElementById(`${s.id}-badge`).className = 'text-xs px-2 py-0.5 rounded-full border border-line text-ink-500';
+      });
+
+      LAYER_STEPS.forEach((step, i) => {
+        setTimeout(() => {
+          const el = document.getElementById(step.id);
+          el.className = `flex items-center gap-4 p-4 rounded-xl border transition-all duration-300 ${step.cls}`;
+          const badge = document.getElementById(`${step.id}-badge`);
+          badge.textContent = step.badge;
+          badge.className = 'text-xs px-2 py-0.5 rounded-full bg-brand-tint border border-brand-border text-brand-500';
+        }, step.delay);
+      });
+
+      setTimeout(() => {
+        result.textContent = '← HTTP 200 · {"success":true,"data":{"id":"example_123","title":"Mi señal","created_at":"' + new Date().toISOString() + '"}}';
+        result.classList.remove('hidden');
+        result.classList.add('response-flash');
+        LAYER_STEPS.forEach(s => {
+          document.getElementById(`${s.id}-badge`).textContent = '✓';
+        });
+        btn.disabled = false;
+      }, 3700);
+    }
+
+    // ============================================================
+    // S04 — Auth
+    // ============================================================
+    function simulateAuth(valid) {
+      const result = document.getElementById('auth-result');
+      result.classList.remove('hidden');
+      if (valid) {
+        result.className = 'rounded-lg p-3 text-xs font-mono bg-brand-tint border border-brand-border text-brand-400 slide-in';
+        result.innerHTML = `<span class="text-brand-400">✓ requireAuth → ok</span>\n\n` +
+          `{ success: true,\n  context: {\n    user: { id: "user_123", email: "marcos@tradepulse.io" },\n    supabase: SupabaseClient\n  }\n}`;
+      } else {
+        result.className = 'rounded-lg p-3 text-xs font-mono bg-danger-500/10 border border-danger-400/30 text-danger-400 slide-in';
+        result.innerHTML = `<span class="text-danger-400">✗ requireAuth → 401</span>\n\n` +
+          `{ success: false,\n  errorResponse: Response(401) {\n    body: { success: false,\n           error: { code: "UNAUTHORIZED",\n                   message: "Token inválido o expirado." } }\n  }\n}`;
+      }
+    }
+
+    // ============================================================
+    // S05 — Zod validation
+    // ============================================================
+    function runZodValidation() {
+      const title = document.getElementById('zod-title').value.trim();
+      const desc = document.getElementById('zod-desc').value.trim();
+      const out = document.getElementById('zod-result');
+      const errors = [];
+      if (!title) errors.push('El título es requerido.');
+      else if (title.length < 3) errors.push('El título debe tener al menos 3 caracteres.');
+      else if (title.length > 100) errors.push('El título no puede tener más de 100 caracteres.');
+      if (desc.length > 500) errors.push('La descripción no puede tener más de 500 caracteres.');
+
+      if (errors.length) {
+        out.innerHTML = `<code class="text-danger-400">// Zod safeParse → error\n{\n  success: false,\n  error: {\n    issues: [\n      ${errors.map(e=>`{ message: "${e}" }`).join(',\n      ')}\n    ]\n  }\n}\n\n// → fail("VALIDATION_ERROR", "${errors[0]}", 400)</code>`;
+      } else {
+        const data = { title, description: desc || '' };
+        out.innerHTML = `<code class="text-brand-400">// Zod safeParse → success ✓\n{\n  success: true,\n  data: ${JSON.stringify(data, null, 4).replace(/\n/g, '\n  ')}\n}\n\n// → service.createExample(userId, parsed.data)</code>`;
+      }
+      out.classList.add('response-flash');
+      setTimeout(() => out.classList.remove('response-flash'), 900);
+    }
+
+    // ============================================================
+    // S06 — Env
+    // ============================================================
+    let envState = { SUPABASE_URL: true, SUPABASE_SERVICE_ROLE_KEY: true };
+
+    function renderEnv() {
+      const list = document.getElementById('env-list');
+      const status = document.getElementById('env-status');
+      list.innerHTML = Object.entries(envState).map(([k, v]) => `
+        <div class="flex items-center gap-3 p-3 rounded-lg bg-bg-deep text-xs ${v ? '' : 'border border-danger-400/30'}">
+          <span class="${v ? 'status-ok' : 'status-fail'} font-bold text-base leading-none">${v ? '✓' : '✗'}</span>
+          <span class="font-mono flex-1 ${v ? 'text-ink-300' : 'text-danger-400'}">${k}</span>
+          <span class="${v ? 'text-brand-400' : 'text-danger-400'} font-mono">${v ? '●●●●●●●●●●' : 'undefined'}</span>
+        </div>
+      `).join('');
+
+      const allOk = Object.values(envState).every(Boolean);
+      status.className = `rounded-lg p-3 text-xs font-mono ${allOk ? 'bg-brand-tint border border-brand-border text-brand-400' : 'bg-danger-500/10 border border-danger-400/30 text-danger-400'}`;
+      status.textContent = allOk
+        ? '✓ Entorno válido — worker listo para recibir requests.'
+        : '✗ throw new Error("Missing required environment variables.") → worker devuelve HTTP 500 antes de procesar ningún request.';
+    }
+    function toggleEnv(key) { envState[key] = !envState[key]; renderEnv(); }
+    renderEnv();
+
+    // ============================================================
+    // S10 — Logger
+    // ============================================================
+    const LOG_TEMPLATES = {
+      info: [
+        { event: 'request_received', method: 'POST', path: '/api/example', requestId: 'req_' + Math.random().toString(36).slice(2,8) },
+        { event: 'auth_ok', userId: 'user_123', requestId: 'req_abc123' },
+        { event: 'example_created', exampleId: 'ex_456', userId: 'user_123' },
+      ],
+      warn: [
+        { event: 'rate_limit_approaching', ip: '187.x.x.x', count: 4, limit: 5 },
+        { event: 'env_var_missing', key: 'OPTIONAL_KEY', fallback: 'using_default' },
+      ],
+      error: [
+        { event: 'db_insert_failed', error: 'duplicate key value violates unique constraint', userId: 'user_123' },
+        { event: 'upstream_timeout', service: 'supabase', durationMs: 5001 },
+      ],
+    };
+    const LEVEL_COLORS = { info: 'text-blue-400', warn: 'text-amber-400', error: 'text-danger-400' };
+    function addLog(level) {
+      const feed = document.getElementById('log-feed');
+      const templates = LOG_TEMPLATES[level];
+      const tpl = templates[Math.floor(Math.random() * templates.length)];
+      const entry = { level, ...tpl, timestamp: new Date().toISOString() };
+      const el = document.createElement('div');
+      el.className = `p-2 rounded bg-bg-deep border border-line fade-in`;
+      el.innerHTML = `<span class="${LEVEL_COLORS[level]} font-bold">[${level.toUpperCase()}]</span> <span class="text-ink-400">${JSON.stringify(entry)}</span>`;
+      feed.prepend(el);
+    }
+    function clearLogs() { document.getElementById('log-feed').innerHTML = ''; }
+
+    // ============================================================
+    // S11 — Rate limiting
+    // ============================================================
+    let rateCount = 0, rateTimer = null;
+    function rateRequest() {
+      if (rateCount >= 5) return;
+      if (!rateTimer) {
+        rateTimer = setTimeout(() => { rateCount = 0; rateTimer = null; updateRate(); document.getElementById('rate-status').textContent = 'Ventana expirada. Contador resetado.'; }, 10000);
+      }
+      rateCount++;
+      updateRate();
+    }
+    function updateRate() {
+      document.getElementById('rate-count').textContent = rateCount;
+      const pct = (rateCount / 5) * 100;
+      const bar = document.getElementById('rate-bar');
+      bar.style.width = pct + '%';
+      bar.className = `h-full rounded-full transition-all duration-300 ${rateCount >= 5 ? 'bg-danger-500' : rateCount >= 4 ? 'bg-warning-500' : 'bg-brand-500'}`;
+      const btn = document.getElementById('rate-btn');
+      const status = document.getElementById('rate-status');
+      if (rateCount >= 5) {
+        btn.disabled = true;
+        btn.className = btn.className.replace('hover:bg-brand-500 hover:text-white', '');
+        btn.textContent = '✗ Rate limited — HTTP 429';
+        btn.className = 'btn-focus flex-1 rounded-lg bg-danger-500/10 border border-danger-400/30 text-danger-400 text-sm font-semibold py-2 cursor-not-allowed opacity-70';
+        status.textContent = 'fail("RATE_LIMITED", "Demasiadas solicitudes.", 429) — Espera que expire la ventana.';
+        status.className = 'text-xs text-center text-danger-400 font-mono';
+        showToast('HTTP 429 · Rate limit excedido', 'error');
+      } else {
+        status.textContent = `${rateCount}/5 requests — ventana de 10 segundos activa.`;
+      }
+    }
+    function rateReset() {
+      rateCount = 0; clearTimeout(rateTimer); rateTimer = null;
+      const btn = document.getElementById('rate-btn');
+      btn.disabled = false;
+      btn.className = 'btn-focus flex-1 rounded-lg bg-brand-tint border border-brand-border text-brand-500 text-sm font-semibold py-2 hover:bg-brand-500 hover:text-white transition-colors';
+      btn.textContent = 'Enviar request';
+      document.getElementById('rate-status').className = 'text-xs text-center text-ink-500';
+      updateRate();
+    }
+
+    // ============================================================
+    // S12 — Webhooks
+    // ============================================================
+    function verifyWebhook(valid) {
+      const result = document.getElementById('wh-result');
+      const eid = document.getElementById('wh-eid').value || 'evt_01HXQ7...';
+      result.classList.remove('hidden');
+      if (valid) {
+        result.className = 'rounded-lg p-3 text-xs font-mono bg-brand-tint border border-brand-border text-brand-400 slide-in';
+        result.innerHTML = `✓ Firma HMAC válida\n✓ Event ID ${eid} no procesado antes\n\n→ ctx.waitUntil(processAsync(payload, env))\n→ return ok({ received: true })  ← HTTP 200 inmediato`;
+      } else {
+        result.className = 'rounded-lg p-3 text-xs font-mono bg-danger-500/10 border border-danger-400/30 text-danger-400 slide-in';
+        result.innerHTML = `✗ Firma HMAC inválida\n  recibida: sha256=a3f5c2d1...\n  esperada: sha256=9b8e1f2a...\n\n→ return fail("UNAUTHORIZED", "Firma inválida.", 401)`;
+      }
+    }
+
+    // ============================================================
+    // S13 — Query builder
+    // ============================================================
+    function renderQuery() {
+      const checked = [...document.querySelectorAll('.col-check:checked')].map(c => c.value);
+      const dangerous = checked.filter(c => ['password_hash','service_role_used_at'].includes(c));
+      const pre = document.getElementById('query-preview');
+      const colStr = checked.length ? `'${checked.join(', ')}'` : '/* no columns selected */';
+      let code = `<span class="token-keyword">const</span> { data } = <span class="token-keyword">await</span> supabase\n  .from(<span class="token-string">"users"</span>)\n  .select(<span class="${dangerous.length ? 'text-danger-400' : 'token-string'}">${colStr}</span>)\n  .eq(<span class="token-string">"id"</span>, userId)\n  .single();`;
+      if (dangerous.length) {
+        code += `\n\n<span class="text-danger-400">// ⚠ Columnas sensibles incluidas: ${dangerous.join(', ')}\n// Nunca exponer estos campos al cliente.</span>`;
+      } else if (checked.length) {
+        code += `\n\n<span class="token-comment">// ✓ Columnas explícitas — solo lo que esta ruta necesita</span>`;
+      }
+      pre.innerHTML = code;
+    }
+    document.querySelectorAll('.col-check').forEach(c => c.addEventListener('change', renderQuery));
+    renderQuery();
+
+    // ============================================================
+    // TOASTS
+    // ============================================================
+    function showToast(msg, tone) {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = `fade-in flex items-start gap-2 rounded-lg border px-4 py-3 text-sm shadow-lg ${tone === 'error' ? 'bg-bg-card border-danger-400/30 text-danger-400' : 'bg-bg-card border-brand-border text-brand-400'}`;
+      toast.innerHTML = `<span class="flex-1">${msg}</span><button aria-label="Cerrar" class="btn-focus text-ink-500 hover:text-ink-50">✕</button>`;
+      toast.querySelector('button').addEventListener('click', () => toast.remove());
+      container.appendChild(toast);
+      setTimeout(() => toast.remove(), 5000);
+    }
+  </script>
+</body>
+</html>
