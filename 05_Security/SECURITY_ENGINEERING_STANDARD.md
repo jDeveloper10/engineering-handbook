@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Seguridad e Integridad"
 category: 05_Security
+doc_type: estandar
 tags: [seguridad, owasp, auth, cifrado, cors]
 summary: "Estándar base del dominio: reglas S-001 a S-014 organizadas en siete capas de defensa, desde validación de entrada, CORS, autenticación y autorización hasta rate limiting, cifrado y cabeceras de seguridad."
 keywords: [seguridad, owasp, auth, cifrado, cors, integridad, base, dominio, s-001, s-014, organizadas, siete, defensa, validacion]
@@ -33,6 +34,8 @@ Capa 7: Headers de Seguridad        → Defensa en el navegador
 El **80% de los ataques** entran por inputs mal validados.
 
 ## Regla S-001: NUNCA confiar en el frontend
+
+**[REQUIRED]** **Por qué:** el frontend corre en la máquina del atacante: se edita, se saltan sus validaciones y se puede llamar al endpoint directamente con `curl`. La validación del cliente existe para dar buen feedback al usuario, no para proteger nada. Cualquier regla que solo viva en el frontend equivale a no existir.
 
 ```typescript
 // ❌ Frontend valida, backend confía (HORRIBLE)
@@ -133,6 +136,8 @@ const createUserSchema = z.object({
 
 ## Regla S-002: Sanitización DESPUÉS de validación
 
+**[REQUIRED]** **Por qué:** sanitizar antes de validar puede transformar una entrada inválida en una que pasa la validación — el atacante controla la transformación. Validar primero rechaza lo que no cumple la forma esperada; sanitizar después limpia lo que ya se aceptó. El orden inverso convierte el sanitizador en un bypass.
+
 ```typescript
 // Librería: DOMPurify (frontend) + sanitize-html (backend)
 
@@ -179,6 +184,8 @@ async function createComment(data: unknown) {
 ---
 
 ## Regla S-003: Validación de archivos (MÁS ALLÁ de la extensión)
+
+**[REQUIRED]** **Por qué:** la extensión y el `Content-Type` los envía el cliente: renombrar `shell.php` a `foto.jpg` cuesta un segundo. Solo el contenido real del archivo (magic bytes) dice qué es. Sin esa comprobación, un formulario de subida de imágenes es una vía de ejecución de código o de almacenamiento de malware con tu dominio dando confianza.
 
 ```typescript
 // ❌ Validar solo extensión (INÚTIL)
@@ -241,6 +248,8 @@ const fileUploadSchema = z.object({
 
 ## Regla S-004: Protección contra SQL Injection PROFUNDA
 
+**[REQUIRED]** **Por qué:** la parametrización cubre los valores, pero no los identificadores (nombres de columna, `ORDER BY`, `LIMIT` dinámico), y ahí es donde reaparece la inyección después de que el equipo cree haberla resuelto. Todo fragmento que no pueda ir parametrizado se valida contra una lista blanca cerrada, nunca se escapa a mano.
+
 ```typescript
 // ❌ JAMÁS concatenar strings en queries
 const query = `SELECT * FROM users WHERE email = '${email}'`
@@ -282,6 +291,8 @@ const result = await db.query(`SELECT id, email, created_at FROM users ${orderCl
 # 🌐 CAPA 2: CORS (Cross-Origin Resource Sharing)
 
 ## Regla S-005: CORS EXPLÍCITO, NUNCA WILDCARD
+
+**[REQUIRED]** **Por qué:** con `Access-Control-Allow-Origin: *` cualquier web puede leer las respuestas de tu API desde el navegador de tu usuario. Y el wildcard es incompatible con credenciales, así que quien lo pone suele acabar reflejando el `Origin` recibido — que es exactamente el mismo agujero con más pasos. La lista de orígenes se declara en el código.
 
 ```typescript
 // ❌ ESTO ES UN CRIMEN DE GUERRA
@@ -373,6 +384,8 @@ export default {
 
 ## Regla S-006: CORS por endpoint sensible
 
+**[REQUIRED]** **Por qué:** una política CORS global es tan permisiva como su endpoint más laxo. Los endpoints que mueven dinero, cambian credenciales o exponen datos de otros usuarios necesitan su propia lista de orígenes, porque el coste de un error ahí no es el mismo que en un endpoint de lectura pública.
+
 ```typescript
 // Endpoints públicos (sin auth) vs privados (con auth)
 
@@ -410,6 +423,8 @@ export async function handleDashboard(request: Request) {
 # 🔐 CAPA 3: AUTENTICACIÓN
 
 ## Regla S-007: JWT con rotación de tokens
+
+**[REQUIRED]** **Por qué:** un JWT no se puede revocar: una vez emitido es válido hasta que expira, por eso el access token dura minutos y no días. El refresh token sí es revocable, y rotarlo en cada uso permite detectar el robo — si llega dos veces el mismo refresh token, alguien lo copió y se invalida toda la familia de sesión.
 
 ```typescript
 // Tokens de acceso: vida corta (15 min)
@@ -476,6 +491,8 @@ async function rotateRefreshToken(oldToken: string): Promise<TokenPair> {
 
 ## Regla S-008: Passkeys (WebAuthn) - Sin contraseñas
 
+**[RECOMMENDED]** **Por qué:** las passkeys eliminan de raíz el phishing y el credential stuffing porque la clave privada no sale del dispositivo y está ligada al dominio. Es el destino correcto, pero exigirlas hoy dejaría fuera a usuarios con dispositivos antiguos o entornos corporativos restringidos. Cuando no se adoptan, `S-013` (Argon2id) y MFA dejan de ser opcionales.
+
 ```typescript
 // Registro de passkey (huella, Face ID, PIN)
 async function registerPasskey(userId: string) {
@@ -538,6 +555,8 @@ async function loginWithPasskey() {
 # 👮 CAPA 4: AUTORIZACIÓN
 
 ## Regla S-009: RBAC + RLS (Defensa en profundidad)
+
+**[REQUIRED]** **Por qué:** comprobar permisos solo en la aplicación deja la base de datos abierta a cualquier ruta que se salte esa capa: un script de mantenimiento, un endpoint nuevo que olvidó el middleware, o una credencial filtrada. Dos capas independientes significan que un fallo en una no es una brecha, sino un incidente contenido.
 
 ```typescript
 // Roles definidos como enum
@@ -605,6 +624,8 @@ app.post('/api/admin/billing', requirePermission('billing:manage'), handleBillin
 
 ## Regla S-010: RLS en PostgreSQL (Última línea de defensa)
 
+**[REQUIRED]** **Por qué:** RLS es la única comprobación que un atacante no puede saltarse cambiando de ruta de acceso, porque vive en el motor de datos y no en el código que lo consulta. En multi-tenant es lo que separa un bug de paginación de una fuga de datos entre clientes. Una tabla sin RLS activo es una tabla pública para cualquiera con la clave anónima.
+
 ```sql
 -- RLS multi-tenant: Cada usuario ve SOLO sus datos
 
@@ -659,6 +680,8 @@ CREATE POLICY "public_by_token" ON proposals
 # ⏱️ CAPA 5: RATE LIMITING
 
 ## Regla S-011: Rate Limiting en 3 niveles
+
+**[REQUIRED]** **Por qué:** un solo nivel siempre se puede rodear: por IP no frena a un atacante con proxies rotatorios; por usuario no frena el registro masivo de cuentas; por endpoint no frena a un atacante lento y distribuido. Los tres niveles cubren los huecos de los otros dos, y el coste de no tenerlos se paga en factura de infraestructura además de en seguridad.
 
 ```typescript
 // Nivel 1: IP (sin auth)
@@ -753,6 +776,8 @@ async function rateLimitMiddleware(request: Request, env: Env) {
 
 ## Regla S-012: Cifrado en reposo (datos sensibles)
 
+**[REQUIRED]** **Por qué:** el cifrado en reposo es lo que decide si una copia de la base de datos filtrada es un incidente reportable o un archivo inútil. Aplica a lo que causaría daño real al usuario si se publicara — tokens de terceros, documentos de identidad, datos de salud —, no a toda la tabla, porque cifrar lo que se filtra por consultas impide indexarlo.
+
 ```sql
 -- Habilitar pgcrypto
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
@@ -813,6 +838,8 @@ WHERE user_id = 'user_123';
 
 ## Regla S-013: Hashing de contraseñas (Argon2id)
 
+**[REQUIRED]** **Por qué:** una contraseña nunca se guarda de forma reversible, y no todos los hash sirven: MD5 y SHA se calculan a miles de millones por segundo en GPU. Argon2id está diseñado para ser costoso en memoria además de en CPU, que es lo que anula la ventaja del hardware especializado. Es la diferencia entre una filtración molesta y una catastrófica.
+
 ```typescript
 import { hash, verify } from 'argon2'
 
@@ -848,6 +875,8 @@ async function verifyPassword(hash: string, password: string): Promise<boolean> 
 # 🛡️ CAPA 7: HEADERS DE SEGURIDAD
 
 ## Regla S-014: Headers de seguridad OBLIGATORIOS
+
+**[REQUIRED]** **Por qué:** estas cabeceras convierten al navegador en un aliado que aplica restricciones que tu código no puede imponer por sí solo: CSP limita el daño de un XSS que se te escapó, `X-Frame-Options` impide el clickjacking y HSTS elimina la ventana de degradación a HTTP. Son la capa más barata del handbook: se configuran una vez y protegen siempre.
 
 ```typescript
 const SECURITY_HEADERS = {

@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Developer Experience"
 category: 14_DX
+doc_type: estandar
 tags: [dx, tooling, scripts, editor]
 summary: "Un solo procedimiento de arranque de proyecto, scripts npm idénticos en todos los repositorios, configuración de editor versionada y snippets para los patrones repetidos."
 keywords: [dx, bootstrap, scripts, npm, editor, snippets, template]

@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Estructura HTML Semántica"
 category: 01_Frontend
+doc_type: estandar
 tags: [frontend, html, semantica, accesibilidad]
 summary: "Estructura base de una página con HTML5 semántico: qué etiqueta usa cada región, jerarquía de headings, un solo h1 por página y cuándo corresponde button frente a enlace."
 keywords: [html5, semantica, landmarks, headings, h1, button, accesibilidad]

@@ -1,6 +1,7 @@
 ---
 title: "Estándar Avanzado de Pruebas y QA"
 category: 06_Testing
+doc_type: estandar
 tags: [testing, k6, chaos-engineering, fast-check, percy, pact, stryker, coverage]
 summary: "Estándar avanzado de pruebas de software: Pruebas de Carga con k6, Chaos Engineering, Property-based testing con fast-check, Visual Regression con Chromatic, Contract testing con Pact y Mutation testing con Stryker."
 keywords: [k6, chaos-engineering, fast-check, percy, chromatic, pact, stryker, coverage, load-testing, mutation-testing]
@@ -17,11 +18,17 @@ Definir las técnicas de validación avanzadas para garantizar el rendimiento ba
 
 ## 🎯 REGLAS INQUEBRANTABLES
 
-**TEST-001: Pruebas de Carga (k6) OBLIGATORIAS antes de cada release mayor.** Ninguna aplicación sale a producción sin validar que soporta el percentil 95 (P95) < 300ms al 150% de la carga esperada.
+**[REQUIRED] TEST-001: Pruebas de Carga (k6) OBLIGATORIAS antes de cada release mayor.** Ninguna aplicación sale a producción sin validar que soporta el percentil 95 (P95) < 300ms al 150% de la carga esperada.
 
-**TEST-002: La cobertura de código (Coverage) mínima es del 80%.** Los módulos de pagos, autenticación y seguridad exigen **95% de cobertura comprobada**.
+> **Por qué:** una API que responde bien con un usuario de prueba puede colapsar con la carga real del día del lanzamiento, y ese es precisamente el peor momento para descubrirlo. Validar el percentil 95 bajo carga antes de una release mayor convierte una sorpresa en producción en un hallazgo en staging.
 
-**TEST-003: Pruebas de Mutación con Stryker > 70% Score.** Las pruebas no solo se miden por las líneas ejecutadas, sino por su capacidad real de detectar fallos inducidos.
+**[REQUIRED] TEST-002: La cobertura de código (Coverage) mínima es del 80%.** Los módulos de pagos, autenticación y seguridad exigen **95% de cobertura comprobada**.
+
+> **Por qué:** un umbral global de cobertura no distingue entre una función trivial y el flujo de cobro; exigir más en pagos, autenticación y seguridad reconoce que el coste de un bug ahí no es comparable al de un bug en una utilidad de formato.
+
+**[RECOMMENDED] TEST-003: Pruebas de Mutación con Stryker > 70% Score.** Las pruebas no solo se miden por las líneas ejecutadas, sino por su capacidad real de detectar fallos inducidos.
+
+> **Por qué:** la cobertura de líneas mide qué código se ejecutó, no si el test detectaría un bug real ahí — un test sin ninguna aserción puede dar 100% de cobertura sin comprobar nada. Mutation testing inyecta bugs sintéticos y mide si los tests los atrapan, que es la pregunta que de verdad importa. Es recomendado por su coste de ejecución: se reserva para los módulos críticos que ya exige `TEST-002`, no para la base de código entera.
 
 ---
 

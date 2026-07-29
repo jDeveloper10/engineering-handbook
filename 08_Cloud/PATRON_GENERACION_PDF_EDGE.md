@@ -1,6 +1,7 @@
 ---
 title: "Patrón: Generación de PDFs en el Edge"
 category: 08_Cloud
+doc_type: patron
 tags: [cloudflare-workers, edge, pdf, streaming]
 summary: "Generar PDFs en el edge sin Puppeteer: llenado de plantillas estáticas con pdf-lib como opción recomendada, y la API de Browser Rendering cuando se necesita convertir HTML."
 keywords: [cloudflare-workers, edge, pdf, streaming, generacion, pdfs, generar, puppeteer, llenado, plantillas, estaticas, pdf-lib, opcion, recomendada]

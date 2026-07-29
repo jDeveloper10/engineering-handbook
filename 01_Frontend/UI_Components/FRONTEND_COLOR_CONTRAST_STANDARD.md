@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Color y Contraste (Dark y Light Mode)"
 category: 01_Frontend
+doc_type: estandar
 tags: [frontend, color, contraste, dark-mode, wcag]
 summary: "Tokens de color por rol en lugar de colores sueltos, construcción de light y dark mode, contraste mínimo exigido por WCAG y paleta semántica de estados."
 keywords: [color, contraste, wcag, dark-mode, light-mode, tokens, paleta]

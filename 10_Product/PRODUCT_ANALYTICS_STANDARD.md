@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Product Analytics, Funnels y A/B Testing"
 category: 10_Product
+doc_type: estandar
 tags: [analytics, posthog, funnels, ab-testing, feature-flags, durable-objects, cohort]
 summary: "Estándar para analítica de producto con PostHog: instrumentación de eventos en cliente/servidor, análisis de embudos y cohortes, experimentos A/B y Feature Flags con Cloudflare KV y Durable Objects."
 keywords: [posthog, analytics, funnels, cohort, ab-testing, feature-flags, retention, events]
@@ -17,11 +18,17 @@ Establecer un marco unificado de telemetría e instrumentación para medir la ad
 
 ## 🎯 REGLAS INQUEBRANTABLES
 
-**ANALYTICS-001: Todo nuevo PRD DEBE incluir la lista de eventos de analítica a instrumentar.** Ninguna feature entra a desarrollo sin sus eventos de seguimiento definidos.
+**[REQUIRED] ANALYTICS-001: Todo nuevo PRD DEBE incluir la lista de eventos de analítica a instrumentar.** Ninguna feature entra a desarrollo sin sus eventos de seguimiento definidos.
 
-**ANALYTICS-002: NUNCA capturar PII ni datos sensibles en eventos de analítica.** Contraseñas, tokens, tarjetas de crédito o emails en texto plano deben ser filtrados antes del envío.
+> **Por qué:** instrumentar una feature después de lanzarla significa operar a ciegas durante toda la ventana en la que más se necesita saber si funciona. Definir los eventos junto con el PRD asegura que la telemetría exista desde el primer usuario, no desde que alguien pregunte cómo va.
 
-**ANALYTICS-003: Feature Flags gestionadas en el Edge.** Toda prueba A/B se evalúa en Cloudflare Workers (KV/Durable Objects) en < 5ms para evitar parpadeos de UI (Layout Shift).
+**[REQUIRED] ANALYTICS-002: NUNCA capturar PII ni datos sensibles en eventos de analítica.** Contraseñas, tokens, tarjetas de crédito o emails en texto plano deben ser filtrados antes del envío.
+
+> **Por qué:** una plataforma de analítica de terceros no es tu base de datos con RLS: exportar PII o tokens ahí multiplica la superficie de una fuga sin ningún beneficio de negocio, porque el análisis de comportamiento no necesita saber quién es la persona, solo qué hizo.
+
+**[RECOMMENDED] ANALYTICS-003: Feature Flags gestionadas en el Edge.** Toda prueba A/B se evalúa en Cloudflare Workers (KV/Durable Objects) en < 5ms para evitar parpadeos de UI (Layout Shift).
+
+> **Por qué:** evaluar un feature flag en el edge devuelve la decisión en milisegundos, evitando el parpadeo de UI que se ve cuando el flag se resuelve después del primer render. Es recomendado porque para experimentos con pocos usuarios o baja frecuencia de cambio, evaluarlo en el cliente es igual de válido y más simple.
 
 ---
 

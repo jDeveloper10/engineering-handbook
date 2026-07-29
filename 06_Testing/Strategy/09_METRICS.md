@@ -1,6 +1,7 @@
 ---
 title: "Métricas de QA"
 category: 06_Testing
+doc_type: estandar
 tags: [testing, metricas, coverage, web-vitals]
 summary: "Las métricas que se miden y las dos reglas que gobiernan su uso: coverage, duración del pipeline, tasa de tests inestables, Web Vitals de producción y tasa de éxito de despliegue."
 keywords: [metricas, coverage, pipeline, flaky-rate, web-vitals, deployment-success]

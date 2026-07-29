@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Desarrollo Desktop (Tauri)"
 category: 01_Frontend
+doc_type: estandar
 tags: [desktop, tauri, rust, react, offline]
 summary: "Reglas DESK-001 a DESK-005 para apps de escritorio con Tauri v2 + React + Rust: lógica pesada en Rust, comunicación IPC, offline con SQLite, auto-updater e impresión directa."
 keywords: [tauri, rust, ipc, sqlite, offline, updater, desktop, impresion]
@@ -25,6 +26,8 @@ status: current
 
 ### DESK-001: LÓGICA PESADA EN RUST, UI EN REACT
 
+**[REQUIRED]** **Por qué:** el webview es de un solo hilo: cualquier trabajo pesado ahí congela la interfaz. Y además es la parte no confiable de la aplicación (ver `DSEC-001`), así que mover al núcleo Rust todo lo que toca sistema operativo o disco mejora el rendimiento y reduce la superficie de ataque a la vez.
+
 **Regla:**
 Todo lo que requiera filesystem, procesamiento intensivo, o acceso al SO debe ir en Rust.
 React solo para UI.
@@ -46,6 +49,8 @@ src/
 ---
 
 ### DESK-002: COMUNICACIÓN IPC RUST → REACT
+
+**[REQUIRED]** **Por qué:** el IPC es la única frontera entre la interfaz y el sistema, así que su forma determina qué puede pedir el webview. Comandos de negocio concretos se pueden autorizar y auditar; una primitiva genérica no (ver `DSEC-002`).
 
 ```rust
 // src-tauri/src/commands/files.rs
@@ -83,6 +88,8 @@ export function useFileSystem() {
 
 ### DESK-003: OFFLINE TOTAL CON SQLITE
 
+**[REQUIRED]** **Por qué:** la razón de ser de una app de escritorio frente a una web es funcionar sin conexión; si depende de la red para operar, no había motivo para no ser una web. Eso sí, la base local es caché, nunca autoridad de permisos (`DSEC-008`).
+
 ```rust
 // src-tauri/src/db.rs
 use rusqlite::{Connection, params};
@@ -113,6 +120,8 @@ async fn get_unsynced() -> Vec<Proposal> {
 
 ### DESK-004: AUTO-UPDATER
 
+**[REQUIRED]** **Por qué:** a diferencia de una web, el usuario se queda con la versión que instaló: sin actualización automática, un fallo corregido sigue vivo en su máquina indefinidamente. Por eso mismo el canal de actualización debe ir firmado sin excepción (`DSEC-005`).
+
 ```json
 // src-tauri/tauri.conf.json
 {
@@ -130,6 +139,8 @@ async fn get_unsynced() -> Vec<Proposal> {
 ---
 
 ### DESK-005: IMPRESIÓN DIRECTA
+
+**[RECOMMENDED]** **Por qué:** imprimir sin pasar por el diálogo del navegador es una de las pocas capacidades que justifican una app nativa en flujos de punto de venta. Es recomendado porque depende de hardware concreto y no todo producto de escritorio lo necesita.
 
 ```rust
 #[tauri::command]

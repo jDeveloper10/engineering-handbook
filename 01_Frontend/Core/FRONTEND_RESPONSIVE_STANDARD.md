@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Diseño Responsive"
 category: 01_Frontend
+doc_type: estandar
 tags: [frontend, responsive, breakpoints, mobile-first]
 summary: "Breakpoints estándar y su forma conceptual, tamaños fluidos en vez de fijos, comportamiento responsive por componente, áreas táctiles e imágenes adaptativas."
 keywords: [responsive, breakpoints, mobile-first, fluido, touch, imagenes]

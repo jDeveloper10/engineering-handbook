@@ -1,6 +1,7 @@
 ---
 title: "Análisis de Design Systems Públicos del Mundo Real"
 category: 01_Frontend
+doc_type: referencia
 tags: [frontend, design-system, analisis, spacing, tipografia]
 summary: "Análisis comparado de design systems públicos (Atlassian, Material, otros): por qué la grilla operativa real es de 4px y no de 8, cómo estructuran tipografía, color en tres capas y librerías de componentes."
 keywords: [design-system, spacing, grilla-4px, tipografia, tokens, dark-mode, componentes]

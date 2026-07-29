@@ -1,6 +1,7 @@
 ---
 title: "Referencia de Elementos HTML"
 category: 01_Frontend
+doc_type: referencia
 tags: [frontend, html, referencia, semantica]
 summary: "Referencia elemento por elemento con tabla de conversión de div-soup al elemento correcto: estructura, controles nativos, formularios, contenido y el landmark de búsqueda."
 keywords: [html, referencia, div-soup, semantica, landmarks, formularios, search]

@@ -1,6 +1,7 @@
 ---
 title: "Colaboración en Tiempo Real (CRDTs + Supabase)"
 category: 01_Frontend
+doc_type: estandar
 tags: [yjs, crdt, realtime, collaboration, cursors, supabase]
 summary: "Colaboración simultánea con CRDTs y Yjs: proveedor de sincronización sobre Supabase, integración con TipTap, cursores y avatares de colaboradores en vivo."
 keywords: [yjs, crdt, realtime, collaboration, cursors, supabase, colaboracion, tiempo, real, crdts, simultanea, proveedor, sincronizacion, integracion]
@@ -15,7 +16,9 @@ Los **CRDTs (Conflict-free Replicated Data Types)** son estructuras de datos mat
 
 **Yjs** es la librería CRDT más madura del ecosistema. Se integra nativamente con TipTap via `@tiptap/extension-collaboration`.
 
-> **REGLA INQUEBRANTABLE:** Para documentos con > 1 editor simultáneo, el estado del editor NUNCA se sincroniza enviando el JSON completo en cada keystroke. Se sincronizan solo los **deltas** (diff binario de Yjs). PROHIBIDO usar un simple `onUpdate + POST` para colaboración: crearías un race condition de sobreescritura.
+> **[REQUIRED] REGLA:** Para documentos con > 1 editor simultáneo, el estado del editor NUNCA se sincroniza enviando el JSON completo en cada keystroke. Se sincronizan solo los **deltas** (diff binario de Yjs). PROHIBIDO usar un simple `onUpdate + POST` para colaboración: crearías un race condition de sobreescritura.
+>
+> **Por qué:** enviar el documento completo en cada pulsación de tecla satura la red con payloads que crecen con el tamaño del documento, y dos ediciones simultáneas enviando el JSON completo generan una condición de carrera donde la última en llegar sobreescribe a la otra. Sincronizar solo los deltas es lo que Yjs resuelve matemáticamente sin que ninguna edición se pierda.
 
 ---
 

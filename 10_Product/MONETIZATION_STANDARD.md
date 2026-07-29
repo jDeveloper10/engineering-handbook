@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Monetización, Pricing y Facturación"
 category: 10_Product
+doc_type: estandar
 tags: [monetization, stripe, pricing, freemium, usage-based, billing, invoices, vat]
 summary: "Estándar para esquemas de monetización y cobranza: planes (Free, Pro, Enterprise), facturación basada en uso (Usage-based billing), periodos de prueba, cálculo de impuestos con Stripe Tax y generación de facturas PDF."
 keywords: [monetization, stripe, pricing, freemium, billing, invoices, usage-based, VAT, tax]
@@ -17,11 +18,17 @@ Definir los modelos de precios, la estrategia freemium, el cobro por métricas d
 
 ## 🎯 REGLAS INQUEBRANTABLES
 
-**MONEY-001: Precios NUNCA definidos en el frontend.** El frontend envía identificadores de plan (`planId: 'pro'`); el Worker resuelve montos e IDs de Stripe server-side (`PAYMENTS_SECURITY_STANDARD.md`).
+**[REQUIRED] MONEY-001: Precios NUNCA definidos en el frontend.** El frontend envía identificadores de plan (`planId: 'pro'`); el Worker resuelve montos e IDs de Stripe server-side (`PAYMENTS_SECURITY_STANDARD.md`).
 
-**MONEY-002: Reintento suave de cobros fallidos (Dunning Management).** Ante un pago fallido (`past_due`), se conceden 7 días de gracia con notificaciones antes de revocar accesos.
+> **Por qué:** un precio que viaja desde el frontend es un precio que el usuario puede editar antes de enviarlo — la misma razón que `PAYMENTS_SECURITY_STANDARD.md` regla #7. El frontend solo puede pedir un plan por su identificador; el monto lo decide el Worker consultando su propia fuente de verdad.
 
-**MONEY-003: Impuestos (VAT / Sales Tax) calculados automáticamente.** Integración con Stripe Tax para cobro exacto de impuestos según la ubicación geográfica del cliente.
+**[REQUIRED] MONEY-002: Reintento suave de cobros fallidos (Dunning Management).** Ante un pago fallido (`past_due`), se conceden 7 días de gracia con notificaciones antes de revocar accesos.
+
+> **Por qué:** cancelar la suscripción en el primer intento de cobro fallido castiga a usuarios cuyo problema es una tarjeta caducada, no falta de intención de pagar. Un periodo de gracia con reintentos recupera esos casos, que en la práctica son la mayoría de los fallos de cobro.
+
+**[REQUIRED] MONEY-003: Impuestos (VAT / Sales Tax) calculados automáticamente.** Integración con Stripe Tax para cobro exacto de impuestos según la ubicación geográfica del cliente.
+
+> **Por qué:** el IVA y el sales tax varían por jurisdicción y cambian con el tiempo; calcularlos a mano es una fuente garantizada de errores de cumplimiento fiscal que además escala con cada país nuevo que se suma. Delegarlo a un servicio especializado traslada ese riesgo fuera del producto.
 
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Monorepo (Turborepo)"
 category: 09_Architecture
+doc_type: estandar
 tags: [monorepo, turborepo, nx, typescript, ci, pnpm]
 summary: "Monorepo con Turborepo: estructura de directorios, configuración base, diseño de los paquetes compartidos que son su razón de ser, y flujo de despliegue selectivo en CI."
 keywords: [monorepo, turborepo, nx, typescript, ci, pnpm, estructura, directorios, configuracion, base, diseno, paquetes, compartidos, razon]
@@ -13,7 +14,9 @@ status: current
 ## 🎯 ¿Qué es y cuándo usarlo?
 Un **Monorepo** es un repositorio único que contiene múltiples proyectos relacionados (workers, frontend, paquetes compartidos). **Turborepo** es el orquestador de builds elegido porque: tiene caché de builds inteligente (no rebuildea lo que no cambió), escala a 100+ paquetes, es Zero-Config con TypeScript y se integra nativamente con Cloudflare Workers.
 
-> **REGLA INQUEBRANTABLE:** Todo código compartido entre ≥ 2 proyectos (helpers de response, tipos TypeScript, schemas Zod) vive en un **paquete `packages/`** — NUNCA copiado entre proyectos. Copiar es crear deuda técnica garantizada. Ref: BACKEND_ENGINEERING_STANDARD.md §03 (módulo CORS compartido).
+> **[REQUIRED] REGLA:** Todo código compartido entre ≥ 2 proyectos (helpers de response, tipos TypeScript, schemas Zod) vive en un **paquete `packages/`** — NUNCA copiado entre proyectos. Copiar es crear deuda técnica garantizada. Ref: BACKEND_ENGINEERING_STANDARD.md §03 (módulo CORS compartido).
+>
+> **Por qué:** copiar un helper entre proyectos crea dos copias que empiezan idénticas y divergen en la primera corrección de bug que solo se aplica a una de ellas. Un paquete compartido garantiza que corregir en un lugar corrige en todos los consumidores a la vez.
 
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: "Estándar de SEO Técnico"
 category: 01_Frontend
+doc_type: estandar
 tags: [frontend, seo, meta-tags, json-ld]
 summary: "SEO técnico para aplicaciones renderizadas en cliente: la limitación de las dos olas de indexación, head mínimo por página, Open Graph, datos estructurados JSON-LD, URLs y jerarquía de headings."
 keywords: [seo, csr, crawler, meta-tags, open-graph, json-ld, slugs, headings]

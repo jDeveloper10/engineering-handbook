@@ -1,6 +1,7 @@
 ---
 title: "Agente de Quality Gates"
 category: 06_Testing
+doc_type: ficha_agente
 tags: [testing, qa, agente, accesibilidad, performance]
 summary: "Ficha del agente que fusiona accesibilidad y rendimiento: verifica los gates con números medidos y reporta cumple o no cumple, nunca opiniones."
 keywords: [quality-gates, accesibilidad, performance, lighthouse, axe, agente]

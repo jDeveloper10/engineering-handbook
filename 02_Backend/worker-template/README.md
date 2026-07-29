@@ -1,6 +1,7 @@
 ---
 title: "Worker Template (Implementación de Referencia)"
 category: 02_Backend
+doc_type: referencia
 tags: [backend, template, workers, referencia]
 summary: "Implementación de referencia que cumple todos los puntos del estándar de backend: arquitectura de carpetas, comandos disponibles y configuración inicial."
 keywords: [template, worker, referencia, arquitectura, comandos, setup]

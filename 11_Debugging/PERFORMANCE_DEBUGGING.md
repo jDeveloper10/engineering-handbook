@@ -1,6 +1,7 @@
 ---
 title: "Performance Debugging"
 category: 11_Debugging
+doc_type: runbook
 tags: [performance, profiling, react, bundle]
 summary: "Diagnóstico de aplicaciones lentas separando los dos problemas que se confunden: tiempo de carga y jank de renderizado durante la interacción."
 keywords: [performance, profiling, react, bundle, debugging, diagnostico, aplicaciones, lentas, separando, problemas, confunden, tiempo, carga, jank]

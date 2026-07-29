@@ -1,6 +1,7 @@
 ---
 title: "Dominio Documentation — Índice"
 category: 12_Documentation
+doc_type: referencia
 tags: [documentation, indice]
 summary: "Índice del dominio Documentation: qué se documenta, en qué formato y con qué plantillas."
 keywords: [documentacion, indice, adr, readme, plantillas]

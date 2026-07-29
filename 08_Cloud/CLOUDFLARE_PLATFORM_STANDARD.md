@@ -1,6 +1,7 @@
 ---
 title: "CLOUDFLARE PLATFORM STANDARD"
 category: 08_Cloud
+doc_type: estandar
 tags:
   - standards
   - conventions

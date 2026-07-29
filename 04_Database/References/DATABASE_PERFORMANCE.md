@@ -1,6 +1,7 @@
 ---
 title: "Performance de Base de Datos"
 category: 04_Database
+doc_type: referencia
 tags: [performance, database, indexes, explain]
 summary: "Conceptos para que la base de datos no sea el cuello de botella: cuándo y dónde crear índices, lectura de EXPLAIN ANALYZE, vacuum y bloat, y cómo evitar el problema N+1."
 keywords: [performance, database, indexes, explain, base, datos, conceptos, cuello, botella, crear, indices, lectura, analyze, vacuum]

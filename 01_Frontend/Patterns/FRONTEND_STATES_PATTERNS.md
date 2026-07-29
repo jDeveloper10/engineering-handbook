@@ -1,6 +1,7 @@
 ---
 title: "Patrones de Estados de UI (Loading, Empty, Error)"
 category: 01_Frontend
+doc_type: patron
 tags: [frontend, estados, loading, empty, error]
 summary: "Los cuatro estados obligatorios de todo componente asíncrono: carga con skeletons en vez de spinners globales, vacío, error y sin conexión, con reglas de tono y longitud del copy."
 keywords: [loading, skeleton, empty-state, error, offline, copy, anti-patrones]

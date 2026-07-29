@@ -1,6 +1,7 @@
 ---
 title: "Proceso de Release para un Dev Solo"
 category: 06_Testing
+doc_type: estandar
 tags: [testing, release, semver, changelog]
 summary: "Proceso completo de release: versionado SemVer pragmático, CHANGELOG generado con release-please, tags y GitHub Releases, y qué cuenta como release."
 keywords: [release, semver, changelog, release-please, tags, github-releases]

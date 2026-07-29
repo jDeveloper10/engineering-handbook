@@ -1,6 +1,7 @@
 ---
 title: "Estrategias de Sincronización de Datos (Offline-First y Conflict Resolution)"
 category: 02_Backend
+doc_type: estandar
 tags: [sync, offline-first, crdt, last-write-wins, indexeddb, react-query, workers]
 summary: "Estándar para sincronización de datos bidireccional entre clientes y el servidor: cola offline con IndexedDB/Dexie, resolución de conflictos (LWW vs CRDTs), tracking de estados y hook useSync."
 keywords: [sync, offline, bidireccional, crdt, last-write-wins, dexie, indexeddb, react-query, conflict-resolution, offline-queue]
@@ -17,11 +18,17 @@ Garantizar la continuidad operativa de aplicaciones web, móviles y de escritori
 
 ## 🎯 REGLAS INQUEBRANTABLES
 
-**SYNC-001: NUNCA perder datos del usuario por un conflicto de sincronización.** Si dos escrituras entran en conflicto y no se pueden fusionar automáticamente, el estado anterior DEBE preservarse en un borrador de conflicto.
+**[REQUIRED] SYNC-001: NUNCA perder datos del usuario por un conflicto de sincronización.** Si dos escrituras entran en conflicto y no se pueden fusionar automáticamente, el estado anterior DEBE preservarse en un borrador de conflicto.
 
-**SYNC-002: Todo registro offline DEBE incluir metadatos de sincronización:** `client_updated_at`, `server_updated_at`, `sync_status` (`pending`, `syncing`, `synced`, `conflict`, `failed`).
+> **Por qué:** en un flujo offline-first el usuario edita sin red y confía en que su trabajo se guardará; si un conflicto de sincronización se resuelve descartando una de las dos escrituras sin avisar, el usuario pierde trabajo sin enterarse hasta que ya es tarde para recuperarlo.
 
-**SYNC-003: Sincronización Incremental por defecto.** NUNCA descargar el dataset completo; solicitar únicamente registros modificados después del último `last_synced_at`.
+**[REQUIRED] SYNC-002: Todo registro offline DEBE incluir metadatos de sincronización:** `client_updated_at`, `server_updated_at`, `sync_status` (`pending`, `syncing`, `synced`, `conflict`, `failed`).
+
+> **Por qué:** sin metadatos de sincronización no hay forma de saber qué escritura es más reciente, cuál ya se envió y cuál sigue pendiente — son los datos que la resolución de conflictos y el reintento necesitan para funcionar, no un adorno del esquema.
+
+**[REQUIRED] SYNC-003: Sincronización Incremental por defecto.** NUNCA descargar el dataset completo; solicitar únicamente registros modificados después del último `last_synced_at`.
+
+> **Por qué:** descargar el dataset completo en cada sincronización desperdicia ancho de banda y batería en proporción al tamaño total de los datos, no al tamaño de lo que realmente cambió — y en móvil esa diferencia se paga en datos del usuario.
 
 ---
 

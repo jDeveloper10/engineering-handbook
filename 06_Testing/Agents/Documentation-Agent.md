@@ -1,6 +1,7 @@
 ---
 title: "Agente de Documentación"
 category: 06_Testing
+doc_type: ficha_agente
 tags: [testing, qa, agente, documentacion]
 summary: "Ficha del agente de QA de documentación: verifica que la documentación de API, el CHANGELOG y los docs de proyecto digan la verdad y nada más."
 keywords: [documentacion, agente, changelog, api-docs, qa]

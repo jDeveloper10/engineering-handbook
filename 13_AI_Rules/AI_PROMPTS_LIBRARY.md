@@ -1,6 +1,7 @@
 ---
 title: "Librería de Prompts del Handbook"
 category: 13_AI_Rules
+doc_type: referencia
 tags: [ai-rules, prompts, ia, plantillas]
 summary: "Prompts reutilizables y parametrizados para las tareas recurrentes del handbook: crear componentes, páginas completas de landing, dashboard y CRUD, endpoints con migración y refactorizaciones."
 keywords: [prompts, ia, plantillas, componente, landing, dashboard, crud, refactor]

@@ -1,6 +1,7 @@
 ---
 title: "Dominio Architecture — Índice"
 category: 09_Architecture
+doc_type: referencia
 tags: [architecture, indice]
 summary: "Índice del dominio Architecture: visión global de cómo se conectan todos los dominios, patrones arquitectónicos, ADRs, diagramas C4 y escalabilidad."
 keywords: [arquitectura, indice, adr, c4, monorepo, escalabilidad]

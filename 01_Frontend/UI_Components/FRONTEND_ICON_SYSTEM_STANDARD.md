@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Sistema de Iconos"
 category: 01_Frontend
+doc_type: estandar
 tags: [frontend, iconos, accesibilidad]
 summary: "Tamaño de icono ligado a la tipografía que acompaña, nombre accesible según sea decorativo o significativo, y anti-patrones del uso de iconos."
 keywords: [iconos, lucide, tamano, aria-hidden, nombre-accesible]

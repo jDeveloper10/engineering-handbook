@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Microcopy y UX Writing"
 category: 01_Frontend
+doc_type: estandar
 tags: [frontend, microcopy, ux-writing, tono]
 summary: "Tono consistente en todo el producto, glosario de un concepto una palabra, capitalización de botones y etiquetas, redacción de CTAs y límites de longitud y puntuación."
 keywords: [microcopy, ux-writing, tono, glosario, cta, capitalizacion]

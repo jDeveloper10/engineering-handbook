@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Uso de Git y GitHub"
 category: 07_DevOps
+doc_type: estandar
 tags: [devops, git, github, seguridad]
 summary: "Uso de Git y GitHub como plataforma: estrategia de ramas trunk-based simplificada, convención de commits, protección de main, seguridad de la cuenta y escaneo de secretos con push protection."
 keywords: [git, github, trunk-based, commits, branch-protection, secret-scanning]

@@ -1,6 +1,7 @@
 ---
 title: "Estándar Avanzado de Internacionalización (i18n, RTL y Pluralización)"
 category: 01_Frontend
+doc_type: estandar
 tags: [i18n, l10n, rtl, intl, pluralization, lazy-loading, translation]
 summary: "Estándar avanzado para aplicaciones i18n/L10n: soporte para lenguajes RTL (Árabe/Hebreo), reglas de pluralización complejas, formateo numérico/moneda con Intl API, detección automática de locale y lazy loading de traducciones."
 keywords: [i18n, l10n, rtl, intl, pluralization, locale, translation, lazy-loading]
@@ -17,11 +18,17 @@ Garantizar la adaptación cultural y lingüística de la aplicación para mercad
 
 ## 🎯 REGLAS INQUEBRANTABLES
 
-**I18N-001: NUNCA hardcodear cadenas de texto en componentes UI.** Todos los textos expuestos al usuario deben provenir de claves de traducción.
+**[REQUIRED] I18N-001: NUNCA hardcodear cadenas de texto en componentes UI.** Todos los textos expuestos al usuario deben provenir de claves de traducción.
 
-**I18N-002: Formateo de fechas, números y monedas estricto con `Intl` API.** Queda prohibido concatenar cadenas para construir fechas o formatear valores monetarios manualmente.
+> **Por qué:** un texto hardcodeado en un componente es invisible para el flujo de traducción: nadie lo encuentra para traducirlo hasta que un usuario en otro idioma lo reporta como un texto que quedó en el idioma original en medio de la interfaz traducida.
 
-**I18N-003: Carga Diferida (Lazy Loading) de archivos de traducción.** Solo descargar el archivo JSON del idioma activo para evitar inflar el bundle inicial.
+**[REQUIRED] I18N-002: Formateo de fechas, números y monedas estricto con `Intl` API.** Queda prohibido concatenar cadenas para construir fechas o formatear valores monetarios manualmente.
+
+> **Por qué:** concatenar cadenas para construir una fecha o un número asume un orden y un formato (día/mes/año, coma o punto decimal) que varía por región; el resultado es correcto solo por casualidad, para el idioma en el que se escribió el código. La API `Intl` conoce las reglas de cada configuración regional y no hay que mantenerlas a mano.
+
+**[RECOMMENDED] I18N-003: Carga Diferida (Lazy Loading) de archivos de traducción.** Solo descargar el archivo JSON del idioma activo para evitar inflar el bundle inicial.
+
+> **Por qué:** cargar las traducciones de todos los idiomas soportados en el bundle inicial infla la carga con contenido que el 100% de los usuarios, salvo los que hablan ese idioma, nunca va a usar. Es recomendado porque en aplicaciones con dos o tres idiomas el ahorro no compensa la complejidad de cargar bajo demanda.
 
 ---
 

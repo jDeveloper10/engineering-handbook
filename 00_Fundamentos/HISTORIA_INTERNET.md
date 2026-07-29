@@ -1,6 +1,7 @@
 ---
 title: "00_Fundamentos — Historia de Internet"
 category: 00_Fundamentos
+doc_type: referencia
 tags:
   - history
   - internet

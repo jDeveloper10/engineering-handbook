@@ -1,6 +1,7 @@
 ---
 title: "Patrones de Notificaciones en Interfaz"
 category: 01_Frontend
+doc_type: patron
 tags: [frontend, notificaciones, toast, accesibilidad]
 summary: "Cuándo corresponde un toast, un banner, un badge o un centro de notificaciones, según si la información requiere acción inmediata, y sus requisitos de accesibilidad."
 keywords: [toast, banner, badge, centro-notificaciones, aria-live, accesibilidad]

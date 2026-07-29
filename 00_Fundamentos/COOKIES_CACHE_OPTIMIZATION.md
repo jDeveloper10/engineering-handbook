@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Cookies, Caché y Optimizaciones de Alto Rendimiento"
 category: 00_Fundamentos
+doc_type: estandar
 tags: [cookies, cache, kv, browser-cache, cdn, stale-while-revalidate, early-hints, http3, brotli, bundle-splitting, performance]
 summary: "Guía maestra y quirúrgica sobre cookies seguras (HttpOnly, SameSite, rotación de refresh tokens), las 4 capas de caché (Browser, CDN, KV, Materialized Views), Early Hints 103, HTTP/3, Brotli y bundle splitting."
 keywords: [cookies, httponly, samesite, refresh-token, cache, cache-control, kv, cache-aside, stale-while-revalidate, early-hints, brotli, lazy-loading, bundle-splitting, vite, lcp, ttfb]

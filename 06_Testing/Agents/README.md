@@ -1,6 +1,7 @@
 ---
 title: "Agentes QA — Índice y Mapa de Consolidación"
 category: 06_Testing
+doc_type: referencia
 tags: [testing, qa, agentes, indice]
 summary: "Por qué los 18 agentes de QA pedidos se consolidaron en 8, con el mapa de correspondencia, el flujo de colaboración entre ellos y la convención de las fichas."
 keywords: [agentes, qa, consolidacion, flujo, fichas]

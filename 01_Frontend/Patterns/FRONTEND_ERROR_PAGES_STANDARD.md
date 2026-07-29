@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Páginas de Error (404, 403, 500)"
 category: 01_Frontend
+doc_type: estandar
 tags: [frontend, errores, 404, ux]
 summary: "Qué debe decir y ofrecer cada página de error: ruta inexistente, falta de permisos y error no capturado, con los anti-patrones habituales."
 keywords: [404, 403, 500, error, error-boundary, microcopy]

@@ -1,6 +1,7 @@
 ---
 title: "Ciclo de Vida de un Bug"
 category: 06_Testing
+doc_type: runbook
 tags: [testing, bugs, issues, proceso]
 summary: "De la captura al cierre: toda fuente termina en el mismo lugar, registro mínimo de un issue de bug, criterios objetivos de severidad P0 a P3 y la regla de que todo fix deja un test de regresión."
 keywords: [bug, issue, severidad, p0, regresion, triage, gh]

@@ -1,6 +1,7 @@
 ---
 title: "Patrones de Tablas"
 category: 01_Frontend
+doc_type: patron
 tags: [frontend, tablas, paginacion, patrones]
 summary: "Anatomía de una tabla, decisión entre paginación y scroll infinito, diseño de columnas, ordenamiento, selección y estados de fila."
 keywords: [tabla, paginacion, scroll-infinito, columnas, ordenamiento, seleccion]

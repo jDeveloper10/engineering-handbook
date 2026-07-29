@@ -1,6 +1,7 @@
 ---
 title: "Patrón: Acceso Público con RLS (Token Anónimo)"
 category: 04_Database
+doc_type: patron
 tags: [rls, seguridad, public-access, supabase]
 summary: "Dar acceso a un recurso concreto a un usuario sin cuenta mediante un token indivinable inyectado en las políticas RLS, con las reglas de seguridad que ese patrón obliga a cumplir."
 keywords: [rls, seguridad, public-access, supabase, acceso, publico, token, anonimo, recurso, concreto, usuario, cuenta, mediante, indivinable]

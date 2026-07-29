@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Escalabilidad de Base de Datos"
 category: 04_Database
+doc_type: estandar
 tags: [postgresql, escalabilidad, rendimiento, integridad]
 summary: "Reglas DB-010 a DB-025 sobre los cuatro pilares de una base de datos escalable: esquema sin huecos, rendimiento quirúrgico, integridad absoluta y operabilidad."
 keywords: [postgresql, escalabilidad, rendimiento, integridad, base, datos, db-010, db-025, cuatro, pilares, escalable, esquema, huecos, quirurgico]
@@ -24,6 +25,8 @@ Las siguientes reglas son de hierro para garantizar bases de datos robustas, esc
 ## 📐 PILAR 1: ESQUEMA BLINDADO (Sin Huecos)
 
 ### DB-010: NUNCA CONFIAR EN LA APLICACIÓN PARA VALIDAR
+
+**[REQUIRED]** **Por qué:** la aplicación cambia, se reescribe y gana rutas de acceso nuevas (un script de migración, un panel de administración, una integración); el esquema sobrevive a todas ellas. Una restricción que solo vive en el código se salta el día que alguien escribe en la tabla sin pasar por ese código.
 
 La base de datos es la última línea de defensa. NUNCA asumas que el backend o el frontend validaron los datos correctamente.
 
@@ -64,6 +67,8 @@ CREATE INDEX idx_orders_user_id ON orders(user_id);
 
 ### DB-011: CONSTRAINTS CHECK PARA TODO LO VALIDABLE
 
+**[REQUIRED]** **Por qué:** un CHECK convierte un dato imposible en un error inmediato en vez de en una fila corrupta que se descubre meses después, cuando ya contaminó informes y decisiones. Limpiar datos malos a posteriori cuesta órdenes de magnitud más que impedir su entrada.
+
 **✅ Blindado con CHECK:**
 ```sql
 CREATE TABLE products (
@@ -78,6 +83,8 @@ CREATE TABLE products (
 ```
 
 ### DB-012: ENUMS + CHECK CONSTRAINTS = COMBO PERFECTO
+
+**[RECOMMENDED]** **Por qué:** el ENUM documenta el dominio de valores dentro del propio esquema y el CHECK cubre las combinaciones que el ENUM no puede expresar. Se marca como recomendado porque añadir un valor a un ENUM de PostgreSQL requiere migración, y en dominios que cambian rápido una tabla de catálogo con FK envejece mejor.
 
 Ideal para tablas de auditoría.
 ```sql
@@ -99,6 +106,8 @@ CREATE TABLE audit_log (
 ```
 
 ### DB-013: PARTICIONAMIENTO ANTES DE QUE DUELA
+
+**[RECOMMENDED]** **Por qué:** particionar una tabla que ya tiene millones de filas exige ventana de mantenimiento; hacerlo desde el principio es gratis. Es recomendado y no obligatorio porque particionar una tabla que nunca crecerá añade complejidad operativa sin devolver nada: la decisión depende del volumen previsto, no del gusto.
 
 Para tablas de alta mutación (logs, eventos) que llegarán a millones de filas.
 
@@ -125,6 +134,8 @@ SELECT cron.schedule('create-partitions', '0 0 1 * *', 'SELECT create_monthly_pa
 
 ### DB-014: ÍNDICES QUE REALMENTE IMPORTAN
 
+**[REQUIRED]** **Por qué:** cada índice acelera lecturas y penaliza cada escritura, además de ocupar disco y memoria. Indexar por reflejo produce tablas donde escribir es lento y donde el planificador tiene demasiadas opciones malas. El índice se justifica con una consulta real, no con una intuición.
+
 ```sql
 -- 1. Índice compuesto para queries comunes
 CREATE INDEX idx_orders_user_status_created 
@@ -144,9 +155,13 @@ CREATE INDEX idx_events_payload ON events USING GIN(payload jsonb_path_ops);
 
 ### DB-015: EXPLAIN ANALYZE ANTES DE CADA DEPLOY
 
+**[REQUIRED]** **Por qué:** una consulta se comporta distinto con mil filas que con un millón, y el entorno de desarrollo casi siempre tiene mil. `EXPLAIN ANALYZE` es la única forma de ver el plan real en vez de suponerlo, y detecta el `Seq Scan` que en producción se traduce en un incidente.
+
 **NUNCA** deployar una query compleja en producción sin antes evaluarla localmente con `EXPLAIN ANALYZE`. Evalúa si estás causando un `Seq Scan` evitable.
 
 ### DB-016: CONNECTION POOLING OBLIGATORIO (Y LA DIFERENCIA CON POLLING)
+
+**[REQUIRED]** **Por qué:** PostgreSQL asigna un proceso por conexión, así que el límite se agota mucho antes de lo que la intuición sugiere — y en un entorno serverless, donde cada invocación puede abrir la suya, se agota en minutos. Sin pooling, el modo de fallo no es lentitud: es la base entera rechazando conexiones.
 
 > [!CAUTION]
 > **POLLING vs POOLING: ¡NO SON LO MISMO!**
@@ -177,6 +192,8 @@ try {
 
 ### DB-017: PAGINACIÓN CON CURSORES, NUNCA OFFSET
 
+**[REQUIRED]** **Por qué:** `OFFSET` obliga al motor a leer y descartar todas las filas anteriores, de modo que el coste crece con el número de página: la última página de un listado grande es la consulta más cara del sistema. El cursor va directo al punto y su coste es constante.
+
 `OFFSET` escanea y descarta todas las filas previas. En bases de datos grandes, esto colapsa la CPU.
 
 ```sql
@@ -195,6 +212,8 @@ ORDER BY created_at DESC LIMIT 20;
 
 ### DB-018: TRANSACCIONES CON SAVEPOINT
 
+**[RECOMMENDED]** **Por qué:** en una carga masiva, un único registro inválido no debería tirar el lote completo. El SAVEPOINT permite descartar solo lo que falló. Es recomendado porque en operaciones donde la atomicidad total es el requisito (un cobro, una transferencia), el comportamiento correcto es justamente el contrario: todo o nada.
+
 Si haces inserts masivos y falla un registro, un SAVEPOINT evita descartar todo el lote.
 
 ```sql
@@ -209,6 +228,8 @@ COMMIT; -- Guardas las primeras 20
 ```
 
 ### DB-019: SOFT DELETE + HARD DELETE PROGRAMADO
+
+**[REQUIRED]** **Por qué:** el borrado accidental es la pérdida de datos más común, y sin soft delete la única recuperación es restaurar un backup completo. Pero conservarlo indefinidamente choca con el derecho de supresión del RGPD: por eso el par completo, marcado lógico más purga programada, no solo la primera mitad.
 
 ```sql
 -- Soft Delete: Ocultarlo
@@ -226,10 +247,14 @@ $$);
 
 ### DB-020: VERSIONADO DE REGISTROS (HISTORIAL)
 
+**[RECOMMENDED]** **Por qué:** saber quién cambió qué y cuándo es imprescindible para auditoría y para resolver disputas, y un trigger lo garantiza aunque el cambio venga por una vía que no pasa por la aplicación. Es recomendado porque duplica el volumen escrito: se aplica a los registros con valor legal o económico, no a todos.
+
 Si cambian las propuestas, guarda el histórico usando Triggers de base de datos.
 *(Ver sección de triggers de PostgreSQL en la implementación de la regla)*
 
 ### DB-021: INTEGRIDAD REFERENCIAL EN CASCADA CONTROLADA
+
+**[REQUIRED]** **Por qué:** la acción de la clave foránea se elige, nunca se acepta por defecto sin pensarla: un `CASCADE` puesto por comodidad convierte el borrado de una fila en el borrado silencioso de miles. `RESTRICT` falla ruidosamente, que es el comportamiento correcto cuando no se ha decidido nada.
 
 - `RESTRICT` (Por Defecto): No deja borrar si hay dependencias (ej. usuarios, productos).
 - `SET NULL`: Deja el registro hijo vivo pero anula la FK (ej. categorías borradas).
@@ -241,17 +266,25 @@ Si cambian las propuestas, guarda el histórico usando Triggers de base de datos
 
 ### DB-022: MIGRACIONES CON UP Y DOWN TESTEADO
 
+**[REQUIRED]** **Por qué:** el momento en que se necesita el `DOWN` es siempre el peor posible: producción rota y con prisa. Escribirlo entonces garantiza escribirlo mal. Y un `DOWN` que nunca se ejecutó no es un plan de reversión, es una suposición.
+
 Toda migración debe contener ambas vías. No confíes en "hago otra migración para arreglarlo" durante un incidente.
 
 ### DB-023: BACKUPS AUTOMATIZADOS + VERIFICACIÓN
+
+**[REQUIRED]** **Por qué:** un backup que nunca se ha restaurado no se sabe si es un backup — sabotea desde un dump truncado hasta un cifrado cuya clave se perdió. La restauración periódica es lo que convierte una suposición en una garantía, y es la mitad que casi todo el mundo se salta.
 
 Un backup que no ha sido probado no es un backup. Automatizar `pg_dump`, restaurarlo internamente con `pg_restore` temporal para validar y mandarlo a un bucket R2.
 
 ### DB-024: RÉPLICAS DE LECTURA PARA QUERIES PESADAS
 
+**[RECOMMENDED]** **Por qué:** separar informes pesados del tráfico transaccional evita que un dashboard tumbe la aplicación. Es recomendado porque introduce retraso de replicación: leer de la réplica justo después de escribir devuelve datos viejos, y no todo flujo lo tolera.
+
 Separa la carga configurando un Pool primario (Write) y un Pool réplica (Read) si la infraestructura de Supabase lo permite.
 
 ### DB-025: MONITOREO DE RENDIMIENTO CONTINUO
+
+**[RECOMMENDED]** **Por qué:** la degradación de una base de datos es gradual y silenciosa: nadie nota el índice que dejó de usarse hasta que la consulta tarda diez segundos. Vigilar las estadísticas del motor convierte una emergencia futura en una tarea de mantenimiento planificada.
 
 Verifica periódicamente `pg_stat_statements` (para queries lentas), `pg_stat_user_tables` (para seq_scans anómalos) y `pg_stat_user_indexes` (para índices huérfanos).
 

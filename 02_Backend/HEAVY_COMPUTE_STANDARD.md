@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Cómputo Pesado"
 category: 02_Backend
+doc_type: estandar
 tags: [backend, workers, containers, performance]
 summary: "Reglas HC-001 a HC-004 para trabajo que excede el límite de CPU de un Worker: Workers para lógica ligera, Containers para cómputo pesado, con árbol de decisión rápida."
 keywords: [cpu, limite, workers, containers, computo-pesado, colas]
@@ -26,6 +27,8 @@ Cloudflare Workers tienen límite de CPU de 30 segundos. Algoritmos como:
 
 ### HC-001: TODO CÓMPUTO > 15s DEBE IR A CONTAINER
 
+**[REQUIRED]** **Por qué:** el límite de CPU del Worker es una pared dura: al alcanzarla la petición se corta a medias, sin resultado y sin forma de recuperarla. El umbral de 15s deja margen deliberado frente al límite real para que la variabilidad de carga no convierta un trabajo que casi cabía en un fallo intermitente.
+
 **Regla de decisión:**
 | Duración estimada | Dónde ejecutar | Tecnología |
 |-------------------|----------------|------------|
@@ -37,6 +40,8 @@ Cloudflare Workers tienen límite de CPU de 30 segundos. Algoritmos como:
 ---
 
 ### HC-002: PATRÓN COLA + WORKER → CONTAINER
+
+**[REQUIRED]** **Por qué:** la cola desacopla aceptar el trabajo de ejecutarlo, y eso es lo que permite responder rápido, reintentar sin duplicar y absorber picos sin perder peticiones. Llamar al container de forma síncrona traslada su latencia y sus fallos al usuario.
 
 ```typescript
 // 1. Worker recibe request y encola trabajo pesado
@@ -85,6 +90,8 @@ def process_video(job_id: str, video_url: str):
 
 ### HC-003: PROGRESS TRACKING PARA TRABAJOS LARGOS
 
+**[REQUIRED]** **Por qué:** sin señal de progreso el usuario asume que se rompió, recarga y vuelve a lanzar el trabajo — duplicando la carga justo cuando el sistema ya va cargado. El progreso no es una mejora estética: es control de carga.
+
 ```typescript
 // Worker expone endpoint de status
 export async function getJobStatus(jobId: string, env: Env): Promise<Response> {
@@ -110,6 +117,8 @@ const { data: job } = useQuery({
 ---
 
 ### HC-004: WORKER SPIN-UP PARA CÓMPUTO MEDIO
+
+**[RECOMMENDED]** **Por qué:** para trabajos en la franja intermedia, arrancar un container cuesta más en latencia y complejidad que el propio cálculo. Es recomendado porque la frontera depende del perfil real de la tarea, y medirla vale más que elegir por regla fija.
 
 ```typescript
 // Para tareas de 15-30s: usar Worker con más memoria

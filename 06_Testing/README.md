@@ -1,6 +1,7 @@
 ---
 title: "Dominio Testing — Departamento de QA"
 category: 06_Testing
+doc_type: referencia
 tags: [testing, qa, indice]
 summary: "Índice del departamento de QA: principio rector, mapa de documentos, qué leer para cada situación y relación con los demás dominios."
 keywords: [qa, testing, indice, mapa, estrategia]

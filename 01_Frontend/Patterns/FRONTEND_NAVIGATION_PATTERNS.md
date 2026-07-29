@@ -1,6 +1,7 @@
 ---
 title: "Patrones de Navegación"
 category: 01_Frontend
+doc_type: patron
 tags: [frontend, navegacion, navbar, sidebar]
 summary: "Árbol y matriz de decisión para elegir el patrón de navegación principal según el tipo de producto, reglas transversales y patrones complementarios fuera del navbar y el sidebar."
 keywords: [navegacion, navbar, sidebar, menu, breadcrumb, tabs, decision]

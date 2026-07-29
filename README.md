@@ -1,6 +1,7 @@
 ---
 title: "Engineering Handbook — Portada"
 category: root
+doc_type: referencia
 tags: [meta, indice, handbook]
 summary: "Portada del handbook: qué es, estado de madurez por dominio y el stack de referencia que da contexto a todos los documentos."
 keywords: [handbook, indice, estado, dominios, stack, portada]

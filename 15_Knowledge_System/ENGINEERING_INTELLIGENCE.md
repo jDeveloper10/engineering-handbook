@@ -1,6 +1,7 @@
 ---
 title: "Engineering Intelligence — Auto-análisis del Trabajo"
 category: 15_Knowledge_System
+doc_type: estandar
 tags: [knowledge, metricas, proceso, mejora-continua]
 summary: "Rutina operativa mensual que recolecta señales pasivas del propio trabajo, sin instrumentación nueva, y produce hallazgos que alimentan a los agentes existentes."
 keywords: [auto-analisis, senales, mensual, hallazgos, mejora-continua, metricas]

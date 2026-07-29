@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Requisitos de Producto (PRD) para Ingeniería e IA"
 category: 10_Product
+doc_type: estandar
 tags: [product, prd, rice, user-stories, kpi, north-star, backlog]
 summary: "Estándar para la definición de requisitos de producto (PRDs): plantilla estructurada para interpretación por agentes IA, matriz de priorización RICE, User Story Mapping y definición de métricas North Star."
 keywords: [prd, product, rice, user-story, user-story-mapping, north-star, kpi, backlog, requirements]

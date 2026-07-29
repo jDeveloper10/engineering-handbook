@@ -1,6 +1,7 @@
 ---
 title: "Estándar Avanzado de CI/CD, Despliegues y Rollbacks"
 category: 07_DevOps
+doc_type: estandar
 tags: [ci-cd, github-actions, rollbacks, blue-green, renovate, dependabot, security-scanning]
 summary: "Estándar para pipelines avanzadas de CI/CD en GitHub Actions: migraciones automáticas de base de datos, desmarcado Blue/Green en Workers, rollback automático ante tasa de error > 1%, previsualizaciones por PR y auditoría de seguridad."
 keywords: [ci-cd, github-actions, rollback, blue-green, dependabot, renovate, preview-environments, secret-rotation]
@@ -17,11 +18,17 @@ Definir los flujos de integración y despliegue continuos (CI/CD) para automatiz
 
 ## 🎯 REGLAS INQUEBRANTABLES
 
-**CICD-001: Rollback Automático si la tasa de errores supera el 1% en los primeros 5 minutos.** Si tras un deploy el Health Check falla, Cloudflare retrotrae el tráfico al deployment previo inmediatamente.
+**[REQUIRED] CICD-001: Rollback Automático si la tasa de errores supera el 1% en los primeros 5 minutos.** Si tras un deploy el Health Check falla, Cloudflare retrotrae el tráfico al deployment previo inmediatamente.
 
-**CICD-002: Escaneo de Vulnerabilidades y Secretos obligatorio en cada PR.** NUNCA fusionar código a `main` con vulnerabilidades severas o tokens expuestos.
+> **Por qué:** un pico de errores tras un deploy detectado por una persona tarda minutos en notarse y más en revertirse; automatizar el rollback ante un umbral de error acota el incidente al tiempo que tarda el health check en detectarlo, no al tiempo que tarda un humano en despertarse.
 
-**CICD-003: Preview Environments por cada Pull Request.** Todo PR genera una URL de vista previa aislada en Cloudflare Workers / Pages.
+**[REQUIRED] CICD-002: Escaneo de Vulnerabilidades y Secretos obligatorio en cada PR.** NUNCA fusionar código a `main` con vulnerabilidades severas o tokens expuestos.
+
+> **Por qué:** un secreto o una vulnerabilidad severa que llega a `main` ya está en el historial de git para siempre, aunque se corrija después (ver `INCIDENT_RESPONSE.md`). Escanear en el PR es el único punto donde bloquear el problema no cuesta nada, porque el cambio todavía no se fusionó.
+
+**[RECOMMENDED] CICD-003: Preview Environments por cada Pull Request.** Todo PR genera una URL de vista previa aislada en Cloudflare Workers / Pages.
+
+> **Por qué:** un entorno de previsualización por PR permite revisar el comportamiento real antes de aprobar, no solo el diff. Es recomendado porque consume recursos de infraestructura por cada rama abierta, y en cambios sin superficie visible no aporta nada sobre leer el código.
 
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: "Agente E2E"
 category: 06_Testing
+doc_type: ficha_agente
 tags: [testing, qa, agente, e2e, playwright]
 summary: "Ficha del agente end-to-end, que fusiona Playwright, E2E, smoke, regresión y responsive en una sola base de tests con tres modos de ejecución."
 keywords: [e2e, playwright, smoke, regresion, responsive, agente]

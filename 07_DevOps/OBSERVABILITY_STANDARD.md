@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Observabilidad"
 category: 07_DevOps
+doc_type: estandar
 tags: [devops, observabilidad, logs, trazas]
 summary: "Reglas para que cualquier fallo en producción se diagnostique y resuelva en menos de 15 minutos incluso en arquitecturas distribuidas, con el stack de observabilidad recomendado."
 keywords: [observabilidad, logs, trazas, metricas, alertas, correlacion, mttr]
@@ -18,6 +19,8 @@ Garantizar que cualquier fallo en producción pueda ser diagnosticado, trazado y
 ## ⚡ REGLAS INQUEBRANTABLES
 
 ### OBS-001: TODO SERVICIO DEBE EMITIR LOGS ESTRUCTURADOS (JSON)
+
+**[REQUIRED]** **Por qué:** un log en texto libre solo se puede leer con los ojos; uno estructurado se filtra, se agrega y se alerta. Cuando hay un incidente, la diferencia es entre encontrar el patrón en segundos o rebuscar en miles de líneas mientras el sistema sigue caído.
 
 **Regla:** 
 NUNCA usar `console.log(string)`. SIEMPRE usar logs estructurados en formato JSON.
@@ -43,6 +46,8 @@ console.log(JSON.stringify({
 ---
 
 ### OBS-002: TODO REQUEST DEBE TENER TRACE_ID
+
+**[REQUIRED]** **Por qué:** en una arquitectura distribuida, un fallo deja huella en varios servicios y sin un identificador común no hay forma de saber qué líneas pertenecen a la misma petición. El `trace_id` es lo que convierte logs sueltos en una historia reconstruible.
 
 **Regla:**
 Cada request que entra al sistema genera un `trace_id` único (UUID v4). Este ID se propaga a TODOS los servicios que toca.
@@ -77,6 +82,8 @@ export default {
 
 ### OBS-003: TODO ERROR DEBE IR A SENTRY/LOGFLARE
 
+**[REQUIRED]** **Por qué:** un `catch` que no reporta convierte un fallo en un dato perdido: el usuario lo sufre y tú no te enteras. La regla no es tener una herramienta concreta, es que ningún error muera en silencio — que es también la razón de que el linter prohíba el `catch` vacío.
+
 **Regla:**
 NUNCA atrapar errores sin reportarlos. Usar Sentry (Workers) o Logflare (Cloudflare).
 
@@ -102,6 +109,8 @@ export default {
 ---
 
 ### OBS-004: MÉTRICAS DE NEGOCIO EN TIEMPO REAL
+
+**[RECOMMENDED]** **Por qué:** las métricas técnicas pueden estar todas en verde mientras nadie consigue completar una compra. Una métrica de negocio detecta ese fallo, que es el único que de verdad importa. Es recomendado porque exige definir antes qué eventos son significativos: instrumentar sin ese trabajo produce ruido caro.
 
 **Regla:**
 Todo evento de negocio (compra, registro, cancelación) DEBE emitirse como métrica.
@@ -133,6 +142,8 @@ await trackEvent(env, {
 
 ### OBS-005: ALERTAS CON ESCALAMIENTO (P1-P4)
 
+**[RECOMMENDED]** **Por qué:** una alerta que no distingue severidad entrena a ignorarlas todas, y a partir de ahí el sistema de alertas es decorativo. La clasificación existe para proteger la atención humana. Es recomendado porque los umbrales dependen del producto y copiarlos de otro sitio genera exactamente la fatiga que intentan evitar.
+
 **Niveles de severidad:**
 
 | Nivel | Nombre | Respuesta | Ejemplo |
@@ -162,6 +173,8 @@ export function checkThreshold(metric: string, value: number): 'P1' | 'P2' | nul
 ---
 
 ### OBS-006: HEALTH CHECK EN TODO SERVICIO
+
+**[REQUIRED]** **Por qué:** sin health check, la única forma de saber que un servicio cayó es que se queje un usuario. Y debe comprobar las dependencias, no solo responder 200: un servicio vivo que no alcanza su base de datos está caído a efectos prácticos.
 
 **Regla:**
 Todo servicio DEBE exponer un endpoint `/health` que retorne:

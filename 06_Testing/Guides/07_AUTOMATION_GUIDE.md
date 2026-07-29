@@ -1,6 +1,7 @@
 ---
 title: "Guía de Automatización de QA"
 category: 06_Testing
+doc_type: estandar
 tags: [testing, automatizacion, setup, vitest, playwright]
 summary: "Setup de QA copy-paste en menos de una hora: estructura de carpetas de tests, scripts de package.json como contrato, y configuración de Vitest, Playwright, ESLint y Lighthouse."
 keywords: [setup, vitest, playwright, eslint, lighthouse, scripts, automatizacion]

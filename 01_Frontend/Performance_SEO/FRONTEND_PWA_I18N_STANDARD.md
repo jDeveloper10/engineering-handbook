@@ -1,6 +1,7 @@
 ---
 title: "Estándar de PWA e Internacionalización"
 category: 01_Frontend
+doc_type: estandar
 tags: [frontend, pwa, i18n, service-worker]
 summary: "Criterio para adoptar PWA, manifest, estrategias de service worker por tipo de recurso, qué nunca debe cachearse, flujo de actualización sin forzar y límites reales en iOS."
 keywords: [pwa, manifest, service-worker, cache, update-flow, ios, i18n]

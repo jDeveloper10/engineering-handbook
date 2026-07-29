@@ -1,6 +1,7 @@
 ---
 title: "Patrón API Gateway para Microservicios"
 category: 02_Backend
+doc_type: patron
 tags: [backend, api-gateway, microservicios, arquitectura]
 summary: "Reglas API-007 a API-012: por qué exponer 8 o más microservicios directamente falla y cómo un gateway como punto único de entrada resuelve enrutado, autenticación y agregación."
 keywords: [api-gateway, microservicios, enrutado, punto-unico, agregacion]
@@ -37,6 +38,8 @@ Cliente → API Gateway (Worker público)
 ## ⚡ REGLAS INQUEBRANTABLES
 
 ### API-007: GATEWAY COMO ÚNICO PUNTO DE ENTRADA
+
+**[REQUIRED]** **Por qué:** si cada servicio se expone por su cuenta, la autenticación, el rate limiting y el CORS se implementan N veces y basta con que uno se quede corto para que exista un camino sin protección. Un único punto de entrada convierte esas políticas en algo que se aplica una vez y se audita en un solo sitio.
 
 ```typescript
 // apps/api-gateway/src/index.ts
@@ -80,6 +83,8 @@ export default {
 
 ### API-008: SERVICE BINDINGS PARA COMUNICACIÓN INTERNA
 
+**[REQUIRED]** **Por qué:** un servicio interno alcanzable por internet es un servicio que hay que proteger como si fuera público, y que alguien acabará llamando saltándose el gateway. El binding lo hace inalcanzable desde fuera por construcción, no por configuración (ver `O-036`).
+
 ```typescript
 // apps/api-gateway/wrangler.toml
 name = "api-gateway"
@@ -109,6 +114,8 @@ async function callAuthService(env: Env, path: string, options: RequestInit) {
 ---
 
 ### API-009: CIRCUIT BREAKER PARA SERVICIOS EXTERNOS
+
+**[REQUIRED]** **Por qué:** cuando una dependencia externa se degrada, seguir llamándola convierte su problema en el tuyo: las peticiones se acumulan esperando y agotan tus recursos. El interruptor falla rápido y protege lo que todavía funciona.
 
 ```typescript
 // src/circuit-breaker.ts
@@ -155,6 +162,8 @@ class CircuitBreaker {
 
 ### API-010: RETRY CON EXPONENTIAL BACKOFF + JITTER
 
+**[REQUIRED]** **Por qué:** reintentar a intervalo fijo sincroniza a todos los clientes que fallaron a la vez y remata al servicio que se estaba recuperando. El backoff separa los intentos y el jitter rompe la sincronización: sin jitter, el backoff solo retrasa la avalancha.
+
 ```typescript
 async function fetchWithRetry(
   url: string,
@@ -189,6 +198,8 @@ async function fetchWithRetry(
 
 ### API-011: BULKHEAD (AISLAMIENTO DE RECURSOS)
 
+**[REQUIRED]** **Por qué:** sin compartimentos, el fallo de una función secundaria consume los recursos compartidos y tumba las esenciales. Aislar por servicio es lo que hace que un problema en facturación no impida iniciar sesión.
+
 **Regla:**
 Cada servicio tiene su propio Worker. Si Billing falla, Auth y Search siguen funcionando.
 
@@ -218,6 +229,8 @@ async function routeToService(request: Request, env: Env): Promise<Response> {
 ---
 
 ### API-012: VERSIONADO DE API
+
+**[REQUIRED]** **Por qué:** una app móvil instalada no se actualiza cuando tú despliegas: durante semanas convivirán clientes viejos con tu API nueva. Sin versionado, cualquier cambio incompatible rompe a usuarios que no hicieron nada — y en móvil ni siquiera pueden arreglarlo (ver `MSEC-010`).
 
 ```typescript
 // Rutas versionadas

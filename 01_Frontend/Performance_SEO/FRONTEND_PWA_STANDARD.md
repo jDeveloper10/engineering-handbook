@@ -1,6 +1,7 @@
 ---
 title: "Patrón Progressive Web App (PWA) Offline-First"
 category: 01_Frontend
+doc_type: estandar
 tags: [pwa, offline, service-worker, workbox, dexie]
 summary: "Convertir la aplicación en PWA instalable y offline-first: manifest, service worker con Workbox y sus estrategias de caché, lógica de red en React y notificaciones push nativas."
 keywords: [pwa, offline, service-worker, workbox, dexie, progressive, offline-first, convertir, aplicacion, instalable, manifest, service, worker, estrategias]
@@ -13,7 +14,9 @@ status: current
 ## 🎯 ¿Qué es y por qué es crítico?
 Una Progressive Web App (PWA) permite a tu web instalarse como una app nativa, enviar notificaciones push y funcionar sin conexión a internet. Una arquitectura Offline-First garantiza que el usuario pueda interactuar con la app en el metro, en un avión o con mala señal, y sincronizar los datos automáticamente cuando recupere la conexión.
 
-> **REGLA INQUEBRANTABLE:** Toda app SaaS en producción DEBE funcionar sin conexión básica (caché). Si permite edición, DEBE encolar las operaciones y sincronizarlas en background cuando vuelva la red.
+> **[REQUIRED] REGLA:** Toda app SaaS en producción DEBE funcionar sin conexión básica (caché). Si permite edición, DEBE encolar las operaciones y sincronizarlas en background cuando vuelva la red.
+>
+> **Por qué:** una app que se congela por completo al perder conexión trata la red como si nunca fallara, y en móvil la red falla constantemente — túneles, ascensores, zonas rurales. Encolar las operaciones y sincronizar al volver la conexión es lo que separa una app resiliente de una que castiga al usuario por su cobertura.
 
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: "Patrón Progress Tracking"
 category: 01_Frontend
+doc_type: estandar
 tags: [react, ux, background-jobs, sse, websockets, polling]
 summary: "Seguimiento de trabajos largos que no pueden resolverse con un spinner: cuándo usar polling, Server-Sent Events o WebSockets, con implementación de cada estrategia y componente de barra de progreso."
 keywords: [react, ux, background-jobs, sse, websockets, polling, progress, tracking, seguimiento, trabajos, largos, resolverse, spinner, server-sent]
@@ -13,7 +14,9 @@ status: current
 ## 🎯 ¿Qué es y cuándo usarlo?
 Cualquier acción que tarde más de 5 segundos no puede depender de un simple spinner. Si el usuario procesa un CSV de 10,000 filas o genera un reporte en PDF, necesita feedback del progreso real para saber que la app no colapsó.
 
-> **REGLA INQUEBRANTABLE:** Si un Job en el backend (Worker/Queue) tarda > 5s, DEBE tener seguimiento de progreso. PROHIBIDO dejar al usuario con una pantalla en blanco o spinner infinito sin ETA.
+> **[REQUIRED] REGLA:** Si un Job en el backend (Worker/Queue) tarda > 5s, DEBE tener seguimiento de progreso. PROHIBIDO dejar al usuario con una pantalla en blanco o spinner infinito sin ETA.
+>
+> **Por qué:** un usuario frente a una pantalla en blanco sin ETA no puede distinguir "está procesando" de "se rompió", y la reacción típica es recargar — duplicando el trabajo justo cuando el sistema ya está ocupado con la tarea larga original (ver `HC-003`).
 
 ---
 

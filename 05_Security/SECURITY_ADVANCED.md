@@ -1,6 +1,7 @@
 ---
 title: "Estándar Avanzado de Ciberseguridad, CSP, SRI y Hardening"
 category: 05_Security
+doc_type: estandar
 tags: [security, csp, sri, dnssec, supply-chain, gitleaks, security-txt, hardening]
 summary: "Estándar avanzado de seguridad ofensiva y defensiva: Content Security Policy (CSP) en Workers, Subresource Integrity (SRI), seguridad de cadena de suministro (Supply Chain), DNSSEC y archivo security.txt."
 keywords: [security, csp, content-security-policy, sri, dnssec, supply-chain, gitleaks, security.txt, hardening]
@@ -17,11 +18,17 @@ Implementar capas de defensa en profundidad para proteger la infraestructura, mi
 
 ## 🎯 REGLAS INQUEBRANTABLES
 
-**SEC-001: Content Security Policy (CSP) Estricta en todas las respuestas HTTP.**
+**[REQUIRED] SEC-001: Content Security Policy (CSP) Estricta en todas las respuestas HTTP.**
 
-**SEC-002: Subresource Integrity (SRI) obligatorio para cualquier script o asset cargado de CDN externo.**
+> **Por qué:** una CSP estricta es la red que atrapa un XSS que ya pasó todas las demás defensas (`S-001` a `S-003`): aunque un script malicioso logre inyectarse, el navegador se niega a ejecutarlo si su origen no está en la lista permitida.
 
-**SEC-003: Publicar el archivo `/.well-known/security.txt`** para divulgación responsable de vulnerabilidades.
+**[REQUIRED] SEC-002: Subresource Integrity (SRI) obligatorio para cualquier script o asset cargado de CDN externo.**
+
+> **Por qué:** un script cargado de un CDN externo se ejecuta con la misma confianza que tu propio código; si el CDN se compromete, el script modificado también. SRI verifica el hash antes de ejecutar, así que un script alterado se rechaza en vez de correr.
+
+**[RECOMMENDED] SEC-003: Publicar el archivo `/.well-known/security.txt`** para divulgación responsable de vulnerabilidades.
+
+> **Por qué:** sin un canal declarado, un investigador que encuentra una vulnerabilidad no tiene forma clara de reportarla de manera responsable y puede optar por publicarla directamente. Es recomendado porque es una práctica de buena higiene sin la cual el producto sigue funcionando, no una defensa técnica.
 
 ---
 

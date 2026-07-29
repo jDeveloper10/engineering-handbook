@@ -1,6 +1,7 @@
 ---
 title: "Estándar Avanzado de SEO, Datos Estructurados y Meta Tags"
 category: 01_Frontend
+doc_type: estandar
 tags: [seo, schema-org, json-ld, sitemap, open-graph, twitter-cards, canonical, hreflang]
 summary: "Estándar avanzado de SEO técnico para aplicaciones web y SaaS: JSON-LD (Schema.org), generación de sitemap.xml dinámico, robots.txt, Open Graph, Breadcrumbs semánticos y soporte hreflang multi-idioma."
 keywords: [seo, schema-org, json-ld, sitemap, robots, open-graph, og, twitter-card, canonical, hreflang]
@@ -17,11 +18,17 @@ Definir las técnicas de optimización en motores de búsqueda (SEO técnico) y 
 
 ## 🎯 REGLAS INQUEBRANTABLES
 
-**SEO-001: Toda página pública DEBE incluir datos estructurados JSON-LD válidos según Schema.org.**
+**[REQUIRED] SEO-001: Toda página pública DEBE incluir datos estructurados JSON-LD válidos según Schema.org.**
 
-**SEO-002: Canonical URLs obligatorias en todas las páginas.** Previene penalizaciones por contenido duplicado.
+> **Por qué:** sin JSON-LD, Google tiene que inferir qué es la página a partir del HTML visible, y la inferencia no produce fragmentos enriquecidos (rating, precio, FAQ) en los resultados. El marcado estructurado es la diferencia entre un resultado de texto plano y uno con visibilidad real.
 
-**SEO-003: Metadatos Open Graph y Twitter Cards completos.** Toda URL pública debe mostrar una previsualización con título, descripción e imagen optimizada (`1200x630px`).
+**[REQUIRED] SEO-002: Canonical URLs obligatorias en todas las páginas.** Previene penalizaciones por contenido duplicado.
+
+> **Por qué:** sin canonical, la misma página accesible por varias URLs (con y sin barra final, con parámetros de tracking) se indexa como contenido duplicado, y los buscadores reparten el valor de posicionamiento entre las copias en vez de concentrarlo en una.
+
+**[REQUIRED] SEO-003: Metadatos Open Graph y Twitter Cards completos.** Toda URL pública debe mostrar una previsualización con título, descripción e imagen optimizada (`1200x630px`).
+
+> **Por qué:** sin Open Graph, un enlace compartido en redes o mensajería aparece sin imagen ni descripción — el enlace pelado transmite mucho menos confianza y reduce el clic incluso cuando el contenido es bueno.
 
 ---
 

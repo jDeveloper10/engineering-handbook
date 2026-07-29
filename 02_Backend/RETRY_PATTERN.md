@@ -1,6 +1,7 @@
 ---
 title: "Patrón Retry (Exponential Backoff + Jitter)"
 category: 02_Backend
+doc_type: patron
 tags: [resiliencia, api, retry, backoff, jitter]
 summary: "Reintentos con backoff exponencial y jitter: qué errores se reintentan y cuáles no, por qué el backoff lineal provoca thundering herd, e implementación integrada con una API crítica."
 keywords: [resiliencia, api, retry, backoff, jitter, exponential, reintentos, exponencial, errores, reintentan, lineal, provoca, thundering, herd]
@@ -15,7 +16,9 @@ Cuando una petición de red falla transitoriamente, reintentar es la solución l
 
 El **Exponential Backoff** duplica la espera (1s, 2s, 4s, 8s). El **Jitter** le suma o resta un 25% aleatorio a ese tiempo para dispersar las peticiones en el tiempo.
 
-> **REGLA INQUEBRANTABLE:** NUNCA reintentar ciegamente en errores 4xx (excepto 429). Un 404 o un 400 jamás se arreglarán reintentando; solo quemas CPU y generas facturación innecesaria.
+> **[REQUIRED] REGLA:** NUNCA reintentar ciegamente en errores 4xx (excepto 429). Un 404 o un 400 jamás se arreglarán reintentando; solo quemas CPU y generas facturación innecesaria.
+>
+> **Por qué:** un 404 o un 400 describe un error del propio request — el recurso no existe o los datos enviados son inválidos — y ese error es el mismo en el reintento número uno y en el número diez. Reintentarlo no lo arregla, solo multiplica por diez el gasto de CPU y de facturación del servicio de terceros sin ninguna posibilidad de éxito.
 
 ---
 

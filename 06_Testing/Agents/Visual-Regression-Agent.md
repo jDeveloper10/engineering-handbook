@@ -1,6 +1,7 @@
 ---
 title: "Agente de Regresión Visual"
 category: 06_Testing
+doc_type: ficha_agente
 tags: [testing, qa, agente, visual-regression]
 summary: "Ficha del agente de regresión visual: compara contra baselines aprobados y nunca aprueba un baseline nuevo por su cuenta, porque esa es una decisión humana."
 keywords: [regresion-visual, baseline, screenshots, aprobacion, agente]

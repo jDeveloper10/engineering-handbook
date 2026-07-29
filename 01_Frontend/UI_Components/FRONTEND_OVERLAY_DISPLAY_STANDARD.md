@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Superposiciones y Elementos de Display"
 category: 01_Frontend
+doc_type: estandar
 tags: [frontend, overlay, tooltip, popover, componentes]
 summary: "Reglas transversales a toda superposición y especificación de tooltip, popover, dropdown, command palette, badge, chip, tag y avatar, siempre sobre la escala de elevación definida."
 keywords: [tooltip, popover, dropdown, command-palette, badge, chip, avatar, z-index]

@@ -1,6 +1,7 @@
 ---
 title: "Dominio Security — Índice y Mapa de Cobertura"
 category: 05_Security
+doc_type: referencia
 tags: [seguridad, indice, cobertura, plataformas]
 summary: "Índice del dominio Security: qué documento aplica a cada plataforma (web, desktop, móvil), cómo se relacionan los tres niveles y qué queda explícitamente fuera de alcance."
 keywords: [seguridad, indice, web, desktop, apk, android, tauri, cobertura, alcance]

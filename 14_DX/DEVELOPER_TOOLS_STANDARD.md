@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Herramientas de Desarrollo y Productividad (DX Tools)"
 category: 14_DX
+doc_type: estandar
 tags: [dx, cli, generators, eslint, hygen, plop, husky, devcontainer, vscode]
 summary: "Estándar para herramientas de productividad de ingeniería: generadores de código (Plop/Hygen), reglas personalizadas de ESLint, snippets compartidos de VS Code, automatización con Husky y Dev Containers."
 keywords: [dx, cli, generators, plop, hygen, eslint, husky, devcontainer, snippets, vscode]
@@ -17,9 +18,13 @@ Automatizar tareas repetitivas de desarrollo, garantizar entornos de trabajo 100
 
 ## 🎯 REGLAS INQUEBRANTABLES
 
-**DEV-001: Todo proyecto nuevo DEBE crearse mediante el script automatizado `new-project.ps1`.**
+**[RECOMMENDED] DEV-001: Todo proyecto nuevo DEBE crearse mediante el script automatizado `new-project.ps1`.**
 
-**DEV-002: Generadores de Código (Plop.js) para componentes y módulos.** NUNCA crear manualmente la estructura de carpetas de una feature.
+> **Por qué:** crear un proyecto a mano significa repetir manualmente decisiones ya tomadas (estructura, configuración, dependencias base), y cada repetición manual es una oportunidad de que diverja del resto de proyectos del handbook. Es recomendado porque incorporar un repositorio ya existente, que no pasó por el script, sigue siendo un caso legítimo y frecuente.
+
+**[RECOMMENDED] DEV-002: Generadores de Código (Plop.js) para componentes y módulos.** NUNCA crear manualmente la estructura de carpetas de una feature.
+
+> **Por qué:** crear a mano la estructura de una feature nueva es fácil de hacer de forma ligeramente distinta cada vez, y esa inconsistencia se acumula en el proyecto. Un generador la produce siempre igual. Es recomendado porque una feature con forma verdaderamente atípica no se beneficia de forzarla dentro de una plantilla genérica.
 
 ---
 

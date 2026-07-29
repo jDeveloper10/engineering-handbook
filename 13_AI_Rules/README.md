@@ -1,6 +1,7 @@
 ---
 title: "Dominio AI Rules — Índice"
 category: 13_AI_Rules
+doc_type: referencia
 tags: [ai-rules, indice]
 summary: "Índice del dominio AI Rules: cómo debe razonar una IA antes de escribir código, flujo de trabajo, librería de prompts, MCP y modelos en producción."
 keywords: [ia, indice, razonamiento, prompts, mcp, workflow]

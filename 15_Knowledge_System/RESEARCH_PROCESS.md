@@ -1,6 +1,7 @@
 ---
 title: "Proceso de Investigación Tecnológica Continua"
 category: 15_Knowledge_System
+doc_type: estandar
 tags: [knowledge, investigacion, proceso, fuentes]
 summary: "Cadencia y presupuesto de la investigación tecnológica, disparadores ad-hoc fuera de cadencia, el entregable RESEARCH_NOTE y la jerarquía de fuentes primarias admitidas."
 keywords: [investigacion, cadencia, research-note, fuentes-primarias, disparadores]

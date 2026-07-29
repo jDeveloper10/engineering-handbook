@@ -1,6 +1,7 @@
 ---
 title: "FRONTEND ENGINEERING STANDARD"
 category: 01_Frontend
+doc_type: estandar
 tags:
   - standards
   - conventions

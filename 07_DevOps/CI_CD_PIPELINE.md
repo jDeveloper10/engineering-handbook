@@ -1,6 +1,7 @@
 ---
 title: "Estándar de CI/CD para Monorepo"
 category: 07_DevOps
+doc_type: estandar
 tags: [devops, ci-cd, monorepo, pipeline]
 summary: "Reglas CI-001 a CI-006 para automatizar lint, test, build y deploy en monorepos con múltiples servicios, con checklist previo al despliegue."
 keywords: [ci-cd, monorepo, lint, build, deploy, workers, pipeline]
@@ -18,6 +19,8 @@ Automatizar linting, testing, building y deploy para monorepos con múltiples se
 ## ⚡ REGLAS INQUEBRANTABLES
 
 ### CI-001: MONOREPO CON TURBOREPO (O NX)
+
+**[RECOMMENDED]** **Por qué:** la regla real es que el pipeline solo debe reconstruir y desplegar lo que cambió; sin eso, un cambio de una línea paga el coste de todo el repositorio y el equipo acaba saltándose el pipeline. Turborepo es la implementación concreta de esa regla, no la regla: cualquier herramienta con grafo de dependencias y caché sirve.
 
 **Estructura obligatoria:**
 ```
@@ -64,6 +67,8 @@ monorepo/
 ---
 
 ### CI-002: GITHUB ACTIONS - PIPELINE POR PR
+
+**[REQUIRED]** **Por qué:** un gate que se ejecuta después del merge no es un gate, es un informe. La verificación tiene que correr sobre el PR, cuando el cambio todavía se puede rechazar sin coste y su autor tiene el contexto fresco.
 
 ```yaml
 # .github/workflows/pr-checks.yml
@@ -112,6 +117,8 @@ jobs:
 ---
 
 ### CI-003: DEPLOY AUTOMÁTICO POR ENTORNO
+
+**[REQUIRED]** **Por qué:** un despliegue manual es un procedimiento que se ejecuta distinto cada vez y que solo una persona sabe hacer. Automatizarlo por entorno hace que el despliegue sea reproducible, auditable y aburrido, que es exactamente lo que debe ser.
 
 ```yaml
 # .github/workflows/deploy.yml
@@ -173,6 +180,8 @@ jobs:
 
 ### CI-004: CANARY DEPLOYMENTS
 
+**[RECOMMENDED]** **Por qué:** exponer primero a una fracción del tráfico convierte un fallo global en uno acotado y detectable por métricas. Es recomendado porque exige volumen suficiente para que la muestra signifique algo: con poco tráfico, el canario no detecta nada y solo añade latencia al proceso.
+
 ```yaml
 # Canary: 10% → 50% → 100%
 - name: Canary deploy (10%)
@@ -193,6 +202,8 @@ jobs:
 ---
 
 ### CI-005: ROLLBACK AUTOMÁTICO
+
+**[REQUIRED]** **Por qué:** la capacidad de volver atrás es lo que hace que desplegar seguido sea seguro. Si revertir depende de que alguien esté despierto y recuerde el comando, la reacción tarda más que el incidente. Y un rollback que nunca se ha probado no existe.
 
 ```bash
 # scripts/rollback.sh
@@ -215,6 +226,8 @@ curl -X POST $SLACK_WEBHOOK -d "{\"text\": \"⏪ ROLLBACK: $SERVICE → $LAST_ST
 ---
 
 ### CI-006: PREVIEW DEPLOYMENTS POR PR
+
+**[RECOMMENDED]** **Por qué:** un entorno desplegado por PR permite revisar comportamiento en vez de solo leer el diff, y detecta lo que ningún test cubre. Es recomendado porque consume recursos por rama y en cambios sin superficie visible no aporta nada.
 
 ```yaml
 # .github/workflows/preview.yml

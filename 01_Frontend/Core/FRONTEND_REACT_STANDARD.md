@@ -1,6 +1,7 @@
 ---
 title: "FRONTEND REACT STANDARD"
 category: 01_Frontend
+doc_type: estandar
 tags:
   - react
   - typescript

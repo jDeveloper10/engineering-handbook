@@ -1,6 +1,7 @@
 ---
 title: "FRONTEND OFFLINE STANDARD"
 category: 01_Frontend
+doc_type: estandar
 tags:
   - standards
   - conventions

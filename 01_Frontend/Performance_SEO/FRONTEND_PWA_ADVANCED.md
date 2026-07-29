@@ -1,6 +1,7 @@
 ---
 title: "Estándar Avanzado de PWA y Capacidades Web Nativas"
 category: 01_Frontend
+doc_type: estandar
 tags: [pwa, service-worker, background-sync, web-share, badging, file-system, offline]
 summary: "Estándar avanzado de Progressive Web Apps (PWA): Sincronización en segundo plano (Background Sync), Badging API, Web Share API, File System Access API e instalación personalizada."
 keywords: [pwa, service-worker, background-sync, badging, web-share, file-system, offline, install-prompt]
@@ -17,9 +18,13 @@ Transformar la aplicación web React en una Progressive Web App (PWA) de nivel n
 
 ## 🎯 REGLAS INQUEBRANTABLES
 
-**PWA-001: La aplicación DEBE funcionar offline con los datos de las últimas 24 horas.** La pérdida de conexión a internet no debe bloquear la interfaz ni mostrar pantallas de error en blanco.
+**[REQUIRED] PWA-001: La aplicación DEBE funcionar offline con los datos de las últimas 24 horas.** La pérdida de conexión a internet no debe bloquear la interfaz ni mostrar pantallas de error en blanco.
 
-**PWA-002: Prompt de instalación personalizado.** NUNCA depender únicamente del banner genérico del navegador; ofrecer un botón en la UI integrado con el evento `beforeinstallprompt`.
+> **Por qué:** si perder conexión bloquea la interfaz, la PWA no ofrece nada que una pestaña de navegador no ofrezca ya. Trabajar con los últimos datos sincronizados es lo que distingue una app instalable de una web con ícono.
+
+**[RECOMMENDED] PWA-002: Prompt de instalación personalizado.** NUNCA depender únicamente del banner genérico del navegador; ofrecer un botón en la UI integrado con el evento `beforeinstallprompt`.
+
+> **Por qué:** el banner nativo del navegador aparece en un momento que decide el navegador, no el producto, y su copy genérico no explica el valor de instalar. Un prompt propio, mostrado en el momento adecuado, convierte mejor. Es recomendado porque el banner nativo sigue siendo un mecanismo de instalación válido cuando no se justifica ese esfuerzo de UX.
 
 ---
 

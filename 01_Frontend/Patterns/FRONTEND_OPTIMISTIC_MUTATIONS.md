@@ -1,6 +1,7 @@
 ---
 title: "Patrón Optimistic Mutations"
 category: 01_Frontend
+doc_type: estandar
 tags: [react-query, ux, mutations, optimistic-ui]
 summary: "Mutaciones optimistas con React Query: hook genérico que actualiza la caché al instante, hace rollback ante error y ofrece deshacer, con tres ejemplos reales de UX instantánea."
 keywords: [react-query, ux, mutations, optimistic-ui, optimistic, mutaciones, optimistas, react, query, hook, generico, actualiza, cache, instante]
@@ -14,7 +15,9 @@ status: current
 Una **Mutación Optimista** es la técnica de actualizar la UI instantáneamente asumiendo que el request al servidor será exitoso, antes de que este siquiera responda. Si el request falla, la UI revierte silenciosamente al estado anterior (Rollback).
 La latencia de red pasa de ser un obstáculo a ser completamente invisible para el usuario. La app se siente "instantánea".
 
-> **REGLA INQUEBRANTABLE:** Toda mutación de cambio de estado simple (toggles, likes, mover tarjetas, reordenar) DEBE ser optimista. PROHIBIDO mostrar un spinner para un toggle de favorito. Si falla, rollback.
+> **[REQUIRED] REGLA:** Toda mutación de cambio de estado simple (toggles, likes, mover tarjetas, reordenar) DEBE ser optimista. PROHIBIDO mostrar un spinner para un toggle de favorito. Si falla, rollback.
+>
+> **Por qué:** mostrar un spinner para una acción que el servidor procesa en milisegundos (marcar favorito, mover una tarjeta) hace que la interfaz se sienta más lenta que la operación real. La actualización optimista alinea la percepción de velocidad con la velocidad real, y el rollback cubre el caso raro en que falla.
 
 ---
 

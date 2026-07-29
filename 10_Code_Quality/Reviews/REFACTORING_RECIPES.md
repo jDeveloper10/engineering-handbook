@@ -1,6 +1,7 @@
 ---
 title: "Recetas de Refactoring"
 category: 10_Code_Quality
+doc_type: referencia
 tags: [refactoring, code quality, recipes]
 summary: "Recetas paso a paso para limpiar deuda técnica: extraer un custom hook, reemplazar switches largos por diccionarios y simplificar Workers hinchados."
 keywords: [refactoring, code-quality, recipes, recetas, paso, limpiar, deuda, tecnica, extraer, custom, hook, reemplazar, switches, largos]

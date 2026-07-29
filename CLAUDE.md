@@ -1,6 +1,7 @@
 ---
 title: "Instrucciones de Proyecto para Claude Code"
 category: root
+doc_type: referencia
 tags: [meta, ia, configuracion]
 summary: "Punto de entrada para Claude Code: delega el protocolo de auto-ruteo a AGENTS.md como fuente única común a todas las herramientas de IA."
 keywords: [claude, agents, auto-ruteo, configuracion, ia]

@@ -1,6 +1,7 @@
 ---
 title: "Estándar Avanzado de Accesibilidad Web (WCAG 2.1 AA y ARIA)"
 category: 01_Frontend
+doc_type: estandar
 tags: [accessibility, a11y, wcag, aria, keyboard-navigation, focus-trap, screen-readers]
 summary: "Estándar avanzado de accesibilidad web (a11y): checklist WCAG 2.1 AA, navegación por teclado, captura y gestión de foco en modales (Focus Trapping), roles ARIA y pruebas automatizadas con axe-core."
 keywords: [accessibility, a11y, wcag, aria, keyboard, focus-trap, screen-reader, axe-core, lighthouse]
@@ -17,11 +18,17 @@ Garantizar que todas las interfaces del sistema sean totalmente operables por us
 
 ## 🎯 REGLAS INQUEBRANTABLES
 
-**A11Y-001: Todo elemento interactivo DEBE ser accesible por teclado (Tecla Tab, Enter, Space).** Queda prohibido asignar eventos `onClick` en divs o spans sin `role="button"` y `tabIndex={0}`.
+**[REQUIRED] A11Y-001: Todo elemento interactivo DEBE ser accesible por teclado (Tecla Tab, Enter, Space).** Queda prohibido asignar eventos `onClick` en divs o spans sin `role="button"` y `tabIndex={0}`.
 
-**A11Y-002: Gestión Estricta de Foco en Modales (Focus Trap).** Cuando un modal se abre, el foco debe capturarse dentro de él y restaurarse al elemento detonador al cerrarse.
+> **Por qué:** un `onClick` en un `div` no recibe foco de teclado ni se activa con Enter o Espacio: para quien no usa mouse, ese elemento simplemente no existe. Es la misma clase de bug que un enlace roto, solo que invisible para quien prueba con mouse.
 
-**A11Y-003: Contraste de Color >= 4.5:1 para texto normal.** Verificación automatizada en CI/CD con `@axe-core/playwright`.
+**[REQUIRED] A11Y-002: Gestión Estricta de Foco en Modales (Focus Trap).** Cuando un modal se abre, el foco debe capturarse dentro de él y restaurarse al elemento detonador al cerrarse.
+
+> **Por qué:** sin captura de foco, tabular dentro de un modal abierto saca el foco hacia elementos de la página que quedaron detrás, invisibles pero seleccionables — confuso con mouse y directamente inutilizable con teclado o lector de pantalla.
+
+**[REQUIRED] A11Y-003: Contraste de Color >= 4.5:1 para texto normal.** Verificación automatizada en CI/CD con `@axe-core/playwright`.
+
+> **Por qué:** por debajo de 4.5:1 el texto se vuelve difícil de leer con baja visión o en pantallas con reflejo de luz, y es el umbral objetivo de WCAG AA, no una preferencia estética. Verificarlo en CI es lo que impide que un ajuste de paleta lo rompa sin que nadie lo note.
 
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: "Búsqueda Vectorial y Semántica (pgvector)"
 category: 04_Database
+doc_type: estandar
 tags: [pgvector, embeddings, búsqueda-semántica, openai, postgres]
 summary: "Búsqueda semántica con pgvector: configuración de la base, generación y guardado de embeddings desde un Worker, endpoint que combina full-text y semántica, y búsqueda difusa."
 keywords: [pgvector, embeddings, busqueda-semantica, openai, postgres, busqueda, vectorial, semantica, configuracion, base, generacion, guardado, worker, endpoint]
@@ -15,7 +16,9 @@ La **búsqueda por texto completo** (FTS con pg_trgm / GIN) resuelve búsquedas 
 
 La búsqueda semántica usa **embeddings**: vectores numéricos de alta dimensión que representan el significado del texto. `pgvector` es la extensión de Postgres que almacena y consulta esos vectores con operaciones de similitud coseno.
 
-> **REGLA INQUEBRANTABLE:** La búsqueda semántica es un **complemento**, no un reemplazo de FTS. El flujo correcto es: primero FTS (rápido, sin costo) → luego semántica solo si FTS devuelve < 3 resultados o el usuario activa explícitamente "búsqueda inteligente". PROHIBIDO llamar a la API de embeddings en cada request sin gestión de caché.
+> **[REQUIRED] REGLA:** La búsqueda semántica es un **complemento**, no un reemplazo de FTS. El flujo correcto es: primero FTS (rápido, sin costo) → luego semántica solo si FTS devuelve < 3 resultados o el usuario activa explícitamente "búsqueda inteligente". PROHIBIDO llamar a la API de embeddings en cada request sin gestión de caché.
+>
+> **Por qué:** una llamada a la API de embeddings tiene coste por token y latencia de red; ejecutarla en cada búsqueda cuando FTS ya habría resuelto el 90% de los casos es pagar por algo que un índice gratuito ya entrega. El orden FTS-primero es lo que mantiene el coste proporcional a lo que FTS no pudo resolver.
 
 ---
 

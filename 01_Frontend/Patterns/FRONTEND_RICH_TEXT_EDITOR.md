@@ -1,6 +1,7 @@
 ---
 title: "Editor de Texto Enriquecido (WYSIWYG)"
 category: 01_Frontend
+doc_type: estandar
 tags: [tiptap, editor, wysiwyg, react, markdown]
 summary: "Editor WYSIWYG con TipTap: configuración base, hook useDocumentEditor con autoguardado, componente de editor y serialización del contenido hacia Supabase."
 keywords: [tiptap, editor, wysiwyg, react, markdown, texto, enriquecido, configuracion, base, hook, usedocumenteditor, autoguardado, componente, serializacion]
@@ -13,7 +14,9 @@ status: current
 ## 🎯 ¿Qué es y cuándo usarlo?
 TipTap es el editor WYSIWYG headless (sin estilos propios) basado en ProseMirror. Es la elección estándar para este stack porque es React-first, TypeScript nativo, extensible por extensiones, y su output es JSON (Tiptap JSON) o HTML puro — lo que facilita la serialización en Supabase y la exportación.
 
-> **REGLA INQUEBRANTABLE:** El contenido del editor NUNCA se guarda como HTML crudo en la DB. Se guarda como **JSON serializado** (TipTap `JSONContent`) y se convierte a HTML solo en el momento de renderizar o exportar. Esto previene XSS estructural y facilita la colaboración CRDT.
+> **[REQUIRED] REGLA:** El contenido del editor NUNCA se guarda como HTML crudo en la DB. Se guarda como **JSON serializado** (TipTap `JSONContent`) y se convierte a HTML solo en el momento de renderizar o exportar. Esto previene XSS estructural y facilita la colaboración CRDT.
+>
+> **Por qué:** guardar el HTML que produce el editor tal cual lo entrega el navegador expone al backend a renderizar contenido que el propio usuario controló en el cliente — un vector de XSS estructural. El JSON de TipTap no es HTML ejecutable: se convierte a HTML solo en el momento de renderizar, bajo control del propio sistema.
 
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: "Patrones de Formularios"
 category: 01_Frontend
+doc_type: patron
 tags: [frontend, formularios, validacion, ux]
 summary: "Anatomía del campo, validación en tres momentos con una sola fuente de reglas, tratamiento de errores de servidor, submit, contraseñas y códigos OTP para MFA."
 keywords: [formularios, validacion, zod, errores, submit, password, otp, mfa]

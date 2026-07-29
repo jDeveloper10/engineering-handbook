@@ -1,6 +1,7 @@
 ---
 title: "Patrones de Modales y Drawers"
 category: 01_Frontend
+doc_type: patron
 tags: [frontend, modal, drawer, accesibilidad]
 summary: "Árbol de decisión entre modal, drawer y página, cuándo no usar un modal, anatomía, confirmación de acciones destructivas y requisitos de accesibilidad."
 keywords: [modal, drawer, dialog, confirmacion, destructiva, focus-trap, accesibilidad]

@@ -1,6 +1,7 @@
 ---
 title: "Patrón Sistema de Temas (Claro/Oscuro)"
 category: 01_Frontend
+doc_type: estandar
 tags: [react, tailwind, css-variables, dark-mode, ux]
 summary: "Sistema de temas claro, oscuro y automático: variables CSS con Tailwind, script anti-flash en el head, contexto de React y el conmutador de tema en la interfaz."
 keywords: [react, tailwind, css-variables, dark-mode, ux, sistema, temas, claro, oscuro, automatico, variables, script, anti-flash, head]
@@ -13,7 +14,9 @@ status: current
 ## 🎯 ¿Qué es y por qué es crítico?
 Un sistema de temas moderno detecta la preferencia del OS del usuario, le permite sobreescribirla manualmente, y no presenta un "flashazo" blanco al cargar la página en modo oscuro.
 
-> **REGLA INQUEBRANTABLE:** Soportar Dark Mode y System Mode es OBLIGATORIO desde el día 1. PROHIBIDO hardcodear colores de Tailwind (`bg-gray-100`); usar SIEMPRE variables CSS semánticas (`bg-surface-primary`).
+> **[REQUIRED] REGLA:** Soportar Dark Mode y System Mode es OBLIGATORIO desde el día 1. PROHIBIDO hardcodear colores de Tailwind (`bg-gray-100`); usar SIEMPRE variables CSS semánticas (`bg-surface-primary`).
+>
+> **Por qué:** un color de Tailwind fijo (`bg-gray-100`) no sabe si el tema activo es claro u oscuro, así que activar dark mode después de que la mitad de los componentes ya usan colores fijos exige reescribir cada uno. Empezar con variables CSS semánticas hace que cambiar de tema sea gratis desde el primer componente.
 
 ---
 

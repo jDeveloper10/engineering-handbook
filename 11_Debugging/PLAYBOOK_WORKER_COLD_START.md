@@ -1,6 +1,7 @@
 ---
 title: "Incident Playbook: Worker Cold Start"
 category: 11_Debugging
+doc_type: runbook
 tags: [incident, playbook, workers, performance, cold-start]
 summary: "Playbook ante latencia intermitente por cold start de Workers: cómo confirmarlo en 30 segundos, soluciones ordenadas de menor a mayor dificultad y health check de latencia."
 keywords: [incident, playbook, workers, performance, cold-start, worker, cold, start, ante, latencia, intermitente, confirmarlo, segundos, soluciones]

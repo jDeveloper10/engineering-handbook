@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Seguridad en Aplicaciones Móviles (Android / APK)"
 category: 05_Security
+doc_type: estandar
 tags: [seguridad, mobile, android, apk, react-native, expo, keystore, tls, ota, biometria]
 summary: "Reglas de seguridad MSEC-001 a MSEC-012 para apps Android: cero secretos en el bundle, firma del APK/AAB y Play App Signing, Network Security Config y TLS, almacenamiento respaldado por Keystore, superficie exportada y App Links verificados, WebView, R8, Play Integrity, biometría, OTA firmado y permisos mínimos."
 keywords: [android, apk, aab, keystore, apksigner, network-security-config, cleartext, certificate-pinning, expo-secure-store, encryptedsharedpreferences, exported, app-links, assetlinks, webview, r8, proguard, hermes, play-integrity, root-detection, biometric, eas-update, code-signing, jadx, apktool]

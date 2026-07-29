@@ -1,6 +1,7 @@
 ---
 title: "Optimización Workers"
 category: 02_Backend
+doc_type: estandar
 tags: [cloudflare, workers, optimización, edge]
 summary: "Reglas O-032 a O-035 de optimización avanzada de Cloudflare Workers: eliminar cold starts, no saturar los 128MB de memoria, perfilado de CPU y procesamiento con Web Streams."
 keywords: [cloudflare, workers, optimizacion, edge, o-032, o-035, avanzada, eliminar, cold, starts, saturar, 128mb, memoria, perfilado]
@@ -11,6 +12,8 @@ status: current
 # ⚡ OPTIMIZACIÓN AVANZADA DE WORKERS (Cloudflare)
 
 ## O-032: Eliminar Cold Starts
+
+**[RECOMMENDED]** **Por qué:** el arranque en frío castiga justo a la primera petición tras un periodo de inactividad, que suele ser la de un usuario real llegando a una web con poco tráfico. Es recomendado porque la mayor parte se resuelve reduciendo el bundle y el trabajo en el ámbito global (`O-037`), no con trucos de mantener el worker caliente que cuestan dinero.
 
 ```typescript
 // ❌ Cold start: primer request después de inactividad = 200-400ms
@@ -40,6 +43,8 @@ export default {
 ```
 
 ## O-033: Memory Management (No saturar los 128MB)
+
+**[REQUIRED]** **Por qué:** el límite de memoria del Worker es duro: superarlo no degrada el rendimiento, mata la petición. Y el modo de fallo es engañoso, porque aparece solo con las entradas grandes que nadie prueba en desarrollo. Es la causa habitual de subidas que fallan solo con archivos reales.
 
 ```typescript
 // ❌ Memory leak: datos globales que nunca se limpian
@@ -94,6 +99,8 @@ const cache = new LRUCache<unknown>(50)  // Máximo 50 entradas
 
 ## O-034: CPU Profiling (Encontrar cuellos de botella)
 
+**[RECOMMENDED]** **Por qué:** optimizar sin medir es reescribir código que no era el problema mientras el cuello real sigue ahí. El perfilado dice dónde se va el tiempo de verdad, que casi nunca es donde la intuición apunta.
+
 ```typescript
 // ❌ Sin profiling: no sabes qué es lento
 async function handleRequest(request: Request, env: Env) {
@@ -135,6 +142,8 @@ async function handleRequest(request: Request, env: Env) {
 ```
 
 ## O-035: Web Streams (Procesar datos sin cargar en memoria)
+
+**[REQUIRED]** **Por qué:** cargar un archivo entero en memoria hace que el consumo dependa del tamaño de la entrada, es decir, del usuario. Un stream mantiene el consumo constante, y es lo que separa un endpoint que funciona con cualquier archivo de uno que funciona hasta que alguien sube uno grande (ver `O-033`).
 
 ```typescript
 // ❌ Cargar archivo completo en memoria
@@ -220,6 +229,8 @@ async function transformCSVtoJSON(request: Request, env: Env) {
 
 ## O-036: Service Bindings vs HTTP (Comunicación interna eficiente)
 
+**[REQUIRED]** **Por qué:** llamar a otro Worker por HTTP público sale de la plataforma y vuelve a entrar: paga DNS, TLS y latencia de red, y además expone al exterior un servicio que debería ser interno. El binding es invocación directa, sin salto de red y sin superficie pública que proteger (`API-007`).
+
 ```typescript
 // ❌ HTTP entre servicios (sale a internet y vuelve)
 // Latencia: 50-100ms
@@ -256,6 +267,8 @@ export class SessionStore {
 ```
 
 ## O-037: Análisis de Bundle Size
+
+**[RECOMMENDED]** **Por qué:** el bundle se paga en cada arranque en frío, y crece solo: una dependencia añadida sin mirar puede duplicarlo. Medirlo de forma continua es lo que evita descubrirlo cuando la latencia ya es un problema.
 
 ```bash
 # ❌ Bundle gigante (> 1MB) = Cold start más lento

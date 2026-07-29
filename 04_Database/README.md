@@ -1,6 +1,7 @@
 ---
 title: "Dominio Database — Índice"
 category: 04_Database
+doc_type: referencia
 tags: [database, indice]
 summary: "Índice del dominio Database. El estándar operativo vive en DATABASE_ENGINEERING_STANDARD.md."
 keywords: [database, indice, postgres, supabase, d1]

@@ -1,6 +1,7 @@
 ---
 title: "Respuesta a Incidentes — Runbook de la Primera Hora"
 category: 05_Security
+doc_type: runbook
 tags: [seguridad, incidentes, runbook, operacion]
 summary: "Runbook operativo de la primera hora ante un incidente: triage en 60 segundos y tres procedimientos encadenables para secreto filtrado, actividad anómala en la base de datos y deploy comprometido."
 keywords: [incidente, runbook, triage, secreto-filtrado, rotacion, deploy-comprometido]

@@ -1,6 +1,7 @@
 ---
 title: "Checklist de Arranque de Proyecto"
 category: 14_DX
+doc_type: referencia
 tags: [dx, checklist, bootstrap, setup]
 summary: "Arranque de un proyecto nuevo paso a paso: prerequisitos por máquina, creación del repositorio desde plantilla, identidad del proyecto y colocación de cada secreto en su lugar."
 keywords: [bootstrap, checklist, setup, repo, secretos, gh, plantilla]

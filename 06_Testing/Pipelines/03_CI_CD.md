@@ -1,6 +1,7 @@
 ---
 title: "CI/CD — El Pipeline de QA por Etapas"
 category: 06_Testing
+doc_type: estandar
 tags: [testing, ci-cd, github-actions, pipeline]
 summary: "Qué corre en cada push y qué no, presupuesto de tiempo del pipeline y cómo defenderlo, política ante un gate fallido y los workflows de integración y de despliegue."
 keywords: [ci-cd, github-actions, cache, gates, workflow, deploy, presupuesto]

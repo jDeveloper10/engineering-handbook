@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Analítica y Gráficos"
 category: 01_Frontend
+doc_type: estandar
 tags: [frontend, charts, analytics, accesibilidad]
 summary: "Reglas para visualización de datos: integridad del dato, el color nunca como único indicador, interactividad, accesibilidad de la información graficada y comportamiento responsive."
 keywords: [charts, graficos, analytics, color, accesibilidad, responsive, anti-patrones]

@@ -1,6 +1,7 @@
 ---
 title: "Infraestructura como Código"
 category: 07_DevOps
+doc_type: estandar
 tags: [devops, iac, terraform, wrangler]
 summary: "Reglas IaC-001 a IaC-004: toda la infraestructura de Cloudflare y Supabase definida en código con Terraform o Wrangler, nunca configurada a mano desde un panel."
 keywords: [iac, terraform, wrangler, infraestructura, reproducible, dashboard]
@@ -18,6 +19,8 @@ Toda la infraestructura Cloudflare + Supabase debe estar definida en código (Te
 ## ⚡ REGLAS INQUEBRANTABLES
 
 ### IaC-001: TODO RECURSO CLOUDFLARE EN TERRAFORM
+
+**[REQUIRED]** **Por qué:** un recurso creado a mano en el panel no está en ninguna parte: no se revisa, no se replica y desaparece con la cuenta. El día que haya que reconstruir el entorno, lo que no esté en código no se reconstruye porque nadie recuerda que existía.
 
 ```hcl
 # terraform/main.tf
@@ -71,6 +74,8 @@ resource "cloudflare_workers_kv_namespace" "rate_limiter" {
 
 ### IaC-002: ENTORNOS COMO CÓDIGO
 
+**[REQUIRED]** **Por qué:** si staging y producción se configuran por separado, divergen — y entonces staging deja de predecir nada, que es su única razón de ser. Definir ambos desde el mismo código con distintos parámetros es lo que mantiene válida la prueba.
+
 ```hcl
 # terraform/environments/
 # ├── dev.tfvars
@@ -99,6 +104,8 @@ terraform apply -var-file="environments/production.tfvars"
 
 ### IaC-003: SUPABASE COMO CÓDIGO (MIGRACIONES)
 
+**[REQUIRED]** **Por qué:** un cambio de esquema aplicado desde el panel no tiene historial, no se puede revertir y no llega a los demás entornos. La migración versionada es lo que hace que el esquema sea reproducible y que el `DOWN` de `DB-022` tenga dónde vivir.
+
 ```sql
 -- supabase/migrations/20240315_initial_schema.sql
 -- UP
@@ -118,6 +125,8 @@ npx supabase db push --db-url $SUPABASE_URL
 ---
 
 ### IaC-004: WAF Y SEGURIDAD COMO CÓDIGO
+
+**[REQUIRED]** **Por qué:** las reglas de seguridad son las que más caro sale perder y las que más silenciosamente se tocan a mano durante un incidente. En código quedan revisadas, versionadas y con una razón asociada, en vez de ser un ajuste temporal que nadie recuerda haber hecho.
 
 ```hcl
 # Cloudflare WAF Rules

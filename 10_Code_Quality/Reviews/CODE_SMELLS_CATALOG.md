@@ -1,6 +1,7 @@
 ---
 title: "Catálogo de Code Smells"
 category: 10_Code_Quality
+doc_type: referencia
 tags: [code smells, refactoring, react]
 summary: "Catálogo de síntomas superficiales que delatan un problema de fondo: prop drilling excesivo, useEffect inflados o en cascada, comentarios usados como desodorante y anidamiento profundo."
 keywords: [code-smells, refactoring, react, catalogo, code, smells, sintomas, superficiales, delatan, problema, fondo, prop, drilling, excesivo]

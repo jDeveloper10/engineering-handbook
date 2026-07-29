@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Rendimiento Frontend"
 category: 01_Frontend
+doc_type: estandar
 tags: [frontend, performance, core-web-vitals, lcp]
 summary: "Core Web Vitals tratados como objetivos de diseño: identificación y optimización del elemento LCP, prevención de CLS, control de INP y estrategia de imágenes, fuentes y bundle."
 keywords: [core-web-vitals, lcp, cls, inp, lazy-loading, imagenes, bundle, preload]

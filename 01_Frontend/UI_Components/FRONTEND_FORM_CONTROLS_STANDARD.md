@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Controles de Formulario"
 category: 01_Frontend
+doc_type: estandar
 tags: [frontend, componentes, formularios, accesibilidad]
 summary: "Reglas transversales a todo control y especificación de cada uno: button, input, textarea, select nativo frente a custom, checkbox, radio, switch y combobox con autocompletado."
 keywords: [button, input, textarea, select, checkbox, radio, switch, combobox, autocomplete]

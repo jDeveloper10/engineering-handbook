@@ -1,6 +1,7 @@
 ---
 title: "Estándar Avanzado de Documentación Viva, Onboarding y Status Page"
 category: 12_Documentation
+doc_type: estandar
 tags: [documentation, changelog, storybook, onboarding, status-page, tooltips, openapi-diff]
 summary: "Estándar para documentación avanzada y viva: Changelogs de API automáticos mediante diffs OpenAPI, despliegue de Storybook, guías de onboarding contextual e integración de Status Page."
 keywords: [documentation, changelog, openapi-diff, storybook, onboarding, status-page, tooltips, walkthroughs]
@@ -17,9 +18,13 @@ Mantener la documentación en perfecta sincronía con el código de producción,
 
 ## 🎯 REGLAS INQUEBRANTABLES
 
-**DOC-001: Todo código de error devuelto por la API DEBE incluir un enlace a su documentación con la solución.**
+**[RECOMMENDED] DOC-001: Todo código de error devuelto por la API DEBE incluir un enlace a su documentación con la solución.**
 
-**DOC-002: Detectar Breaking Changes en CI mediante OpenAPI Diff.** Si un PR altera un endpoint destruyendo la compatibilidad hacia atrás, la build debe fallar automáticamente.
+> **Por qué:** un código de error sin contexto obliga al consumidor de la API a adivinar o a escribirte para preguntar qué significa. Enlazar directamente a la solución convierte un error en algo que el propio desarrollador que lo recibe puede resolver. Es recomendado porque exige mantener la documentación de errores sincronizada, un coste que no todo proyecto pequeño puede sostener desde el día uno.
+
+**[REQUIRED] DOC-002: Detectar Breaking Changes en CI mediante OpenAPI Diff.** Si un PR altera un endpoint destruyendo la compatibilidad hacia atrás, la build debe fallar automáticamente.
+
+> **Por qué:** un cambio que rompe compatibilidad hacia atrás en un endpoint público afecta a todo cliente que no se haya actualizado, y con frecuencia eso incluye la app móvil publicada (`MSEC-010`) que no se puede parchear al instante. Detectarlo en CI antes del merge es la única forma de que sea una decisión consciente y no un accidente.
 
 ---
 

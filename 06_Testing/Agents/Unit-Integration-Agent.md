@@ -1,6 +1,7 @@
 ---
 title: "Agente de Tests Unitarios e Integración"
 category: 06_Testing
+doc_type: ficha_agente
 tags: [testing, qa, agente, vitest]
 summary: "Ficha del agente que fusiona Vitest, tests unitarios e integración: unitarios para funciones puras, integración para workers y endpoints con sus dependencias reales."
 keywords: [vitest, unitarios, integracion, workers, endpoints, agente]

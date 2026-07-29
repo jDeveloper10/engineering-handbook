@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Desarrollo Mobile (React Native + Expo)"
 category: 01_Frontend
+doc_type: estandar
 tags: [mobile, react-native, expo, offline, biometria]
 summary: "Reglas MOB-001 a MOB-006 para apps móviles con React Native y Expo: prohibición de WebView para funcionalidad core, offline-first, biometría, push, deep links y captura de fotos con OCR."
 keywords: [react-native, expo, webview, offline, watermelondb, biometria, push, deep-links, ocr]
@@ -25,6 +26,8 @@ status: current
 
 ### MOB-001: NUNCA USAR WEBVIEW PARA FUNCIONALIDAD CORE
 
+**[REQUIRED]** **Por qué:** un WebView es una página web dentro de un contenedor nativo: no tiene el rendimiento, los gestos ni la sensación de una UI nativa, y además hereda toda la superficie de un navegador (ver `MSEC-006`). Usarlo para la funcionalidad principal produce una app que se siente y se comporta como una web mal disfrazada.
+
 **Regla:**
 WebView solo para:
 - Mostrar contenido web externo (blog, términos)
@@ -38,6 +41,8 @@ WebView solo para:
 ---
 
 ### MOB-002: OFFLINE-FIRST CON WATERMELONDB
+
+**[REQUIRED]** **Por qué:** una app móvil se usa en el metro, en el ascensor, en zonas sin cobertura — momentos donde una app que depende de la red simplemente no funciona. Offline-first invierte la prioridad: la app funciona siempre y sincroniza cuando puede, en vez de fallar cuando no puede.
 
 ```typescript
 // model/schema.ts
@@ -80,6 +85,8 @@ await synchronize({
 
 ### MOB-003: BIOMETRÍA PARA AUTENTICACIÓN
 
+**[RECOMMENDED]** **Por qué:** teclear una contraseña larga en una pantalla táctil es más lento y más propenso a error que un toque de huella o un vistazo a la cámara, y por eso la biometría es el estándar de facto en apps móviles con datos sensibles. Es recomendado porque un dispositivo sin sensor biométrico necesita el flujo de contraseña como alternativa igualmente completa (ver `MSEC-009` para cómo implementarla de forma segura).
+
 ```typescript
 import * as LocalAuthentication from 'expo-local-authentication'
 
@@ -106,6 +113,8 @@ export async function biometricLogin() {
 ---
 
 ### MOB-004: PUSH NOTIFICATIONS
+
+**[RECOMMENDED]** **Por qué:** sin push, el usuario solo se entera de un evento importante si abre la app por su cuenta, lo que en la práctica significa que muchos eventos nunca llegan a tiempo. Es recomendado porque no toda app tiene eventos lo bastante urgentes como para justificar interrumpir al usuario.
 
 ```typescript
 // Registro de dispositivo
@@ -135,6 +144,8 @@ Notifications.addNotificationResponseReceivedListener(response => {
 ---
 
 ### MOB-005: DEEP LINKS
+
+**[RECOMMENDED]** **Por qué:** sin deep links, un enlace compartido o una notificación solo puede abrir la app en su pantalla inicial, obligando al usuario a navegar manualmente hasta el contenido que originó el enlace. Es recomendado y no obligatorio porque exige configuración de dominio verificado (`MSEC-005`) que no todo proyecto en etapa temprana tiene lista.
 
 ```typescript
 // app.json
@@ -171,6 +182,8 @@ export default function RootLayout() {
 ---
 
 ### MOB-006: CAPTURA DE FOTOS Y OCR
+
+**[RECOMMENDED]** **Por qué:** digitalizar un documento fotografiándolo con la cámara del propio dispositivo evita el paso de escanear en otro equipo y subir el archivo. Es recomendado porque es una capacidad específica de ciertos productos (facturas, recibos, formularios físicos), no una necesidad universal de toda app móvil.
 
 ```typescript
 import * as ImagePicker from 'expo-image-picker'

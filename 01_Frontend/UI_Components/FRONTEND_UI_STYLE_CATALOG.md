@@ -1,6 +1,7 @@
 ---
 title: "Catálogo de Estilos Visuales"
 category: 01_Frontend
+doc_type: referencia
 tags: [frontend, estilos, design-tokens, tailwind]
 summary: "Catálogo de 30 estilos visuales con criterio de elección y el procedimiento para convertir un estilo del catálogo en tokens semánticos de Tailwind."
 keywords: [estilos, catalogo, paleta, tokens, tailwind, design-system]

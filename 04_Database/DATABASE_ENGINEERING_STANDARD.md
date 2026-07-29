@@ -1,6 +1,7 @@
 ---
 title: "DATABASE ENGINEERING STANDARD"
 category: 04_Database
+doc_type: estandar
 tags:
   - standards
   - conventions

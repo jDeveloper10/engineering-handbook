@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Cumplimiento Legal y Privacidad para SaaS (GDPR, CCPA, DPA)"
 category: 05_Security
+doc_type: estandar
 tags: [legal, gdpr, ccpa, dpa, privacidad, cookies, privacidad-por-diseno, zod, security]
 summary: "Estándar técnico y de cumplimiento legal para SaaS: estructura de Términos y Condiciones, Política de Privacidad (GDPR/CCPA), Política de Cookies (con banner React), Acuerdo de Procesamiento de Datos (DPA), esquemas SQL de consentimiento y checklist pre-lanzamiento."
 keywords: [legal, gdpr, ccpa, dpa, privacidad, cookies, cookie-banner, terminos-condiciones, consent, privacidad-por-diseno]

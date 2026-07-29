@@ -1,6 +1,7 @@
 ---
 title: "Optimización D1 (Base de Datos)"
 category: 04_Database
+doc_type: estandar
 tags: [d1, sqlite, optimización, rendimiento]
 summary: "Reglas O-026 en adelante para Cloudflare D1: índices parciales y compuestos con el orden de columnas correcto, vistas materializadas y comportamiento del write-ahead log."
 keywords: [d1, sqlite, optimizacion, rendimiento, base, datos, o-026, adelante, cloudflare, indices, parciales, compuestos, orden, columnas]
@@ -11,6 +12,8 @@ status: current
 # 🗄️ OPTIMIZACIÓN AVANZADA D1 (Cloudflare Database)
 
 ## O-026: Índices Parciales (Indexa solo lo que consultas)
+
+**[RECOMMENDED]** **Por qué:** si las consultas siempre filtran por un subconjunto (registros activos, no borrados), indexar la tabla entera gasta espacio y ralentiza escrituras a cambio de nada. Es recomendado porque exige que el filtro del índice coincida exactamente con el de la consulta: si divergen, el índice deja de usarse en silencio.
 
 ```sql
 -- ❌ Índice en toda la tabla (gigante, lento, caro)
@@ -33,6 +36,8 @@ CREATE INDEX idx_notifications_unread ON notifications(created_at DESC)
 ```
 
 ## O-027: Índices Compuestos Estratégicos (Orden de columnas IMPORTA)
+
+**[REQUIRED]** **Por qué:** un índice compuesto solo sirve desde su primera columna hacia la derecha: el orden correcto es igualdad, luego rango, luego ordenación. Con el orden equivocado el índice existe, ocupa espacio y no se usa — el peor de los dos mundos, y además invisible sin mirar el plan de ejecución.
 
 ```sql
 -- Regla de oro: columnas de igualdad primero, luego rangos, luego orden
@@ -60,6 +65,8 @@ CREATE INDEX idx_orders_bad ON orders(
 ```
 
 ## O-028: Vistas Materializadas (Resultados pre-calculados)
+
+**[RECOMMENDED]** **Por qué:** recalcular la misma agregación en cada visita de un panel es trabajo repetido que en D1 se paga por fila leída. Es recomendado porque introduce desfase: los datos son de la última actualización, y no todo caso de uso lo tolera.
 
 ```sql
 -- ❌ Calcular dashboard cada vez (query pesada cada 5 segundos)
@@ -95,6 +102,8 @@ SELECT day, orders_count, revenue_cents FROM dashboard_30days WHERE status = 'pa
 
 ## O-029: WAL (Write-Ahead Log) y Performance
 
+**[RECOMMENDED]** **Por qué:** el registro de escritura anticipada permite que las lecturas no se bloqueen con las escrituras, que es el patrón dominante en una aplicación web. Entender su comportamiento evita atribuir a la consulta una lentitud que en realidad es contención.
+
 ```sql
 -- D1 usa SQLite, que tiene WAL mode por defecto
 -- Pero hay optimizaciones que puedes hacer:
@@ -122,6 +131,8 @@ PRAGMA temp_store = MEMORY;    -- Temporales en memoria
 
 ## O-030: Evitar Escrituras Fantasma (Useless writes)
 
+**[REQUIRED]** **Por qué:** en D1 cada fila escrita cuesta dinero y provoca invalidación de caché, así que escribir un valor idéntico al que ya estaba es puro desperdicio con efecto secundario. Comprobar antes de escribir es más barato que la escritura que se evita.
+
 ```sql
 -- ❌ UPDATE aunque no cambie nada (escritura innecesaria)
 UPDATE users SET email = 'same@email.com' WHERE id = 'user_123';
@@ -143,6 +154,8 @@ UPDATE posts SET view_count = view_count + 1 WHERE id = ?;
 ```
 
 ## O-031: D1 + DO (Durable Objects) para hotspots
+
+**[RECOMMENDED]** **Por qué:** cuando muchas peticiones compiten por la misma fila, la base de datos se convierte en el punto de contención y ninguna optimización de consulta lo arregla. Un Durable Object serializa ese acceso en memoria. Es recomendado porque añade un componente con estado, y solo compensa cuando el hotspot está medido.
 
 ```typescript
 // Problema: Contador de visitas en D1

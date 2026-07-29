@@ -1,6 +1,7 @@
 ---
 title: "Patrón Circuit Breaker"
 category: 02_Backend
+doc_type: patron
 tags: [resiliencia, api, circuit-breaker, fallos, dependencias]
 summary: "Circuit breaker para dependencias externas: los tres estados del interruptor, umbrales recomendados de apertura y recuperación, implementación en TypeScript e integración con Stripe."
 keywords: [resiliencia, api, circuit-breaker, fallos, dependencias, circuit, breaker, externas, tres, estados, interruptor, umbrales, recomendados, apertura]
@@ -13,7 +14,9 @@ status: current
 ## 🎯 ¿Qué es y por qué es crítico?
 Un **Circuit Breaker** actúa como un interruptor de seguridad. Si un servicio externo (ej. Stripe, SendGrid) comienza a fallar continuamente, el interruptor "salta" (se abre) bloqueando temporalmente las peticiones hacia ese servicio para evitar colapsar nuestro propio sistema, agotar los connection pools, y empeorar la caída del tercero.
 
-> **REGLA INQUEBRANTABLE:** Todo servicio externo DEBE estar envuelto en un Circuit Breaker. PROHIBIDO hacer `fetch` desnudo a APIs de terceros en producción.
+> **[REQUIRED] REGLA:** Todo servicio externo DEBE estar envuelto en un Circuit Breaker. PROHIBIDO hacer `fetch` desnudo a APIs de terceros en producción.
+>
+> **Por qué:** un `fetch` desnudo a una API de terceros que se degrada no falla rápido: se queda esperando el timeout completo en cada petición, acumulando conexiones abiertas hasta agotar los recursos del propio servicio. El circuit breaker es lo que convierte esa espera en un fallo inmediato y contenido (ver `API-009`).
 
 ## 🔄 Los 3 Estados (Diagrama)
 

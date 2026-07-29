@@ -1,6 +1,7 @@
 ---
 title: "Estrategia de QA"
 category: 06_Testing
+doc_type: estandar
 tags: [testing, estrategia, piramide, qa]
 summary: "Pirámide de tests adaptada a un dev solo, qué se automatiza porque bloquea frente al riesgo residual documentado, y matriz de herramientas elegidas con su justificación y descartes."
 keywords: [piramide, estrategia, automatizacion, riesgo-residual, herramientas, cobertura]

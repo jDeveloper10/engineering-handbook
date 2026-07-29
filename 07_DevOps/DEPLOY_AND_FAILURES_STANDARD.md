@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Despliegue y Fallos"
 category: 07_DevOps
+doc_type: estandar
 tags: [devops, deploy, migraciones, rollback]
 summary: "Pipeline mínimo que todo cambio atraviesa antes de producción, despliegue de Workers y Pages, variables por entorno y migraciones de base de datos con el patrón expandir, migrar y contraer."
 keywords: [deploy, wrangler, pages, entornos, migraciones, expand-contract, rollback]

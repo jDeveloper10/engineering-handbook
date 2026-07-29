@@ -1,6 +1,7 @@
 ---
 title: "Checklists de Test por Momento"
 category: 06_Testing
+doc_type: referencia
 tags: [testing, checklist, proceso]
 summary: "Qué corre antes de commit, de push, de merge, de release, de deploy y después del deploy, cada uno con su presupuesto de tiempo explícito."
 keywords: [checklist, commit, push, merge, release, deploy, presupuesto]

@@ -1,6 +1,7 @@
 ---
 title: "Dominio Cloud — Índice"
 category: 08_Cloud
+doc_type: referencia
 tags: [cloud, indice]
 summary: "Índice del dominio Cloud. El estándar operativo de la plataforma vive en CLOUDFLARE_PLATFORM_STANDARD.md."
 keywords: [cloud, indice, cloudflare, workers, edge]

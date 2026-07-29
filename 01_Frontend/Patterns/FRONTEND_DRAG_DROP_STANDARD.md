@@ -1,6 +1,7 @@
 ---
 title: "Patrón Drag & Drop"
 category: 01_Frontend
+doc_type: estandar
 tags: [dnd-kit, drag-drop, kanban, react, optimistic]
 summary: "Drag and drop accesible con dnd-kit: tablero Kanban completo, helpers de manipulación de columnas e integración con mutaciones optimistas."
 keywords: [dnd-kit, drag-drop, kanban, react, optimistic, drag, drop, accesible, tablero, completo, helpers, manipulacion, columnas, integracion]
@@ -13,7 +14,9 @@ status: current
 ## 🎯 ¿Qué es y cuándo usarlo?
 **dnd-kit** es la librería oficial del ecosistema de shadcn/ui para drag & drop. Es accesible (ARIA), performante (cero dependencias de DOM imperativo) y funciona de forma nativa con React. Usar **SIEMPRE dnd-kit** — PROHIBIDO usar `react-beautiful-dnd` (no mantenida) o implementar drag & drop manual con `mousedown/mousemove`.
 
-> **REGLA INQUEBRANTABLE:** Todo Drag & Drop DEBE ser **Optimistic** (FRONTEND_OPTIMISTIC_MUTATIONS.md). El estado visual cambia al instante al soltar. Si el guardado en el servidor falla, rollback inmediato con Toast de error.
+> **[REQUIRED] REGLA:** Todo Drag & Drop DEBE ser **Optimistic** (FRONTEND_OPTIMISTIC_MUTATIONS.md). El estado visual cambia al instante al soltar. Si el guardado en el servidor falla, rollback inmediato con Toast de error.
+>
+> **Por qué:** un drag and drop que espera confirmación del servidor antes de mover la tarjeta se siente roto: el usuario suelta y nada pasa hasta que la red responde. La actualización optimista es lo que hace que arrastrar se sienta instantáneo, con el rollback como red de seguridad si el servidor rechaza el cambio.
 
 ---
 

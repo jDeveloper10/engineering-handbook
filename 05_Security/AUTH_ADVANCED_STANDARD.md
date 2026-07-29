@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Autenticación Avanzada: SAML SSO, Social Login, Passkeys y Sesiones"
 category: 05_Security
+doc_type: estandar
 tags: [auth, saml, sso, oauth, passkeys, webauthn, magic-links, sessions, rate-limit]
 summary: "Estándar para esquemas avanzados de autenticación: SAML Enterprise SSO (Okta, Azure AD), Social OAuth (Google, GitHub, Apple), Magic Links con expiración corta, Passkeys (WebAuthn) y gestión de sesiones sospechosas."
 keywords: [saml, sso, oauth, passkeys, webauthn, magic-links, sessions, security, rate-limit, okta, azure-ad]
@@ -17,11 +18,17 @@ Definir los mecanismos de autenticación empresarial y biométrica (Enterprise S
 
 ## 🎯 REGLAS INQUEBRANTABLES
 
-**AUTH-001: Bloqueo Progresivo en Login.** Máximo 5 intentos fallidos en 5 minutos por IP o cuenta. El intento 6 impone un bloqueo de 15 minutos.
+**[REQUIRED] AUTH-001: Bloqueo Progresivo en Login.** Máximo 5 intentos fallidos en 5 minutos por IP o cuenta. El intento 6 impone un bloqueo de 15 minutos.
 
-**AUTH-002: SAML / Enterprise SSO obligatorio para clientes Enterprise.** Integración con Okta, Microsoft Entra ID (Azure AD) y Google Workspace.
+> **Por qué:** sin límite de intentos, el login es vulnerable a fuerza bruta y credential stuffing con listas de contraseñas filtradas. El bloqueo progresivo hace que probar contraseñas a escala sea económicamente inviable sin bloquear al usuario legítimo que solo se equivocó una vez.
 
-**AUTH-003: Magic Links con TTL máximo de 15 minutos y un solo uso.** Una vez consumido el token, se invalida inmediatamente.
+**[REQUIRED] AUTH-002: SAML / Enterprise SSO obligatorio para clientes Enterprise.** Integración con Okta, Microsoft Entra ID (Azure AD) y Google Workspace.
+
+> **Por qué:** una cuenta Enterprise gestiona el acceso de sus empleados de forma centralizada; sin SSO, cada baja de empleado exige revocar manualmente su acceso en tu producto, y ese paso manual es el que se olvida.
+
+**[REQUIRED] AUTH-003: Magic Links con TTL máximo de 15 minutos y un solo uso.** Una vez consumido el token, se invalida inmediatamente.
+
+> **Por qué:** un magic link es una contraseña de un solo uso enviada por un canal que no controlas del todo (el proveedor de email, el cliente de correo del usuario). Limitar su vida a 15 minutos y a un solo uso acota la ventana en la que un link interceptado sirve para algo.
 
 ---
 

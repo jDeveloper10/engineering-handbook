@@ -1,6 +1,7 @@
 ---
 title: "Patrones de UI por Tipo de Contenido"
 category: 01_Frontend
+doc_type: patron
 tags: [frontend, ui, patrones, cards]
 summary: "Tabla de decisión que mapea tipo de contenido a patrón de presentación, patrones por tipo de página o módulo, cuándo sí corresponde una card y reglas de prueba social."
 keywords: [patrones, cards, listas, comparacion, social-proof, decision, maquetado]

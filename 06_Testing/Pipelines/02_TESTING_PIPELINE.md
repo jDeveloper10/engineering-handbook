@@ -1,6 +1,7 @@
 ---
 title: "Pipeline de Testing por Capa"
 category: 06_Testing
+doc_type: estandar
 tags: [testing, pipeline, vitest, playwright]
 summary: "Estándar técnico capa por capa: unitarios con Vitest, integración de Worker con datos, tests de componente con Testing Library, E2E con Playwright, regresión visual y reglas anti-flakiness."
 keywords: [unit, integracion, componentes, e2e, regresion-visual, flaky, pipeline]

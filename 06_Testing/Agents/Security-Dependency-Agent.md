@@ -1,6 +1,7 @@
 ---
 title: "Agente de Seguridad y Dependencias"
 category: 06_Testing
+doc_type: ficha_agente
 tags: [testing, qa, agente, seguridad, dependencias]
 summary: "Ficha del agente que fusiona escaneo de seguridad y auditoría de dependencias, detecta licencias problemáticas y escala al dominio de seguridad cuando corresponde."
 keywords: [seguridad, dependencias, audit, licencias, escalado, agente]

@@ -1,6 +1,7 @@
 ---
 title: "Patrón de Internacionalización (i18n)"
 category: 01_Frontend
+doc_type: estandar
 tags: [react, i18next, idiomas, traducciones]
 summary: "Internacionalización con react-i18next: estructura de archivos de traducción, configuración base, uso en componentes y formatos localizados de fecha y moneda."
 keywords: [react, i18next, idiomas, traducciones, internacionalizacion, i18n, react-i18next, estructura, archivos, traduccion, configuracion, base, componentes, formatos]
@@ -13,7 +14,9 @@ status: current
 ## 🎯 ¿Qué es y por qué es crítico?
 Un software global debe adaptarse a diferentes idiomas, formatos de fecha, monedas y direcciones de lectura (RTL). Hardcodear texto en los componentes hace imposible escalar a nuevos mercados.
 
-> **REGLA INQUEBRANTABLE:** NUNCA hardcodear strings en la UI. TODO texto (botones, alertas, tooltips) DEBE vivir en los archivos de traducción JSON. El componente solo llama a `t('clave')`.
+> **[REQUIRED] REGLA:** NUNCA hardcodear strings en la UI. TODO texto (botones, alertas, tooltips) DEBE vivir en los archivos de traducción JSON. El componente solo llama a `t('clave')`.
+>
+> **Por qué:** un string hardcodeado en un componente es invisible para el flujo de traducción — nadie lo detecta hasta que un usuario en otro idioma se encuentra ese texto sin traducir en medio de la interfaz (misma razón que `I18N-001`).
 
 ---
 

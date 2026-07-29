@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Elevación y Z-Index"
 category: 01_Frontend
+doc_type: estandar
 tags: [frontend, z-index, sombras, elevacion]
 summary: "Escala fija de elevación y z-index para que ninguna capa se invente su valor, con su implementación en configuración de Tailwind y los anti-patrones que genera no tenerla."
 keywords: [z-index, elevacion, sombras, capas, tailwind, overlay]

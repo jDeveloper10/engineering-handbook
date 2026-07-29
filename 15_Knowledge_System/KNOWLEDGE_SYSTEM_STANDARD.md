@@ -1,6 +1,7 @@
 ---
 title: "Knowledge System Standard"
 category: 15_Knowledge_System
+doc_type: estandar
 tags:
   - knowledge-management
   - rag

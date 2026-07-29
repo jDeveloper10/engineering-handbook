@@ -1,6 +1,7 @@
 ---
 title: "Patrón Chat en Tiempo Real (Supabase)"
 category: 01_Frontend
+doc_type: estandar
 tags: [react, realtime, chat, supabase, websockets]
 summary: "Chat en tiempo real sobre Supabase Realtime: esquema SQL con RLS, hook useChat con broadcast e indicador de escritura, y ventana de chat virtualizada."
 keywords: [react, realtime, chat, supabase, websockets, tiempo, real, esquema, hook, usechat, broadcast, indicador, escritura, ventana]
@@ -13,7 +14,9 @@ status: current
 ## 🎯 ¿Qué es y por qué es crítico?
 Un chat moderno no puede depender de recargar la página ni de polling lento. Requiere WebSockets, manejo de escritura en vivo (typing indicators), y envío optimista para que la app se sienta instantánea, incluso en redes inestables (3G).
 
-> **REGLA INQUEBRANTABLE:** Todo envío de mensaje DEBE ser *Optimistic*. El mensaje aparece en pantalla al instante, antes de confirmarse en el servidor. Si falla, mostrar error y un botón de reintento.
+> **[REQUIRED] REGLA:** Todo envío de mensaje DEBE ser *Optimistic*. El mensaje aparece en pantalla al instante, antes de confirmarse en el servidor. Si falla, mostrar error y un botón de reintento.
+>
+> **Por qué:** esperar la confirmación del servidor antes de mostrar un mensaje enviado introduce un retraso perceptible que ningún chat moderno tiene. Mostrarlo al instante y solo revertir si falla es lo que hace que la conversación se sienta fluida.
 
 ---
 

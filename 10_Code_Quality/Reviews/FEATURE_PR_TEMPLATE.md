@@ -1,6 +1,7 @@
 ---
 title: "Plantilla OBLIGATORIA de Pull Request"
 category: 10_Code_Quality
+doc_type: referencia
 tags: [pr, code-review, checklist, github]
 summary: "Plantilla obligatoria de pull request para configurar en el repositorio: descripción del feature, checklist que no admite saltos, validación de reglas inquebrantables y evidencia visual."
 keywords: [pr, code-review, checklist, github, plantilla, obligatoria, pull, request, configurar, repositorio, descripcion, feature, admite, saltos]

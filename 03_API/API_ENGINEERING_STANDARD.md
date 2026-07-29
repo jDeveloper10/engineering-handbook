@@ -1,6 +1,7 @@
 ---
 title: "API ENGINEERING STANDARD"
 category: 03_API
+doc_type: estandar
 tags:
   - standards
   - conventions

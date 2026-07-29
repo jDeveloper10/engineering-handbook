@@ -85,6 +85,11 @@ async function scanDirectory(dir) {
         title: frontmatter.title || entry.name.replace('.md', ''),
         path: relPath,
         category: frontmatter.category || guessCategory(relPath),
+        // doc_type decide si el documento DEBE llevar [REQUIRED]/[RECOMMENDED]
+        // (estandar y patron sí; runbook, referencia y ficha_agente no).
+        // Ver 00_HANDBOOK_FORMAT.md §1.b. Sin este campo en el índice, no se puede
+        // auditar la cobertura del etiquetado sin abrir los 171 archivos.
+        doc_type: frontmatter.doc_type || null,
         tags: Array.isArray(frontmatter.tags) ? frontmatter.tags : [],
         summary: frontmatter.summary || extractSummary(body),
         keywords: Array.isArray(frontmatter.keywords) ? frontmatter.keywords : [],

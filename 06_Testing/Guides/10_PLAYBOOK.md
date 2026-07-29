@@ -1,6 +1,7 @@
 ---
 title: "Playbook de QA por Situación"
 category: 06_Testing
+doc_type: referencia
 tags: [testing, playbook, qa, operacion]
 summary: "Procedimientos por situación concreta: proyecto nuevo, bug en producción, test E2E inestable, pipeline lento y cómo saltarse un gate en una emergencia dejando rastro."
 keywords: [playbook, flaky, pipeline-lento, emergencia, gate, bug-produccion]

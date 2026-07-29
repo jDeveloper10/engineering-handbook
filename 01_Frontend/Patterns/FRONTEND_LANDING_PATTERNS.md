@@ -1,6 +1,7 @@
 ---
 title: "FRONTEND LANDING PAGE STANDARD"
 category: 01_Frontend
+doc_type: patron
 tags:
   - landing-pages
   - patterns

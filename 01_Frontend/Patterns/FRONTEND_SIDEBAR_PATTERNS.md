@@ -1,6 +1,7 @@
 ---
 title: "Patrones de Sidebar"
 category: 01_Frontend
+doc_type: patron
 tags: [frontend, sidebar, navegacion, responsive]
 summary: "Patrones de barra lateral, jerarquía interna del contenido, reglas de agrupación, comportamiento responsive y anti-patrones frecuentes."
 keywords: [sidebar, navegacion, colapsable, jerarquia, responsive, anti-patrones]

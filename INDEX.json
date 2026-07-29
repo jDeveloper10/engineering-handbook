@@ -4,6 +4,7 @@
       "title": "Estándar de Cookies, Caché y Optimizaciones de Alto Rendimiento",
       "path": "00_Fundamentos/COOKIES_CACHE_OPTIMIZATION.md",
       "category": "00_Fundamentos",
+      "doc_type": "estandar",
       "tags": [
         "cookies",
         "cache",
@@ -45,6 +46,7 @@
       "title": "Feature Kickstart (El Checklist Maestro)",
       "path": "00_Fundamentos/FEATURE_KICKSTART.md",
       "category": "00_Fundamentos",
+      "doc_type": "referencia",
       "tags": [
         "checklist",
         "kickoff",
@@ -77,6 +79,7 @@
       "title": "00_Fundamentos — Historia de la Ingeniería de Software",
       "path": "00_Fundamentos/HISTORIA_INGENIERIA_SOFTWARE.md",
       "category": "00_Fundamentos",
+      "doc_type": "referencia",
       "tags": [
         "history",
         "foundations",
@@ -108,6 +111,7 @@
       "title": "00_Fundamentos — Historia de Internet",
       "path": "00_Fundamentos/HISTORIA_INTERNET.md",
       "category": "00_Fundamentos",
+      "doc_type": "referencia",
       "tags": [
         "history",
         "internet",
@@ -140,6 +144,7 @@
       "title": "Estándar de Optimización Quirúrgica",
       "path": "00_Fundamentos/OPTIMIZATION_STANDARD.md",
       "category": "00_Fundamentos",
+      "doc_type": "estandar",
       "tags": [
         "optimización",
         "rendimiento",
@@ -163,7 +168,7 @@
         "legible",
         "early"
       ],
-      "tokens": 7699,
+      "tokens": 9795,
       "status": "current",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -172,6 +177,7 @@
       "title": "Índice de Patrones (Resolución Rápida)",
       "path": "00_Fundamentos/PATRONES_INDEX.md",
       "category": "00_Fundamentos",
+      "doc_type": "referencia",
       "tags": [
         "index",
         "patrones",
@@ -204,6 +210,7 @@
       "title": "Formato y Convenciones del Handbook",
       "path": "00_HANDBOOK_FORMAT.md",
       "category": "root",
+      "doc_type": "referencia",
       "tags": [
         "formato",
         "convenciones",
@@ -219,7 +226,7 @@
         "frontmatter",
         "trazabilidad"
       ],
-      "tokens": 1604,
+      "tokens": 2157,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -228,6 +235,7 @@
       "title": "Análisis de Design Systems Públicos del Mundo Real",
       "path": "01_Frontend/Advanced/FRONTEND_REAL_WORLD_ANALYSIS.md",
       "category": "01_Frontend",
+      "doc_type": "referencia",
       "tags": [
         "frontend",
         "design-system",
@@ -254,6 +262,7 @@
       "title": "Estándar de Desarrollo Desktop (Tauri)",
       "path": "01_Frontend/Core/DESKTOP_ENGINEERING_STANDARD.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "desktop",
         "tauri",
@@ -272,7 +281,7 @@
         "desktop",
         "impresion"
       ],
-      "tokens": 895,
+      "tokens": 1256,
       "status": "current",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -281,6 +290,7 @@
       "title": "Patrones de Autenticación en Frontend",
       "path": "01_Frontend/Core/FRONTEND_AUTH_PATTERNS.md",
       "category": "01_Frontend",
+      "doc_type": "patron",
       "tags": [
         "frontend",
         "auth",
@@ -307,6 +317,7 @@
       "title": "FRONTEND ENGINEERING STANDARD",
       "path": "01_Frontend/Core/FRONTEND_ENGINEERING_STANDARD.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "standards",
         "conventions",
@@ -335,6 +346,7 @@
       "title": "Estándar de Formateo de Números, Moneda y Fechas",
       "path": "01_Frontend/Core/FRONTEND_FORMATTING_STANDARD.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "frontend",
         "formato",
@@ -361,6 +373,7 @@
       "title": "Estándar de Estructura HTML Semántica",
       "path": "01_Frontend/Core/FRONTEND_HTML_STRUCTURE_STANDARD.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "frontend",
         "html",
@@ -386,6 +399,7 @@
       "title": "FRONTEND REACT STANDARD",
       "path": "01_Frontend/Core/FRONTEND_REACT_STANDARD.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "react",
         "typescript",
@@ -413,6 +427,7 @@
       "title": "Estándar de Diseño Responsive",
       "path": "01_Frontend/Core/FRONTEND_RESPONSIVE_STANDARD.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "frontend",
         "responsive",
@@ -437,6 +452,7 @@
       "title": "Estándar de TypeScript en Frontend",
       "path": "01_Frontend/Core/FRONTEND_TYPESCRIPT_STANDARD.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "frontend",
         "typescript",
@@ -463,6 +479,7 @@
       "title": "Estándar de Desarrollo Mobile (React Native + Expo)",
       "path": "01_Frontend/Core/MOBILE_ENGINEERING_STANDARD.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "mobile",
         "react-native",
@@ -482,7 +499,7 @@
         "deep-links",
         "ocr"
       ],
-      "tokens": 1210,
+      "tokens": 1758,
       "status": "current",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -491,6 +508,7 @@
       "title": "Estándar de Analítica y Gráficos",
       "path": "01_Frontend/Patterns/FRONTEND_ANALYTICS_CHARTS_STANDARD.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "frontend",
         "charts",
@@ -516,6 +534,7 @@
       "title": "Colaboración en Tiempo Real (CRDTs + Supabase)",
       "path": "01_Frontend/Patterns/FRONTEND_CRDT_COLLABORATION.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "yjs",
         "crdt",
@@ -541,7 +560,7 @@
         "sincronizacion",
         "integracion"
       ],
-      "tokens": 2423,
+      "tokens": 2522,
       "status": "current",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -550,6 +569,7 @@
       "title": "Patrones de Pantallas CRUD",
       "path": "01_Frontend/Patterns/FRONTEND_CRUD_PATTERNS.md",
       "category": "01_Frontend",
+      "doc_type": "patron",
       "tags": [
         "frontend",
         "crud",
@@ -575,6 +595,7 @@
       "title": "Patrones de Dashboard",
       "path": "01_Frontend/Patterns/FRONTEND_DASHBOARD_PATTERNS.md",
       "category": "01_Frontend",
+      "doc_type": "patron",
       "tags": [
         "frontend",
         "dashboard",
@@ -599,6 +620,7 @@
       "title": "Patrón Drag & Drop",
       "path": "01_Frontend/Patterns/FRONTEND_DRAG_DROP_STANDARD.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "dnd-kit",
         "drag-drop",
@@ -623,7 +645,7 @@
         "columnas",
         "integracion"
       ],
-      "tokens": 2474,
+      "tokens": 2557,
       "status": "current",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -632,6 +654,7 @@
       "title": "Estándar de Páginas de Error (404, 403, 500)",
       "path": "01_Frontend/Patterns/FRONTEND_ERROR_PAGES_STANDARD.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "frontend",
         "errores",
@@ -656,6 +679,7 @@
       "title": "Patrones de Formularios",
       "path": "01_Frontend/Patterns/FRONTEND_FORMS_PATTERNS.md",
       "category": "01_Frontend",
+      "doc_type": "patron",
       "tags": [
         "frontend",
         "formularios",
@@ -682,6 +706,7 @@
       "title": "FRONTEND LANDING PAGE STANDARD",
       "path": "01_Frontend/Patterns/FRONTEND_LANDING_PATTERNS.md",
       "category": "01_Frontend",
+      "doc_type": "patron",
       "tags": [
         "landing-pages",
         "patterns",
@@ -710,6 +735,7 @@
       "title": "Patrones de Modales y Drawers",
       "path": "01_Frontend/Patterns/FRONTEND_MODALS_PATTERNS.md",
       "category": "01_Frontend",
+      "doc_type": "patron",
       "tags": [
         "frontend",
         "modal",
@@ -735,6 +761,7 @@
       "title": "Patrón Formularios Multi-Step",
       "path": "01_Frontend/Patterns/FRONTEND_MULTISTEP_FORMS.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "react",
         "formularios",
@@ -759,7 +786,7 @@
         "hook",
         "usemultistepform"
       ],
-      "tokens": 1590,
+      "tokens": 1660,
       "status": "current",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -768,6 +795,7 @@
       "title": "Patrones de Navegación",
       "path": "01_Frontend/Patterns/FRONTEND_NAVIGATION_PATTERNS.md",
       "category": "01_Frontend",
+      "doc_type": "patron",
       "tags": [
         "frontend",
         "navegacion",
@@ -793,6 +821,7 @@
       "title": "Patrones de Notificaciones en Interfaz",
       "path": "01_Frontend/Patterns/FRONTEND_NOTIFICATIONS_PATTERNS.md",
       "category": "01_Frontend",
+      "doc_type": "patron",
       "tags": [
         "frontend",
         "notificaciones",
@@ -817,6 +846,7 @@
       "title": "Patrón Optimistic Mutations",
       "path": "01_Frontend/Patterns/FRONTEND_OPTIMISTIC_MUTATIONS.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "react-query",
         "ux",
@@ -840,7 +870,7 @@
         "cache",
         "instante"
       ],
-      "tokens": 1188,
+      "tokens": 1273,
       "status": "current",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -849,6 +879,7 @@
       "title": "Patrón Progress Tracking",
       "path": "01_Frontend/Patterns/FRONTEND_PROGRESS_TRACKING.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "react",
         "ux",
@@ -874,7 +905,7 @@
         "spinner",
         "server-sent"
       ],
-      "tokens": 1498,
+      "tokens": 1566,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -883,6 +914,7 @@
       "title": "Patrón Chat en Tiempo Real (Supabase)",
       "path": "01_Frontend/Patterns/FRONTEND_REALTIME_CHAT.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "react",
         "realtime",
@@ -907,7 +939,7 @@
         "escritura",
         "ventana"
       ],
-      "tokens": 2365,
+      "tokens": 2431,
       "status": "current",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -916,6 +948,7 @@
       "title": "Patrón: React Query + Supabase Realtime",
       "path": "01_Frontend/Patterns/FRONTEND_REALTIME_PATTERN.md",
       "category": "01_Frontend",
+      "doc_type": "patron",
       "tags": [
         "react-query",
         "realtime",
@@ -948,6 +981,7 @@
       "title": "Editor de Texto Enriquecido (WYSIWYG)",
       "path": "01_Frontend/Patterns/FRONTEND_RICH_TEXT_EDITOR.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "tiptap",
         "editor",
@@ -972,7 +1006,7 @@
         "componente",
         "serializacion"
       ],
-      "tokens": 2088,
+      "tokens": 2175,
       "status": "current",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -981,6 +1015,7 @@
       "title": "Patrones de Sidebar",
       "path": "01_Frontend/Patterns/FRONTEND_SIDEBAR_PATTERNS.md",
       "category": "01_Frontend",
+      "doc_type": "patron",
       "tags": [
         "frontend",
         "sidebar",
@@ -1005,6 +1040,7 @@
       "title": "Patrones de Estados de UI (Loading, Empty, Error)",
       "path": "01_Frontend/Patterns/FRONTEND_STATES_PATTERNS.md",
       "category": "01_Frontend",
+      "doc_type": "patron",
       "tags": [
         "frontend",
         "estados",
@@ -1031,6 +1067,7 @@
       "title": "Patrones de Tablas",
       "path": "01_Frontend/Patterns/FRONTEND_TABLE_PATTERNS.md",
       "category": "01_Frontend",
+      "doc_type": "patron",
       "tags": [
         "frontend",
         "tablas",
@@ -1055,6 +1092,7 @@
       "title": "Patrones de UI por Tipo de Contenido",
       "path": "01_Frontend/Patterns/FRONTEND_UI_PATTERNS.md",
       "category": "01_Frontend",
+      "doc_type": "patron",
       "tags": [
         "frontend",
         "ui",
@@ -1080,6 +1118,7 @@
       "title": "Estándar Avanzado de Internacionalización (i18n, RTL y Pluralización)",
       "path": "01_Frontend/Performance_SEO/FRONTEND_I18N_ADVANCED.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "i18n",
         "l10n",
@@ -1100,7 +1139,7 @@
         "translation",
         "lazy-loading"
       ],
-      "tokens": 551,
+      "tokens": 805,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -1109,6 +1148,7 @@
       "title": "Patrón de Internacionalización (i18n)",
       "path": "01_Frontend/Performance_SEO/FRONTEND_I18N_STANDARD.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "react",
         "i18next",
@@ -1132,7 +1172,7 @@
         "componentes",
         "formatos"
       ],
-      "tokens": 1244,
+      "tokens": 1307,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -1141,6 +1181,7 @@
       "title": "FRONTEND OFFLINE STANDARD",
       "path": "01_Frontend/Performance_SEO/FRONTEND_OFFLINE_STANDARD.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "standards",
         "conventions",
@@ -1164,6 +1205,7 @@
       "title": "Estándar de Rendimiento Frontend",
       "path": "01_Frontend/Performance_SEO/FRONTEND_PERFORMANCE_STANDARD.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "frontend",
         "performance",
@@ -1190,6 +1232,7 @@
       "title": "Estándar Avanzado de PWA y Capacidades Web Nativas",
       "path": "01_Frontend/Performance_SEO/FRONTEND_PWA_ADVANCED.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "pwa",
         "service-worker",
@@ -1210,7 +1253,7 @@
         "offline",
         "install-prompt"
       ],
-      "tokens": 725,
+      "tokens": 887,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -1219,6 +1262,7 @@
       "title": "Estándar de PWA e Internacionalización",
       "path": "01_Frontend/Performance_SEO/FRONTEND_PWA_I18N_STANDARD.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "frontend",
         "pwa",
@@ -1244,6 +1288,7 @@
       "title": "Patrón Progressive Web App (PWA) Offline-First",
       "path": "01_Frontend/Performance_SEO/FRONTEND_PWA_STANDARD.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "pwa",
         "offline",
@@ -1268,7 +1313,7 @@
         "worker",
         "estrategias"
       ],
-      "tokens": 1896,
+      "tokens": 1982,
       "status": "current",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -1277,6 +1322,7 @@
       "title": "Estándar Avanzado de SEO, Datos Estructurados y Meta Tags",
       "path": "01_Frontend/Performance_SEO/FRONTEND_SEO_ADVANCED.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "seo",
         "schema-org",
@@ -1300,7 +1346,7 @@
         "canonical",
         "hreflang"
       ],
-      "tokens": 1066,
+      "tokens": 1278,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -1309,6 +1355,7 @@
       "title": "Estándar de SEO Técnico",
       "path": "01_Frontend/Performance_SEO/FRONTEND_SEO_STANDARD.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "frontend",
         "seo",
@@ -1335,6 +1382,7 @@
       "title": "Estándar Avanzado de Accesibilidad Web (WCAG 2.1 AA y ARIA)",
       "path": "01_Frontend/UI_Components/FRONTEND_ACCESSIBILITY_ADVANCED.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "accessibility",
         "a11y",
@@ -1356,7 +1404,7 @@
         "axe-core",
         "lighthouse"
       ],
-      "tokens": 765,
+      "tokens": 980,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -1365,6 +1413,7 @@
       "title": "Estándar de Accesibilidad Web",
       "path": "01_Frontend/UI_Components/FRONTEND_ACCESSIBILITY_STANDARD.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "frontend",
         "accesibilidad",
@@ -1390,6 +1439,7 @@
       "title": "Estándar de Color y Contraste (Dark y Light Mode)",
       "path": "01_Frontend/UI_Components/FRONTEND_COLOR_CONTRAST_STANDARD.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "frontend",
         "color",
@@ -1416,6 +1466,7 @@
       "title": "Estándar de Elevación y Z-Index",
       "path": "01_Frontend/UI_Components/FRONTEND_ELEVATION_STANDARD.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "frontend",
         "z-index",
@@ -1440,6 +1491,7 @@
       "title": "Estándar de Controles de Formulario",
       "path": "01_Frontend/UI_Components/FRONTEND_FORM_CONTROLS_STANDARD.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "frontend",
         "componentes",
@@ -1467,6 +1519,7 @@
       "title": "Referencia de Elementos HTML",
       "path": "01_Frontend/UI_Components/FRONTEND_HTML_ELEMENTS_REFERENCE.md",
       "category": "01_Frontend",
+      "doc_type": "referencia",
       "tags": [
         "frontend",
         "html",
@@ -1492,6 +1545,7 @@
       "title": "Estándar de Sistema de Iconos",
       "path": "01_Frontend/UI_Components/FRONTEND_ICON_SYSTEM_STANDARD.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "frontend",
         "iconos",
@@ -1514,6 +1568,7 @@
       "title": "Estándar de Microcopy y UX Writing",
       "path": "01_Frontend/UI_Components/FRONTEND_MICROCOPY_STANDARD.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "frontend",
         "microcopy",
@@ -1538,6 +1593,7 @@
       "title": "Estándar de Animación y Movimiento",
       "path": "01_Frontend/UI_Components/FRONTEND_MOTION_STANDARD.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "frontend",
         "animacion",
@@ -1562,6 +1618,7 @@
       "title": "Estándar de Superposiciones y Elementos de Display",
       "path": "01_Frontend/UI_Components/FRONTEND_OVERLAY_DISPLAY_STANDARD.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "frontend",
         "overlay",
@@ -1589,6 +1646,7 @@
       "title": "Patrón Sistema de Temas (Claro/Oscuro)",
       "path": "01_Frontend/UI_Components/FRONTEND_THEMES_STANDARD.md",
       "category": "01_Frontend",
+      "doc_type": "estandar",
       "tags": [
         "react",
         "tailwind",
@@ -1613,7 +1671,7 @@
         "anti-flash",
         "head"
       ],
-      "tokens": 1447,
+      "tokens": 1530,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -1622,6 +1680,7 @@
       "title": "Catálogo de Estilos Visuales",
       "path": "01_Frontend/UI_Components/FRONTEND_UI_STYLE_CATALOG.md",
       "category": "01_Frontend",
+      "doc_type": "referencia",
       "tags": [
         "frontend",
         "estilos",
@@ -1646,6 +1705,7 @@
       "title": "Patrón API Gateway para Microservicios",
       "path": "02_Backend/API_GATEWAY_PATTERN.md",
       "category": "02_Backend",
+      "doc_type": "patron",
       "tags": [
         "backend",
         "api-gateway",
@@ -1660,7 +1720,7 @@
         "punto-unico",
         "agregacion"
       ],
-      "tokens": 1502,
+      "tokens": 1940,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -1669,6 +1729,7 @@
       "title": "BACKEND ENGINEERING STANDARD",
       "path": "02_Backend/BACKEND_ENGINEERING_STANDARD.md",
       "category": "02_Backend",
+      "doc_type": "estandar",
       "tags": [
         "standards",
         "conventions",
@@ -1694,6 +1755,7 @@
       "title": "Patrón Circuit Breaker",
       "path": "02_Backend/CIRCUIT_BREAKER_PATTERN.md",
       "category": "02_Backend",
+      "doc_type": "patron",
       "tags": [
         "resiliencia",
         "api",
@@ -1718,7 +1780,7 @@
         "recomendados",
         "apertura"
       ],
-      "tokens": 1638,
+      "tokens": 1723,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -1727,6 +1789,7 @@
       "title": "Estándar Avanzado de Envíos de Email y Entregabilidad",
       "path": "02_Backend/EMAIL_ADVANCED_STANDARD.md",
       "category": "02_Backend",
+      "doc_type": "estandar",
       "tags": [
         "email",
         "resend",
@@ -1749,7 +1812,7 @@
         "warming",
         "ab-testing"
       ],
-      "tokens": 699,
+      "tokens": 928,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -1758,6 +1821,7 @@
       "title": "Patrón Graceful Degradation",
       "path": "02_Backend/GRACEFUL_DEGRADATION_PATTERN.md",
       "category": "02_Backend",
+      "doc_type": "patron",
       "tags": [
         "resiliencia",
         "api",
@@ -1781,7 +1845,7 @@
         "aplicacion",
         "gateway"
       ],
-      "tokens": 1253,
+      "tokens": 1332,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -1790,6 +1854,7 @@
       "title": "Estándar de Cómputo Pesado",
       "path": "02_Backend/HEAVY_COMPUTE_STANDARD.md",
       "category": "02_Backend",
+      "doc_type": "estandar",
       "tags": [
         "backend",
         "workers",
@@ -1805,7 +1870,7 @@
         "computo-pesado",
         "colas"
       ],
-      "tokens": 869,
+      "tokens": 1160,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -1814,6 +1879,7 @@
       "title": "Sistema de Notificaciones: Email + Push + In-App",
       "path": "02_Backend/NOTIFICATIONS_STANDARD.md",
       "category": "02_Backend",
+      "doc_type": "estandar",
       "tags": [
         "notificaciones",
         "resend",
@@ -1836,7 +1902,7 @@
         "mobile-push",
         "in-app"
       ],
-      "tokens": 5747,
+      "tokens": 6058,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -1845,6 +1911,7 @@
       "title": "Patrón Retry (Exponential Backoff + Jitter)",
       "path": "02_Backend/RETRY_PATTERN.md",
       "category": "02_Backend",
+      "doc_type": "patron",
       "tags": [
         "resiliencia",
         "api",
@@ -1869,7 +1936,7 @@
         "thundering",
         "herd"
       ],
-      "tokens": 1349,
+      "tokens": 1439,
       "status": "current",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -1878,6 +1945,7 @@
       "title": "Estrategias de Sincronización de Datos (Offline-First y Conflict Resolution)",
       "path": "02_Backend/SYNC_STRATEGIES.md",
       "category": "02_Backend",
+      "doc_type": "estandar",
       "tags": [
         "sync",
         "offline-first",
@@ -1900,7 +1968,7 @@
         "conflict-resolution",
         "offline-queue"
       ],
-      "tokens": 1555,
+      "tokens": 1771,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -1909,6 +1977,7 @@
       "title": "Worker Template (Implementación de Referencia)",
       "path": "02_Backend/worker-template/README.md",
       "category": "02_Backend",
+      "doc_type": "referencia",
       "tags": [
         "backend",
         "template",
@@ -1933,6 +2002,7 @@
       "title": "Workers como Backend Único",
       "path": "02_Backend/WORKERS_AS_BACKEND.md",
       "category": "02_Backend",
+      "doc_type": "estandar",
       "tags": [
         "workers",
         "backend",
@@ -1948,7 +2018,7 @@
         "microservicios",
         "migration"
       ],
-      "tokens": 2923,
+      "tokens": 3100,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -1957,6 +2027,7 @@
       "title": "Optimización Workers",
       "path": "02_Backend/WORKERS_OPTIMIZATION.md",
       "category": "02_Backend",
+      "doc_type": "estandar",
       "tags": [
         "cloudflare",
         "workers",
@@ -1980,7 +2051,7 @@
         "memoria",
         "perfilado"
       ],
-      "tokens": 1952,
+      "tokens": 2416,
       "status": "current",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -1989,6 +2060,7 @@
       "title": "API ENGINEERING STANDARD",
       "path": "03_API/API_ENGINEERING_STANDARD.md",
       "category": "03_API",
+      "doc_type": "estandar",
       "tags": [
         "standards",
         "conventions",
@@ -2013,6 +2085,7 @@
       "title": "Dominio API — Índice",
       "path": "03_API/README.md",
       "category": "03_API",
+      "doc_type": "referencia",
       "tags": [
         "api",
         "indice"
@@ -2033,6 +2106,7 @@
       "title": "Optimización D1 (Base de Datos)",
       "path": "04_Database/D1_OPTIMIZATION.md",
       "category": "04_Database",
+      "doc_type": "estandar",
       "tags": [
         "d1",
         "sqlite",
@@ -2056,7 +2130,7 @@
         "orden",
         "columnas"
       ],
-      "tokens": 1340,
+      "tokens": 1815,
       "status": "current",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -2065,6 +2139,7 @@
       "title": "Estrategias Avanzadas de Migración de Datos",
       "path": "04_Database/DATA_MIGRATION_STRATEGIES.md",
       "category": "04_Database",
+      "doc_type": "estandar",
       "tags": [
         "database",
         "migration",
@@ -2088,7 +2163,7 @@
         "checksum",
         "double-write"
       ],
-      "tokens": 1638,
+      "tokens": 1932,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -2097,6 +2172,7 @@
       "title": "DATABASE ENGINEERING STANDARD",
       "path": "04_Database/DATABASE_ENGINEERING_STANDARD.md",
       "category": "04_Database",
+      "doc_type": "estandar",
       "tags": [
         "standards",
         "conventions",
@@ -2124,6 +2200,7 @@
       "title": "Estándar de Escalabilidad de Base de Datos",
       "path": "04_Database/DATABASE_SCALABILITY_STANDARD.md",
       "category": "04_Database",
+      "doc_type": "estandar",
       "tags": [
         "postgresql",
         "escalabilidad",
@@ -2147,7 +2224,7 @@
         "huecos",
         "quirurgico"
       ],
-      "tokens": 2468,
+      "tokens": 3754,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -2156,6 +2233,7 @@
       "title": "Búsqueda Vectorial y Semántica (pgvector)",
       "path": "04_Database/DATABASE_VECTOR_SEARCH.md",
       "category": "04_Database",
+      "doc_type": "estandar",
       "tags": [
         "pgvector",
         "embeddings",
@@ -2180,7 +2258,7 @@
         "worker",
         "endpoint"
       ],
-      "tokens": 2579,
+      "tokens": 2661,
       "status": "current",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -2189,6 +2267,7 @@
       "title": "Estándar Avanzado de Multi-Tenancy y Aislamiento de Datos",
       "path": "04_Database/MULTI_TENANCY_ADVANCED.md",
       "category": "04_Database",
+      "doc_type": "estandar",
       "tags": [
         "database",
         "multi-tenancy",
@@ -2218,6 +2297,7 @@
       "title": "Patrón: Acceso Público con RLS (Token Anónimo)",
       "path": "04_Database/PATRON_ACCESO_PUBLICO_RLS.md",
       "category": "04_Database",
+      "doc_type": "patron",
       "tags": [
         "rls",
         "seguridad",
@@ -2250,6 +2330,7 @@
       "title": "Dominio Database — Índice",
       "path": "04_Database/README.md",
       "category": "04_Database",
+      "doc_type": "referencia",
       "tags": [
         "database",
         "indice"
@@ -2271,6 +2352,7 @@
       "title": "Queries Comunes Optimizadas",
       "path": "04_Database/References/DATABASE_COMMON_QUERIES.md",
       "category": "04_Database",
+      "doc_type": "referencia",
       "tags": [
         "sql",
         "postgres",
@@ -2303,6 +2385,7 @@
       "title": "Recetas de Migraciones de Base de Datos",
       "path": "04_Database/References/DATABASE_MIGRATION_RECIPES.md",
       "category": "04_Database",
+      "doc_type": "referencia",
       "tags": [
         "migrations",
         "sql",
@@ -2335,6 +2418,7 @@
       "title": "Performance de Base de Datos",
       "path": "04_Database/References/DATABASE_PERFORMANCE.md",
       "category": "04_Database",
+      "doc_type": "referencia",
       "tags": [
         "performance",
         "database",
@@ -2367,6 +2451,7 @@
       "title": "Librería de Políticas RLS",
       "path": "04_Database/References/RLS_POLICIES_LIBRARY.md",
       "category": "04_Database",
+      "doc_type": "referencia",
       "tags": [
         "rls",
         "security",
@@ -2399,6 +2484,7 @@
       "title": "Estándar de Autenticación Avanzada: SAML SSO, Social Login, Passkeys y Sesiones",
       "path": "05_Security/AUTH_ADVANCED_STANDARD.md",
       "category": "05_Security",
+      "doc_type": "estandar",
       "tags": [
         "auth",
         "saml",
@@ -2424,7 +2510,7 @@
         "okta",
         "azure-ad"
       ],
-      "tokens": 1064,
+      "tokens": 1280,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -2433,6 +2519,7 @@
       "title": "Autenticación MFA: TOTP, Passkeys y Magic Links",
       "path": "05_Security/AUTH_MFA_STANDARD.md",
       "category": "05_Security",
+      "doc_type": "estandar",
       "tags": [
         "mfa",
         "totp",
@@ -2468,6 +2555,7 @@
       "title": "Estándar de Seguridad en Aplicaciones de Escritorio (Tauri)",
       "path": "05_Security/DESKTOP_SECURITY_STANDARD.md",
       "category": "05_Security",
+      "doc_type": "estandar",
       "tags": [
         "seguridad",
         "desktop",
@@ -2508,6 +2596,7 @@
       "title": "Estándar de Rate Limiting",
       "path": "05_Security/ESTANDAR_RATE_LIMITING.md",
       "category": "05_Security",
+      "doc_type": "estandar",
       "tags": [
         "rate-limit",
         "ddos",
@@ -2540,6 +2629,7 @@
       "title": "Respuesta a Incidentes — Runbook de la Primera Hora",
       "path": "05_Security/INCIDENT_RESPONSE.md",
       "category": "05_Security",
+      "doc_type": "runbook",
       "tags": [
         "seguridad",
         "incidentes",
@@ -2564,6 +2654,7 @@
       "title": "Estándar de Cumplimiento Legal y Privacidad para SaaS (GDPR, CCPA, DPA)",
       "path": "05_Security/LEGAL_COMPLIANCE_STANDARD.md",
       "category": "05_Security",
+      "doc_type": "estandar",
       "tags": [
         "legal",
         "gdpr",
@@ -2597,6 +2688,7 @@
       "title": "Estándar de Seguridad en Aplicaciones Móviles (Android / APK)",
       "path": "05_Security/MOBILE_SECURITY_STANDARD.md",
       "category": "05_Security",
+      "doc_type": "estandar",
       "tags": [
         "seguridad",
         "mobile",
@@ -2645,6 +2737,7 @@
       "title": "Estándar de Seguridad en Pasarelas de Pago (Stripe + Workers)",
       "path": "05_Security/PAYMENTS_SECURITY_STANDARD.md",
       "category": "05_Security",
+      "doc_type": "estandar",
       "tags": [
         "pagos",
         "stripe",
@@ -2677,6 +2770,7 @@
       "title": "Dominio Security — Índice y Mapa de Cobertura",
       "path": "05_Security/README.md",
       "category": "05_Security",
+      "doc_type": "referencia",
       "tags": [
         "seguridad",
         "indice",
@@ -2704,6 +2798,7 @@
       "title": "Estándar Avanzado de Ciberseguridad, CSP, SRI y Hardening",
       "path": "05_Security/SECURITY_ADVANCED.md",
       "category": "05_Security",
+      "doc_type": "estandar",
       "tags": [
         "security",
         "csp",
@@ -2726,7 +2821,7 @@
         "security.txt",
         "hardening"
       ],
-      "tokens": 715,
+      "tokens": 939,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -2735,6 +2830,7 @@
       "title": "Estándar de Seguridad e Integridad",
       "path": "05_Security/SECURITY_ENGINEERING_STANDARD.md",
       "category": "05_Security",
+      "doc_type": "estandar",
       "tags": [
         "seguridad",
         "owasp",
@@ -2759,7 +2855,7 @@
         "defensa",
         "validacion"
       ],
-      "tokens": 7111,
+      "tokens": 8405,
       "status": "current",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -2768,6 +2864,7 @@
       "title": "Modelo de Amenazas — SaaS de Developer Solo",
       "path": "05_Security/THREAT_MODEL.md",
       "category": "05_Security",
+      "doc_type": "runbook",
       "tags": [
         "seguridad",
         "threat-model",
@@ -2792,6 +2889,7 @@
       "title": "Estándar Avanzado de Pruebas y QA",
       "path": "06_Testing/ADVANCED_TESTING_STANDARD.md",
       "category": "06_Testing",
+      "doc_type": "estandar",
       "tags": [
         "testing",
         "k6",
@@ -2815,7 +2913,7 @@
         "load-testing",
         "mutation-testing"
       ],
-      "tokens": 1242,
+      "tokens": 1514,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -2824,6 +2922,7 @@
       "title": "Agente de Code Review",
       "path": "06_Testing/Agents/Code-Review-Agent.md",
       "category": "06_Testing",
+      "doc_type": "ficha_agente",
       "tags": [
         "testing",
         "qa",
@@ -2847,6 +2946,7 @@
       "title": "Agente de Documentación",
       "path": "06_Testing/Agents/Documentation-Agent.md",
       "category": "06_Testing",
+      "doc_type": "ficha_agente",
       "tags": [
         "testing",
         "qa",
@@ -2870,6 +2970,7 @@
       "title": "Agente E2E",
       "path": "06_Testing/Agents/E2E-Agent.md",
       "category": "06_Testing",
+      "doc_type": "ficha_agente",
       "tags": [
         "testing",
         "qa",
@@ -2895,6 +2996,7 @@
       "title": "Agente Orquestador de QA",
       "path": "06_Testing/Agents/QA-Manager-Agent.md",
       "category": "06_Testing",
+      "doc_type": "ficha_agente",
       "tags": [
         "testing",
         "qa",
@@ -2919,6 +3021,7 @@
       "title": "Agente de Quality Gates",
       "path": "06_Testing/Agents/Quality-Gates-Agent.md",
       "category": "06_Testing",
+      "doc_type": "ficha_agente",
       "tags": [
         "testing",
         "qa",
@@ -2944,6 +3047,7 @@
       "title": "Agentes QA — Índice y Mapa de Consolidación",
       "path": "06_Testing/Agents/README.md",
       "category": "06_Testing",
+      "doc_type": "referencia",
       "tags": [
         "testing",
         "qa",
@@ -2967,6 +3071,7 @@
       "title": "Agente de Seguridad y Dependencias",
       "path": "06_Testing/Agents/Security-Dependency-Agent.md",
       "category": "06_Testing",
+      "doc_type": "ficha_agente",
       "tags": [
         "testing",
         "qa",
@@ -2992,6 +3097,7 @@
       "title": "Agente de Tests Unitarios e Integración",
       "path": "06_Testing/Agents/Unit-Integration-Agent.md",
       "category": "06_Testing",
+      "doc_type": "ficha_agente",
       "tags": [
         "testing",
         "qa",
@@ -3016,6 +3122,7 @@
       "title": "Agente de Regresión Visual",
       "path": "06_Testing/Agents/Visual-Regression-Agent.md",
       "category": "06_Testing",
+      "doc_type": "ficha_agente",
       "tags": [
         "testing",
         "qa",
@@ -3039,6 +3146,7 @@
       "title": "Proceso de Release para un Dev Solo",
       "path": "06_Testing/Guides/04_RELEASE_PROCESS.md",
       "category": "06_Testing",
+      "doc_type": "estandar",
       "tags": [
         "testing",
         "release",
@@ -3063,6 +3171,7 @@
       "title": "Ciclo de Vida de un Bug",
       "path": "06_Testing/Guides/05_BUG_LIFECYCLE.md",
       "category": "06_Testing",
+      "doc_type": "runbook",
       "tags": [
         "testing",
         "bugs",
@@ -3088,6 +3197,7 @@
       "title": "Guía de Automatización de QA",
       "path": "06_Testing/Guides/07_AUTOMATION_GUIDE.md",
       "category": "06_Testing",
+      "doc_type": "estandar",
       "tags": [
         "testing",
         "automatizacion",
@@ -3114,6 +3224,7 @@
       "title": "Playbook de QA por Situación",
       "path": "06_Testing/Guides/10_PLAYBOOK.md",
       "category": "06_Testing",
+      "doc_type": "referencia",
       "tags": [
         "testing",
         "playbook",
@@ -3138,6 +3249,7 @@
       "title": "Pipeline de Testing por Capa",
       "path": "06_Testing/Pipelines/02_TESTING_PIPELINE.md",
       "category": "06_Testing",
+      "doc_type": "estandar",
       "tags": [
         "testing",
         "pipeline",
@@ -3163,6 +3275,7 @@
       "title": "CI/CD — El Pipeline de QA por Etapas",
       "path": "06_Testing/Pipelines/03_CI_CD.md",
       "category": "06_Testing",
+      "doc_type": "estandar",
       "tags": [
         "testing",
         "ci-cd",
@@ -3188,6 +3301,7 @@
       "title": "Dominio Testing — Departamento de QA",
       "path": "06_Testing/README.md",
       "category": "06_Testing",
+      "doc_type": "referencia",
       "tags": [
         "testing",
         "qa",
@@ -3210,6 +3324,7 @@
       "title": "Estrategia de QA",
       "path": "06_Testing/Strategy/01_QA_STRATEGY.md",
       "category": "06_Testing",
+      "doc_type": "estandar",
       "tags": [
         "testing",
         "estrategia",
@@ -3234,6 +3349,7 @@
       "title": "Checklists de Test por Momento",
       "path": "06_Testing/Strategy/06_TEST_CHECKLIST.md",
       "category": "06_Testing",
+      "doc_type": "referencia",
       "tags": [
         "testing",
         "checklist",
@@ -3258,6 +3374,7 @@
       "title": "Quality Gates del Build",
       "path": "06_Testing/Strategy/08_QUALITY_STANDARDS.md",
       "category": "06_Testing",
+      "doc_type": "estandar",
       "tags": [
         "testing",
         "quality-gates",
@@ -3283,6 +3400,7 @@
       "title": "Métricas de QA",
       "path": "06_Testing/Strategy/09_METRICS.md",
       "category": "06_Testing",
+      "doc_type": "estandar",
       "tags": [
         "testing",
         "metricas",
@@ -3307,6 +3425,7 @@
       "title": "Estándar Avanzado de CI/CD, Despliegues y Rollbacks",
       "path": "07_DevOps/CI_CD_ADVANCED.md",
       "category": "07_DevOps",
+      "doc_type": "estandar",
       "tags": [
         "ci-cd",
         "github-actions",
@@ -3327,7 +3446,7 @@
         "preview-environments",
         "secret-rotation"
       ],
-      "tokens": 657,
+      "tokens": 894,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -3336,6 +3455,7 @@
       "title": "Estándar de CI/CD para Monorepo",
       "path": "07_DevOps/CI_CD_PIPELINE.md",
       "category": "07_DevOps",
+      "doc_type": "estandar",
       "tags": [
         "devops",
         "ci-cd",
@@ -3352,7 +3472,7 @@
         "workers",
         "pipeline"
       ],
-      "tokens": 1519,
+      "tokens": 1962,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -3361,6 +3481,7 @@
       "title": "Estándar de Despliegue y Fallos",
       "path": "07_DevOps/DEPLOY_AND_FAILURES_STANDARD.md",
       "category": "07_DevOps",
+      "doc_type": "estandar",
       "tags": [
         "devops",
         "deploy",
@@ -3386,6 +3507,7 @@
       "title": "Estándar de Uso de Git y GitHub",
       "path": "07_DevOps/GITHUB_STANDARD.md",
       "category": "07_DevOps",
+      "doc_type": "estandar",
       "tags": [
         "devops",
         "git",
@@ -3410,6 +3532,7 @@
       "title": "Infraestructura como Código",
       "path": "07_DevOps/INFRA_AS_CODE.md",
       "category": "07_DevOps",
+      "doc_type": "estandar",
       "tags": [
         "devops",
         "iac",
@@ -3425,7 +3548,7 @@
         "reproducible",
         "dashboard"
       ],
-      "tokens": 750,
+      "tokens": 1035,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -3434,6 +3557,7 @@
       "title": "Estándar de Observabilidad",
       "path": "07_DevOps/OBSERVABILITY_STANDARD.md",
       "category": "07_DevOps",
+      "doc_type": "estandar",
       "tags": [
         "devops",
         "observabilidad",
@@ -3450,7 +3574,7 @@
         "correlacion",
         "mttr"
       ],
-      "tokens": 1487,
+      "tokens": 1954,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -3459,6 +3583,7 @@
       "title": "Dominio DevOps — Índice",
       "path": "07_DevOps/README.md",
       "category": "07_DevOps",
+      "doc_type": "referencia",
       "tags": [
         "devops",
         "indice"
@@ -3481,6 +3606,7 @@
       "title": "CLOUDFLARE PLATFORM STANDARD",
       "path": "08_Cloud/CLOUDFLARE_PLATFORM_STANDARD.md",
       "category": "08_Cloud",
+      "doc_type": "estandar",
       "tags": [
         "standards",
         "conventions",
@@ -3511,6 +3637,7 @@
       "title": "Patrón: Generación de PDFs en el Edge",
       "path": "08_Cloud/PATRON_GENERACION_PDF_EDGE.md",
       "category": "08_Cloud",
+      "doc_type": "patron",
       "tags": [
         "cloudflare-workers",
         "edge",
@@ -3543,6 +3670,7 @@
       "title": "Dominio Cloud — Índice",
       "path": "08_Cloud/README.md",
       "category": "08_Cloud",
+      "doc_type": "referencia",
       "tags": [
         "cloud",
         "indice"
@@ -3564,6 +3692,7 @@
       "title": "Architecture Decision Log (ADR)",
       "path": "09_Architecture/ARCHITECTURE_DECISION_LOG.md",
       "category": "09_Architecture",
+      "doc_type": "referencia",
       "tags": [
         "adr",
         "architecture",
@@ -3596,6 +3725,7 @@
       "title": "Diagramas C4 y Modelado de Arquitectura",
       "path": "09_Architecture/DIAGRAMAS_C4.md",
       "category": "09_Architecture",
+      "doc_type": "referencia",
       "tags": [
         "c4",
         "diagramas",
@@ -3626,6 +3756,7 @@
       "title": "Estándar de Monorepo (Turborepo)",
       "path": "09_Architecture/MONOREPO_STANDARD.md",
       "category": "09_Architecture",
+      "doc_type": "estandar",
       "tags": [
         "monorepo",
         "turborepo",
@@ -3651,7 +3782,7 @@
         "compartidos",
         "razon"
       ],
-      "tokens": 2212,
+      "tokens": 2282,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -3660,6 +3791,7 @@
       "title": "Patrones Arquitectónicos",
       "path": "09_Architecture/PATRONES_ARQUITECTONICOS.md",
       "category": "09_Architecture",
+      "doc_type": "estandar",
       "tags": [
         "patterns",
         "cloudflare",
@@ -3692,6 +3824,7 @@
       "title": "Dominio Architecture — Índice",
       "path": "09_Architecture/README.md",
       "category": "09_Architecture",
+      "doc_type": "referencia",
       "tags": [
         "architecture",
         "indice"
@@ -3714,6 +3847,7 @@
       "title": "Patrones Avanzados de Escalabilidad Horizontal y Resiliencia",
       "path": "09_Architecture/SCALABILITY_PATTERNS.md",
       "category": "09_Architecture",
+      "doc_type": "patron",
       "tags": [
         "scalability",
         "sharding",
@@ -3734,7 +3868,7 @@
         "graceful-degradation",
         "capacity-planning"
       ],
-      "tokens": 624,
+      "tokens": 847,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -3743,6 +3877,7 @@
       "title": "Métricas de Calidad de Código",
       "path": "10_Code_Quality/Metrics/METRICAS_CALIDAD.md",
       "category": "10_Code_Quality",
+      "doc_type": "estandar",
       "tags": [
         "metrics",
         "coverage",
@@ -3774,6 +3909,7 @@
       "title": "Estándar de Code Review",
       "path": "10_Code_Quality/Reviews/CODE_REVIEW_STANDARD.md",
       "category": "10_Code_Quality",
+      "doc_type": "estandar",
       "tags": [
         "code review",
         "pr",
@@ -3805,6 +3941,7 @@
       "title": "Catálogo de Code Smells",
       "path": "10_Code_Quality/Reviews/CODE_SMELLS_CATALOG.md",
       "category": "10_Code_Quality",
+      "doc_type": "referencia",
       "tags": [
         "code smells",
         "refactoring",
@@ -3836,6 +3973,7 @@
       "title": "Plantilla OBLIGATORIA de Pull Request",
       "path": "10_Code_Quality/Reviews/FEATURE_PR_TEMPLATE.md",
       "category": "10_Code_Quality",
+      "doc_type": "referencia",
       "tags": [
         "pr",
         "code-review",
@@ -3868,6 +4006,7 @@
       "title": "Recetas de Refactoring",
       "path": "10_Code_Quality/Reviews/REFACTORING_RECIPES.md",
       "category": "10_Code_Quality",
+      "doc_type": "referencia",
       "tags": [
         "refactoring",
         "code quality",
@@ -3899,6 +4038,7 @@
       "title": "Reglas de Análisis Estático (Linter)",
       "path": "10_Code_Quality/Reviews/STATIC_ANALYSIS_RULES.md",
       "category": "10_Code_Quality",
+      "doc_type": "estandar",
       "tags": [
         "eslint",
         "prettier",
@@ -3920,7 +4060,7 @@
         "estricta",
         "typescript"
       ],
-      "tokens": 422,
+      "tokens": 940,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -3929,6 +4069,7 @@
       "title": "Estándar de Monetización, Pricing y Facturación",
       "path": "10_Product/MONETIZATION_STANDARD.md",
       "category": "10_Product",
+      "doc_type": "estandar",
       "tags": [
         "monetization",
         "stripe",
@@ -3951,7 +4092,7 @@
         "VAT",
         "tax"
       ],
-      "tokens": 839,
+      "tokens": 1080,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -3960,6 +4101,7 @@
       "title": "Estándar de Product Analytics, Funnels y A/B Testing",
       "path": "10_Product/PRODUCT_ANALYTICS_STANDARD.md",
       "category": "10_Product",
+      "doc_type": "estandar",
       "tags": [
         "analytics",
         "posthog",
@@ -3980,7 +4122,7 @@
         "retention",
         "events"
       ],
-      "tokens": 894,
+      "tokens": 1137,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -3989,6 +4131,7 @@
       "title": "Estándar de Requisitos de Producto (PRD) para Ingeniería e IA",
       "path": "10_Product/PRODUCT_REQUIREMENTS_STANDARD.md",
       "category": "10_Product",
+      "doc_type": "estandar",
       "tags": [
         "product",
         "prd",
@@ -4019,6 +4162,7 @@
       "title": "Debugging Toolkit",
       "path": "11_Debugging/DEBUGGING_TOOLKIT.md",
       "category": "11_Debugging",
+      "doc_type": "referencia",
       "tags": [
         "tools",
         "devtools",
@@ -4050,6 +4194,7 @@
       "title": "Índice de Errores Global",
       "path": "11_Debugging/ERROR_INDEX.md",
       "category": "11_Debugging",
+      "doc_type": "referencia",
       "tags": [
         "errors",
         "debugging",
@@ -4081,6 +4226,7 @@
       "title": "Performance Debugging",
       "path": "11_Debugging/PERFORMANCE_DEBUGGING.md",
       "category": "11_Debugging",
+      "doc_type": "runbook",
       "tags": [
         "performance",
         "profiling",
@@ -4113,6 +4259,7 @@
       "title": "Playbook: Caída de API",
       "path": "11_Debugging/PLAYBOOK_CAIDA_API.md",
       "category": "11_Debugging",
+      "doc_type": "runbook",
       "tags": [
         "incident",
         "playbook",
@@ -4145,6 +4292,7 @@
       "title": "Incident Playbook: Database Down",
       "path": "11_Debugging/PLAYBOOK_DATABASE_DOWN.md",
       "category": "11_Debugging",
+      "doc_type": "runbook",
       "tags": [
         "incident",
         "playbook",
@@ -4179,6 +4327,7 @@
       "title": "Incident Playbook: Error 500 Global",
       "path": "11_Debugging/PLAYBOOK_ERROR_500.md",
       "category": "11_Debugging",
+      "doc_type": "runbook",
       "tags": [
         "incident",
         "playbook",
@@ -4212,6 +4361,7 @@
       "title": "Incident Playbook: Spinner Infinito",
       "path": "11_Debugging/PLAYBOOK_SPINNER_INFINITO.md",
       "category": "11_Debugging",
+      "doc_type": "runbook",
       "tags": [
         "incident",
         "playbook",
@@ -4245,6 +4395,7 @@
       "title": "Incident Playbook: Upload Fail",
       "path": "11_Debugging/PLAYBOOK_UPLOAD_FAIL.md",
       "category": "11_Debugging",
+      "doc_type": "runbook",
       "tags": [
         "incident",
         "playbook",
@@ -4278,6 +4429,7 @@
       "title": "Incident Playbook: Worker Cold Start",
       "path": "11_Debugging/PLAYBOOK_WORKER_COLD_START.md",
       "category": "11_Debugging",
+      "doc_type": "runbook",
       "tags": [
         "incident",
         "playbook",
@@ -4311,6 +4463,7 @@
       "title": "Estándar Avanzado de Documentación Viva, Onboarding y Status Page",
       "path": "12_Documentation/DOCUMENTATION_ADVANCED.md",
       "category": "12_Documentation",
+      "doc_type": "estandar",
       "tags": [
         "documentation",
         "changelog",
@@ -4331,7 +4484,7 @@
         "tooltips",
         "walkthroughs"
       ],
-      "tokens": 584,
+      "tokens": 788,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -4340,6 +4493,7 @@
       "title": "Estándar de Documentación de Proyectos y APIs",
       "path": "12_Documentation/DOCUMENTATION_STANDARD.md",
       "category": "12_Documentation",
+      "doc_type": "estandar",
       "tags": [
         "documentation",
         "claude-md",
@@ -4373,6 +4527,7 @@
       "title": "Dominio Documentation — Índice",
       "path": "12_Documentation/README.md",
       "category": "12_Documentation",
+      "doc_type": "referencia",
       "tags": [
         "documentation",
         "indice"
@@ -4394,6 +4549,7 @@
       "title": "Plantilla de ADR (Architecture Decision Record)",
       "path": "12_Documentation/TEMPLATES/TEMPLATE_ADR.md",
       "category": "12_Documentation",
+      "doc_type": "referencia",
       "tags": [
         "documentation",
         "plantilla",
@@ -4417,6 +4573,7 @@
       "title": "Plantilla de README de Proyecto",
       "path": "12_Documentation/TEMPLATES/TEMPLATE_README.md",
       "category": "12_Documentation",
+      "doc_type": "referencia",
       "tags": [
         "documentation",
         "plantilla",
@@ -4439,6 +4596,7 @@
       "title": "IA y Machine Learning en Producción",
       "path": "13_AI_Rules/AI_ML_PRODUCTION.md",
       "category": "13_AI_Rules",
+      "doc_type": "estandar",
       "tags": [
         "ai",
         "ml",
@@ -4463,7 +4621,7 @@
         "prompt",
         "caching"
       ],
-      "tokens": 1053,
+      "tokens": 1310,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -4472,6 +4630,7 @@
       "title": "Librería de Prompts del Handbook",
       "path": "13_AI_Rules/AI_PROMPTS_LIBRARY.md",
       "category": "13_AI_Rules",
+      "doc_type": "referencia",
       "tags": [
         "ai-rules",
         "prompts",
@@ -4498,6 +4657,7 @@
       "title": "AI WORKFLOW — Protocolo de razonamiento antes de escribir código",
       "path": "13_AI_Rules/AI_WORKFLOW.md",
       "category": "13_AI_Rules",
+      "doc_type": "estandar",
       "tags": [
         "conventions",
         "standards",
@@ -4522,6 +4682,7 @@
       "title": "Estándar de Servidores y Herramientas MCP (Model Context Protocol)",
       "path": "13_AI_Rules/MCP_TOOLS_STANDARD.md",
       "category": "13_AI_Rules",
+      "doc_type": "estandar",
       "tags": [
         "mcp",
         "model-context-protocol",
@@ -4542,7 +4703,7 @@
         "typescript",
         "zod"
       ],
-      "tokens": 2270,
+      "tokens": 2564,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -4551,6 +4712,7 @@
       "title": "Dominio AI Rules — Índice",
       "path": "13_AI_Rules/README.md",
       "category": "13_AI_Rules",
+      "doc_type": "referencia",
       "tags": [
         "ai-rules",
         "indice"
@@ -4573,6 +4735,7 @@
       "title": "Estándar de Herramientas de Desarrollo y Productividad (DX Tools)",
       "path": "14_DX/DEVELOPER_TOOLS_STANDARD.md",
       "category": "14_DX",
+      "doc_type": "estandar",
       "tags": [
         "dx",
         "cli",
@@ -4597,7 +4760,7 @@
         "snippets",
         "vscode"
       ],
-      "tokens": 581,
+      "tokens": 775,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -4606,6 +4769,7 @@
       "title": "Estándar de Developer Experience",
       "path": "14_DX/DX_STANDARD.md",
       "category": "14_DX",
+      "doc_type": "estandar",
       "tags": [
         "dx",
         "tooling",
@@ -4631,6 +4795,7 @@
       "title": "Checklist de Arranque de Proyecto",
       "path": "14_DX/PROJECT_BOOTSTRAP_CHECKLIST.md",
       "category": "14_DX",
+      "doc_type": "referencia",
       "tags": [
         "dx",
         "checklist",
@@ -4656,6 +4821,7 @@
       "title": "Engineering Intelligence — Auto-análisis del Trabajo",
       "path": "15_Knowledge_System/ENGINEERING_INTELLIGENCE.md",
       "category": "15_Knowledge_System",
+      "doc_type": "estandar",
       "tags": [
         "knowledge",
         "metricas",
@@ -4680,6 +4846,7 @@
       "title": "Knowledge System Standard",
       "path": "15_Knowledge_System/KNOWLEDGE_SYSTEM_STANDARD.md",
       "category": "15_Knowledge_System",
+      "doc_type": "estandar",
       "tags": [
         "knowledge-management",
         "rag",
@@ -4708,6 +4875,7 @@
       "title": "Proceso de Investigación Tecnológica Continua",
       "path": "15_Knowledge_System/RESEARCH_PROCESS.md",
       "category": "15_Knowledge_System",
+      "doc_type": "estandar",
       "tags": [
         "knowledge",
         "investigacion",
@@ -4731,6 +4899,7 @@
       "title": "AGENTS.md — Sistema de Decisión Central, Auto-Ruteo y Motor de Auditoría Autónoma",
       "path": "AGENTS.md",
       "category": "root",
+      "doc_type": "referencia",
       "tags": [
         "auto-routing",
         "decision-tree",
@@ -4766,6 +4935,7 @@
       "title": "Instrucciones de Proyecto para Claude Code",
       "path": "CLAUDE.md",
       "category": "root",
+      "doc_type": "referencia",
       "tags": [
         "meta",
         "ia",
@@ -4788,6 +4958,7 @@
       "title": "Engineering Handbook — Portada",
       "path": "README.md",
       "category": "root",
+      "doc_type": "referencia",
       "tags": [
         "meta",
         "indice",
@@ -4809,8 +4980,8 @@
     }
   ],
   "_meta": {
-    "generated_at": "2026-07-29T16:19:26.589Z",
+    "generated_at": "2026-07-29T21:29:20.963Z",
     "total_docs": 171,
-    "total_tokens": 430905
+    "total_tokens": 446295
   }
 }

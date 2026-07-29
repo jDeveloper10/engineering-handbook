@@ -1,6 +1,7 @@
 ---
 title: "Formato y Convenciones del Handbook"
 category: root
+doc_type: referencia
 tags: [formato, convenciones, meta, estilo]
 summary: "Convenciones de escritura de todo el handbook: etiquetado REQUIRED/RECOMMENDED, regla agnóstica separada de la implementación de referencia, jerarquía de especialización en 3 niveles y frontmatter de trazabilidad."
 keywords: [required, recommended, convenciones, niveles, frontmatter, trazabilidad]
@@ -22,6 +23,22 @@ No hay reglas "sueltas". Cada regla del handbook está etiquetada:
 - **RECOMMENDED** — el default esperado, pero puede haber una razón de contexto válida para desviarse (rendimiento medido, restricción del cliente, deadline). Cuando se desvía, se justifica en un comentario corto, no se omite en silencio.
 
 Esto existe para que una IA sepa qué puede negociar y qué no. "Componentes bien organizados" es una opinión; "REQUIRED: un componente = una responsabilidad, máximo ~200 líneas" es una regla verificable.
+
+## 1.b Los 5 tipos de documento — y cuáles llevan etiquetas
+
+La regla anterior dice "toda regla es REQUIRED o RECOMMENDED". Eso es cierto **para los documentos que contienen reglas**, que no son todos. El handbook contiene cinco tipos de documento y confundirlos produce dos errores opuestos: dejar sin etiquetar un estándar (una IA no sabe qué puede negociar) o etiquetar un runbook (ruido que no significa nada, porque un síntoma no es una regla).
+
+| Tipo | Qué es | ¿REQUIRED/RECOMMENDED? | ¿**Por qué**? | Ejemplos |
+|---|---|---|---|---|
+| **Estándar** | Define reglas de obligado cumplimiento sobre un dominio | **Sí, en cada regla** | **Sí** | `SECURITY_ENGINEERING_STANDARD.md`, `DATABASE_SCALABILITY_STANDARD.md` |
+| **Patrón** | Resuelve un problema concreto con una implementación de referencia | **Sí, en las restricciones**; el código de ejemplo no se etiqueta | **Sí**, en las restricciones | `RETRY_PATTERN.md`, `FRONTEND_OPTIMISTIC_MUTATIONS.md` |
+| **Runbook** | Procedimiento ante un incidente: síntoma → diagnóstico → solución | **No** | No | `PLAYBOOK_ERROR_500.md`, `INCIDENT_RESPONSE.md` |
+| **Referencia** | Catálogo, índice, plantilla o recetario para consultar | **No** | No | `RLS_POLICIES_LIBRARY.md`, `ERROR_INDEX.md`, `TEMPLATE_ADR.md` |
+| **Ficha de agente** | Contrato de un agente: responsabilidades, activación, límites | **No** | No | `06_Testing/Agents/*.md` |
+
+**Por qué esta distinción existe:** el etiquetado no es decoración, es la señal que le dice a una IA qué puede negociar bajo presión de contexto y qué no. Esa señal solo tiene sentido donde hay una decisión de diseño que tomar. En un runbook no hay nada que negociar: hay un procedimiento que se sigue o no se sigue. Etiquetarlo todo diluye la señal justo donde importa.
+
+**Cómo se declara:** todo documento lleva su tipo en el frontmatter con `doc_type: estandar | patron | runbook | referencia | ficha_agente`. Un documento sin reglas etiquetadas **y** sin `doc_type` declarado es un estándar incompleto, no un runbook — la declaración explícita es lo que separa "todavía no está hecho" de "no aplica".
 
 ## 2. Toda regla se escribe en dos capas: agnóstica + implementación
 

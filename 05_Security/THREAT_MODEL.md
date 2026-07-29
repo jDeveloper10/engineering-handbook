@@ -1,6 +1,7 @@
 ---
 title: "Modelo de Amenazas — SaaS de Developer Solo"
 category: 05_Security
+doc_type: runbook
 tags: [seguridad, threat-model, amenazas, hardening]
 summary: "Ocho amenazas realistas para un developer solo sobre Cloudflare y Supabase, cada una con cómo ocurre, prevención, señales de detección, respuesta y recuperación, más un checklist de hardening priorizado."
 keywords: [threat-model, amenazas, phishing, credential-stuffing, supply-chain, hardening]

@@ -1,6 +1,7 @@
 ---
 title: "Playbook: Caída de API"
 category: 11_Debugging
+doc_type: runbook
 tags: [incident, playbook, api, 500]
 summary: "Playbook ante API caída con error 500 o timeout: triage inmediato, diagnóstico diferenciado de error y de timeout, y mitigación rápida."
 keywords: [incident, playbook, api, 500, caida, ante, error, timeout, triage, inmediato, diagnostico, diferenciado, mitigacion, rapida]

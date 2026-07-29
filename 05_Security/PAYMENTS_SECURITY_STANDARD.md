@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Seguridad en Pasarelas de Pago (Stripe + Workers)"
 category: 05_Security
+doc_type: estandar
 tags: [pagos, stripe, pci-dss, webhooks, idempotencia, security, rls, workers]
 summary: "Estándar inquebrantable de seguridad para pasarelas de pago y suscripciones: compliance PCI DSS, tokenización en frontend, verificación de firmas de webhooks, idempotencia, precios en centavos y prevención de fraude."
 keywords: [stripe, pagos, pci-dss, webhooks, idempotency, billing, subscriptions, PCI, centavos, payment-intent]

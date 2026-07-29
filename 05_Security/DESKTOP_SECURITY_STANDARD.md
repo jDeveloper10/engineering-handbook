@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Seguridad en Aplicaciones de Escritorio (Tauri)"
 category: 05_Security
+doc_type: estandar
 tags: [seguridad, desktop, tauri, ipc, code-signing, updater, keychain, rust]
 summary: "Reglas de seguridad DSEC-001 a DSEC-011 para apps de escritorio Tauri v2: ACL de capabilities, validación de comandos IPC, CSP del webview, secretos en el keychain del SO, updater firmado, code signing y notarización, sidecars, SQLite local y cadena de suministro."
 keywords: [tauri, desktop, ipc, capabilities, acl, csp, updater, minisign, authenticode, notarization, gatekeeper, keychain, keyring, stronghold, sqlite, sidecar, path-traversal, cargo-audit]

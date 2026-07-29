@@ -1,6 +1,7 @@
 ---
 title: "Sistema de Notificaciones: Email + Push + In-App"
 category: 02_Backend
+doc_type: estandar
 tags: [notificaciones, resend, vapid, fcm, apns, expo, push, email, realtime]
 summary: "Estándar completo del sistema de notificaciones multicanal: Email transaccional con Resend + React Email, Web Push con VAPID, Mobile Push con Expo (FCM/APNs), e In-App con Supabase Realtime."
 keywords: [notifications, resend, react-email, vapid, service-worker, expo-push, mobile-push, in-app]
@@ -12,13 +13,21 @@ status: current
 
 ## 🎯 Reglas Inquebrantables
 
-**NOTIF-001: NUNCA HTML crudo en emails.** Siempre React Email templates. El HTML manual es imposible de mantener y tiene deliverability impredecible.
+**[REQUIRED] NOTIF-001: NUNCA HTML crudo en emails.** Siempre React Email templates. El HTML manual es imposible de mantener y tiene deliverability impredecible.
 
-**NOTIF-002: Email transaccional < 5 segundos.** Si el proceso que lo dispara tarda más, usar Cloudflare Queues — el request del usuario no espera el email.
+> **Por qué:** el HTML de email escrito a mano se rompe de forma distinta en cada cliente (Outlook, Gmail, Apple Mail) porque cada uno soporta un subconjunto distinto de CSS. React Email compila a HTML compatible con todos ellos y permite versionar el template como código en vez de como un string mantenido a mano.
 
-**NOTIF-003: VAPID private key NUNCA en el frontend.** Solo en secretos del Worker.
+**[REQUIRED] NOTIF-002: Email transaccional < 5 segundos.** Si el proceso que lo dispara tarda más, usar Cloudflare Queues — el request del usuario no espera el email.
 
-**NOTIF-004: Push subscriptions expiradas (HTTP 410) DEBEN eliminarse automáticamente.** Acumular subscriptions muertas es un bug silencioso que degrada el sistema.
+> **Por qué:** enviar un email es una llamada de red a un proveedor externo cuya latencia no controlas. Si el request del usuario espera esa llamada, la lentitud de Resend se convierte en la lentitud de tu API. Encolarlo desacopla ambas cosas.
+
+**[REQUIRED] NOTIF-003: VAPID private key NUNCA en el frontend.** Solo en secretos del Worker.
+
+> **Por qué:** la clave privada VAPID es lo que demuestra ante el navegador que las notificaciones vienen de tu servidor. En el frontend es tan pública como cualquier otro string del bundle (ver `S-001`), y con ella cualquiera podría enviar push suplantando tu aplicación.
+
+**[REQUIRED] NOTIF-004: Push subscriptions expiradas (HTTP 410) DEBEN eliminarse automáticamente.** Acumular subscriptions muertas es un bug silencioso que degrada el sistema.
+
+> **Por qué:** un HTTP 410 significa que el navegador o el sistema operativo invalidó esa suscripción de forma permanente — seguir escribiéndole no falla ruidosamente, solo desperdicia cuota y tiempo de Worker en cada envío futuro, un bug que nadie nota hasta que la factura o la latencia lo delatan.
 
 **NOTIF-005: Mobile Push usa Expo Push Service.** NUNCA FCM directo ni APNs directo — Expo abstrae ambos y elimina la gestión de certificados.
 

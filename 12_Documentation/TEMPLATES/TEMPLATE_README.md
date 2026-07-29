@@ -1,6 +1,7 @@
 ---
 title: "Plantilla de README de Proyecto"
 category: 12_Documentation
+doc_type: referencia
 tags: [documentation, plantilla, readme]
 summary: "Plantilla de README para un proyecto o servicio: inicio rápido, contenido del repositorio, arquitectura breve, variables de entorno, testing y referencias."
 keywords: [readme, plantilla, inicio-rapido, variables-entorno, testing]

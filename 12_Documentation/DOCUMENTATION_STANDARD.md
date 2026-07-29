@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Documentación de Proyectos y APIs"
 category: 12_Documentation
+doc_type: estandar
 tags: [documentation, claude-md, openapi, swagger, changelog, readme, typedoc, storybook]
 summary: "Estándar integral de documentación para código, APIs y repositorios: plantilla CLAUDE.md / AGENTS.md por proyecto, generación automática de OpenAPI 3.1 con Hono + Zod, TypeDoc, Storybook, plantillas de CHANGELOG y README."
 keywords: [documentation, claude.md, agents.md, openapi, swagger, hono, typedoc, storybook, changelog, semver, readme]

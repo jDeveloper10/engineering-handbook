@@ -1,6 +1,7 @@
 ---
 title: "Dominio API — Índice"
 category: 03_API
+doc_type: referencia
 tags: [api, indice]
 summary: "Índice del dominio API. El estándar operativo vive en API_ENGINEERING_STANDARD.md."
 keywords: [api, indice, rest, contratos]

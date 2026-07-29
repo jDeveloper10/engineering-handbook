@@ -1,6 +1,7 @@
 ---
 title: "IA y Machine Learning en Producción"
 category: 13_AI_Rules
+doc_type: estandar
 tags: [ai, ml, rag, embeddings, pgvector, gateway, streaming, sse, kv-cache]
 summary: "Estándar para producción de funciones con IA/ML: arquitectura RAG con pgvector, AI Gateway con rate-limiting y métricas, streaming con SSE, caché KV para prompts y sanitización de PII."
 keywords: [ai, ml, rag, pgvector, ai-gateway, cloudflare, sse, streaming, prompt, caching]
@@ -17,11 +18,17 @@ Definir los estándares para construir e integrar capacidades de Inteligencia Ar
 
 ## 🎯 REGLAS INQUEBRANTABLES
 
-**AI-001: NUNCA enviar PII ni datos sensibles del usuario a modelos externos sin anonimización.** Emails, nombres, números de tarjeta o claves deben ser filtrados antes de ser incluidos en un prompt.
+**[REQUIRED] AI-001: NUNCA enviar PII ni datos sensibles del usuario a modelos externos sin anonimización.** Emails, nombres, números de tarjeta o claves deben ser filtrados antes de ser incluidos en un prompt.
 
-**AI-002: Respuestas con IA SIEMPRE transmitidas por Streaming (Server-Sent Events - SSE).** Ningún usuario debe esperar 10 segundos ante una pantalla en blanco mientras un LLM genera una respuesta completa.
+> **Por qué:** un modelo externo es un tercero fuera de tu perímetro de cumplimiento: lo que le envías puede quedar en sus logs de entrenamiento o de depuración según el proveedor y el contrato. Enviar PII sin anonimizar convierte cada llamada a la IA en una posible fuga de datos regulada.
 
-**AI-003: Caché agresiva de respuestas en Workers KV.** Si una consulta idéntica ya fue respondida recientemente, servir desde KV sin invocar la API del modelo.
+**[REQUIRED] AI-002: Respuestas con IA SIEMPRE transmitidas por Streaming (Server-Sent Events - SSE).** Ningún usuario debe esperar 10 segundos ante una pantalla en blanco mientras un LLM genera una respuesta completa.
+
+> **Por qué:** una respuesta de LLM completa puede tardar diez segundos o más; sin streaming el usuario mira una pantalla en blanco todo ese tiempo sin señal de que algo está pasando, que es la receta exacta de un abandono. Ver el texto aparecer palabra a palabra cambia la percepción de espera aunque el tiempo total sea el mismo.
+
+**[RECOMMENDED] AI-003: Caché agresiva de respuestas en Workers KV.** Si una consulta idéntica ya fue respondida recientemente, servir desde KV sin invocar la API del modelo.
+
+> **Por qué:** una llamada a un modelo tiene coste por token y latencia de segundos; si la misma consulta ya se respondió hace poco, KV la sirve en milisegundos y gratis. Es recomendado porque solo aplica a consultas donde repetir la pregunta es plausible — un prompt con contexto único no se beneficia de caché.
 
 ---
 

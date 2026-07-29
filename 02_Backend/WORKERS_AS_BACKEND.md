@@ -1,6 +1,7 @@
 ---
 title: "Workers como Backend Único"
 category: 02_Backend
+doc_type: estandar
 tags: [workers, backend, cloudflare, arquitectura, migration]
 summary: "Workers reemplaza TODO backend tradicional: Express, Django, Laravel, VPS, Docker, Kubernetes. Este documento es la fuente de verdad sobre qué puede hacer un Worker y cómo se estructura el backend completo."
 keywords: [workers-as-backend, serverless, edge, microservicios, migration]
@@ -16,10 +17,14 @@ status: current
 
 ## 🎯 REGLAS INQUEBRANTABLES
 
-**WORKER-001: Un solo stack de Workers para TODOS los clientes.**
+**[REQUIRED] WORKER-001: Un solo stack de Workers para TODOS los clientes.**
+
+> **Por qué:** un backend por plataforma duplica cada regla de negocio tantas veces como clientes existan, y duplicar significa que divergen: el descuento se calcula distinto en la app y en la web. Una sola API para todos los clientes es lo que garantiza que la regla de negocio se aplique una vez, en un solo lugar.
 La misma API sirve web, mobile (React Native/Expo), desktop (Tauri), IoT y cualquier cliente HTTP. NUNCA Workers separados por plataforma.
 
-**WORKER-002: NUNCA usar framework de servidor tradicional.**
+**[REQUIRED] WORKER-002: NUNCA usar framework de servidor tradicional.**
+
+> **Por qué:** los frameworks de servidor tradicionales asumen un proceso persistente con estado en memoria entre peticiones, algo que no existe en el modelo de Workers. Usarlos ahí no es solo desaprovechar la plataforma: partes enteras del framework asumen garantías que el runtime no ofrece, y fallan de formas sutiles bajo carga.
 `Express`, `Fastify`, `Koa`, `Hono` (modo servidor), `Django`, `Rails`, `Laravel`, `FastAPI` — ninguno. El handler `fetch()` de Workers es el reemplazo. No admite debate.
 
 **WORKER-003: Lógica de negocio en Services, NUNCA en el handler.**

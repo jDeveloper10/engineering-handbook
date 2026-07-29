@@ -1,6 +1,7 @@
 ---
 title: "Estándar de TypeScript en Frontend"
 category: 01_Frontend
+doc_type: estandar
 tags: [frontend, typescript, tipos, zod]
 summary: "Configuración base de tsconfig y reglas de tipado: prohibición de any con sus alternativas, tipos de dominio derivados y nunca redeclarados, props, eventos y la decisión entre type e interface."
 keywords: [typescript, tsconfig, any, unknown, zod, props, type, interface]

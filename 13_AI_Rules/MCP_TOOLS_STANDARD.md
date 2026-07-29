@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Servidores y Herramientas MCP (Model Context Protocol)"
 category: 13_AI_Rules
+doc_type: estandar
 tags: [mcp, model-context-protocol, ai, claude, tools, automation, typescript]
 summary: "Estándar para la creación, configuración y consumo de servidores MCP (Model Context Protocol) en el ecosistema: integración con Supabase, Stripe, Cloudflare, Resend y reglas inquebrantables de seguridad."
 keywords: [mcp, model-context-protocol, ai-tools, claude-desktop, mcp-server, mcp-tools, typescript, zod]
@@ -16,13 +17,21 @@ status: current
 
 ## 🎯 LAS 4 REGLAS INQUEBRANTABLES DE MCP
 
-**MCP-001: Todo MCP Server DEBE validar sus inputs con Zod.** NUNCA ejecutar consultas o comandos con argumentos sin validar.
+**[REQUIRED] MCP-001: Todo MCP Server DEBE validar sus inputs con Zod.** NUNCA ejecutar consultas o comandos con argumentos sin validar.
 
-**MCP-002: NUNCA exponer credenciales ni secretos en el código del servidor MCP.** Los tokens y claves API se leen de variables de entorno del proceso.
+> **Por qué:** un servidor MCP ejecuta acciones con argumentos que propone un modelo, no una persona. Un modelo puede alucinar un argumento o repetir uno inyectado en el contenido que acaba de leer, así que la entrada es tan poco confiable como la de un endpoint público y se valida igual (`S-001`).
 
-**MCP-003: Principio de Privilegio Mínimo.** Un servidor MCP que consulta la base de datos debe usar un rol con permisos acotados o funciones RPC específicas — NUNCA acceso ilimitado de superusuario.
+**[REQUIRED] MCP-002: NUNCA exponer credenciales ni secretos en el código del servidor MCP.** Los tokens y claves API se leen de variables de entorno del proceso.
 
-**MCP-004: Todo MCP Server DEBE incluir Rate Limiting y límites de respuesta.** Evita que la IA realice cientos de peticiones involuntarias o devuelva payloads de gigabytes que saturen el contexto.
+> **Por qué:** el código de un servidor MCP se comparte, se versiona y se pega en conversaciones con un modelo. Un secreto ahí escapa por más vías de las habituales, incluida la de acabar dentro del contexto de un LLM.
+
+**[REQUIRED] MCP-003: Principio de Privilegio Mínimo.** Un servidor MCP que consulta la base de datos debe usar un rol con permisos acotados o funciones RPC específicas — NUNCA acceso ilimitado de superusuario.
+
+> **Por qué:** un servidor MCP amplifica cualquier permiso que le des, porque quien decide qué invocar es un modelo. Con `service_role` sobre la base de datos, una petición mal interpretada es un borrado masivo; con un rol acotado o funciones RPC concretas, es un error recuperable.
+
+**[REQUIRED] MCP-004: Todo MCP Server DEBE incluir Rate Limiting y límites de respuesta.** Evita que la IA realice cientos de peticiones involuntarias o devuelva payloads de gigabytes que saturen el contexto.
+
+> **Por qué:** un modelo en bucle puede lanzar cientos de llamadas en segundos sin intención de hacer daño, y una respuesta enorme agota la ventana de contexto además de la cuota. El límite protege del uso accidental, que aquí es mucho más probable que el malicioso.
 
 ---
 

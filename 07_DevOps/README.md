@@ -1,6 +1,7 @@
 ---
 title: "Dominio DevOps — Índice"
 category: 07_DevOps
+doc_type: referencia
 tags: [devops, indice]
 summary: "Índice del dominio DevOps: pipelines de CI/CD, despliegue, infraestructura como código y observabilidad."
 keywords: [devops, indice, ci-cd, deploy, iac, observabilidad]

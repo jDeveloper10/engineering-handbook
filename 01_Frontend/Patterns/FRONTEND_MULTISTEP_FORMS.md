@@ -1,6 +1,7 @@
 ---
 title: "Patrón Formularios Multi-Step"
 category: 01_Frontend
+doc_type: estandar
 tags: [react, formularios, wizard, zod, ux]
 summary: "Formularios largos divididos en pasos tipo wizard para reducir abandono: hook useMultiStepForm, validación por paso con Zod, persistencia del progreso y patrones de navegación."
 keywords: [react, formularios, wizard, zod, ux, multi-step, largos, divididos, pasos, tipo, reducir, abandono, hook, usemultistepform]
@@ -13,7 +14,9 @@ status: current
 ## 🎯 ¿Qué es y cuándo usarlo?
 Los formularios largos (> 10 campos) causan fatiga cognitiva y abandono. Dividir el formulario en pasos lógicos (Wizard) aumenta exponencialmente la tasa de conversión.
 
-> **REGLA INQUEBRANTABLE:** NUNCA perder datos del formulario al cambiar de paso o si el usuario recarga accidentalmente la página. Persistencia en `localStorage` o URL es OBLIGATORIA.
+> **[REQUIRED] REGLA:** NUNCA perder datos del formulario al cambiar de paso o si el usuario recarga accidentalmente la página. Persistencia en `localStorage` o URL es OBLIGATORIA.
+>
+> **Por qué:** un formulario largo representa minutos de trabajo del usuario; perderlo por una recarga accidental o un cierre de pestaña convierte un error trivial en abandono garantizado. Persistir el progreso es lo que hace que ese error trivial siga siendo trivial.
 
 ---
 

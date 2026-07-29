@@ -1,6 +1,7 @@
 ---
 title: "Estrategias Avanzadas de Migración de Datos"
 category: 04_Database
+doc_type: estandar
 tags: [database, migration, postgresql, d1, firebase, zero-downtime, backfill, rollback]
 summary: "Estándar para migraciones de datos sin caídas (zero-downtime), doble escritura, backfill por lotes, migración PostgreSQL a D1, Firestore a Supabase y protocolos de rollback testeados."
 keywords: [migration, data-migration, zero-downtime, d1, firestore, supabase, backfill, rollback, checksum, double-write]
@@ -17,13 +18,21 @@ Garantizar la integridad, disponibilidad y consistencia de los datos durante cua
 
 ## 🎯 REGLAS INQUEBRANTABLES
 
-**MIG-001: NUNCA ejecutar una migración de datos sin un plan de Rollback verificado y testeado.** Si la migración falla a mitad de proceso, se debe poder restaurar el estado consistente previo sin pérdida de datos.
+**[REQUIRED] MIG-001: NUNCA ejecutar una migración de datos sin un plan de Rollback verificado y testeado.** Si la migración falla a mitad de proceso, se debe poder restaurar el estado consistente previo sin pérdida de datos.
 
-**MIG-002: Doble Escritura (Double-Write) obligatoria para migraciones Zero-Downtime.** El tráfico de producción debe escribir concurrentemente en el origen y destino durante la fase de sincronización activa.
+> **Por qué:** una migración que falla a mitad de camino sin plan de vuelta atrás deja la base en un estado intermedio que nadie diseñó — ni el esquema viejo ni el nuevo. Verificar el rollback antes de necesitarlo es la única forma de que exista cuando de verdad hace falta (misma razón que `DB-022`).
 
-**MIG-003: Backfills masivos SIEMPRE por lotes (chunked/batched).** NUNCA ejecutar un `UPDATE` o `INSERT INTO ... SELECT` sobre más de 5,000 filas en una sola transacción.
+**[REQUIRED] MIG-002: Doble Escritura (Double-Write) obligatoria para migraciones Zero-Downtime.** El tráfico de producción debe escribir concurrentemente en el origen y destino durante la fase de sincronización activa.
 
-**MIG-004: Validación por Checksum y Row Count pre y post migración.** Ningún proceso de migración se da por concluido sin verificación matemática de paridad.
+> **Por qué:** cambiar el esquema de golpe exige una ventana de mantenimiento donde el tráfico se detiene; la doble escritura mantiene ambos esquemas sincronizados mientras el tráfico sigue vivo, así que el corte de servicio nunca es necesario.
+
+**[REQUIRED] MIG-003: Backfills masivos SIEMPRE por lotes (chunked/batched).** NUNCA ejecutar un `UPDATE` o `INSERT INTO ... SELECT` sobre más de 5,000 filas en una sola transacción.
+
+> **Por qué:** un `UPDATE` masivo sobre millones de filas retiene bloqueos el tiempo que tarda en completarse, y ese tiempo puede ser minutos en los que el resto de escrituras a esa tabla queda en espera. Trocearlo en lotes pequeños mantiene cada lote breve y no bloquea el tráfico real.
+
+**[REQUIRED] MIG-004: Validación por Checksum y Row Count pre y post migración.** Ningún proceso de migración se da por concluido sin verificación matemática de paridad.
+
+> **Por qué:** sin verificación matemática, una migración que "parece" haber funcionado puede haber perdido o duplicado filas en silencio — y ese tipo de corrupción no se nota hasta que alguien reporta un dato faltante semanas después.
 
 ---
 

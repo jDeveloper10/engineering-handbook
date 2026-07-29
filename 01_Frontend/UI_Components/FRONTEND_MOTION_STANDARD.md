@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Animación y Movimiento"
 category: 01_Frontend
+doc_type: estandar
 tags: [frontend, animacion, motion, accesibilidad]
 summary: "Escala de duración y easing para animaciones, reutilización mediante variantes, respeto obligatorio por prefers-reduced-motion y prohibición de animaciones que bloqueen la interacción."
 keywords: [animacion, motion, duracion, easing, framer-motion, reduced-motion]

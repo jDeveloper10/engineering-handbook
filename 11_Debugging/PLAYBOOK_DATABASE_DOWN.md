@@ -1,6 +1,7 @@
 ---
 title: "Incident Playbook: Database Down"
 category: 11_Debugging
+doc_type: runbook
 tags: [incident, playbook, database, d1, supabase, outage]
 summary: "Playbook ante base de datos caída: diagnóstico en 30 segundos, causas habituales como agotamiento del pool de conexiones, y código de circuit breaker con fallback."
 keywords: [incident, playbook, database, d1, supabase, outage, down, ante, base, datos, caida, diagnostico, segundos, causas]

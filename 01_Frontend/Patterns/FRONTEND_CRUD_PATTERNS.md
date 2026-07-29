@@ -1,6 +1,7 @@
 ---
 title: "Patrones de Pantallas CRUD"
 category: 01_Frontend
+doc_type: patron
 tags: [frontend, crud, patrones, ux]
 summary: "Anatomía de un módulo CRUD completo: vista de listado, decisión entre modal y página dedicada para crear o editar, vista de detalle, borrado y acciones en lote."
 keywords: [crud, listado, detalle, modal, eliminar, bulk, paginacion]

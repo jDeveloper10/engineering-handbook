@@ -1,6 +1,7 @@
 ---
 title: "AGENTS.md — Sistema de Decisión Central, Auto-Ruteo y Motor de Auditoría Autónoma"
 category: root
+doc_type: referencia
 tags: [auto-routing, decision-tree, agent-rules, standards, architecture, security, core, trust-hierarchy, audit-scorecard, backlog-generator]
 summary: "El cerebro central del Engineering Handbook. Guía de auto-ruteo obligatorio, jerarquía de resolución de conflictos, catálogo de reglas inquebrantables, Jerarquía de Confianza (Trust Hierarchy), generador de backlog de lagunas técnicos y motor de auditoría con Scorecard y mapas de calor."
 keywords: [agents.md, decision-tree, auto-routing, ai-rules, inquebrantables, hierarchy, checklist, standards, trust-hierarchy, scorecard, backlog]

@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Formateo de Números, Moneda y Fechas"
 category: 01_Frontend
+doc_type: estandar
 tags: [frontend, formato, intl, moneda, fechas]
 summary: "Cómo se muestran números, moneda, porcentajes y fechas en la interfaz: uso de la API Intl, fecha absoluta frente a relativa y manejo de zona horaria."
 keywords: [intl, numberformat, datetimeformat, moneda, porcentaje, fechas, timezone]

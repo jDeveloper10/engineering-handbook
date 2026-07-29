@@ -1,6 +1,7 @@
 ---
 title: "Diagramas C4 y Modelado de Arquitectura"
 category: 09_Architecture
+doc_type: referencia
 tags: [c4, diagramas, mermaid, arquitectura, cloudflare, edge, sequence]
 summary: "Estándar completo de diagramación C4 y modelado visual para arquitectura Serverless/Edge: Diagramas de Contexto, Contenedores, Componentes, Flujos de Secuencia (Pagos y Tiempo Real) y Despliegue en Cloudflare."
 keywords: [c4, mermaid, diagramas, arquitectura, secuencia, contenedores, edge, cloudflare, durable-objects]

@@ -1,6 +1,7 @@
 ---
 title: "Patrón Graceful Degradation"
 category: 02_Backend
+doc_type: patron
 tags: [resiliencia, api, fallback, bulkhead]
 summary: "Degradación elegante con bulkhead y fallback: aislar lo no vital para que su fallo no tumbe la aplicación, tanto en el gateway de Workers como en componentes resilientes del frontend."
 keywords: [resiliencia, api, fallback, bulkhead, graceful, degradation, degradacion, elegante, aislar, vital, fallo, tumbe, aplicacion, gateway]
@@ -14,7 +15,9 @@ status: current
 La **Degradación Graceful** es la filosofía de que si una parte no vital del sistema se rompe, la aplicación general no debe morir. 
 El **Bulkhead Pattern** (inspirado en los mamparos herméticos de los submarinos) dicta aislar los recursos. Si un microservicio (Notificaciones) se inunda y colapsa, no debe arrastrar al servicio de Facturación.
 
-> **REGLA INQUEBRANTABLE:** Si un servicio no crítico falla, la app DEBE seguir funcionando. NUNCA devolver un `Error 500` masivo si existe un Fallback o se puede mostrar la UI parcialmente.
+> **[REQUIRED] REGLA:** Si un servicio no crítico falla, la app DEBE seguir funcionando. NUNCA devolver un `Error 500` masivo si existe un Fallback o se puede mostrar la UI parcialmente.
+>
+> **Por qué:** cuando una función secundaria (recomendaciones, analítica) falla y ese fallo se propaga como un error 500 global, el usuario pierde acceso a todo el producto por algo que no necesitaba para completar su tarea principal. Aislar el fallo es lo que mantiene disponible lo que sí importaba.
 
 ---
 

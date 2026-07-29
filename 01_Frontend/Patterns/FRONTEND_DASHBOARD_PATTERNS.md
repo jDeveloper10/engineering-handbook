@@ -1,6 +1,7 @@
 ---
 title: "Patrones de Dashboard"
 category: 01_Frontend
+doc_type: patron
 tags: [frontend, dashboard, kpi, patrones]
 summary: "Composición de un dashboard: tiles de KPI, gráficos, filtros de rango de fecha, densidad de información y cómo comunicar la frescura de los datos."
 keywords: [dashboard, kpi, graficos, filtros, densidad, frescura]

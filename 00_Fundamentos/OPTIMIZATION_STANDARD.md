@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Optimización Quirúrgica"
 category: 00_Fundamentos
+doc_type: estandar
 tags: [optimización, rendimiento, costos, clean-code]
 summary: "Reglas O-001 en adelante sobre los tres pilares de la optimización real: código más corto y legible (early returns, destructuring, operadores modernos), rendimiento medido y reducción de costo de infraestructura."
 keywords: [optimizacion, rendimiento, costos, clean-code, quirurgica, o-001, adelante, tres, pilares, real, codigo, corto, legible, early]
@@ -25,6 +26,8 @@ La diferencia entre un desarrollador y un ingeniero real es escribir menos códi
 # 📐 PILAR 1: CÓDIGO CORTO Y EXPRESIVO (O-001 a O-007)
 
 ## O-001: Early Returns (Adiós a los if-else anidados)
+
+**[RECOMMENDED]** **Por qué:** cada nivel de anidamiento obliga a sostener en la cabeza todas las condiciones de los niveles superiores para entender uno interior. Salir temprano con una guarda reduce esa carga a una condición a la vez. Se desvía cuando la condición final es la única que importa y expresarla como guarda fragmentaría la lógica.
 
 ```typescript
 // ❌ 30 líneas, 4 niveles de indentación, ILEGIBLE
@@ -72,6 +75,8 @@ const fail = (error: string) => ({ success: false, error })
 
 ## O-002: Destructuring + Alias (Código que se lee solo)
 
+**[RECOMMENDED]** **Por qué:** nombrar explícitamente qué se extrae de un objeto documenta la forma de los datos en el punto de uso, sin tener que saltar a la definición. Se desvía cuando el objeto se usa completo o el destructuring anidado se vuelve más difícil de leer que el acceso directo.
+
 ```typescript
 // ❌ Repetitivo, verboso, difícil de leer
 const userName = user.name
@@ -86,6 +91,8 @@ const { name: userName, email: userEmail, age: userAge, address: { city: userCit
 ```
 
 ## O-003: Operadores modernos (??, ?., ||=)
+
+**[RECOMMENDED]** **Por qué:** `??` y `?.` distinguen "no existe" de "es falsy" (0, "", false), que es justo la distinción que `||` borra y que produce bugs sutiles con valores numéricos o booleanos legítimos en cero o falso.
 
 ```typescript
 // ❌ 10 líneas para un valor por defecto
@@ -109,6 +116,8 @@ user.name ||= 'Anonymous'  // Solo asigna si name es falsy
 ```
 
 ## O-004: Map/Filter/Reduce en vez de bucles
+
+**[RECOMMENDED]** **Por qué:** un `map` o `filter` declara la intención (transformar, seleccionar) sin exponer el mecanismo de iteración, lo que reduce el espacio de bugs (índices mal calculados, mutación accidental). Se desvía cuando el bucle necesita salir antes de tiempo o mantener estado complejo entre iteraciones, donde forzar un método funcional lo hace menos claro, no más.
 
 ```typescript
 // ❌ 15 líneas, mutable, propenso a errores
@@ -136,6 +145,8 @@ const avgAge = users
 
 ## O-005: Pattern Matching con objetos (adiós switch-case)
 
+**[RECOMMENDED]** **Por qué:** un `switch` sin `default` compila igual si se olvida un caso; un objeto de despacho falla de forma visible (`undefined`) o se puede tipar para que TypeScript exija exhaustividad. El error se mueve de "silencioso en producción" a "visible en desarrollo".
+
 ```typescript
 // ❌ switch-case verboso
 function getStatusColor(status: string) {
@@ -159,6 +170,8 @@ const getStatusColor = (status: string) => STATUS_COLORS[status] ?? 'gray'
 ```
 
 ## O-006: Funciones que se explican solas
+
+**[RECOMMENDED]** **Por qué:** un nombre preciso es documentación que nunca se desactualiza, porque si se desactualiza el código deja de compilar contra sus propios usos. Un comentario sí puede quedar desincronizado del código que describe sin que nada lo señale.
 
 ```typescript
 // ❌ Función larga, difícil de entender, imposible de testear
@@ -208,6 +221,8 @@ async function handleOrder(data: OrderInput) {
 
 ## O-007: Pipelines y composición
 
+**[RECOMMENDED]** **Por qué:** una cadena de transformaciones nombradas se lee en el orden en que ocurre; el mismo cálculo anidado (`f(g(h(x)))`) se lee de adentro hacia afuera, al revés del orden de ejecución. Se desvía cuando solo hay uno o dos pasos, donde el pipeline añade indirección sin ganar claridad.
+
 ```typescript
 // ❌ Variable intermedia para cada paso
 const users = await fetchUsers()
@@ -232,6 +247,8 @@ const emails = await getActiveAdultEmails()
 # ⚡ PILAR 2: OPTIMIZACIÓN DE RECURSOS (O-008 a O-011)
 
 ## O-008: Memoización (no calcular dos veces)
+
+**[RECOMMENDED]** **Por qué:** cachear el resultado de un cálculo puro evita repetirlo cuando las entradas no cambiaron, pero cada entrada cacheada consume memoria y con una función barata el coste del propio caché supera lo que ahorra. Se aplica donde se **midió** que el cálculo es costoso, no por defecto.
 
 ```typescript
 // ❌ Recalcular en cada render
@@ -275,6 +292,8 @@ function memoizeWithTTL<A extends unknown[], T>(fn: (...args: A) => T, ttlMs = 6
 
 ## O-009: Lazy Loading (cargar solo lo necesario)
 
+**[RECOMMENDED]** **Por qué:** cargar un módulo o una relación antes de que se necesite consume tiempo y memoria que compiten con lo que el usuario sí está esperando ver. Se desvía en lo que forma parte de la ruta crítica de carga inicial (`FRONTEND_PERFORMANCE_STANDARD.md`: nunca `loading="lazy"` en el elemento LCP).
+
 ```typescript
 // ❌ Cargar TODO el objeto (100KB)
 const order = await db.query('SELECT * FROM orders WHERE id = $1', [orderId])
@@ -299,6 +318,8 @@ const orders = await db.orders.findMany({ where: { userId } })
 ```
 
 ## O-010: Debounce y Throttle (no saturar)
+
+**[RECOMMENDED]** **Por qué:** un input de búsqueda que dispara una petición por tecla satura la red y la API con peticiones que el usuario ni siquiera terminó de escribir. Se aplica a eventos de alta frecuencia disparados por el usuario (búsqueda, scroll, resize); no a acciones discretas como un clic.
 
 ```typescript
 // ❌ Cada tecla dispara una query (100 queries = 100 lecturas)
@@ -326,6 +347,8 @@ function SearchBox() {
 ```
 
 ## O-011: Virtualización (renderizar solo lo visible)
+
+**[RECOMMENDED]** **Por qué:** renderizar mil filas cuando solo veinte caben en pantalla gasta tiempo de layout y memoria en DOM que el usuario nunca ve. Se activa a partir de listas grandes (`FRONTEND_TABLE_PATTERNS.md`: >100 ítems); por debajo de ese umbral, virtualizar añade complejidad que el rendimiento no necesita.
 
 ```typescript
 // ❌ 10,000 filas en el DOM = browser muerto
@@ -366,6 +389,8 @@ function VirtualTable({ data }: { data: Row[] }) {
 
 ## O-012: D1 - Cada fila leída CUESTA DINERO
 
+**[REQUIRED]** **Por qué:** a diferencia de una base de datos con capacidad reservada, D1 factura por fila efectivamente leída: una consulta sin filtrar que escanea toda la tabla no es solo lenta, es una línea en la factura que crece con el tamaño de los datos. Diseñar la consulta para leer lo mínimo no es una optimización opcional, es lo que mantiene el coste predecible.
+
 ```sql
 -- ❌ Escaneo completo de tabla = 50,000 filas leídas = $$$$
 SELECT * FROM orders WHERE user_id = 'user_123'
@@ -391,6 +416,8 @@ CREATE INDEX idx_orders_user_id ON orders(user_id);
 
 ## O-013: D1 - Contar sin contar (evitar COUNT(*))
 
+**[RECOMMENDED]** **Por qué:** `COUNT(*)` sobre una tabla grande escanea todas las filas para producir un solo número, y ese coste crece con el tamaño de la tabla en vez de mantenerse constante. Se desvía en tablas pequeñas o de bajo tráfico, donde el escaneo es barato y una tabla de contadores añadiría complejidad sin necesidad.
+
 ```sql
 -- ❌ COUNT(*) en tabla gigante = escaneo completo
 SELECT COUNT(*) FROM events WHERE user_id = 'user_123';
@@ -414,6 +441,8 @@ SELECT count FROM event_counts WHERE user_id = 'user_123';
 
 ## O-014: D1 - Paginación con cursores (nunca OFFSET)
 
+**[REQUIRED]** **Por qué:** la misma razón que `DB-017`: `OFFSET` obliga a leer y descartar todas las filas anteriores a la página pedida, así que su coste crece con el número de página — y en D1 ese coste además se factura por fila leída (`O-012`), duplicando la penalización.
+
 ```sql
 -- ❌ OFFSET escanea todas las filas anteriores
 SELECT * FROM orders WHERE user_id = 'user_123' ORDER BY created_at DESC LIMIT 20 OFFSET 10000;
@@ -428,7 +457,9 @@ LIMIT 20;
 -- Lee exactamente 20 filas con índice
 ```
 
-## O-015: Workers - Reducir tiempo de CPU (cuesta $$)
+## O-015: Workers - Reducir tiempo de CPU (cuesta $)
+
+**[RECOMMENDED]** **Por qué:** Cloudflare factura el tiempo de CPU del Worker, así que un cálculo ineficiente no solo es más lento, es más caro en cada invocación. Se prioriza donde el perfilado (`O-034`) muestra el cuello real; optimizar a ciegas cambia código simple por código rápido sin garantía de que el punto optimizado fuera el costoso.
 
 ```typescript
 // ❌ Procesar todo en el worker (CPU time caro)
@@ -465,6 +496,8 @@ export default {
 
 ## O-016: R2 - Streaming vs Buffer
 
+**[REQUIRED]** **Por qué:** cargar un archivo completo en memoria antes de subirlo o servirlo hace que el consumo de memoria del Worker dependa del tamaño del archivo — y el límite de memoria del Worker es duro (`O-033`): superarlo no degrada, mata la petición. El streaming mantiene el consumo constante sin importar cuán grande sea el archivo.
+
 ```typescript
 // ❌ Cargar archivo completo en memoria (128MB límite)
 async function uploadFile(request: Request, env: Env) {
@@ -498,6 +531,8 @@ async function getMetadata(key: string, env: Env) {
 ```
 
 ## O-017: Caché agresiva (leer menos = costar menos)
+
+**[RECOMMENDED]** **Por qué:** servir desde KV o caché evita repetir una consulta a D1 que ya se resolvió hace segundos, y cada consulta evitada es tanto más rápida para el usuario como más barata (`O-012`). Se desvía en datos que cambian por petición o donde la frescura es más importante que la velocidad.
 
 ```typescript
 // ❌ Consultar DB por cada request
@@ -542,6 +577,8 @@ async function getWithSWR(key: string, env: Env) {
 
 ## O-018: Batch Operations (agrupar queries)
 
+**[RECOMMENDED]** **Por qué:** el problema N+1 —una consulta principal más una por cada resultado— convierte una operación de un viaje de red en decenas, y cada viaje añade latencia que se acumula. Agrupar en una sola consulta con `WHERE IN` o un `JOIN` mantiene la latencia constante sin importar cuántos resultados haya.
+
 ```typescript
 // ❌ N+1 queries (1 query principal + N queries por cada resultado)
 const orders = await db.query('SELECT * FROM orders WHERE user_id = $1', [userId])
@@ -573,6 +610,8 @@ const items = await db.query(
 
 ## O-019: Compresión y minificación
 
+**[RECOMMENDED]** **Por qué:** el tamaño del bundle se paga en cada carga inicial y en cada cold start (`O-037`), y en su mayoría es trabajo mecánico que el build ya automatiza. Se convierte en algo a vigilar activamente solo cuando una dependencia nueva lo dispara sin que nadie lo note.
+
 ```typescript
 // ❌ Respuesta JSON sin comprimir (100KB)
 return Response.json(data)
@@ -591,6 +630,8 @@ return Response.json(data, {
 # 🧠 PARTE 4: CÓDIGO CORTO AVANZADO (O-020 a O-025)
 
 ## O-020: Pattern Matching con Either/Result (Adiós try-catch)
+
+**[RECOMMENDED]** **Por qué:** un `try-catch` no aparece en la firma de la función, así que quien la llama no sabe que puede fallar hasta que lo hace en producción. `Either`/`Result` convierte el posible error en parte del tipo de retorno, y TypeScript obliga a manejarlo antes de compilar. Se desvía en errores realmente excepcionales (fallos del runtime), donde una excepción sigue siendo el mecanismo correcto.
 
 ```typescript
 // ❌ Try-catch anidados, código defensivo, ILEGIBLE
@@ -655,6 +696,8 @@ if (result.success) {
 
 ## O-021: Pipe y Flow (Programación Funcional de verdad)
 
+**[RECOMMENDED]** **Por qué:** igual que `O-007`, encadenar transformaciones puras en el orden en que ocurren se lee de forma lineal; forzar `pipe` sobre una lógica que ya es lineal con dos pasos solo añade una capa de indirección.
+
 ```typescript
 // ❌ Variables intermedias, difícil de seguir
 async function processOrderFlow(input: unknown) {
@@ -704,6 +747,8 @@ const result = await pipe(
 
 ## O-022: Pattern Matching con ts-pattern
 
+**[RECOMMENDED]** **Por qué:** sobre tipos unión discriminados, `ts-pattern` exige exhaustividad verificada por el compilador: añadir un caso nuevo al tipo y olvidar manejarlo se convierte en un error de compilación, no en un `undefined` en producción. Se reserva para lógica de ramificación real; una condición simple no lo necesita.
+
 ```typescript
 import { match, P } from 'ts-pattern'
 
@@ -746,6 +791,8 @@ const handleEvent = (event: AppEvent) =>
 ```
 
 ## O-023: Railway Oriented Programming (Errores como valores)
+
+**[RECOMMENDED]** **Por qué:** encadenar pasos que pueden fallar sin que el error interrumpa el flujo de control hace explícito, en cada paso, qué ocurre si algo salió mal antes. Es la misma familia de `O-020`; se aplica donde hay una secuencia real de pasos falibles, no a una sola operación que puede fallar.
 
 ```typescript
 // ❌ Excepciones para flujo de control (COSTOSO en CPU)
@@ -797,6 +844,8 @@ const result = bind(
 
 ## O-024: Tagged Unions Discriminadas (TypeScript avanzado)
 
+**[RECOMMENDED]** **Por qué:** una unión con un campo discriminante (`type: "a" | "b"`) permite que TypeScript reduzca el tipo automáticamente dentro de cada rama, sin *type assertions* ni comprobaciones manuales de qué campos existen. Es la base sobre la que `ts-pattern` (`O-022`) puede garantizar exhaustividad.
+
 ```typescript
 // ❌ Strings mágicos + campos opcionales (imposible de tipar bien)
 interface Order {
@@ -835,6 +884,8 @@ function getOrderSummary(order: Order): string {
 ```
 
 ## O-025: Builder Pattern Tipado (Objetos complejos sin caos)
+
+**[RECOMMENDED]** **Por qué:** un objeto con muchos campos opcionales construido a mano es fácil de crear en un estado inválido o incompleto. El builder tipado no compila hasta que los campos obligatorios están presentes, moviendo el error de tiempo de ejecución a tiempo de compilación. Se desvía en objetos con pocos campos, donde el builder añade ceremonia sin necesidad.
 
 ```typescript
 // ❌ Constructor con 15 parámetros

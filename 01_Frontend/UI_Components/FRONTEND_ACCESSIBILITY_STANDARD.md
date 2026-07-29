@@ -1,6 +1,7 @@
 ---
 title: "Estándar de Accesibilidad Web"
 category: 01_Frontend
+doc_type: estandar
 tags: [frontend, accesibilidad, wcag, aria]
 summary: "Nivel de conformidad objetivo y su implementación: base semántica, navegación por teclado, gestión de foco, la regla de oro de ARIA, contraste y respeto por prefers-reduced-motion."
 keywords: [accesibilidad, wcag, aria, teclado, foco, contraste, reduced-motion]

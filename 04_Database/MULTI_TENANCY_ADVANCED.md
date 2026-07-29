@@ -1,6 +1,7 @@
 ---
 title: "Estándar Avanzado de Multi-Tenancy y Aislamiento de Datos"
 category: 04_Database
+doc_type: estandar
 tags: [database, multi-tenancy, rls, postgres, supabase, tenant-isolation, white-labeling]
 summary: "Estándar para arquitecturas Multi-Tenant: comparación de estrategias (DB per tenant vs Schema vs RLS), políticas de RLS para aislamiento estricto, onboarding automatizado de organizaciones, rate-limiting por tenant y backups isolados."
 keywords: [multi-tenancy, tenant, rls, supabase, postgres, tenant-isolation, white-labeling, rate-limiting]
