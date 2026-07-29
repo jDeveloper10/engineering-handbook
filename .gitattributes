@@ -1,0 +1,11 @@
+# Normaliza todo el texto a LF en el repositorio, sin importar el SO del
+# committer. Sin esto, Windows (autocrlf) y Linux (CI) ven bytes distintos
+# del mismo archivo y cualquier chequeo sensible al contenido exacto —como
+# tools/verify-index-fresh.mjs contando tokens por longitud— da resultados
+# distintos según quién lo ejecute.
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.ico binary
+*.woff2 binary

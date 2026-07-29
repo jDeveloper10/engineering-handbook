@@ -2,7 +2,10 @@ import { readdir, readFile, writeFile } from 'fs/promises'
 import { join, extname } from 'path'
 
 const ROOT_DIR = process.cwd()
-const IGNORE_DIRS = ['node_modules', '.git', 'tools', 'Engineering-OS', '.claude', 'pruebas', '_project_docs']
+const IGNORE_DIRS = ['node_modules', '.git', 'tools', 'Engineering-OS', '.claude', 'pruebas', '_project_docs', '.vitepress']
+// Archivos de chrome del sitio VitePress en la raíz — no son documentos del handbook
+// (sin category/summary/tags reales), así que no deben ensuciar INDEX.json.
+const IGNORE_FILES = ['index.md']
 const INDEX_PATH = join(ROOT_DIR, 'INDEX.json')
 
 function parseFrontmatter(rawContent) {
@@ -73,12 +76,15 @@ async function scanDirectory(dir) {
       continue
     }
     
-    if (entry.isFile() && extname(entry.name) === '.md') {
+    if (entry.isFile() && extname(entry.name) === '.md' && !(dir === ROOT_DIR && IGNORE_FILES.includes(entry.name))) {
       const content = await readFile(fullPath, 'utf-8')
       const { data: frontmatter, body } = parseFrontmatter(content)
       
-      // Contar tokens (aproximado: 3.8 chars = 1 token en español/markdown)
-      const tokens = Math.ceil(body.length / 3.8)
+      // Contar tokens (aproximado: 3.8 chars = 1 token en español/markdown).
+      // Normalizar CRLF→LF antes de contar: sin esto, el mismo archivo produce un
+      // conteo distinto en Windows (CRLF) que en CI/Linux (LF), y verify-index-fresh.mjs
+      // marcaría el índice como desactualizado sin que nada real haya cambiado.
+      const tokens = Math.ceil(body.replace(/\r\n/g, '\n').length / 3.8)
       const relPath = fullPath.replace(ROOT_DIR + '\\', '').replace(ROOT_DIR + '/', '').replace(/\\/g, '/')
       
       results.push({

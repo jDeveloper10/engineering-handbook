@@ -21,7 +21,7 @@ import { readdir, readFile } from 'fs/promises'
 import { join, relative } from 'path'
 
 const ROOT = process.cwd()
-const IGNORE_DIRS = ['node_modules', '.git', 'tools', '.claude', 'pruebas', '_project_docs']
+const IGNORE_DIRS = ['node_modules', '.git', 'tools', '.claude', 'pruebas', '_project_docs', '.vitepress']
 
 /**
  * Marcadores que indican "esta línea es un anti-ejemplo deliberado, no la violes contando".
