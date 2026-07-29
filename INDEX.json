@@ -70,7 +70,7 @@
         "base",
         "datos"
       ],
-      "tokens": 1798,
+      "tokens": 1826,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -4980,8 +4980,8 @@
     }
   ],
   "_meta": {
-    "generated_at": "2026-07-29T21:29:20.963Z",
+    "generated_at": "2026-07-29T21:32:13.720Z",
     "total_docs": 171,
-    "total_tokens": 446295
+    "total_tokens": 446323
   }
 }

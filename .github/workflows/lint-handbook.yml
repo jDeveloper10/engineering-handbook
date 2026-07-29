@@ -1,0 +1,35 @@
+name: Lint Handbook
+
+# Gate del handbook: bloquea un push/PR si algún ejemplo de código viola una
+# regla que el propio handbook exige (ver tools/lint-handbook.mjs), o si
+# INDEX.json quedó desactualizado respecto al frontmatter de los .md.
+#
+# Ninguno de los dos scripts depende de node_modules (ver package.json: la
+# única dependencia declarada, gray-matter, no se usa en runtime) — por eso
+# no hay paso de `npm install`. Si en el futuro se añade una dependencia
+# real, añadir aquí `actions/setup-node` con `cache: npm` y un `npm ci`
+# antes del paso de lint.
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Lint de coherencia interna (código de ejemplo vs reglas)
+        run: node tools/lint-handbook.mjs
+
+      - name: INDEX.json debe reflejar el frontmatter actual
+        run: node tools/verify-index-fresh.mjs

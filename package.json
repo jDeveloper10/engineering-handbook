@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "build-index": "node tools/build-index.mjs",
+    "verify-index": "node tools/verify-index-fresh.mjs",
     "lint": "node tools/lint-handbook.mjs",
     "check": "npm run lint && npm run build-index"
   },
