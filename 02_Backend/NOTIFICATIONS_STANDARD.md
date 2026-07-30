@@ -9,9 +9,9 @@ updated: 2026-07-27
 status: current
 ---
 
-# 🔔 SISTEMA DE NOTIFICACIONES COMPLETO
+# SISTEMA DE NOTIFICACIONES COMPLETO
 
-## 🎯 Reglas Inquebrantables
+## Reglas Inquebrantables
 
 **[REQUIRED] NOTIF-001: NUNCA HTML crudo en emails.** Siempre React Email templates. El HTML manual es imposible de mantener y tiene deliverability impredecible.
 
@@ -35,7 +35,7 @@ status: current
 
 ---
 
-## 🗺️ 0. ARQUITECTURA DEL SISTEMA
+## 0. ARQUITECTURA DEL SISTEMA
 
 ```
 Usuario genera evento (nuevo comentario, mención, etc.)
@@ -78,7 +78,7 @@ Usuario genera evento (nuevo comentario, mención, etc.)
 
 ---
 
-## 📧 1. EMAIL CON RESEND + REACT EMAIL
+## 1. EMAIL CON RESEND + REACT EMAIL
 
 ### 1.1 Instalación
 
@@ -260,7 +260,7 @@ await env.NOTIF_QUEUE.send({
 
 ---
 
-## 🔔 2. WEB PUSH CON VAPID (Navegador)
+## 2. WEB PUSH CON VAPID (Navegador)
 
 ### 2.1 Generar VAPID Keys (una sola vez)
 
@@ -464,7 +464,7 @@ CREATE POLICY push_sub_delete ON push_subscriptions FOR DELETE USING ((SELECT au
 
 ---
 
-## 📱 3. MOBILE PUSH CON EXPO (FCM + APNs)
+## 3. MOBILE PUSH CON EXPO (FCM + APNs)
 
 ### 3.1 Por qué Expo Push Service
 
@@ -606,7 +606,7 @@ CREATE POLICY expo_token_delete ON expo_push_tokens FOR DELETE USING ((SELECT au
 
 ---
 
-## ⚡ 4. IN-APP (SUPABASE REALTIME)
+## 4. IN-APP (SUPABASE REALTIME)
 
 ```typescript
 // Ref: FRONTEND_REALTIME_PATTERN.md — el código completo ya está ahí
@@ -624,7 +624,7 @@ CREATE POLICY expo_token_delete ON expo_push_tokens FOR DELETE USING ((SELECT au
 
 ---
 
-## 🔁 5. ORQUESTADOR: Queue Consumer
+## 5. ORQUESTADOR: Queue Consumer
 
 ```typescript
 // apps/notif-worker/src/index.ts — Queue consumer
@@ -671,7 +671,7 @@ async function processNotification(job: NotifJob, env: Env): Promise<void> {
 
 ---
 
-## 📋 CHECKLIST DE IMPLEMENTACIÓN
+## CHECKLIST DE IMPLEMENTACIÓN
 
 ### Email
 - [ ] Resend API Key en secretos del Worker (nunca en código)

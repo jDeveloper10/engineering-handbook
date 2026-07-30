@@ -9,9 +9,9 @@ updated: 2026-07-29
 status: current
 ---
 
-# 📱 PATRÓN PWA & OFFLINE-FIRST
+# PATRÓN PWA & OFFLINE-FIRST
 
-## 🎯 ¿Qué es y por qué es crítico?
+## ¿Qué es y por qué es crítico?
 Una Progressive Web App (PWA) permite a tu web instalarse como una app nativa, enviar notificaciones push y funcionar sin conexión a internet. Una arquitectura Offline-First garantiza que el usuario pueda interactuar con la app en el metro, en un avión o con mala señal, y sincronizar los datos automáticamente cuando recupere la conexión.
 
 > **[REQUIRED] REGLA:** Toda app SaaS en producción DEBE funcionar sin conexión básica (caché). Si permite edición, DEBE encolar las operaciones y sincronizarlas en background cuando vuelva la red.
@@ -20,7 +20,7 @@ Una Progressive Web App (PWA) permite a tu web instalarse como una app nativa, e
 
 ---
 
-## ⚙️ 1. MANIFEST (El ADN de la App)
+## 1. MANIFEST (El ADN de la App)
 
 El archivo `manifest.json` va en la raíz de `public/` y le dice al móvil/desktop cómo instalarse.
 
@@ -51,7 +51,7 @@ El archivo `manifest.json` va en la raíz de `public/` y le dice al móvil/deskt
 
 ---
 
-## 🧠 2. SERVICE WORKER CON WORKBOX (Estrategias de Caché)
+## 2. SERVICE WORKER CON WORKBOX (Estrategias de Caché)
 
 Usamos Workbox de Google para no lidiar con la API cruda del Service Worker.
 
@@ -105,7 +105,7 @@ registerRoute(
 
 ---
 
-## 💻 3. LÓGICA EN FRONTEND (React)
+## 3. LÓGICA EN FRONTEND (React)
 
 En el frontend detectamos el estado de la red y gestionamos el banner de instalación.
 
@@ -188,7 +188,7 @@ export function PwaManager() {
 
 ---
 
-## 🔔 4. NOTIFICACIONES PUSH NATIVAS
+## 4. NOTIFICACIONES PUSH NATIVAS
 
 Un PWA puede recibir notificaciones Push (Web Push API) incluso cuando está cerrado.
 

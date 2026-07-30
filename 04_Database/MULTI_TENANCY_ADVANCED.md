@@ -9,14 +9,14 @@ updated: 2026-07-27
 status: current
 ---
 
-# 🏢 ESTÁNDAR AVANZADO DE MULTI-TENANCY Y AISLAMIENTO DE DATOS
+# ESTÁNDAR AVANZADO DE MULTI-TENANCY Y AISLAMIENTO DE DATOS
 
-## 🎯 OBJETIVO
+## OBJETIVO
 Definir la arquitectura y los controles de seguridad para servir a múltiples organizaciones o empresas (Tenants) en una sola infraestructura compartida, garantizando la privacidad y el aislamiento absoluto de los datos.
 
 ---
 
-## 🎯 REGLAS INQUEBRANTABLES
+## REGLAS INQUEBRANTABLES
 
 **TENANT-001: RLS (Row Level Security) es la fuente de verdad inquebrantable para aislamiento.** NUNCA confiar únicamente en la cláusula `WHERE tenant_id = ...` del código de la aplicación.
 
@@ -26,7 +26,7 @@ Definir la arquitectura y los controles de seguridad para servir a múltiples or
 
 ---
 
-## 📊 1. COMPARATIVA DE ARQUITECTURAS MULTI-TENANT
+## 1. COMPARATIVA DE ARQUITECTURAS MULTI-TENANT
 
 | Estrategia | Aislamiento | Costo Infraestructura | Mantenimiento / Migraciones | Recomendación |
 |---|---|---|---|---|
@@ -36,7 +36,7 @@ Definir la arquitectura y los controles de seguridad para servir a múltiples or
 
 ---
 
-## 🔐 2. POLÍTICAS RLS PARA AISLAMIENTO DE TENANT EN SUPABASE
+## 2. POLÍTICAS RLS PARA AISLAMIENTO DE TENANT EN SUPABASE
 
 ```sql
 -- Función helper para obtener el tenant_id del JWT actual
@@ -70,7 +70,7 @@ CREATE POLICY tenant_isolation_insert ON documents
 
 ---
 
-## 🚀 3. ONBOARDING AUTOMATIZADO DE UN TENANT NUEVO
+## 3. ONBOARDING AUTOMATIZADO DE UN TENANT NUEVO
 
 ```typescript
 // Worker API: POST /api/tenants/onboard
@@ -106,7 +106,7 @@ export async function handleTenantOnboarding(request: Request, env: Env) {
 
 ---
 
-## 📋 CHECKLIST DE MULTI-TENANCY
+## CHECKLIST DE MULTI-TENANCY
 
 - [ ] Todas las tablas de datos de clientes contienen `tenant_id UUID NOT NULL`.
 - [ ] RLS activo y probado con usuarios de tenants distintos (verificación anti-leak).

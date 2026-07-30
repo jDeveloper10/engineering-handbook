@@ -1,0 +1,629 @@
+/* ==========================================================================
+   Engineering Handbook — capa de tema sobre el tema por defecto de VitePress.
+
+   Porta la identidad visual de jcdigital.online (negro + naranja, Inter +
+   JetBrains Mono, bordes "hairline") a un sitio de documentación. No copia el
+   layout del sitio original: aquí manda la legibilidad de texto largo y de
+   bloques de código.
+
+   Estructura:
+     1. Tipografía (Google Fonts)
+     2. Tokens — modo claro (`:root`)
+     3. Tokens — modo oscuro (`.dark`)
+     4. Tokens compartidos (tipografía, botones, home)
+     5. Ajustes de componentes (nav, sidebar, doc, código, tablas, avisos)
+
+   Nota sobre modos: VitePress alterna el tema añadiendo/quitando la clase
+   `.dark` en `<html>`. El modo oscuro lleva la identidad fuerte; el modo claro
+   usa el naranja solo como acento y nunca fondos oscuros.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+/* ==========================================================================
+   2. Modo claro — legible y limpio. Naranja solo como acento.
+   ========================================================================== */
+
+:root {
+  /* Paleta de acento (naranja JC Digital).
+     `brand-1` se oscurece respecto al naranja de marca (#ff6b00) porque en el
+     tema por defecto es el color de los enlaces del cuerpo: #ff6b00 sobre
+     blanco da ~2.9:1 de contraste y no pasa AA para texto normal. #b84a00 da
+     ~5.2:1 conservando la lectura de "naranja". */
+  --vp-c-brand-1: #b84a00;
+  --vp-c-brand-2: #e05e00;
+  --vp-c-brand-3: #ff6b00;
+  --vp-c-brand-soft: rgba(255, 107, 0, 0.12);
+  --vp-c-brand: var(--vp-c-brand-1);
+
+  /* Fondos */
+  --vp-c-bg: #ffffff;
+  --vp-c-bg-alt: #fafafa;
+  --vp-c-bg-elv: #ffffff;
+  --vp-c-bg-soft: #f5f5f5;
+
+  /* Texto — escala oscura de la marca */
+  --vp-c-text-1: #1a1a1a;
+  --vp-c-text-2: #4d4d4d;
+  --vp-c-text-3: #8a8a8a;
+
+  /* Bordes "hairline" */
+  --vp-c-border: rgba(0, 0, 0, 0.14);
+  --vp-c-divider: rgba(0, 0, 0, 0.09);
+  --vp-c-gutter: rgba(0, 0, 0, 0.09);
+
+  /* Neutros (botones "alt", fondo de código inline, badges) */
+  --vp-c-default-1: #d4d4d6;
+  --vp-c-default-2: #e6e6e8;
+  --vp-c-default-3: #f0f0f2;
+  --vp-c-default-soft: rgba(0, 0, 0, 0.055);
+
+  /* Bloques de código — shiki usa `github-light` en este modo */
+  --vp-code-block-bg: #fafafa;
+  --vp-code-block-divider-color: rgba(0, 0, 0, 0.09);
+  --vp-code-block-color: #24292f;
+  --vp-code-color: #b84a00;
+  --vp-code-bg: rgba(255, 107, 0, 0.09);
+  --vp-code-lang-color: #8a8a8a;
+  --vp-code-line-number-color: #b0b0b0;
+  --vp-code-line-highlight-color: rgba(255, 107, 0, 0.09);
+  --vp-code-copy-code-bg: #f0f0f2;
+  --vp-code-copy-code-hover-bg: #e6e6e8;
+  --vp-code-copy-code-border-color: rgba(0, 0, 0, 0.09);
+  --vp-code-copy-code-hover-border-color: rgba(0, 0, 0, 0.14);
+  --vp-code-tab-active-bar-color: #ff6b00;
+
+  /* Superficies */
+  --vp-sidebar-bg-color: #fafafa;
+  --vp-nav-bg-color: #ffffff;
+  --vp-local-nav-bg-color: #ffffff;
+  --vp-input-bg-color: #ffffff;
+  --vp-backdrop-bg-color: rgba(14, 14, 14, 0.5);
+
+  /* Home hero — el degradado de marca sobre el texto del título */
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: linear-gradient(100deg, #ff8a3d 0%, #ff6b00 45%, #ff4d00 100%);
+  --vp-home-hero-image-background-image: linear-gradient(100deg, #ff8a3d 0%, #ff4d00 100%);
+  --vp-home-hero-image-filter: blur(56px);
+}
+
+/* ==========================================================================
+   3. Modo oscuro — la identidad fuerte: negro + naranja.
+   ========================================================================== */
+
+.dark {
+  /* En fondo oscuro el naranja claro es el que mejor lee, así que la escala
+     se invierte respecto al modo claro: `brand-1` (texto/enlaces) es el tono
+     más claro y `brand-3` (fondos sólidos) el más saturado. */
+  --vp-c-brand-1: #ff8a3d;
+  --vp-c-brand-2: #ff6b00;
+  --vp-c-brand-3: #e05e00;
+  --vp-c-brand-soft: rgba(255, 107, 0, 0.16);
+  --vp-c-brand: var(--vp-c-brand-1);
+
+  /* Fondos — escala de la marca, de más oscuro (página) a más claro (elevado) */
+  --vp-c-bg: #0e0e0e;
+  --vp-c-bg-alt: #090909;
+  --vp-c-bg-elv: #1f1f1f;
+  --vp-c-bg-soft: #161616;
+
+  /* Texto */
+  --vp-c-text-1: #f5f5f5;
+  --vp-c-text-2: #b8b8b8;
+  --vp-c-text-3: #8a8a8a;
+
+  /* Bordes "hairline" — el detalle que sostiene todo el look en oscuro */
+  --vp-c-border: rgba(255, 255, 255, 0.14);
+  --vp-c-divider: rgba(255, 255, 255, 0.08);
+  --vp-c-gutter: rgba(255, 255, 255, 0.08);
+
+  /* Neutros */
+  --vp-c-default-1: #3a3a3a;
+  --vp-c-default-2: #2a2a2a;
+  --vp-c-default-3: #1f1f1f;
+  --vp-c-default-soft: rgba(255, 255, 255, 0.07);
+
+  /* Bloques de código — shiki usa `github-dark`, que lee bien sobre #090909 */
+  --vp-code-block-bg: #090909;
+  --vp-code-block-divider-color: rgba(255, 255, 255, 0.08);
+  --vp-code-block-color: #c9d1d9;
+  --vp-code-color: #ff8a3d;
+  --vp-code-bg: rgba(255, 107, 0, 0.13);
+  --vp-code-lang-color: #4d4d4d;
+  --vp-code-line-number-color: #4d4d4d;
+  --vp-code-line-highlight-color: rgba(255, 107, 0, 0.11);
+  --vp-code-copy-code-bg: #1f1f1f;
+  --vp-code-copy-code-hover-bg: #2a2a2a;
+  --vp-code-copy-code-border-color: rgba(255, 255, 255, 0.08);
+  --vp-code-copy-code-hover-border-color: rgba(255, 255, 255, 0.14);
+  --vp-code-tab-active-bar-color: #ff6b00;
+
+  /* Superficies */
+  --vp-sidebar-bg-color: #090909;
+  --vp-nav-bg-color: #0e0e0e;
+  --vp-local-nav-bg-color: #0e0e0e;
+  --vp-input-bg-color: #161616;
+  --vp-backdrop-bg-color: rgba(0, 0, 0, 0.72);
+
+  /* Búsqueda local */
+  --vp-local-search-bg: #0e0e0e;
+  --vp-local-search-result-bg: #0e0e0e;
+  --vp-local-search-result-border: rgba(255, 255, 255, 0.08);
+  --vp-local-search-result-selected-bg: #161616;
+  --vp-local-search-result-selected-border: #ff6b00;
+  --vp-local-search-highlight-bg: #ff6b00;
+  --vp-local-search-highlight-text: #0e0e0e;
+
+  --vp-home-hero-image-background-image: linear-gradient(100deg, #ff8a3d 0%, #ff4d00 100%);
+  --vp-home-hero-image-filter: blur(72px);
+}
+
+/* ==========================================================================
+   4. Tokens compartidos
+   ========================================================================== */
+
+:root {
+  --vp-font-family-base: 'Inter', ui-sans-serif, system-ui, -apple-system,
+    'Segoe UI', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
+  --vp-font-family-mono: 'JetBrains Mono', ui-monospace, 'Menlo', 'Monaco',
+    'Consolas', 'Liberation Mono', 'Courier New', monospace;
+
+  /* Interlineado un poco más aireado que el de fábrica: el handbook son
+     documentos largos y densos, y el ancho de columna (688px) es fijo. */
+  --vp-code-line-height: 1.65;
+  --vp-code-font-size: 0.86em;
+
+  --vp-custom-block-font-size: 15px;
+  --vp-custom-block-code-font-size: 13px;
+
+  /* Botón "brand": degradado de marca con texto casi negro. Sobre naranja
+     saturado el texto oscuro contrasta mucho mejor que el blanco (~9:1 vs
+     ~2.7:1), y de paso es exactamente el CTA del sitio original. */
+  --vp-button-brand-border: transparent;
+  --vp-button-brand-text: #0e0e0e;
+  --vp-button-brand-bg: #ff6b00;
+  --vp-button-brand-hover-border: transparent;
+  --vp-button-brand-hover-text: #0e0e0e;
+  --vp-button-brand-hover-bg: #ff8a3d;
+  --vp-button-brand-active-border: transparent;
+  --vp-button-brand-active-text: #0e0e0e;
+  --vp-button-brand-active-bg: #e05e00;
+
+  /* Etiqueta mono del sitio original, reutilizable */
+  --jc-label-font-size: 10px;
+  --jc-label-letter-spacing: 0.25em;
+  --jc-radius: 10px;
+  --jc-gradient: linear-gradient(100deg, #ff8a3d 0%, #ff6b00 45%, #ff4d00 100%);
+}
+
+/* Utilidad interna: etiqueta pequeña en mono, mayúsculas y muy espaciada.
+   Es el detalle tipográfico que más "firma" el sitio original. */
+.jc-label,
+.VPDocAsideOutline .outline-title,
+.VPDocOutlineItem > .root > .outline-link-title,
+.VPLocalNavOutlineDropdown .outline-title {
+  font-family: var(--vp-font-family-mono);
+  font-size: var(--jc-label-font-size);
+  font-weight: 500;
+  letter-spacing: var(--jc-label-letter-spacing);
+  text-transform: uppercase;
+  color: var(--vp-c-text-3);
+}
+
+/* ==========================================================================
+   5. Componentes
+   ========================================================================== */
+
+/* --- Navegación superior ------------------------------------------------ */
+
+/* Hairline en vez del borde sólido del tema por defecto. */
+.VPNav {
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.VPNavBar.has-sidebar .content-body,
+.VPNavBar .divider {
+  background-color: transparent;
+}
+
+.VPNavBarTitle .title {
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  border-bottom: none !important;
+}
+
+.VPNavBarMenuLink,
+.VPNavBarMenuGroup .VPFlyout .text {
+  font-weight: 500;
+}
+
+/* Subrayado de acento en el enlace de nav activo. */
+.VPNavBarMenuLink.active {
+  color: var(--vp-c-brand-1);
+}
+
+/* --- Sidebar ------------------------------------------------------------ */
+
+.VPSidebar {
+  border-right: 1px solid var(--vp-c-divider);
+}
+
+/* Encabezado de sección: la etiqueta mono en mayúsculas sería ilegible con los
+   nombres largos y los emoji del handbook, así que aquí solo se refuerza el
+   peso y se separa con un hairline. */
+.VPSidebarItem.level-0 > .item > .text {
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  color: var(--vp-c-text-1);
+}
+
+.VPSidebarItem.level-0 {
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.VPSidebarItem.level-0:last-child {
+  border-bottom: none;
+}
+
+.VPSidebarItem.level-1 > .item > .text,
+.VPSidebarItem.level-2 > .item > .text {
+  font-size: 13px;
+}
+
+/* Enlace activo: naranja + barra de acento a la izquierda. */
+.VPSidebarItem .link:hover .text {
+  color: var(--vp-c-brand-1);
+}
+
+.VPSidebarItem.is-active > .item .link .text {
+  color: var(--vp-c-brand-1);
+  font-weight: 600;
+}
+
+.VPSidebarItem.is-link.is-active > .item {
+  position: relative;
+}
+
+.VPSidebarItem.is-link.is-active > .item::before {
+  content: '';
+  position: absolute;
+  left: -16px;
+  top: 4px;
+  bottom: 4px;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--jc-gradient);
+}
+
+/* --- Home / hero -------------------------------------------------------- */
+
+.VPHero .name {
+  letter-spacing: -0.03em;
+}
+
+.VPHero .text {
+  letter-spacing: -0.02em;
+}
+
+.VPHero .tagline {
+  color: var(--vp-c-text-2);
+  line-height: 1.55;
+}
+
+/* CTA principal con el degradado de marca. */
+.VPButton.brand {
+  background: var(--jc-gradient);
+  border-color: transparent;
+  color: #0e0e0e;
+  font-weight: 700;
+}
+
+.VPButton.brand:hover {
+  background: linear-gradient(100deg, #ffa066 0%, #ff8a3d 45%, #ff6b00 100%);
+  border-color: transparent;
+  color: #0e0e0e;
+}
+
+.VPButton.alt {
+  border: 1px solid var(--vp-c-border);
+  background-color: transparent;
+  font-weight: 600;
+}
+
+.VPButton.alt:hover {
+  border-color: var(--vp-c-brand-1);
+  color: var(--vp-c-brand-1);
+  background-color: var(--vp-c-brand-soft);
+}
+
+/* Tarjetas de features: hairline + realce naranja al pasar el cursor. */
+.VPFeature {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: var(--jc-radius);
+  background-color: var(--vp-c-bg-soft);
+  transition:
+    border-color 0.25s,
+    transform 0.25s;
+}
+
+.VPFeature:hover {
+  border-color: var(--vp-c-brand-1);
+  transform: translateY(-2px);
+}
+
+.VPFeature .title {
+  letter-spacing: -0.01em;
+}
+
+.VPFeature .details {
+  color: var(--vp-c-text-2);
+  line-height: 1.6;
+}
+
+/* --- Contenido del documento -------------------------------------------- */
+
+.vp-doc h1,
+.vp-doc h2,
+.vp-doc h3,
+.vp-doc h4 {
+  letter-spacing: -0.02em;
+}
+
+.vp-doc h2 {
+  border-top: 1px solid var(--vp-c-divider);
+  padding-top: 26px;
+}
+
+/* Ancla de sección en naranja al pasar el cursor. */
+.vp-doc .header-anchor:hover {
+  color: var(--vp-c-brand-1);
+}
+
+.vp-doc p,
+.vp-doc li {
+  line-height: 1.75;
+}
+
+.vp-doc a {
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in srgb, var(--vp-c-brand-1) 45%, transparent);
+}
+
+.vp-doc a:hover {
+  text-decoration-color: var(--vp-c-brand-1);
+}
+
+/* Citas: el handbook las usa constantemente para "> **Por qué:** ...".
+   Barra de acento naranja + fondo apenas teñido para que se lean como un
+   aparte y no como texto secundario perdido. */
+.vp-doc blockquote {
+  border-left: 2px solid var(--vp-c-brand-3);
+  background-color: var(--vp-c-brand-soft);
+  border-radius: 0 var(--jc-radius) var(--jc-radius) 0;
+  padding: 12px 18px;
+  margin: 20px 0;
+  color: var(--vp-c-text-2);
+}
+
+.vp-doc blockquote > p {
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* El "**Por qué:**" que abre casi toda cita del handbook. */
+.vp-doc blockquote strong {
+  color: var(--vp-c-brand-1);
+  font-weight: 600;
+}
+
+.dark .vp-doc blockquote {
+  background-color: rgba(255, 107, 0, 0.06);
+}
+
+/* --- Código ------------------------------------------------------------- */
+
+.vp-doc div[class*='language-'],
+.vp-block {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: var(--jc-radius);
+}
+
+.vp-doc [class*='language-'] code {
+  font-family: var(--vp-font-family-mono);
+  font-variant-ligatures: none;
+}
+
+/* Etiqueta del lenguaje: mono, mayúsculas, muy espaciada. */
+.vp-doc [class*='language-'] > span.lang {
+  font-family: var(--vp-font-family-mono);
+  font-size: var(--jc-label-font-size);
+  font-weight: 500;
+  letter-spacing: var(--jc-label-letter-spacing);
+  text-transform: uppercase;
+}
+
+/* Código inline: hairline suave para separarlo del texto corrido. */
+.vp-doc :not(pre) > code {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 5px;
+  padding: 2px 6px;
+  font-weight: 500;
+}
+
+.vp-doc a > code {
+  color: var(--vp-c-brand-1);
+}
+
+.vp-code-group .tabs label {
+  font-family: var(--vp-font-family-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+
+/* --- Tablas ------------------------------------------------------------- */
+
+.vp-doc table {
+  border-radius: var(--jc-radius);
+  font-size: 14px;
+}
+
+.vp-doc th,
+.vp-doc td {
+  border: 1px solid var(--vp-c-divider);
+}
+
+/* Cabecera como etiqueta mono, igual que en el sitio original. */
+.vp-doc th {
+  font-family: var(--vp-font-family-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--vp-c-text-2);
+  background-color: var(--vp-c-bg-soft);
+}
+
+.vp-doc tr {
+  border-top: 1px solid var(--vp-c-divider);
+}
+
+/* Rayado más discreto que el de fábrica: en tablas largas el contraste alto
+   entre filas compite con el texto. */
+.vp-doc tr:nth-child(2n) {
+  background-color: transparent;
+}
+
+.vp-doc tbody tr:hover {
+  background-color: var(--vp-c-default-soft);
+}
+
+/* --- Contenedores de aviso (::: tip / warning / danger …) ---------------- */
+
+.vp-doc .custom-block,
+.custom-block {
+  border-radius: var(--jc-radius);
+  border-left-width: 3px;
+  border-left-style: solid;
+  padding: 16px 18px;
+}
+
+.custom-block .custom-block-title {
+  font-family: var(--vp-font-family-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.custom-block.tip {
+  border-left-color: var(--vp-c-brand-3);
+}
+
+.custom-block.info,
+.custom-block.note,
+.custom-block.details {
+  border-left-color: var(--vp-c-text-3);
+}
+
+.custom-block.warning {
+  border-left-color: var(--vp-c-warning-3);
+}
+
+.custom-block.danger,
+.custom-block.caution {
+  border-left-color: var(--vp-c-danger-3);
+}
+
+.custom-block a {
+  text-underline-offset: 3px;
+}
+
+/* --- Aside / outline ---------------------------------------------------- */
+
+.VPDocAsideOutline .outline-marker {
+  background-color: var(--vp-c-brand-1);
+}
+
+.VPDocOutlineItem a.outline-link:hover,
+.VPDocOutlineItem a.outline-link.active {
+  color: var(--vp-c-brand-1);
+}
+
+/* --- Pie de documento y de sitio ---------------------------------------- */
+
+.VPDocFooter .prev-next {
+  border-top: 1px solid var(--vp-c-divider);
+}
+
+.VPDocFooter .pager-link {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: var(--jc-radius);
+  background-color: transparent;
+  transition: border-color 0.25s;
+}
+
+.VPDocFooter .pager-link:hover {
+  border-color: var(--vp-c-brand-1);
+}
+
+.VPDocFooter .pager-link .desc {
+  font-family: var(--vp-font-family-mono);
+  font-size: var(--jc-label-font-size);
+  letter-spacing: var(--jc-label-letter-spacing);
+  text-transform: uppercase;
+}
+
+.VPFooter {
+  border-top: 1px solid var(--vp-c-divider);
+  background-color: var(--vp-c-bg-alt);
+}
+
+.VPFooter .message,
+.VPFooter .copyright {
+  font-family: var(--vp-font-family-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--vp-c-text-3);
+}
+
+.VPLastUpdated {
+  font-family: var(--vp-font-family-mono);
+  font-size: 12px;
+}
+
+/* --- Búsqueda ----------------------------------------------------------- */
+
+.DocSearch-Button,
+#local-search button {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  background-color: var(--vp-c-bg-alt);
+}
+
+#local-search button:hover {
+  border-color: var(--vp-c-brand-1);
+}
+
+/* --- Barra de scroll (solo modo oscuro, para no romper el modo claro) ---- */
+
+.dark * {
+  scrollbar-color: #2a2a2a transparent;
+}
+
+/* --- Selección de texto ------------------------------------------------- */
+
+::selection {
+  background-color: rgba(255, 107, 0, 0.28);
+}
+
+/* --- Accesibilidad ------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .VPFeature:hover {
+    transform: none;
+  }
+}

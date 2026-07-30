@@ -9,7 +9,7 @@ updated: 2026-07-27
 status: current
 ---
 
-# 🛠️ Debugging Toolkit
+# Debugging Toolkit
 
 Manual rápido para diagnosticar y depurar la aplicación usando el set correcto de herramientas antes de recurrir a cambiar código "para ver si funciona".
 

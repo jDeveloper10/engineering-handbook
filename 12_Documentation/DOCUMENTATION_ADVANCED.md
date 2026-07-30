@@ -9,14 +9,14 @@ updated: 2026-07-27
 status: current
 ---
 
-# 📚 ESTÁNDAR AVANZADO DE DOCUMENTACIÓN VIVA Y ONBOARDING
+# ESTÁNDAR AVANZADO DE DOCUMENTACIÓN VIVA Y ONBOARDING
 
-## 🎯 OBJETIVO
+## OBJETIVO
 Mantener la documentación en perfecta sincronía con el código de producción, ofrecer guías de inicio rápido contextuales dentro de la aplicación y comunicar el estado operativo de los servicios.
 
 ---
 
-## 🎯 REGLAS INQUEBRANTABLES
+## REGLAS INQUEBRANTABLES
 
 **[RECOMMENDED] DOC-001: Todo código de error devuelto por la API DEBE incluir un enlace a su documentación con la solución.**
 
@@ -28,7 +28,7 @@ Mantener la documentación en perfecta sincronía con el código de producción,
 
 ---
 
-## 🛑 1. DETECCIÓN DE BREAKING CHANGES EN API (OPENAPI DIFF)
+## 1. DETECCIÓN DE BREAKING CHANGES EN API (OPENAPI DIFF)
 
 ```yaml
 # .github/workflows/api-diff.yml
@@ -52,7 +52,7 @@ jobs:
 
 ---
 
-## 🌐 2. INTEGRACIÓN DE STATUS PAGE PÚBLICA
+## 2. INTEGRACIÓN DE STATUS PAGE PÚBLICA
 
 La infraestructura expone un endpoint `/health` público que es monitoreado por una plataforma de Status Page externa (ej. Better Stack / Statuspage.io).
 
@@ -77,7 +77,7 @@ export async function handleHealthCheck(request: Request, env: Env): Promise<Res
 
 ---
 
-## 📋 CHECKLIST DE DOCUMENTACIÓN AVANZADA
+## CHECKLIST DE DOCUMENTACIÓN AVANZADA
 
 - [ ] Respuestas de error conteniendo propiedad `doc_url` con la solución.
 - [ ] Pipeline CI con validación OpenAPI Diff contra Breaking Changes.

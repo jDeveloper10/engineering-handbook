@@ -9,7 +9,7 @@ updated: 2026-07-27
 status: current
 ---
 
-# 📝 Queries Comunes Optimizadas
+# Queries Comunes Optimizadas
 
 Recetas de SQL y llamadas Supabase JS para operaciones de uso diario que suelen implementarse incorrectamente y afectar el rendimiento.
 

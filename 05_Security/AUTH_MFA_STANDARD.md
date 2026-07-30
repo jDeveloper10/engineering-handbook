@@ -9,9 +9,9 @@ updated: 2026-07-29
 status: current
 ---
 
-# 🔐 AUTENTICACIÓN AVANZADA: MFA, PASSKEYS Y MAGIC LINKS
+# AUTENTICACIÓN AVANZADA: MFA, PASSKEYS Y MAGIC LINKS
 
-## 🎯 ¿Por qué esto es crítico?
+## ¿Por qué esto es crítico?
 Una contraseña sola no es suficiente en 2024. El 81% de los brechas de datos involucran contraseñas comprometidas. Este estándar cubre las 3 formas de autenticación fuerte que el stack Supabase soporta: **TOTP** (Google Authenticator), **Passkeys** (WebAuthn/biométrico) y **Magic Links** (email sin contraseña).
 
 > **REGLA INQUEBRANTABLE:** Todo SaaS con datos de usuarios DEBE ofrecer al menos TOTP como segundo factor. Para invitaciones a equipos, el Magic Link es OBLIGATORIO — PROHIBIDO enviar contraseñas temporales por email.
@@ -20,7 +20,7 @@ Una contraseña sola no es suficiente en 2024. El 81% de los brechas de datos in
 
 ---
 
-## 🔢 PARTE 1: TOTP (Two-Factor Authentication con Google Authenticator)
+## PARTE 1: TOTP (Two-Factor Authentication con Google Authenticator)
 
 Supabase Auth tiene soporte nativo para MFA TOTP desde 2023. No se necesita ninguna librería extra.
 
@@ -182,7 +182,7 @@ export function MFAChallenge({ onSuccess }: { onSuccess: () => void }) {
 
 ---
 
-## 🔑 PARTE 2: PASSKEYS (WebAuthn / Biométrico)
+## PARTE 2: PASSKEYS (WebAuthn / Biométrico)
 
 Supabase Auth soporta Passkeys como método de login sin contraseña desde Supabase v2.39+. Permite autenticación con Face ID, huella dactilar o llave de seguridad hardware (YubiKey).
 
@@ -249,7 +249,7 @@ export function PasskeyButton() {
 
 ---
 
-## 📧 PARTE 3: MAGIC LINKS (Login) E INVITACIONES A EQUIPO
+## PARTE 3: MAGIC LINKS (Login) E INVITACIONES A EQUIPO
 
 El Magic Link (login, `AUTH-003`) es un enlace único que autentica sin contraseña — vive 15 minutos porque reemplaza una sesión completa. La invitación a equipo (`AUTH-004`) también viaja por email pero **no es el mismo mecanismo**: es una oferta de membresía con su propia tabla, su propio TTL y la capacidad de revocarse antes de expirar. Confundir ambos (usar `supabase.auth.admin.inviteUserByEmail`, que hereda la config global de "Auth OTP Expiration" pensada para login) es el error más común — produce invitaciones que expiran a los 15 minutos como si fueran un login, o logins con TTL de días si alguien "arregla" el síntoma subiendo la config global.
 
@@ -398,7 +398,7 @@ export function InviteAcceptPage() {
 
 ---
 
-## 📋 CHECKLIST DE SEGURIDAD AUTH
+## CHECKLIST DE SEGURIDAD AUTH
 
 - [ ] TOTP habilitado en Supabase > Auth > Settings
 - [ ] MFA obligatorio para roles `admin` y `owner`

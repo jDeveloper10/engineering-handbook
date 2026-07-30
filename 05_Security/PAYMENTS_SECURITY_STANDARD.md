@@ -9,17 +9,17 @@ updated: 2026-07-27
 status: current
 ---
 
-# 💳 ESTÁNDAR DE SEGURIDAD EN PASARELAS DE PAGO (Stripe + Cloudflare Workers)
+# ESTÁNDAR DE SEGURIDAD EN PASARELAS DE PAGO (Stripe + Cloudflare Workers)
 
 Esto es lo más delicado de cualquier SaaS. Un error en esta capa significa pérdida directa de dinero, cobros duplicados, demandas o violaciones graves de PCI DSS.
 
 ---
 
-## 🎯 LAS 8 REGLAS DE HIERRO DE PAGOS
+## LAS 8 REGLAS DE HIERRO DE PAGOS
 
 ---
 
-## 🏗️ 0. ARQUITECTURA DE PAGOS SEGURA
+## 0. ARQUITECTURA DE PAGOS SEGURA
 
 ```
 Cliente (Frontend - Stripe Elements)
@@ -45,7 +45,7 @@ Tu Worker (Webhook Handler)
 
 ---
 
-## 🔴 REGLA #1: NUNCA MANIPULES NI ALMACENES DATOS DE TARJETA (PCI DSS)
+## REGLA #1: NUNCA MANIPULES NI ALMACENES DATOS DE TARJETA (PCI DSS)
 
 **[REQUIRED]** Está **estrictamente prohibido** recibir, procesar o tocar números de tarjeta, fechas de vencimiento o CVC en tu servidor/Worker. Viola la normativa PCI DSS y expone la empresa a multas destructivas.
 
@@ -76,7 +76,7 @@ await stripe.paymentIntents.create({
 
 ---
 
-## 🔴 REGLA #2: VERIFICA SIEMPRE LA FIRMA DE LOS WEBHOOKS (Protección anti-suplantación)
+## REGLA #2: VERIFICA SIEMPRE LA FIRMA DE LOS WEBHOOKS (Protección anti-suplantación)
 
 **[REQUIRED]** Todo endpoint de webhook (`/webhooks/stripe`) DEBE verificar la firma HTTP en el header `stripe-signature` usando el secreto de webhook `STRIPE_WEBHOOK_SECRET`. Procesar webhooks sin verificar firma permite a cualquier atacante simular compras o suscripciones activas gratis.
 
@@ -142,7 +142,7 @@ export async function handleStripeWebhook(request: Request, env: Env): Promise<R
 
 ---
 
-## 🔴 REGLA #3: IDEMPOTENCIA EN COBROS (Evita cobros dobles)
+## REGLA #3: IDEMPOTENCIA EN COBROS (Evita cobros dobles)
 
 **[REQUIRED]** Toda mutación de cobro (`paymentIntents.create`, `charges.create`) debe incluir un `idempotencyKey` generado unívocamente por intento de transacción. Si la red falla y la app reintenta, Stripe reconoce la clave y devuelve la respuesta anterior sin realizar un segundo cobro.
 
@@ -183,7 +183,7 @@ await fetch('/api/payments/checkout', {
 
 ---
 
-## 🔴 REGLA #4: NUNCA CONFIRMES NI ACTIVES PAGOS DESDE EL FRONTEND
+## REGLA #4: NUNCA CONFIRMES NI ACTIVES PAGOS DESDE EL FRONTEND
 
 **[REQUIRED]** El frontend NUNCA activa una suscripción o entrega acceso a un recurso tras recibir la respuesta del cliente de Stripe. Los clientes pueden ser manipulados (modificando la respuesta JS). **Únicamente el webhook verificado de Stripe** en el backend puede activar planes, extender fechas de acceso o marcar facturas como pagadas.
 
@@ -204,7 +204,7 @@ app.post('/api/payments/confirm', async (req, res) => {
 
 ---
 
-## 🔴 REGLA #5: ALMACENA SOLO METADATOS SEGUROS EN LA BASE DE DATOS
+## REGLA #5: ALMACENA SOLO METADATOS SEGUROS EN LA BASE DE DATOS
 
 **[REQUIRED]** En la base de datos solo se almacenan referencias de Stripe (`stripe_customer_id`, `stripe_subscription_id`, `stripe_price_id`), los últimos 4 dígitos (`card_last4`) y la marca (`card_brand`) para visualización de la UI.
 
@@ -241,7 +241,7 @@ CREATE POLICY sub_select_own ON subscriptions FOR SELECT
 
 ---
 
-## 🔴 REGLA #6: PRECIOS EN CENTAVOS (BIGINT), NUNCA FLOATS
+## REGLA #6: PRECIOS EN CENTAVOS (BIGINT), NUNCA FLOATS
 
 **[REQUIRED]** Todo valor monetario se maneja como entero de la unidad mínima (`amount_cents` / `price_cents` de tipo `bigint` o `number` entero). Los números flotantes en IEEE 754 sufren de errores de precisión decimal (ej. `19.99 * 100` puede dar `1998.9999999999998`), causando descuadres financieros.
 
@@ -268,7 +268,7 @@ export const formatCurrency = (cents: number, currency = 'USD') =>
 
 ---
 
-## 🔴 REGLA #7: PLANES Y PRECIOS DEFINIDOS SIEMPRE EN EL BACKEND
+## REGLA #7: PLANES Y PRECIOS DEFINIDOS SIEMPRE EN EL BACKEND
 
 **[REQUIRED]** El frontend NUNCA envía el monto de un pago ni el precio de una suscripción en el payload del request. El frontend solo envía el identificador del plan (`planId: 'pro'`). El backend resuelve el precio y el `stripePriceId` desde una configuración inmutable server-side.
 
@@ -312,7 +312,7 @@ export async function createCheckoutSession(request: Request, env: Env) {
 
 ---
 
-## 🔴 REGLA #8: MANEJO ESTRUCTURADO DE ERRORES DE PAGO
+## REGLA #8: MANEJO ESTRUCTURADO DE ERRORES DE PAGO
 
 **[REQUIRED]** Mapear los códigos de rechazo de Stripe a mensajes amigables y accionables para el usuario sin revelar detalles técnicos internos ni exponer datos de infraestructura.
 
@@ -344,7 +344,7 @@ export function formatStripeError(error: Stripe.StripeError) {
 
 ---
 
-## 🛡️ SEGURIDAD ADICIONAL EN PASARELAS DE PAGO
+## SEGURIDAD ADICIONAL EN PASARELAS DE PAGO
 
 ### 1. Rate Limiting Estricto en Endpoints de Pago
 ```typescript
@@ -374,7 +374,7 @@ async function checkFraudPattern(userId: string, env: Env) {
 
 ---
 
-## 📋 CHECKLIST DE AUDITORÍA DE SEGURIDAD DE PAGOS
+## CHECKLIST DE AUDITORÍA DE SEGURIDAD DE PAGOS
 
 ### Compliance PCI DSS (Mínimo Indispensable)
 - [ ] ¿NUNCA se reciben ni procesan números de tarjeta, fechas o CVC en el backend/Worker?

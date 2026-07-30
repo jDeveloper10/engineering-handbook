@@ -9,16 +9,16 @@ updated: 2026-07-27
 status: current
 ---
 
-# 🔌 PATRÓN CIRCUIT BREAKER (Corta-Corriente)
+# PATRÓN CIRCUIT BREAKER (Corta-Corriente)
 
-## 🎯 ¿Qué es y por qué es crítico?
+## ¿Qué es y por qué es crítico?
 Un **Circuit Breaker** actúa como un interruptor de seguridad. Si un servicio externo (ej. Stripe, SendGrid) comienza a fallar continuamente, el interruptor "salta" (se abre) bloqueando temporalmente las peticiones hacia ese servicio para evitar colapsar nuestro propio sistema, agotar los connection pools, y empeorar la caída del tercero.
 
 > **[REQUIRED] REGLA:** Todo servicio externo DEBE estar envuelto en un Circuit Breaker. PROHIBIDO hacer `fetch` desnudo a APIs de terceros en producción.
 >
 > **Por qué:** un `fetch` desnudo a una API de terceros que se degrada no falla rápido: se queda esperando el timeout completo en cada petición, acumulando conexiones abiertas hasta agotar los recursos del propio servicio. El circuit breaker es lo que convierte esa espera en un fallo inmediato y contenido (ver `API-009`).
 
-## 🔄 Los 3 Estados (Diagrama)
+## Los 3 Estados (Diagrama)
 
 ```text
                   +--------------------------------+
@@ -41,14 +41,14 @@ Un **Circuit Breaker** actúa como un interruptor de seguridad. Si un servicio e
       +--------------------+
 ```
 
-## ⚙️ Configuración Recomendada
+## Configuración Recomendada
 * **Failure Threshold:** 5 fallos en 30s → Transición a **OPEN** (Rechazo inmediato).
 * **Recovery Time:** 30s en estado OPEN → Transición a **HALF_OPEN**.
 * **Success Threshold:** 3 éxitos consecutivos en HALF_OPEN → Transición a **CLOSED**.
 
 ---
 
-## 💻 IMPLEMENTACIÓN (TypeScript)
+## IMPLEMENTACIÓN (TypeScript)
 
 Esta clase está diseñada para vivir globalmente en el *V8 Isolate* de un Cloudflare Worker, o ser instanciada en un Durable Object para estado persistido entre peticiones.
 
@@ -134,7 +134,7 @@ export class CircuitBreaker {
 }
 ```
 
-## 🚀 EJEMPLO DE USO (Integración Stripe y Logflare/Sentry)
+## EJEMPLO DE USO (Integración Stripe y Logflare/Sentry)
 
 ```typescript
 // Instancia global en el scope del Worker (se mantiene en memoria caliente)

@@ -9,7 +9,7 @@ updated: 2026-07-27
 status: current
 ---
 
-# 🚨 Índice de Errores (Troubleshooting)
+# Índice de Errores (Troubleshooting)
 
 Este es el índice unificado (Top 20) de errores comunes a lo largo de todo el stack de la aplicación (Frontend, Backend, Database, Cloud). 
 El propósito de este documento es **reducir la dependencia de Google** (Zero-Google). Si encuentras un error, busca primero aquí.

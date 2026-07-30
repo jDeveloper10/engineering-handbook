@@ -1,6 +1,14 @@
 import { readFileSync } from 'fs'
 import { fileURLToPath } from 'url'
 import { dirname, join } from 'path'
+import { markdownIcons } from './markdown-icons.mjs'
+import {
+  ICONO_CATEGORIA,
+  ICONO_TIPO_DOC,
+  cssIconos,
+  escaparHtml,
+  spanIcono,
+} from './sidebar-icons.mjs'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const INDEX = JSON.parse(readFileSync(join(ROOT, 'INDEX.json'), 'utf8'))
@@ -8,25 +16,26 @@ const INDEX = JSON.parse(readFileSync(join(ROOT, 'INDEX.json'), 'utf8'))
 // Etiquetas humanas para las carpetas de primer nivel (= `category` en INDEX.json).
 // Deliberadamente centralizado aquí: si se agrega un dominio nuevo al handbook,
 // basta con añadir su etiqueta a este mapa para que el sidebar lo reconozca.
+// El icono de cada categoría vive en `sidebar-icons.mjs` (ICONO_CATEGORIA).
 const ETIQUETA_CATEGORIA = {
-  '00_Fundamentos': '📐 Fundamentos',
-  '01_Frontend': '🎨 Frontend',
-  '02_Backend': '⚙️ Backend',
-  '03_API': '🔌 API',
-  '04_Database': '🗄️ Database',
-  '05_Security': '🔒 Security',
-  '06_Testing': '🧪 Testing / QA',
-  '07_DevOps': '🚀 DevOps',
-  '08_Cloud': '☁️ Cloud',
-  '09_Architecture': '🏛️ Architecture',
-  '10_Code_Quality': '🕵️ Code Quality',
-  '10_Product': '🎯 Product',
-  '11_Debugging': '🐛 Debugging',
-  '12_Documentation': '📚 Documentation',
-  '13_AI_Rules': '🧠 AI Rules',
-  '14_DX': '🛠️ Developer Experience',
-  '15_Knowledge_System': '🔄 Knowledge System',
-  root: '📌 Raíz del handbook',
+  '00_Fundamentos': 'Fundamentos',
+  '01_Frontend': 'Frontend',
+  '02_Backend': 'Backend',
+  '03_API': 'API',
+  '04_Database': 'Database',
+  '05_Security': 'Security',
+  '06_Testing': 'Testing / QA',
+  '07_DevOps': 'DevOps',
+  '08_Cloud': 'Cloud',
+  '09_Architecture': 'Architecture',
+  '10_Code_Quality': 'Code Quality',
+  '10_Product': 'Product',
+  '11_Debugging': 'Debugging',
+  '12_Documentation': 'Documentation',
+  '13_AI_Rules': 'AI Rules',
+  '14_DX': 'Developer Experience',
+  '15_Knowledge_System': 'Knowledge System',
+  root: 'Raíz del handbook',
 }
 
 const ETIQUETA_SUBCARPETA = {
@@ -52,7 +61,14 @@ const ORDEN_CATEGORIAS = [
   '13_AI_Rules', '14_DX', '15_Knowledge_System',
 ]
 
-const DOC_TYPE_ICON = { estandar: '📏', patron: '🧩', runbook: '🚑', referencia: '📖', ficha_agente: '🤖' }
+/**
+ * Texto de un item del sidebar. Ojo: `sidebar[].text` se renderiza con `v-html` en el
+ * tema por defecto (VPSidebarItem.vue / VPDocFooter.vue), así que admite HTML — de ahí
+ * el `<span>` del icono. El texto humano SÍ se escapa, porque viene de INDEX.json.
+ */
+function textoItem(nombreIcono, texto) {
+  return spanIcono(nombreIcono) + escaparHtml(texto)
+}
 
 function rutaSitio(path) {
   return '/' + path.replace(/\.md$/, '')
@@ -86,19 +102,23 @@ function construirSidebar() {
         porSub.get(s).push(d)
       }
       items = [...porSub.entries()].map(([sub, ds]) => ({
-        text: sub === '(raíz)' ? 'General' : (ETIQUETA_SUBCARPETA[sub] || sub),
+        text: escaparHtml(sub === '(raíz)' ? 'General' : (ETIQUETA_SUBCARPETA[sub] || sub)),
         collapsed: true,
         items: ds
           .sort((a, b) => a.title.localeCompare(b.title, 'es'))
-          .map((d) => ({ text: `${DOC_TYPE_ICON[d.doc_type] || ''} ${d.title}`.trim(), link: rutaSitio(d.path) })),
+          .map((d) => ({ text: textoItem(ICONO_TIPO_DOC[d.doc_type], d.title), link: rutaSitio(d.path) })),
       }))
     } else {
       items = docs
         .sort((a, b) => a.title.localeCompare(b.title, 'es'))
-        .map((d) => ({ text: `${DOC_TYPE_ICON[d.doc_type] || ''} ${d.title}`.trim(), link: rutaSitio(d.path) }))
+        .map((d) => ({ text: textoItem(ICONO_TIPO_DOC[d.doc_type], d.title), link: rutaSitio(d.path) }))
     }
 
-    grupos.push({ text: `${ETIQUETA_CATEGORIA[cat] || cat} (${docs.length})`, collapsed: cat !== 'root', items })
+    grupos.push({
+      text: textoItem(ICONO_CATEGORIA[cat], `${ETIQUETA_CATEGORIA[cat] || cat} (${docs.length})`),
+      collapsed: cat !== 'root',
+      items,
+    })
   }
   return grupos
 }
@@ -131,7 +151,13 @@ export default {
     /\/ENGINEERING_HANDBOOK\/AGENTS$/,
   ],
 
-  head: [['link', { rel: 'icon', href: '/favicon.svg' }]],
+  head: [
+    ['link', { rel: 'icon', href: '/favicon.svg' }],
+    // Estilos de los iconos SVG (sidebar + contenido). Se inyectan aquí y no en
+    // `theme/custom.css` a propósito: se generan a partir de `icons.mjs`, así que
+    // el CSS y la geometría de los iconos no pueden desincronizarse.
+    ['style', { type: 'text/css' }, cssIconos()],
+  ],
 
   themeConfig: {
     logo: undefined,
@@ -180,5 +206,10 @@ export default {
 
   markdown: {
     theme: { light: 'github-light', dark: 'github-dark' },
+    config: (md) => {
+      // ✅ ❌ 👉 ⚠ del contenido → iconos SVG. Solo afecta al render: los `.md`
+      // conservan el emoji, que es lo que leen los agentes de IA vía AGENTS.md.
+      markdownIcons(md)
+    },
   },
 }

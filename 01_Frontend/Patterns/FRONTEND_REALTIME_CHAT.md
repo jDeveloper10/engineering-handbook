@@ -9,9 +9,9 @@ updated: 2026-07-29
 status: current
 ---
 
-# 💬 PATRÓN CHAT EN TIEMPO REAL
+# PATRÓN CHAT EN TIEMPO REAL
 
-## 🎯 ¿Qué es y por qué es crítico?
+## ¿Qué es y por qué es crítico?
 Un chat moderno no puede depender de recargar la página ni de polling lento. Requiere WebSockets, manejo de escritura en vivo (typing indicators), y envío optimista para que la app se sienta instantánea, incluso en redes inestables (3G).
 
 > **[REQUIRED] REGLA:** Todo envío de mensaje DEBE ser *Optimistic*. El mensaje aparece en pantalla al instante, antes de confirmarse en el servidor. Si falla, mostrar error y un botón de reintento.
@@ -20,7 +20,7 @@ Un chat moderno no puede depender de recargar la página ni de polling lento. Re
 
 ---
 
-## 🗄️ ESQUEMA SQL & RLS (Supabase)
+## ESQUEMA SQL & RLS (Supabase)
 
 ```sql
 -- 1. Tablas
@@ -71,7 +71,7 @@ CREATE POLICY "Solo participantes pueden enviar mensajes" ON messages
 
 ---
 
-## 💻 HOOK: `useChat` (Realtime + Broadcast)
+## HOOK: `useChat` (Realtime + Broadcast)
 
 ```tsx
 import { useEffect, useState, useRef } from 'react'
@@ -183,7 +183,7 @@ export function useChat(roomId: string, currentUserId: string) {
 
 ---
 
-## 🎨 UI: COMPONENTE CHAT WINDOW (Virtualizado)
+## UI: COMPONENTE CHAT WINDOW (Virtualizado)
 
 Para salas con miles de mensajes, es **OBLIGATORIO** usar listas virtualizadas (ej: `react-virtuoso`) para evitar destruir la RAM y los frames por segundo (FPS) del navegador.
 

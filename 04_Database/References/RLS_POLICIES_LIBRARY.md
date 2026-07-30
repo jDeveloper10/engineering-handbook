@@ -9,7 +9,7 @@ updated: 2026-07-27
 status: current
 ---
 
-# 🔒 Librería de Políticas RLS (Supabase)
+# Librería de Políticas RLS (Supabase)
 
 Las políticas Row Level Security (RLS) son el corazón de la seguridad en Supabase, permitiendo que la base de datos separe la data por usuario. 
 Aquí tienes las políticas más comunes listas para copiar, pegar y adaptar.

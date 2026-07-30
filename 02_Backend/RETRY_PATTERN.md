@@ -9,9 +9,9 @@ updated: 2026-07-29
 status: current
 ---
 
-# ♻️ PATRÓN RETRY CON EXPONENTIAL BACKOFF Y JITTER
+# PATRÓN RETRY CON EXPONENTIAL BACKOFF Y JITTER
 
-## 🎯 ¿Qué es y por qué es crítico?
+## ¿Qué es y por qué es crítico?
 Cuando una petición de red falla transitoriamente, reintentar es la solución lógica. Sin embargo, un **Backoff Lineal** (ej: reintentar cada 2 segundos) o sin **Jitter** (aleatoriedad) crea el "Thundering Herd Problem" (Estampida): si 10,000 clientes fallan, los 10,000 reintentarán exactamente a los 2 segundos, haciendo colapsar nuevamente el servicio.
 
 El **Exponential Backoff** duplica la espera (1s, 2s, 4s, 8s). El **Jitter** le suma o resta un 25% aleatorio a ese tiempo para dispersar las peticiones en el tiempo.
@@ -22,7 +22,7 @@ El **Exponential Backoff** duplica la espera (1s, 2s, 4s, 8s). El **Jitter** le 
 
 ---
 
-## 🚦 POLÍTICA DE REINTENTOS POR TIPO DE ERROR
+## POLÍTICA DE REINTENTOS POR TIPO DE ERROR
 
 | Status | Descripción | Acción Requerida |
 |--------|-------------|------------------|
@@ -33,7 +33,7 @@ El **Exponential Backoff** duplica la espera (1s, 2s, 4s, 8s). El **Jitter** le 
 
 ---
 
-## 💻 IMPLEMENTACIÓN BATTLETESTED (TypeScript)
+## IMPLEMENTACIÓN BATTLETESTED (TypeScript)
 
 Esta función `fetchWithRetry` está optimizada para Cloudflare Workers, utilizando `AbortController` global.
 
@@ -115,7 +115,7 @@ export async function fetchWithRetry(url: string, options: RetryOptions = {}): P
 }
 ```
 
-## 🚀 EJEMPLO: INTEGRACIÓN CON API CRÍTICA (Stripe)
+## EJEMPLO: INTEGRACIÓN CON API CRÍTICA (Stripe)
 
 ```typescript
 // FE-001: payload tipado explícitamente — es una ruta de dinero, no un `any`.

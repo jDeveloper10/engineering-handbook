@@ -9,14 +9,14 @@ updated: 2026-07-27
 status: current
 ---
 
-# ♿ ESTÁNDAR AVANZADO DE ACCESIBILIDAD WEB (WCAG 2.1 AA)
+# ESTÁNDAR AVANZADO DE ACCESIBILIDAD WEB (WCAG 2.1 AA)
 
-## 🎯 OBJETIVO
+## OBJETIVO
 Garantizar que todas las interfaces del sistema sean totalmente operables por usuarios que dependen de lectores de pantalla, navegación por teclado o configuraciones de accesibilidad.
 
 ---
 
-## 🎯 REGLAS INQUEBRANTABLES
+## REGLAS INQUEBRANTABLES
 
 **[REQUIRED] A11Y-001: Todo elemento interactivo DEBE ser accesible por teclado (Tecla Tab, Enter, Space).** Queda prohibido asignar eventos `onClick` en divs o spans sin `role="button"` y `tabIndex={0}`.
 
@@ -32,7 +32,7 @@ Garantizar que todas las interfaces del sistema sean totalmente operables por us
 
 ---
 
-## ⌨️ 1. GESTIÓN DE FOCO Y FOCUS TRAPPING EN MODALES
+## 1. GESTIÓN DE FOCO Y FOCUS TRAPPING EN MODALES
 
 ```tsx
 // src/components/Modal.tsx
@@ -78,7 +78,7 @@ export function Modal({ isOpen, onClose, children }: { isOpen: boolean; onClose:
 
 ---
 
-## 🧪 2. TESTING AUTOMATIZADO CON PLAYWRIGHT Y AXE-CORE
+## 2. TESTING AUTOMATIZADO CON PLAYWRIGHT Y AXE-CORE
 
 ```typescript
 // e2e/accessibility.spec.ts
@@ -98,7 +98,7 @@ test('Verificar que el Dashboard cumple con WCAG 2.1 AA', async ({ page }) => {
 
 ---
 
-## 📋 CHECKLIST DE ACCESIBILIDAD
+## CHECKLIST DE ACCESIBILIDAD
 
 - [ ] Jerarquía de encabezados única por página (`<h1>` principal, luego `<h2>`, `<h3>`).
 - [ ] Atributos `alt` descriptivos en todas las imágenes.

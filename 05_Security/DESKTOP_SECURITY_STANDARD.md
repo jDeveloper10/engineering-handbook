@@ -18,7 +18,7 @@ sources:
 updated: 2026-07-29
 ---
 
-# 🖥️ ESTÁNDAR DE SEGURIDAD DESKTOP (DSEC-001 a DSEC-011)
+# ESTÁNDAR DE SEGURIDAD DESKTOP (DSEC-001 a DSEC-011)
 
 > **Nivel 2 del dominio Security.** Hereda todo de [SECURITY_ENGINEERING_STANDARD.md](SECURITY_ENGINEERING_STANDARD.md) — las 7 capas (validación, CORS, auth, autorización, rate limiting, cifrado, headers) siguen aplicando **íntegras** al backend que la app consume. Este documento no las repite: agrega lo que **solo existe cuando el código corre en la máquina del usuario**.
 >
@@ -28,7 +28,7 @@ updated: 2026-07-29
 
 ---
 
-## 🎯 EL CAMBIO DE MODELO: POR QUÉ LA SEGURIDAD WEB NO BASTA AQUÍ
+## EL CAMBIO DE MODELO: POR QUÉ LA SEGURIDAD WEB NO BASTA AQUÍ
 
 En una app web el servidor es la frontera de confianza y el navegador es un cliente que **no controlas pero tampoco posees**. En una app de escritorio el binario **está en la máquina del atacante**. Eso invierte tres supuestos:
 
@@ -50,7 +50,7 @@ Frontera 3: App ←→ Disco/SO        → lo que se escribe en disco es legible
 
 ---
 
-## ⚡ REGLAS INQUEBRANTABLES
+## REGLAS INQUEBRANTABLES
 
 ### DSEC-001: El webview NO tiene acceso al sistema por defecto — ACL explícita y mínima
 
@@ -347,7 +347,7 @@ cargo audit --deny warnings && npm audit --audit-level=high
 
 ---
 
-## 📋 CHECKLIST DE AUDITORÍA DESKTOP (PRE-RELEASE)
+## CHECKLIST DE AUDITORÍA DESKTOP (PRE-RELEASE)
 
 **Frontera webview ↔ core**
 - [ ] `DSEC-001` — `capabilities/` enumera solo lo usado; ningún scope `**`; sin `shell:allow-execute`

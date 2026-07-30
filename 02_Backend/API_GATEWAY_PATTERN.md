@@ -11,18 +11,18 @@ status: current
 
 # Patrón API Gateway para Microservicios (API-007 a API-012)
 
-## 🎯 Problema
+## Problema
 Con 8+ microservicios, exponerlos directamente crea:
 - Autenticación duplicada en cada servicio
 - Rate limiting inconsistente
 - CORS complejo (8 orígenes diferentes)
 - Debugging imposible sin trazabilidad
 
-## 🏗️ Solución: API Gateway como punto único de entrada
+## Solución: API Gateway como punto único de entrada
 
 ---
 
-## ⚡ ARQUITECTURA
+## ARQUITECTURA
 
 ```
 Cliente → API Gateway (Worker público)
@@ -35,7 +35,7 @@ Cliente → API Gateway (Worker público)
 
 ---
 
-## ⚡ REGLAS INQUEBRANTABLES
+## REGLAS INQUEBRANTABLES
 
 ### API-007: GATEWAY COMO ÚNICO PUNTO DE ENTRADA
 
@@ -245,7 +245,7 @@ const version = request.headers.get('Accept-Version') || 'v1'
 
 ---
 
-## 📋 CHECKLIST API GATEWAY
+## CHECKLIST API GATEWAY
 
 - [ ] Gateway es único punto de entrada público
 - [ ] Autenticación centralizada (no duplicada)

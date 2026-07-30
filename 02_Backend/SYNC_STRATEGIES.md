@@ -9,14 +9,14 @@ updated: 2026-07-27
 status: current
 ---
 
-# 🔄 ESTRATEGIAS DE SINCRONIZACIÓN DE DATOS (OFFLINE-FIRST)
+# ESTRATEGIAS DE SINCRONIZACIÓN DE DATOS (OFFLINE-FIRST)
 
-## 🎯 OBJETIVO
+## OBJETIVO
 Garantizar la continuidad operativa de aplicaciones web, móviles y de escritorio sin conexión a internet, manteniendo la coherencia de datos y resolviendo conflictos de sincronización sin pérdida de información del usuario.
 
 ---
 
-## 🎯 REGLAS INQUEBRANTABLES
+## REGLAS INQUEBRANTABLES
 
 **[REQUIRED] SYNC-001: NUNCA perder datos del usuario por un conflicto de sincronización.** Si dos escrituras entran en conflicto y no se pueden fusionar automáticamente, el estado anterior DEBE preservarse en un borrador de conflicto.
 
@@ -32,7 +32,7 @@ Garantizar la continuidad operativa de aplicaciones web, móviles y de escritori
 
 ---
 
-## 📊 1. MATRIZ DE ESTRATEGIAS DE RESOLUCIÓN DE CONFLICTOS
+## 1. MATRIZ DE ESTRATEGIAS DE RESOLUCIÓN DE CONFLICTOS
 
 | Estrategia | Algoritmo | Caso de Uso | Complejidad |
 |---|---|---|---|
@@ -42,7 +42,7 @@ Garantizar la continuidad operativa de aplicaciones web, móviles y de escritori
 
 ---
 
-## 💻 2. COLA OFFLINE EN EL CLIENTE (IndexedDB + Dexie.js)
+## 2. COLA OFFLINE EN EL CLIENTE (IndexedDB + Dexie.js)
 
 ```typescript
 // src/lib/db.ts - Base de datos IndexedDB local para el cliente
@@ -74,7 +74,7 @@ export const offlineDb = new AppOfflineDatabase()
 
 ---
 
-## 💻 3. HOOK EN REACT: `useSync` CON REACT QUERY Y DEXIE
+## 3. HOOK EN REACT: `useSync` CON REACT QUERY Y DEXIE
 
 ```tsx
 // src/hooks/useSync.ts
@@ -149,7 +149,7 @@ export function useSync() {
 
 ---
 
-## ⚡ 4. WORKER HANDLER: SINCRONIZACIÓN INCREMENTAL
+## 4. WORKER HANDLER: SINCRONIZACIÓN INCREMENTAL
 
 ```typescript
 // POST /api/sync
@@ -188,7 +188,7 @@ export async function handleSyncEndpoint(request: Request, env: Env) {
 
 ---
 
-## 📋 CHECKLIST DE SINCRONIZACIÓN
+## CHECKLIST DE SINCRONIZACIÓN
 
 - [ ] Registro local en IndexedDB con Dexie.js para mutaciones offline.
 - [ ] Listener de reconexión `window.addEventListener('online', triggerSync)`.

@@ -9,19 +9,19 @@ updated: 2026-07-29
 status: current
 ---
 
-# 🚨 PLAYBOOK: UPLOAD FAIL (CARGA INFINITA)
+# PLAYBOOK: UPLOAD FAIL (CARGA INFINITA)
 
-## 🩺 SÍNTOMA
+## SÍNTOMA
 El usuario intenta subir una imagen, documento o archivo y la UI se queda en estado de "Loading" o "Subiendo..." indefinidamente. No hay mensaje de error, no pasa nada.
 
-## ⏱️ DIAGNÓSTICO EN 30 SEGUNDOS
+## DIAGNÓSTICO EN 30 SEGUNDOS
 1. **Frontend:** Abre la pestaña **Network** (DevTools). Busca el request POST/PUT. ¿Sigue en `pending`? ¿Tiró `CORS error`? ¿Dio HTTP 413 (Payload Too Large)?
 2. **Backend:** Abre el dashboard de Cloudflare Workers. Busca excepciones recientes o *Memory Limit Exceeded*.
 3. **Storage:** Revisa R2. ¿El archivo llegó pero el Worker no respondió?
 
 ---
 
-## 🔍 CAUSAS Y SOLUCIONES DE HIERRO
+## CAUSAS Y SOLUCIONES DE HIERRO
 
 ### Causa 1: Timeout en el Frontend (Request Colgado)
 Si la red es inestable, el request se cuelga eternamente.
@@ -60,7 +60,7 @@ El binding no está configurado en producción.
 
 ---
 
-## 💻 CÓDIGO REAL: HOOK DE UPLOAD BLINDADO
+## CÓDIGO REAL: HOOK DE UPLOAD BLINDADO
 
 ES OBLIGATORIO usar este hook (o su equivalente) para subir archivos. NUNCA crear implementaciones caseras sin timeout ni validación.
 

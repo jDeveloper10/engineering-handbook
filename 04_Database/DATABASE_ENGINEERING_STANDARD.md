@@ -368,7 +368,7 @@ const { data: orders } = await supabase
 
 ---
 
-## ⚡ REGLAS INQUEBRANTABLES (DB-001 a DB-009)
+## REGLAS INQUEBRANTABLES (DB-001 a DB-009)
 
 ### DB-001: SELECT * PROHIBIDO
 ### DB-002: FK SIN ÍNDICE PROHIBIDO  

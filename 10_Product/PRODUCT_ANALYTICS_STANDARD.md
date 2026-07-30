@@ -9,14 +9,14 @@ updated: 2026-07-27
 status: current
 ---
 
-# 📊 ESTÁNDAR DE PRODUCT ANALYTICS Y EXPERIMENTACIÓN
+# ESTÁNDAR DE PRODUCT ANALYTICS Y EXPERIMENTACIÓN
 
-## 🎯 OBJETIVO
+## OBJETIVO
 Establecer un marco unificado de telemetría e instrumentación para medir la adopción de funcionalidades, retención de usuarios, rendimiento de embudos de conversión y ejecución segura de pruebas A/B.
 
 ---
 
-## 🎯 REGLAS INQUEBRANTABLES
+## REGLAS INQUEBRANTABLES
 
 **[REQUIRED] ANALYTICS-001: Todo nuevo PRD DEBE incluir la lista de eventos de analítica a instrumentar.** Ninguna feature entra a desarrollo sin sus eventos de seguimiento definidos.
 
@@ -32,7 +32,7 @@ Establecer un marco unificado de telemetría e instrumentación para medir la ad
 
 ---
 
-## 📈 1. INSTRUMENTACIÓN DE EVENTOS CON POSTHOG
+## 1. INSTRUMENTACIÓN DE EVENTOS CON POSTHOG
 
 ### Inicialización en Frontend (React)
 ```typescript
@@ -65,7 +65,7 @@ trackEvent('feature_used', { feature_name: 'crdt_editor' })
 
 ---
 
-## 🚩 2. FEATURE FLAGS Y EXPERIMENTACIÓN A/B EN EL EDGE
+## 2. FEATURE FLAGS Y EXPERIMENTACIÓN A/B EN EL EDGE
 
 ### Worker: Evaluación de Flags con Cloudflare KV
 ```typescript
@@ -94,7 +94,7 @@ export async function getFeatureFlag(
 
 ---
 
-## 🎯 3. ANÁLISIS DE EMBUDOS (FUNNELS) Y RETENCIÓN DE COHORTES
+## 3. ANÁLISIS DE EMBUDOS (FUNNELS) Y RETENCIÓN DE COHORTES
 
 ### Ejemplo de Embudo de Conversión Principal
 ```text
@@ -106,7 +106,7 @@ Paso 4: checkout_completed     ──→ (Monetización: 8% de activos)
 
 ---
 
-## 📋 CHECKLIST DE PRODUCT ANALYTICS
+## CHECKLIST DE PRODUCT ANALYTICS
 
 - [ ] PostHog o herramienta de telemetría inicializada sin autocapture invasivo.
 - [ ] Eventos nombrados según convención `<objeto>_<acción>`.

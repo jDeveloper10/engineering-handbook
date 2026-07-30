@@ -9,13 +9,13 @@ updated: 2026-07-27
 status: current
 ---
 
-# ⚡ WORKERS COMO BACKEND ÚNICO
+# WORKERS COMO BACKEND ÚNICO
 
 > Este documento tiene una sola tesis: **Workers ES el backend. No existe Express, Fastify, Django, Rails, Laravel, VPS, ni Docker en este stack.** Todo lo que un servidor tradicional hace, un Worker lo hace mejor, más barato y sin administración.
 
 ---
 
-## 🎯 REGLAS INQUEBRANTABLES
+## REGLAS INQUEBRANTABLES
 
 **[REQUIRED] WORKER-001: Un solo stack de Workers para TODOS los clientes.**
 
@@ -35,7 +35,7 @@ Workers internos se llaman con `env.SERVICE_NAME.fetch()`. NUNCA con HTTP entre 
 
 ---
 
-## 🏗️ ARQUITECTURA: DE DONDE VIENES → A DONDE VAS
+## ARQUITECTURA: DE DONDE VIENES → A DONDE VAS
 
 ```
 ❌ ARQUITECTURA TRADICIONAL (lo que se elimina)
@@ -116,7 +116,7 @@ Cliente  →  api-gateway (Worker público)
 
 ---
 
-## 📦 ESTRUCTURA DEL BACKEND
+## ESTRUCTURA DEL BACKEND
 
 ```
 apps/
@@ -145,7 +145,7 @@ apps/
 
 ---
 
-## 🔄 MIGRACIÓN DESDE BACKEND TRADICIONAL
+## MIGRACIÓN DESDE BACKEND TRADICIONAL
 
 ```typescript
 // ❌ ANTES — Express
@@ -196,7 +196,7 @@ La lógica es idéntica. El runtime: Edge global, cold start < 5ms, $0 idle.
 
 ---
 
-## ⏰ CRON JOBS (Scheduled Workers)
+## CRON JOBS (Scheduled Workers)
 
 ```typescript
 // wrangler.toml
@@ -233,7 +233,7 @@ async function runWeeklyDigest(env: Env) {
 
 ---
 
-## 🔔 WEBHOOKS EXTERNOS (Stripe, GitHub, etc.)
+## WEBHOOKS EXTERNOS (Stripe, GitHub, etc.)
 
 ```typescript
 // apps/webhook-worker/src/stripe.ts
@@ -267,7 +267,7 @@ export async function handleStripeWebhook(request: Request, env: Env) {
 
 ---
 
-## 📋 CHECKLIST DE NUEVO WORKER
+## CHECKLIST DE NUEVO WORKER
 
 Antes de crear un Worker nuevo, verificar:
 
@@ -282,7 +282,7 @@ Antes de crear un Worker nuevo, verificar:
 
 ---
 
-## 🏆 LO QUE ELIMINAS AL ADOPTAR WORKERS
+## LO QUE ELIMINAS AL ADOPTAR WORKERS
 
 | Eliminado | Por qué | Ahorro anual estimado |
 |---|---|---|

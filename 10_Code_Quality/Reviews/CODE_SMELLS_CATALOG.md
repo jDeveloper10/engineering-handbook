@@ -9,7 +9,7 @@ updated: 2026-07-27
 status: current
 ---
 
-# 👃 Catálogo de Code Smells
+# Catálogo de Code Smells
 
 Un "code smell" (olor de código) es un síntoma superficial que usualmente corresponde a un problema más profundo en el sistema. A continuación los más comunes en nuestro stack (React/TS) y por qué evitarlos.
 

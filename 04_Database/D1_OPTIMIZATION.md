@@ -9,7 +9,7 @@ updated: 2026-07-29
 status: current
 ---
 
-# 🗄️ OPTIMIZACIÓN AVANZADA D1 (Cloudflare Database)
+# OPTIMIZACIÓN AVANZADA D1 (Cloudflare Database)
 
 ## O-026: Índices Parciales (Indexa solo lo que consultas)
 

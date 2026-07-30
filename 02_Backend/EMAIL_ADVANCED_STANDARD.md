@@ -9,14 +9,14 @@ updated: 2026-07-27
 status: current
 ---
 
-# 📧 ESTÁNDAR AVANZADO DE CORREOS ELECTRÓNICOS Y ENTREGABILIDAD
+# ESTÁNDAR AVANZADO DE CORREOS ELECTRÓNICOS Y ENTREGABILIDAD
 
-## 🎯 OBJETIVO
+## OBJETIVO
 Optimizar la entregabilidad a bandeja de entrada (Inbox Rate), gestionar reputación de dominios, procesar eventos de rebote (Bounces) y medir el rendimiento de campañas e emails transaccionales.
 
 ---
 
-## 🎯 REGLAS INQUEBRANTABLES
+## REGLAS INQUEBRANTABLES
 
 **[REQUIRED] EMAIL-001: Email Transaccional entregado en < 5 segundos.** Todos los correos de sistema (magic links, verificaciones, 2FA) deben encolarse y procesarse con prioridad ultra-alta.
 
@@ -32,7 +32,7 @@ Optimizar la entregabilidad a bandeja de entrada (Inbox Rate), gestionar reputac
 
 ---
 
-## 🔔 1. WEBHOOK DE EVENTOS DE EMAIL (RESEND)
+## 1. WEBHOOK DE EVENTOS DE EMAIL (RESEND)
 
 ```typescript
 // apps/notif-worker/src/webhooks/resend.ts
@@ -66,7 +66,7 @@ export async function handleResendWebhook(request: Request, env: Env): Promise<R
 
 ---
 
-## 🧪 2. A/B TESTING DE ASUNTOS DE CORREO
+## 2. A/B TESTING DE ASUNTOS DE CORREO
 
 ```typescript
 export function selectEmailSubject(userId: string, variantA: string, variantB: string): string {
@@ -78,7 +78,7 @@ export function selectEmailSubject(userId: string, variantA: string, variantB: s
 
 ---
 
-## 📋 CHECKLIST AVANZADO DE EMAIL
+## CHECKLIST AVANZADO DE EMAIL
 
 - [ ] Registros SPF, DKIM y DMARC `p=reject` validados en DNS.
 - [ ] Webhook de Resend configurado para capturar `email.bounced` y `email.complained`.

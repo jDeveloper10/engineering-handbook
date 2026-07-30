@@ -13,7 +13,7 @@ status: current
 
 Las siguientes reglas son de hierro para garantizar bases de datos robustas, escalables y sin huecos, independientemente del motor o plataforma (PostgreSQL, Supabase, MySQL). 
 
-## 🎯 LOS 4 PILARES DE UNA BASE DE DATOS INDESTRUCTIBLE
+## LOS 4 PILARES DE UNA BASE DE DATOS INDESTRUCTIBLE
 
 1. **ESQUEMA BLINDADO** → Sin huecos estructurales
 2. **RENDIMIENTO QUIRÚRGICO** → Escala sin degradarse
@@ -22,7 +22,7 @@ Las siguientes reglas son de hierro para garantizar bases de datos robustas, esc
 
 ---
 
-## 📐 PILAR 1: ESQUEMA BLINDADO (Sin Huecos)
+## PILAR 1: ESQUEMA BLINDADO (Sin Huecos)
 
 ### DB-010: NUNCA CONFIAR EN LA APLICACIÓN PARA VALIDAR
 
@@ -130,7 +130,7 @@ SELECT cron.schedule('create-partitions', '0 0 1 * *', 'SELECT create_monthly_pa
 
 ---
 
-## ⚡ PILAR 2: RENDIMIENTO QUIRÚRGICO
+## PILAR 2: RENDIMIENTO QUIRÚRGICO
 
 ### DB-014: ÍNDICES QUE REALMENTE IMPORTAN
 
@@ -208,7 +208,7 @@ ORDER BY created_at DESC LIMIT 20;
 
 ---
 
-## 🔒 PILAR 3: INTEGRIDAD ABSOLUTA
+## PILAR 3: INTEGRIDAD ABSOLUTA
 
 ### DB-018: TRANSACCIONES CON SAVEPOINT
 
@@ -262,7 +262,7 @@ Si cambian las propuestas, guarda el histórico usando Triggers de base de datos
 
 ---
 
-## 🛠️ PILAR 4: OPERABILIDAD
+## PILAR 4: OPERABILIDAD
 
 ### DB-022: MIGRACIONES CON UP Y DOWN TESTEADO
 
@@ -290,7 +290,7 @@ Verifica periódicamente `pg_stat_statements` (para queries lentas), `pg_stat_us
 
 ---
 
-## 🧪 CHECKLIST DE BD INDESTRUCTIBLE
+## CHECKLIST DE BD INDESTRUCTIBLE
 
 ### Esquema
 - [ ] ¿Todas las PK son UUID? (no exponer IDs secuenciales)

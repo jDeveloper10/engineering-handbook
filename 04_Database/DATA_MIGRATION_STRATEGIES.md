@@ -9,14 +9,14 @@ updated: 2026-07-27
 status: current
 ---
 
-# 🗄️ ESTRATEGIAS AVANZADAS DE MIGRACIÓN DE DATOS
+# ESTRATEGIAS AVANZADAS DE MIGRACIÓN DE DATOS
 
-## 🎯 OBJETIVO
+## OBJETIVO
 Garantizar la integridad, disponibilidad y consistencia de los datos durante cualquier proceso de reestructuración o migración de motor de base de datos, manteniendo disponibilidad continua (Zero-Downtime) y mecanismos de reversión inmediata.
 
 ---
 
-## 🎯 REGLAS INQUEBRANTABLES
+## REGLAS INQUEBRANTABLES
 
 **[REQUIRED] MIG-001: NUNCA ejecutar una migración de datos sin un plan de Rollback verificado y testeado.** Si la migración falla a mitad de proceso, se debe poder restaurar el estado consistente previo sin pérdida de datos.
 
@@ -36,7 +36,7 @@ Garantizar la integridad, disponibilidad y consistencia de los datos durante cua
 
 ---
 
-## 🔄 1. ZERO-DOWNTIME MIGRATIONS (EXPANSION Y CONTRACCION)
+## 1. ZERO-DOWNTIME MIGRATIONS (EXPANSION Y CONTRACCION)
 
 Para cambiar el esquema de producción sin interrumpir el tráfico se aplica el patrón **Expand / Contract (Parallel Change)**.
 
@@ -75,7 +75,7 @@ export async function createProfileDoubleWrite(userData: CreateUserInput, env: E
 
 ---
 
-## ⚡ 2. MIGRACIÓN DE POSTGRESQL A CLOUDFLARE D1
+## 2. MIGRACIÓN DE POSTGRESQL A CLOUDFLARE D1
 
 ### Diferencias y Limitaciones Clave
 | Característica | PostgreSQL (Supabase) | Cloudflare D1 (SQLite) |
@@ -102,7 +102,7 @@ npx wrangler d1 execute my-production-db --file=dump_raw.sql
 
 ---
 
-## 🚀 3. MIGRACIÓN DE FIRESTORE A SUPABASE (POSTGRESQL)
+## 3. MIGRACIÓN DE FIRESTORE A SUPABASE (POSTGRESQL)
 
 ```typescript
 // Script Node.js para migrar colecciones NoSQL de Firestore a PostgreSQL relacional
@@ -141,7 +141,7 @@ async function migrateFirestoreUsersToSupabase() {
 
 ---
 
-## 📦 4. BACKFILL EN LOTES Y VALIDACIÓN POR CHECKSUM
+## 4. BACKFILL EN LOTES Y VALIDACIÓN POR CHECKSUM
 
 ### Script de Backfill en Lotes (Batched Backfill)
 ```typescript
@@ -188,7 +188,7 @@ FROM profiles;
 
 ---
 
-## 📋 CHECKLIST DE MIGRACIÓN
+## CHECKLIST DE MIGRACIÓN
 
 - [ ] Plan de Rollback escrito y probado en entorno de staging.
 - [ ] Doble escritura activa y monitoreada durante la fase de transición.

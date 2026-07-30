@@ -9,13 +9,13 @@ updated: 2026-07-27
 status: current
 ---
 
-# 📚 ESTÁNDAR DE DOCUMENTACIÓN DE PROYECTOS Y APIS
+# ESTÁNDAR DE DOCUMENTACIÓN DE PROYECTOS Y APIS
 
 > **Objetivo:** Garantizar que todo repositorio y API del ecosistema sea auto-documentado, comprensible para desarrolladores humanos e interprete sin ambigüedad por agentes de IA.
 
 ---
 
-## 🎯 LAS 5 REGLAS INQUEBRANTABLES DE DOCUMENTACIÓN
+## LAS 5 REGLAS INQUEBRANTABLES DE DOCUMENTACIÓN
 
 1. **[REQUIRED] Todo repositorio DEBE incluir un `CLAUDE.md` o `AGENTS.md` en la raíz.** Es el mapa de contexto primario para IAs.
 2. **[REQUIRED] Toda API expuesta DEBE generar su especificación OpenAPI 3.1 automáticamente.** Cero especificaciones escritas a mano que se desactualizan.
@@ -25,7 +25,7 @@ status: current
 
 ---
 
-## 🤖 1. ESTÁNDAR CLAUDE.MD / AGENTS.MD POR REPOSITORIO
+## 1. ESTÁNDAR CLAUDE.MD / AGENTS.MD POR REPOSITORIO
 
 **[REQUIRED]** Todo repositorio del portafolio DEBE contener un archivo `CLAUDE.md` en la raíz. Este archivo proporciona el contexto técnico inmediato para asistentes de IA y desarrolladores.
 
@@ -72,7 +72,7 @@ packages/
 
 ---
 
-## 🌐 2. ESTÁNDAR OPENAPI 3.1 Y SWAGGER (APIs)
+## 2. ESTÁNDAR OPENAPI 3.1 Y SWAGGER (APIs)
 
 **[REQUIRED]** Todas las APIs desarrolladas en Cloudflare Workers deben autogenerar la especificación **OpenAPI 3.1** a partir de tipos y validaciones de Zod usando `Hono` o `@hono/zod-openapi`. Queda prohibido mantener JSON/YAML de OpenAPI manualmente.
 
@@ -154,7 +154,7 @@ export default app
 
 ---
 
-## ⚙️ 3. GENERACIÓN AUTOMÁTICA DE DOCUMENTACIÓN
+## 3. GENERACIÓN AUTOMÁTICA DE DOCUMENTACIÓN
 
 El pipeline de documentación se ejecuta de forma automática en CI/CD:
 
@@ -205,7 +205,7 @@ jobs:
 
 ---
 
-## 📜 4. TEMPLATE DE CHANGELOG.MD
+## 4. TEMPLATE DE CHANGELOG.MD
 
 **[REQUIRED]** Todo proyecto mantendrá un `CHANGELOG.md` estructurado según [Keep a Changelog](https://keepachangelog.com/) y siguiendo [SemVer](https://semver.org/).
 
@@ -246,7 +246,7 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
 
 ---
 
-## 📑 5. TEMPLATE DE README.MD POR REPOSITORIO
+## 5. TEMPLATE DE README.MD POR REPOSITORIO
 
 **[REQUIRED]** Estructura obligatoria para el `README.md` de todo repositorio:
 

@@ -13,7 +13,7 @@ status: current
 
 > 🔒 **Este documento define cómo se construye la app, no qué la mantiene segura.** Las reglas de seguridad del APK (cero secretos en el bundle, firma del artefacto, TLS obligatorio, tokens en Keystore, componentes exportados, OTA firmado) viven en [05_Security/MOBILE_SECURITY_STANDARD.md](../../05_Security/MOBILE_SECURITY_STANDARD.md) (`MSEC-001` a `MSEC-012`) y son de lectura obligatoria antes de publicar. En particular, `MOB-003` (biometría) solo es seguro implementado según `MSEC-009`. Ante conflicto, manda el documento de seguridad.
 
-## 🎯 Stack
+## Stack
 - **Framework:** React Native + Expo (managed workflow)
 - **Navegación:** Expo Router (file-based)
 - **Estado:** React Query + Zustand
@@ -22,7 +22,7 @@ status: current
 
 ---
 
-## ⚡ REGLAS INQUEBRANTABLES
+## REGLAS INQUEBRANTABLES
 
 ### MOB-001: NUNCA USAR WEBVIEW PARA FUNCIONALIDAD CORE
 

@@ -37,7 +37,7 @@
         "lcp",
         "ttfb"
       ],
-      "tokens": 3720,
+      "tokens": 3715,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -168,7 +168,7 @@
         "legible",
         "early"
       ],
-      "tokens": 9795,
+      "tokens": 9788,
       "status": "current",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -281,7 +281,7 @@
         "desktop",
         "impresion"
       ],
-      "tokens": 1256,
+      "tokens": 1254,
       "status": "current",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -499,7 +499,7 @@
         "deep-links",
         "ocr"
       ],
-      "tokens": 1758,
+      "tokens": 1757,
       "status": "current",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -560,7 +560,7 @@
         "sincronizacion",
         "integracion"
       ],
-      "tokens": 2522,
+      "tokens": 2516,
       "status": "current",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -645,7 +645,7 @@
         "columnas",
         "integracion"
       ],
-      "tokens": 2557,
+      "tokens": 2553,
       "status": "current",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -786,7 +786,7 @@
         "hook",
         "usemultistepform"
       ],
-      "tokens": 1660,
+      "tokens": 1657,
       "status": "current",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -870,7 +870,7 @@
         "cache",
         "instante"
       ],
-      "tokens": 1273,
+      "tokens": 1269,
       "status": "current",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -905,7 +905,7 @@
         "spinner",
         "server-sent"
       ],
-      "tokens": 1566,
+      "tokens": 1562,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -939,7 +939,7 @@
         "escritura",
         "ventana"
       ],
-      "tokens": 2431,
+      "tokens": 2427,
       "status": "current",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -1006,7 +1006,7 @@
         "componente",
         "serializacion"
       ],
-      "tokens": 2175,
+      "tokens": 2169,
       "status": "current",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -1139,7 +1139,7 @@
         "translation",
         "lazy-loading"
       ],
-      "tokens": 805,
+      "tokens": 802,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -1172,7 +1172,7 @@
         "componentes",
         "formatos"
       ],
-      "tokens": 1307,
+      "tokens": 1302,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -1253,7 +1253,7 @@
         "offline",
         "install-prompt"
       ],
-      "tokens": 887,
+      "tokens": 882,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -1313,7 +1313,7 @@
         "worker",
         "estrategias"
       ],
-      "tokens": 1982,
+      "tokens": 1977,
       "status": "current",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -1346,7 +1346,7 @@
         "canonical",
         "hreflang"
       ],
-      "tokens": 1278,
+      "tokens": 1272,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -1404,7 +1404,7 @@
         "axe-core",
         "lighthouse"
       ],
-      "tokens": 980,
+      "tokens": 975,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -1671,7 +1671,7 @@
         "anti-flash",
         "head"
       ],
-      "tokens": 1530,
+      "tokens": 1526,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -1720,7 +1720,7 @@
         "punto-unico",
         "agregacion"
       ],
-      "tokens": 1940,
+      "tokens": 1937,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -1780,7 +1780,7 @@
         "recomendados",
         "apertura"
       ],
-      "tokens": 1723,
+      "tokens": 1718,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -1812,7 +1812,7 @@
         "warming",
         "ab-testing"
       ],
-      "tokens": 928,
+      "tokens": 923,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -1845,7 +1845,7 @@
         "aplicacion",
         "gateway"
       ],
-      "tokens": 1332,
+      "tokens": 1329,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -1870,7 +1870,7 @@
         "computo-pesado",
         "colas"
       ],
-      "tokens": 1160,
+      "tokens": 1157,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -1902,7 +1902,7 @@
         "mobile-push",
         "in-app"
       ],
-      "tokens": 6058,
+      "tokens": 6051,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -1936,7 +1936,7 @@
         "thundering",
         "herd"
       ],
-      "tokens": 1439,
+      "tokens": 1435,
       "status": "current",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -1968,7 +1968,7 @@
         "conflict-resolution",
         "offline-queue"
       ],
-      "tokens": 1771,
+      "tokens": 1765,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -2018,7 +2018,7 @@
         "microservicios",
         "migration"
       ],
-      "tokens": 3100,
+      "tokens": 3094,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -2051,7 +2051,7 @@
         "memoria",
         "perfilado"
       ],
-      "tokens": 2416,
+      "tokens": 2415,
       "status": "current",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -2130,7 +2130,7 @@
         "orden",
         "columnas"
       ],
-      "tokens": 1815,
+      "tokens": 1814,
       "status": "current",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -2163,7 +2163,7 @@
         "checksum",
         "double-write"
       ],
-      "tokens": 1932,
+      "tokens": 1926,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -2224,7 +2224,7 @@
         "huecos",
         "quirurgico"
       ],
-      "tokens": 3754,
+      "tokens": 3749,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -2258,7 +2258,7 @@
         "worker",
         "endpoint"
       ],
-      "tokens": 2661,
+      "tokens": 2655,
       "status": "current",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -2288,7 +2288,7 @@
         "white-labeling",
         "rate-limiting"
       ],
-      "tokens": 964,
+      "tokens": 958,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -2376,7 +2376,7 @@
         "paginacion",
         "cursor"
       ],
-      "tokens": 572,
+      "tokens": 571,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -2442,7 +2442,7 @@
         "analyze",
         "vacuum"
       ],
-      "tokens": 481,
+      "tokens": 480,
       "status": "current",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -2475,7 +2475,7 @@
         "lectura",
         "publica"
       ],
-      "tokens": 638,
+      "tokens": 637,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -2510,7 +2510,7 @@
         "okta",
         "azure-ad"
       ],
-      "tokens": 1280,
+      "tokens": 1274,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -2546,7 +2546,7 @@
         "completa",
         "aplicaciones"
       ],
-      "tokens": 4240,
+      "tokens": 4235,
       "status": "current",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -2587,7 +2587,7 @@
         "path-traversal",
         "cargo-audit"
       ],
-      "tokens": 5747,
+      "tokens": 5743,
       "status": "VERIFIED",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -2679,7 +2679,7 @@
         "consent",
         "privacidad-por-diseno"
       ],
-      "tokens": 2014,
+      "tokens": 2008,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -2728,7 +2728,7 @@
         "jadx",
         "apktool"
       ],
-      "tokens": 5453,
+      "tokens": 5450,
       "status": "VERIFIED",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -2761,7 +2761,7 @@
         "centavos",
         "payment-intent"
       ],
-      "tokens": 3845,
+      "tokens": 3835,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -2789,7 +2789,7 @@
         "cobertura",
         "alcance"
       ],
-      "tokens": 1210,
+      "tokens": 1206,
       "status": "VERIFIED",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -2821,7 +2821,7 @@
         "security.txt",
         "hardening"
       ],
-      "tokens": 939,
+      "tokens": 933,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -2855,7 +2855,7 @@
         "defensa",
         "validacion"
       ],
-      "tokens": 8405,
+      "tokens": 8397,
       "status": "current",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -2913,7 +2913,7 @@
         "load-testing",
         "mutation-testing"
       ],
-      "tokens": 1514,
+      "tokens": 1507,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -3446,7 +3446,7 @@
         "preview-environments",
         "secret-rotation"
       ],
-      "tokens": 894,
+      "tokens": 890,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -3472,7 +3472,7 @@
         "workers",
         "pipeline"
       ],
-      "tokens": 1962,
+      "tokens": 1960,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -3548,7 +3548,7 @@
         "reproducible",
         "dashboard"
       ],
-      "tokens": 1035,
+      "tokens": 1034,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -3574,7 +3574,7 @@
         "correlacion",
         "mttr"
       ],
-      "tokens": 1954,
+      "tokens": 1952,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -3716,7 +3716,7 @@
         "descartadas",
         "workers"
       ],
-      "tokens": 2028,
+      "tokens": 2027,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -3747,7 +3747,7 @@
         "cloudflare",
         "durable-objects"
       ],
-      "tokens": 2998,
+      "tokens": 2991,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -3782,7 +3782,7 @@
         "compartidos",
         "razon"
       ],
-      "tokens": 2282,
+      "tokens": 2276,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -3868,7 +3868,7 @@
         "graceful-degradation",
         "capacity-planning"
       ],
-      "tokens": 847,
+      "tokens": 842,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -3900,7 +3900,7 @@
         "detener",
         "desarrollo"
       ],
-      "tokens": 369,
+      "tokens": 368,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -3932,7 +3932,7 @@
         "conducta",
         "comentarios"
       ],
-      "tokens": 412,
+      "tokens": 410,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -3964,7 +3964,7 @@
         "drilling",
         "excesivo"
       ],
-      "tokens": 487,
+      "tokens": 486,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -4029,7 +4029,7 @@
         "switches",
         "largos"
       ],
-      "tokens": 537,
+      "tokens": 535,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -4060,7 +4060,7 @@
         "estricta",
         "typescript"
       ],
-      "tokens": 940,
+      "tokens": 939,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -4092,7 +4092,7 @@
         "VAT",
         "tax"
       ],
-      "tokens": 1080,
+      "tokens": 1074,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -4122,7 +4122,7 @@
         "retention",
         "events"
       ],
-      "tokens": 1137,
+      "tokens": 1132,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -4153,7 +4153,7 @@
         "backlog",
         "requirements"
       ],
-      "tokens": 2109,
+      "tokens": 2104,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -4185,7 +4185,7 @@
         "backend",
         "edge"
       ],
-      "tokens": 375,
+      "tokens": 374,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -4250,7 +4250,7 @@
         "carga",
         "jank"
       ],
-      "tokens": 476,
+      "tokens": 475,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -4283,7 +4283,7 @@
         "mitigacion",
         "rapida"
       ],
-      "tokens": 430,
+      "tokens": 429,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -4318,7 +4318,7 @@
         "segundos",
         "causas"
       ],
-      "tokens": 1039,
+      "tokens": 1035,
       "status": "current",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -4352,7 +4352,7 @@
         "manejador",
         "errores"
       ],
-      "tokens": 1080,
+      "tokens": 1077,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -4386,7 +4386,7 @@
         "diagnostico",
         "segundos"
       ],
-      "tokens": 1062,
+      "tokens": 1058,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -4420,7 +4420,7 @@
         "causas",
         "ligadas"
       ],
-      "tokens": 1231,
+      "tokens": 1227,
       "status": "current",
       "updated": "2026-07-29",
       "has_frontmatter": true
@@ -4454,7 +4454,7 @@
         "segundos",
         "soluciones"
       ],
-      "tokens": 960,
+      "tokens": 956,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -4484,7 +4484,7 @@
         "tooltips",
         "walkthroughs"
       ],
-      "tokens": 788,
+      "tokens": 783,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -4518,7 +4518,7 @@
         "semver",
         "readme"
       ],
-      "tokens": 2659,
+      "tokens": 2653,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -4587,7 +4587,7 @@
         "variables-entorno",
         "testing"
       ],
-      "tokens": 228,
+      "tokens": 223,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -4621,7 +4621,7 @@
         "prompt",
         "caching"
       ],
-      "tokens": 1310,
+      "tokens": 1305,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -4703,7 +4703,7 @@
         "typescript",
         "zod"
       ],
-      "tokens": 2564,
+      "tokens": 2559,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -4760,7 +4760,7 @@
         "snippets",
         "vscode"
       ],
-      "tokens": 775,
+      "tokens": 770,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -4926,7 +4926,7 @@
         "scorecard",
         "backlog"
       ],
-      "tokens": 9838,
+      "tokens": 9822,
       "status": "current",
       "updated": "2026-07-27",
       "has_frontmatter": true
@@ -4980,8 +4980,8 @@
     }
   ],
   "_meta": {
-    "generated_at": "2026-07-29T22:20:49.476Z",
+    "generated_at": "2026-07-30T05:39:39.043Z",
     "total_docs": 171,
-    "total_tokens": 446370
+    "total_tokens": 446042
   }
 }

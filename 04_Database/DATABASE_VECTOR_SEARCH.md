@@ -9,9 +9,9 @@ updated: 2026-07-29
 status: current
 ---
 
-# 🔍 BÚSQUEDA VECTORIAL Y SEMÁNTICA (pgvector)
+# BÚSQUEDA VECTORIAL Y SEMÁNTICA (pgvector)
 
-## 🎯 ¿Qué es y cuándo usarlo?
+## ¿Qué es y cuándo usarlo?
 La **búsqueda por texto completo** (FTS con pg_trgm / GIN) resuelve búsquedas exactas y por trigrams. La **búsqueda semántica** resuelve búsquedas por *significado* — si un usuario busca "cómo hacer deploy" encontrará documentos que hablan de "despliegue a producción" aunque no contengan la palabra exacta.
 
 La búsqueda semántica usa **embeddings**: vectores numéricos de alta dimensión que representan el significado del texto. `pgvector` es la extensión de Postgres que almacena y consulta esos vectores con operaciones de similitud coseno.
@@ -22,7 +22,7 @@ La búsqueda semántica usa **embeddings**: vectores numéricos de alta dimensi�
 
 ---
 
-## ⚙️ 1. CONFIGURACIÓN DE LA BASE DE DATOS
+## 1. CONFIGURACIÓN DE LA BASE DE DATOS
 
 ```sql
 -- Habilitar la extensión pgvector (Supabase la tiene disponible)
@@ -72,7 +72,7 @@ $$;
 
 ---
 
-## 💻 2. WORKER: GENERACIÓN Y GUARDADO DE EMBEDDINGS
+## 2. WORKER: GENERACIÓN Y GUARDADO DE EMBEDDINGS
 
 Los embeddings se generan cuando se crea o actualiza un documento. Para no bloquear el request del usuario, se encolan en un **Cloudflare Queue**.
 
@@ -162,7 +162,7 @@ async function generateAndSaveEmbedding(
 
 ---
 
-## 💻 3. ENDPOINT DE BÚSQUEDA (FTS + Semántica combinados)
+## 3. ENDPOINT DE BÚSQUEDA (FTS + Semántica combinados)
 
 ```typescript
 // GET /api/search?q=&team_id=&mode=smart
@@ -241,7 +241,7 @@ export async function handleSearch(request: Request, env: Env) {
 
 ---
 
-## ⚙️ 4. BÚSQUEDA FUZZY CON pg_trgm
+## 4. BÚSQUEDA FUZZY CON pg_trgm
 
 Para tolerancia a errores tipográficos (ej: "despliege" → "despliegue"):
 
@@ -290,7 +290,7 @@ $$;
 
 ---
 
-## 💰 GESTIÓN DE COSTOS
+## GESTIÓN DE COSTOS
 
 | Operación | Costo (text-embedding-3-small) | Estrategia |
 |-----------|-------------------------------|------------|

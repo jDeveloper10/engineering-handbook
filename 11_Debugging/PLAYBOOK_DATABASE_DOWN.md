@@ -9,19 +9,19 @@ updated: 2026-07-29
 status: current
 ---
 
-# 🚨 PLAYBOOK: DATABASE DOWN
+# PLAYBOOK: DATABASE DOWN
 
-## 🩺 SÍNTOMA
+## SÍNTOMA
 La app carga, pero no hay datos. Todo devuelve `Error 500`. El log de errores está inundado de `Connection pool timeout`, `Database is uncontactable`, o `Query execution failed`.
 
-## ⏱️ DIAGNÓSTICO EN 30 SEGUNDOS
+## DIAGNÓSTICO EN 30 SEGUNDOS
 1. **Cloudflare D1 Dashboard:** Revisa latencia media y ratio de errores. ¿Estás tocando el límite de filas leídas por segundo?
 2. **Supabase Dashboard (si aplica):** ¿La CPU de la DB está al 100%? ¿Memoria llena?
 3. **Logs:** ¿El error es de red (`timeout`) o de autorización (`RLS denied`)?
 
 ---
 
-## 🔍 CAUSAS Y SOLUCIONES DE HIERRO
+## CAUSAS Y SOLUCIONES DE HIERRO
 
 ### Causa 1: Connection Pool Agotado (Supabase/Postgres)
 Miles de workers intentan abrir una conexión TCP a la base de datos simultáneamente.
@@ -44,7 +44,7 @@ Si usas D1 y pasas las 100,000 queries gratuitas rápidas o el límite de concur
 
 ---
 
-## 💻 CÓDIGO: CIRCUIT BREAKER Y FALLBACK
+## CÓDIGO: CIRCUIT BREAKER Y FALLBACK
 
 Si la DB muere, el sitio no debería morir. ES OBLIGATORIO implementar un Circuit Breaker que devuelva caché (Stale data) en lugar de una pantalla en blanco.
 

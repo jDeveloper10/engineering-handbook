@@ -9,13 +9,13 @@ updated: 2026-07-27
 status: current
 ---
 
-# 📐 MODELO C4 Y DIAGRAMACIÓN DE ARQUITECTURA
+# MODELO C4 Y DIAGRAMACIÓN DE ARQUITECTURA
 
 Este documento define la norma obligatoria para documentar la arquitectura visualmente usando el **modelo C4** y **Mermaid.js**. Los diagramas deben ser versionables en Git, legibles directamente en GitHub/Markdown y mantener coherencia con el stack **Cloudflare Workers + Supabase + React**.
 
 ---
 
-## 🎯 LAS 4 CAPAS DEL MODELO C4
+## LAS 4 CAPAS DEL MODELO C4
 
 ```
 Nivel 1: Contexto (System Context) ──→ Quién usa el sistema y qué sistemas externos se integran
@@ -26,7 +26,7 @@ Nivel 4: Código (Code)              ──→ UML / Flujos de clases (opcional 
 
 ---
 
-## 🌐 1. DIAGRAMA C4 NIVEL 1: CONTEXTO DEL SISTEMA
+## 1. DIAGRAMA C4 NIVEL 1: CONTEXTO DEL SISTEMA
 
 Muestra el panorama general: cómo interactúan los usuarios (autenticados y anónimos) con la plataforma SaaS y con los servicios de terceros.
 
@@ -58,7 +58,7 @@ C4Context
 
 ---
 
-## 🏗️ 2. DIAGRAMA C4 NIVEL 2: CONTENEDORES
+## 2. DIAGRAMA C4 NIVEL 2: CONTENEDORES
 
 Muestra las unidades de software desplegables, bases de datos y capas de almacenamiento en el Edge de Cloudflare y Supabase Cloud.
 
@@ -101,7 +101,7 @@ C4Container
 
 ---
 
-## 🧩 3. DIAGRAMA C4 NIVEL 3: COMPONENTES (API GATEWAY)
+## 3. DIAGRAMA C4 NIVEL 3: COMPONENTES (API GATEWAY)
 
 Desglosa el funcionamiento interno del contenedor **API Gateway Worker** y su interacción vía **Service Bindings** con los micro-workers especializados.
 
@@ -136,7 +136,7 @@ C4Component
 
 ---
 
-## ⏱️ 4. DIAGRAMAS DE SECUENCIA
+## 4. DIAGRAMAS DE SECUENCIA
 
 ### 4.1 Flujo de Pago y Suscripción (Stripe → Worker → Webhook → Supabase)
 
@@ -203,7 +203,7 @@ sequenceDiagram
 
 ---
 
-## 🚀 5. DIAGRAMA DE DESPLIEGUE (Deployment Architecture)
+## 5. DIAGRAMA DE DESPLIEGUE (Deployment Architecture)
 
 Ilustra la distribución física de la infraestructura en el Edge global de Cloudflare y la región de base de datos de Supabase.
 
@@ -237,7 +237,7 @@ deploymentDiagram
 
 ---
 
-## 🛠️ HERRAMIENTAS Y REGLAS DE DOCUMENTACIÓN VISUAL
+## HERRAMIENTAS Y REGLAS DE DOCUMENTACIÓN VISUAL
 
 1. **Mermaid.js obligatorio:** Todos los diagramas del repositorio deben escribirse en bloque ```mermaid para permitir versionado Git en texto plano.
 2. **Sin imágenes binarias sin fuente:** Queda prohibido subir diagramas PNG/JPG sin guardar el archivo fuente `.drawio` o `.excalidraw` en el mismo directorio.

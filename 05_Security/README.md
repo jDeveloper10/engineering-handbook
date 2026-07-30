@@ -15,7 +15,7 @@ sources:
 updated: 2026-07-29
 ---
 
-# 🔒 DOMINIO SECURITY — ÍNDICE
+# DOMINIO SECURITY — ÍNDICE
 
 Este dominio cubre **tres superficies de despliegue**: web, escritorio y móvil. El principio que las une es uno solo:
 
@@ -25,7 +25,7 @@ Todo lo demás son consecuencias de aplicar ese principio a un runtime distinto.
 
 ---
 
-## 🗺️ Qué documento aplica según lo que estés construyendo
+## Qué documento aplica según lo que estés construyendo
 
 | Estás trabajando en… | Empieza por | Y además |
 |---|---|---|
@@ -41,7 +41,7 @@ Todo lo demás son consecuencias de aplicar ese principio a un runtime distinto.
 
 ---
 
-## 🧱 Estructura del dominio
+## Estructura del dominio
 
 ```
 Nivel 1 — Base, aplica SIEMPRE
@@ -67,7 +67,7 @@ Operación
 
 ---
 
-## 🔗 Las tres reglas que se repiten en las tres plataformas
+## Las tres reglas que se repiten en las tres plataformas
 
 No son duplicación; son la misma regla vista desde cada runtime, y por eso llevan un identificador en cada documento:
 
@@ -81,7 +81,7 @@ Si una de las tres se rompe en cualquier plataforma, las demás capas no compens
 
 ---
 
-## 🚫 Alcance: qué NO cubre este dominio
+## Alcance: qué NO cubre este dominio
 
 Declarado explícitamente para que nadie asuma cobertura que no existe:
 

@@ -9,7 +9,7 @@ updated: 2026-07-27
 status: current
 ---
 
-# 🚨 Playbook: La API está Caída (Error 500 / Timeout)
+# Playbook: La API está Caída (Error 500 / Timeout)
 
 Si el frontend reporta masivamente "Error de conexión" o "Status 500", sigue estos pasos exactos (no saltes ninguno).
 

@@ -9,9 +9,9 @@ updated: 2026-07-29
 status: current
 ---
 
-# ✍️ EDITOR DE TEXTO ENRIQUECIDO (TipTap)
+# EDITOR DE TEXTO ENRIQUECIDO (TipTap)
 
-## 🎯 ¿Qué es y cuándo usarlo?
+## ¿Qué es y cuándo usarlo?
 TipTap es el editor WYSIWYG headless (sin estilos propios) basado en ProseMirror. Es la elección estándar para este stack porque es React-first, TypeScript nativo, extensible por extensiones, y su output es JSON (Tiptap JSON) o HTML puro — lo que facilita la serialización en Supabase y la exportación.
 
 > **[REQUIRED] REGLA:** El contenido del editor NUNCA se guarda como HTML crudo en la DB. Se guarda como **JSON serializado** (TipTap `JSONContent`) y se convierte a HTML solo en el momento de renderizar o exportar. Esto previene XSS estructural y facilita la colaboración CRDT.
@@ -20,7 +20,7 @@ TipTap es el editor WYSIWYG headless (sin estilos propios) basado en ProseMirror
 
 ---
 
-## ⚙️ 1. INSTALACIÓN Y CONFIGURACIÓN BASE
+## 1. INSTALACIÓN Y CONFIGURACIÓN BASE
 
 ```bash
 npm install @tiptap/react @tiptap/pm @tiptap/starter-kit @tiptap/extension-collaboration @tiptap/extension-mention @tiptap/extension-placeholder
@@ -28,7 +28,7 @@ npm install @tiptap/react @tiptap/pm @tiptap/starter-kit @tiptap/extension-colla
 
 ---
 
-## 💻 2. HOOK: `useDocumentEditor`
+## 2. HOOK: `useDocumentEditor`
 
 El hook encapsula la instancia de TipTap, la configuración de extensiones y la lógica de guardado.
 
@@ -136,7 +136,7 @@ export function useDocumentEditor({
 
 ---
 
-## 🎨 3. COMPONENTE `DocumentEditor`
+## 3. COMPONENTE `DocumentEditor`
 
 ```tsx
 import { EditorContent } from '@tiptap/react'
@@ -215,7 +215,7 @@ function EditorToolbar({ editor }) {
 
 ---
 
-## 💾 4. SERIALIZACIÓN Y GUARDADO EN SUPABASE
+## 4. SERIALIZACIÓN Y GUARDADO EN SUPABASE
 
 ```typescript
 // El contenido se guarda como JSON serializado (TEXT en la DB)
@@ -250,7 +250,7 @@ async function loadDocument(docId: string) {
 
 ---
 
-## 📋 CHECKLIST DE IMPLEMENTACIÓN
+## CHECKLIST DE IMPLEMENTACIÓN
 
 - [ ] `StarterKit` con `history: false` si se usa Yjs (ver FRONTEND_CRDT_COLLABORATION.md)
 - [ ] Auto-save con debounce de 2000ms — NUNCA guardar en cada keystroke

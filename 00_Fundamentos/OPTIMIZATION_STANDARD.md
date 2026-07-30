@@ -9,13 +9,13 @@ updated: 2026-07-29
 status: current
 ---
 
-# ⚡ OPTIMIZACIÓN QUIRÚRGICA - CÓDIGO CORTO, RÁPIDO Y BARATO
+# OPTIMIZACIÓN QUIRÚRGICA - CÓDIGO CORTO, RÁPIDO Y BARATO
 
 La diferencia entre un desarrollador y un ingeniero real es escribir menos código que hace más, gasta menos recursos y cuesta menos dinero operativo.
 
 ---
 
-## 🎯 LOS 3 PILARES DE LA OPTIMIZACIÓN REAL
+## LOS 3 PILARES DE LA OPTIMIZACIÓN REAL
 
 1. **CÓDIGO CORTO Y EXPRESIVO** → Menos líneas, más legible, sin repetir
 2. **OPTIMIZACIÓN DE RECURSOS** → Menos CPU, menos memoria, menos red
@@ -23,7 +23,7 @@ La diferencia entre un desarrollador y un ingeniero real es escribir menos códi
 
 ---
 
-# 📐 PILAR 1: CÓDIGO CORTO Y EXPRESIVO (O-001 a O-007)
+# PILAR 1: CÓDIGO CORTO Y EXPRESIVO (O-001 a O-007)
 
 ## O-001: Early Returns (Adiós a los if-else anidados)
 
@@ -244,7 +244,7 @@ const emails = await getActiveAdultEmails()
 
 ---
 
-# ⚡ PILAR 2: OPTIMIZACIÓN DE RECURSOS (O-008 a O-011)
+# PILAR 2: OPTIMIZACIÓN DE RECURSOS (O-008 a O-011)
 
 ## O-008: Memoización (no calcular dos veces)
 
@@ -385,7 +385,7 @@ function VirtualTable({ data }: { data: Row[] }) {
 
 ---
 
-# 💰 PILAR 3: OPTIMIZACIÓN POR COSTO (D1, Workers, R2) (O-012 a O-019)
+# PILAR 3: OPTIMIZACIÓN POR COSTO (D1, Workers, R2) (O-012 a O-019)
 
 ## O-012: D1 - Cada fila leída CUESTA DINERO
 
@@ -627,7 +627,7 @@ return Response.json(data, {
 
 ---
 
-# 🧠 PARTE 4: CÓDIGO CORTO AVANZADO (O-020 a O-025)
+# PARTE 4: CÓDIGO CORTO AVANZADO (O-020 a O-025)
 
 ## O-020: Pattern Matching con Either/Result (Adiós try-catch)
 
@@ -956,7 +956,7 @@ const email = new EmailBuilder()
 
 ---
 
-# 🗄️ PARTE 5: OPTIMIZACIÓN D1 (O-026 a O-031)
+# PARTE 5: OPTIMIZACIÓN D1 (O-026 a O-031)
 *Nota: Para detalles a profundidad de D1, consulta `04_Database/D1_OPTIMIZATION.md`.*
 
 - **O-026**: Índices Parciales (Indexa solo lo que consultas usando `WHERE`).
@@ -968,7 +968,7 @@ const email = new EmailBuilder()
 
 ---
 
-# ⚡ PARTE 6: OPTIMIZACIÓN WORKERS (O-032 a O-037)
+# PARTE 6: OPTIMIZACIÓN WORKERS (O-032 a O-037)
 *Nota: Para detalles a profundidad de Workers, consulta `08_Cloud/WORKERS_OPTIMIZATION.md`.*
 
 - **O-032**: Eliminar Cold Starts (CRON pings o tráfico natural).
@@ -980,7 +980,7 @@ const email = new EmailBuilder()
 
 ---
 
-## 📊 TABLA DE IMPACTO DE OPTIMIZACIONES
+## TABLA DE IMPACTO DE OPTIMIZACIONES
 
 | Técnica | Antes | Después | Ahorro |
 |---------|-------|---------|--------|
@@ -996,7 +996,7 @@ const email = new EmailBuilder()
 
 ---
 
-## 🧪 CHECKLIST DE OPTIMIZACIÓN TOTAL
+## CHECKLIST DE OPTIMIZACIÓN TOTAL
 
 ```markdown
 ## AUDITORÍA PRE-DEPLOY

@@ -9,13 +9,13 @@ updated: 2026-07-27
 status: current
 ---
 
-# 🧠 AGENTS.md — Sistema de Decisión Central, Auto-Ruteo y Motor de Auditoría Autónoma
+# AGENTS.md — Sistema de Decisión Central, Auto-Ruteo y Motor de Auditoría Autónoma
 
 > Este documento es el **CEREBRO Y MANUAL DE OPERACIONES OBLIGATORIO** que toda IA (Claude Code, Antigravity, ChatGPT, Cursor, Copilot o subagentes autónomos) debe leer y procesar antes de planificar, analizar o escribir una sola línea de código en este repositorio.
 
 ---
 
-## ⚡ REGLA CERO: LEE ESTO ANTES DE HACER CUALQUIER COSA
+## REGLA CERO: LEE ESTO ANTES DE HACER CUALQUIER COSA
 
 Si eres un modelo de Inteligencia Artificial o un Agente Autónomo ejecutando una tarea:
 
@@ -35,13 +35,13 @@ Si eres un modelo de Inteligencia Artificial o un Agente Autónomo ejecutando un
 
 ---
 
-## 🌳 1. ÁRBOL DE DECISIÓN PRINCIPAL: ¿QUÉ ARCHIVO CONSULTAR?
+## 1. ÁRBOL DE DECISIÓN PRINCIPAL: ¿QUÉ ARCHIVO CONSULTAR?
 
 Clasifica la necesidad del usuario o del sistema y navega directamente al archivo Markdown indicado.
 
 ---
 
-### 🗄️ 1.1 BASE DE DATOS (`04_Database/`)
+### 1.1 BASE DE DATOS (`04_Database/`)
 
 - **¿Crear tabla, vista o esquema SQL inicial?**
   👉 [DATABASE_ENGINEERING_STANDARD.md](04_Database/DATABASE_ENGINEERING_STANDARD.md)
@@ -82,7 +82,7 @@ Clasifica la necesidad del usuario o del sistema y navega directamente al archiv
 
 ---
 
-### ⚙️ 1.2 BACKEND Y API (`02_Backend/` & `03_API/`)
+### 1.2 BACKEND Y API (`02_Backend/` & `03_API/`)
 
 - **¿Crear un nuevo Cloudflare Worker o endpoint REST?**
   👉 [BACKEND_ENGINEERING_STANDARD.md](02_Backend/BACKEND_ENGINEERING_STANDARD.md)
@@ -136,7 +136,7 @@ Clasifica la necesidad del usuario o del sistema y navega directamente al archiv
 
 ---
 
-### 🎨 1.3 FRONTEND — CORE Y PATRONES DE UX (`01_Frontend/`)
+### 1.3 FRONTEND — CORE Y PATRONES DE UX (`01_Frontend/`)
 
 - **¿Crear un nuevo componente React o definir arquitectura de UI?**
   👉 [FRONTEND_ENGINEERING_STANDARD.md](01_Frontend/Core/FRONTEND_ENGINEERING_STANDARD.md)
@@ -202,7 +202,7 @@ Clasifica la necesidad del usuario o del sistema y navega directamente al archiv
 
 ---
 
-### 🎨 1.4 FRONTEND — DISEÑO VISUAL, PERFORMANCE, SEO Y PWA
+### 1.4 FRONTEND — DISEÑO VISUAL, PERFORMANCE, SEO Y PWA
 
 - **¿Catálogo de estilos, paleta de colores y design tokens?**
   👉 [FRONTEND_UI_STYLE_CATALOG.md](01_Frontend/UI_Components/FRONTEND_UI_STYLE_CATALOG.md)
@@ -257,7 +257,7 @@ Clasifica la necesidad del usuario o del sistema y navega directamente al archiv
 
 ---
 
-### 🔒 1.5 SEGURIDAD Y CUMPLIMIENTO (`05_Security/`)
+### 1.5 SEGURIDAD Y CUMPLIMIENTO (`05_Security/`)
 
 - **¿Validaciones Zod, protección XSS, SQLi, CORS, JWT?**
   👉 [SECURITY_ENGINEERING_STANDARD.md](05_Security/SECURITY_ENGINEERING_STANDARD.md)
@@ -309,7 +309,7 @@ Clasifica la necesidad del usuario o del sistema y navega directamente al archiv
 
 ---
 
-### ☁️ 1.6 CLOUD, ARQUITECTURA Y DEVOPS (`07_DevOps/`, `08_Cloud/`, `09_Architecture/`)
+### 1.6 CLOUD, ARQUITECTURA Y DEVOPS (`07_DevOps/`, `08_Cloud/`, `09_Architecture/`)
 
 - **¿Operar Cloudflare (Workers, KV, R2, D1, Queues, DO)?**
   👉 [CLOUDFLARE_PLATFORM_STANDARD.md](08_Cloud/CLOUDFLARE_PLATFORM_STANDARD.md)
@@ -353,7 +353,7 @@ Clasifica la necesidad del usuario o del sistema y navega directamente al archiv
 
 ---
 
-### 🎯 1.7 PRODUCTO, MONETIZACIÓN, IA Y HERRAMIENTAS (`10_Product/`, `12_Documentation/`, `13_AI_Rules/`, `14_DX/`)
+### 1.7 PRODUCTO, MONETIZACIÓN, IA Y HERRAMIENTAS (`10_Product/`, `12_Documentation/`, `13_AI_Rules/`, `14_DX/`)
 
 - **¿Escribir un PRD de Requisitos de Producto para IAs?**
   👉 [PRODUCT_REQUIREMENTS_STANDARD.md](10_Product/PRODUCT_REQUIREMENTS_STANDARD.md)
@@ -393,7 +393,7 @@ Clasifica la necesidad del usuario o del sistema y navega directamente al archiv
 
 ---
 
-### 🐛 1.8 DEBUGGING E INCIDENTES (`11_Debugging/`)
+### 1.8 DEBUGGING E INCIDENTES (`11_Debugging/`)
 
 - **¿El upload de archivos falla o se queda en cargando?**
   👉 [PLAYBOOK_UPLOAD_FAIL.md](11_Debugging/PLAYBOOK_UPLOAD_FAIL.md)
@@ -418,7 +418,7 @@ Clasifica la necesidad del usuario o del sistema y navega directamente al archiv
 
 ---
 
-## 📊 2. MATRIZ DE PRIORIDAD Y ORDEN DE EJECUCIÓN
+## 2. MATRIZ DE PRIORIDAD Y ORDEN DE EJECUCIÓN
 
 Cuando una tarea requiera múltiples componentes (ejemplo: "Crear pantalla de pagos con formulario y backend"), **la IA DEBE procesar y aplicar las reglas en este orden estricto:**
 
@@ -435,7 +435,7 @@ Cuando una tarea requiera múltiples componentes (ejemplo: "Crear pantalla de pa
 
 ---
 
-## ⚡ 3. JERARQUÍA DE CONFLICTO Y NIVELES DE REGLAS
+## 3. JERARQUÍA DE CONFLICTO Y NIVELES DE REGLAS
 
 Si dos documentos o patrones parecen dar instrucciones contradictorias, aplica la siguiente escala de precedencia:
 
@@ -446,7 +446,7 @@ Si dos documentos o patrones parecen dar instrucciones contradictorias, aplica l
 
 ---
 
-## 📋 4. CATÁLOGO DE REGLAS INQUEBRANTABLES CRÍTICAS
+## 4. CATÁLOGO DE REGLAS INQUEBRANTABLES CRÍTICAS
 
 - **`DB-001`**: NUNCA usar `SELECT *`. Especificar columnas explícitas en cada consulta SQL.
 - **`DB-002`**: Toda Foreign Key DEBE tener un índice secundario asociado.
@@ -478,7 +478,7 @@ Si dos documentos o patrones parecen dar instrucciones contradictorias, aplica l
 
 ---
 
-## 🚫 5. LO QUE UNA IA NUNCA DEBE HACER (ANTI-PATRONES PROHIBIDOS)
+## 5. LO QUE UNA IA NUNCA DEBE HACER (ANTI-PATRONES PROHIBIDOS)
 
 - ❌ **NUNCA** escribir código de producción sin consultar previamente el documento estándar correspondiente.
 - ❌ **NUNCA** inventar librerías, estándares o configuraciones que no pertenezcan al stack oficial.
@@ -503,7 +503,7 @@ Si dos documentos o patrones parecen dar instrucciones contradictorias, aplica l
 
 ---
 
-## 🎯 7. CHECKLIST RÁPIDO PRE-ENTREGA (13 PUNTOS OBLIGATORIOS)
+## 7. CHECKLIST RÁPIDO PRE-ENTREGA (13 PUNTOS OBLIGATORIOS)
 
 - [ ] **1. Estándar:** ¿Consulté el documento estándar correspondiente en el Árbol de Decisión?
 - [ ] **2. Inquebrantables:** ¿Se cumplen todas las Reglas Inquebrantables asociadas al dominio?
@@ -522,7 +522,7 @@ Si dos documentos o patrones parecen dar instrucciones contradictorias, aplica l
 
 ---
 
-## 🧪 11. PROTOCOLO ANTI-CONTRADICCIÓN (el handbook se audita a sí mismo)
+## 11. PROTOCOLO ANTI-CONTRADICCIÓN (el handbook se audita a sí mismo)
 
 El riesgo estructural de un handbook con cientos de bloques de código es que **un ejemplo viole la regla que el propio handbook exige**. Cuando eso pasa, una IA que copia el ejemplo genera código no conforme *citando el handbook como fuente* — el error se propaga con la autoridad del documento. Auditar esto a mano no escala y no se sostiene en el tiempo.
 
@@ -550,7 +550,7 @@ El linter las reconoce y **no** las cuenta como violación. Cualquier otra apari
 
 ---
 
-## 🌐 8. JERARQUÍA DE CONFIANZA Y CLASIFICACIÓN KNOWLEDGETYPE (TRUST HIERARCHY & KNOWLEDGE TAXONOMY)
+## 8. JERARQUÍA DE CONFIANZA Y CLASIFICACIÓN KNOWLEDGETYPE (TRUST HIERARCHY & KNOWLEDGE TAXONOMY)
 
 Cuando una tarea o tema técnico **NO exista** en el Engineering Handbook (`[HANDBOOK INCOMPLETO]`), la IA actúa en rol de **Auditor + Investigador + Curador + Arquitecto de Conocimiento**, ejecutando una investigación autónoma respetando la siguiente **Jerarquía de Confianza de 7 Niveles** y clasificando el conocimiento investigado:
 
@@ -609,7 +609,7 @@ KnowledgeType:
 
 ---
 
-## 📊 9. MOTOR DE AUDITORÍA FORMAL, MÉTRICAS RIGUROSAS Y BACKLOG
+## 9. MOTOR DE AUDITORÍA FORMAL, MÉTRICAS RIGUROSAS Y BACKLOG
 
 La IA puede ejecutar cualquiera de los siguientes marcos de auditoría formales:
 - **Calidad y Arquitectura:** ISO 25010 (31 Subcaracterísticas), ISO 29148, ISO 12207, ISO 15288.
@@ -665,7 +665,7 @@ draft_document:
 
 ---
 
-## 🔍 10. CHECKLIST AUTOMÁTICO DE CALIDAD AUDITADA
+## 10. CHECKLIST AUTOMÁTICO DE CALIDAD AUDITADA
 
 Antes de entregar cualquier propuesta de arquitectura o documento, la IA ejecutará y verificará internamente:
 
@@ -680,7 +680,7 @@ Antes de entregar cualquier propuesta de arquitectura o documento, la IA ejecuta
 
 ---
 
-## 🔄 11. CICLO COMPLETO DE EXPANDIBILIDAD AUTÓNOMA (THE SELF-EXPANDING LOOP)
+## 11. CICLO COMPLETO DE EXPANDIBILIDAD AUTÓNOMA (THE SELF-EXPANDING LOOP)
 
 ```text
 [ 1. Usuario solicita Feature / Arquitectura ]

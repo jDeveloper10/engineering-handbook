@@ -9,7 +9,7 @@ updated: 2026-07-29
 status: current
 ---
 
-# ⚡ OPTIMIZACIÓN AVANZADA DE WORKERS (Cloudflare)
+# OPTIMIZACIÓN AVANZADA DE WORKERS (Cloudflare)
 
 ## O-032: Eliminar Cold Starts
 

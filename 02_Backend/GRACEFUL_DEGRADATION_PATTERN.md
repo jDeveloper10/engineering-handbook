@@ -9,9 +9,9 @@ updated: 2026-07-27
 status: current
 ---
 
-# 🛡️ PATRÓN GRACEFUL DEGRADATION (Bulkhead + Fallback)
+# PATRÓN GRACEFUL DEGRADATION (Bulkhead + Fallback)
 
-## 🎯 ¿Qué es y por qué es crítico?
+## ¿Qué es y por qué es crítico?
 La **Degradación Graceful** es la filosofía de que si una parte no vital del sistema se rompe, la aplicación general no debe morir. 
 El **Bulkhead Pattern** (inspirado en los mamparos herméticos de los submarinos) dicta aislar los recursos. Si un microservicio (Notificaciones) se inunda y colapsa, no debe arrastrar al servicio de Facturación.
 
@@ -21,7 +21,7 @@ El **Bulkhead Pattern** (inspirado en los mamparos herméticos de los submarinos
 
 ---
 
-## 💻 IMPLEMENTACIÓN DEL API GATEWAY (Workers)
+## IMPLEMENTACIÓN DEL API GATEWAY (Workers)
 
 En este ejemplo, nuestro Gateway (Cloudflare Worker) orquesta llamadas a 3 microservicios. Si uno falla, aplica el fallo controlado en lugar de matar toda la petición.
 
@@ -81,7 +81,7 @@ export async function handleDashboardRequest(request: Request, env: Env) {
 
 ---
 
-## 🎨 IMPLEMENTACIÓN FRONTEND (Componentes Resilientes)
+## IMPLEMENTACIÓN FRONTEND (Componentes Resilientes)
 
 El frontend debe estar programado para leer la propiedad `status: 'degraded'` o los `warnings` y adaptar la UI sin arrojar una pantalla de error blanca.
 

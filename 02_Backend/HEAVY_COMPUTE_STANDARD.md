@@ -11,7 +11,7 @@ status: current
 
 # Estándar de Cómputo Pesado (HC-001 a HC-004)
 
-## 🎯 Problema
+## Problema
 Cloudflare Workers tienen límite de CPU de 30 segundos. Algoritmos como:
 - Machine Learning (predicciones, clasificaciones)
 - Optimización de rutas (TSP, VRP)
@@ -19,11 +19,11 @@ Cloudflare Workers tienen límite de CPU de 30 segundos. Algoritmos como:
 - Reportes masivos (millones de registros)
 ...exceden este límite.
 
-## 🏗️ Solución: Workers para lógica ligera + Containers para cómputo pesado
+## Solución: Workers para lógica ligera + Containers para cómputo pesado
 
 ---
 
-## ⚡ REGLAS INQUEBRANTABLES
+## REGLAS INQUEBRANTABLES
 
 ### HC-001: TODO CÓMPUTO > 15s DEBE IR A CONTAINER
 
@@ -132,7 +132,7 @@ memory = "256MB" # Subir de 128MB default
 
 ---
 
-## 📊 DECISIÓN RÁPIDA
+## DECISIÓN RÁPIDA
 
 | Tarea | Tiempo | Solución |
 |-------|--------|----------|

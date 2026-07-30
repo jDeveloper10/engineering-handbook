@@ -9,7 +9,7 @@ updated: 2026-07-27
 status: current
 ---
 
-# 🤖 Reglas de Análisis Estático
+# Reglas de Análisis Estático
 
 Este documento lista la base conceptual detrás de nuestra configuración de ESLint, Prettier y TypeScript. Las herramientas de análisis estático automatizan el code review para que los humanos se enfoquen en la arquitectura.
 

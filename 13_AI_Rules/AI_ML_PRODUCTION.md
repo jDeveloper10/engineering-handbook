@@ -9,14 +9,14 @@ updated: 2026-07-27
 status: current
 ---
 
-# 🤖 IA Y MACHINE LEARNING EN PRODUCCIÓN
+# IA Y MACHINE LEARNING EN PRODUCCIÓN
 
-## 🎯 OBJETIVO
+## OBJETIVO
 Definir los estándares para construir e integrar capacidades de Inteligencia Artificial (LLMs, Embeddings, RAG, Streaming) de forma eficiente, económica, segura y escalable en el Edge.
 
 ---
 
-## 🎯 REGLAS INQUEBRANTABLES
+## REGLAS INQUEBRANTABLES
 
 **[REQUIRED] AI-001: NUNCA enviar PII ni datos sensibles del usuario a modelos externos sin anonimización.** Emails, nombres, números de tarjeta o claves deben ser filtrados antes de ser incluidos en un prompt.
 
@@ -32,7 +32,7 @@ Definir los estándares para construir e integrar capacidades de Inteligencia Ar
 
 ---
 
-## 🧠 1. ARQUITECTURA RAG (RETRIEVAL AUGMENTED GENERATION)
+## 1. ARQUITECTURA RAG (RETRIEVAL AUGMENTED GENERATION)
 
 ```
 Petición del Usuario ──→ 1. Genera Embedding (OpenAI) ──→ 2. Busca en pgvector (Supabase)
@@ -72,7 +72,7 @@ export async function handleRAGQuery(request: Request, env: Env): Promise<Respon
 
 ---
 
-## 🌊 2. STREAMING DE RESPUESTAS CON SERVER-SENT EVENTS (SSE)
+## 2. STREAMING DE RESPUESTAS CON SERVER-SENT EVENTS (SSE)
 
 ```typescript
 // Transmisión de tokens en tiempo real desde Cloudflare Worker al Cliente
@@ -123,7 +123,7 @@ export function streamLLMResponse(prompt: string, context: string, env: Env): Re
 
 ---
 
-## 📋 CHECKLIST DE IA EN PRODUCCIÓN
+## CHECKLIST DE IA EN PRODUCCIÓN
 
 - [ ] Anonimización de PII implementada antes de enviar datos a LLMs.
 - [ ] Streaming Server-Sent Events (SSE) configurado para respuestas de generación.

@@ -9,9 +9,9 @@ updated: 2026-07-29
 status: current
 ---
 
-# ⚡ PATRÓN OPTIMISTIC MUTATIONS (Mutaciones Optimistas)
+# PATRÓN OPTIMISTIC MUTATIONS (Mutaciones Optimistas)
 
-## 🎯 ¿Qué es y por qué es crítico?
+## ¿Qué es y por qué es crítico?
 Una **Mutación Optimista** es la técnica de actualizar la UI instantáneamente asumiendo que el request al servidor será exitoso, antes de que este siquiera responda. Si el request falla, la UI revierte silenciosamente al estado anterior (Rollback).
 La latencia de red pasa de ser un obstáculo a ser completamente invisible para el usuario. La app se siente "instantánea".
 
@@ -21,7 +21,7 @@ La latencia de red pasa de ser un obstáculo a ser completamente invisible para 
 
 ---
 
-## 💻 HOOK GENÉRICO PARA MUTACIONES OPTIMISTAS
+## HOOK GENÉRICO PARA MUTACIONES OPTIMISTAS
 
 ```tsx
 import { useMutation, useQueryClient } from '@tanstack/react-query'
@@ -82,7 +82,7 @@ export function useOptimisticMutation<TData, TVariables, TContext>({
 
 ---
 
-## 🚀 3 EJEMPLOS REALES DE UX INSTANTÁNEA
+## 3 EJEMPLOS REALES DE UX INSTANTÁNEA
 
 ### Ejemplo 1: Toggle de Favorito (Instantáneo)
 ```tsx
@@ -132,7 +132,7 @@ const { mutate: reorderItems } = useOptimisticMutation({
 
 ---
 
-## 🛡️ MANEJO DE ERRORES: "DESHACER" (UNDO)
+## MANEJO DE ERRORES: "DESHACER" (UNDO)
 
 El rollback de `onError` garantiza la consistencia, pero brindar un botón "Reintentar" o "Deshacer" en un Toast es el toque final de UX:
 

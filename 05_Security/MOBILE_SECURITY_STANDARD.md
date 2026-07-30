@@ -18,7 +18,7 @@ sources:
 updated: 2026-07-29
 ---
 
-# 📱 ESTÁNDAR DE SEGURIDAD MÓVIL / APK (MSEC-001 a MSEC-012)
+# ESTÁNDAR DE SEGURIDAD MÓVIL / APK (MSEC-001 a MSEC-012)
 
 > **Nivel 2 del dominio Security.** Hereda todo de [SECURITY_ENGINEERING_STANDARD.md](SECURITY_ENGINEERING_STANDARD.md) — las 7 capas siguen aplicando íntegras al backend que la app consume. Este documento agrega lo que **solo existe cuando tu código viaja dentro de un APK que cualquiera puede descargar**.
 >
@@ -28,7 +28,7 @@ updated: 2026-07-29
 
 ---
 
-## 🎯 EL CAMBIO DE MODELO: UN APK ES CÓDIGO PUBLICADO
+## EL CAMBIO DE MODELO: UN APK ES CÓDIGO PUBLICADO
 
 Un APK instalado se copia del dispositivo, se descomprime y se descompila. `apktool` devuelve el manifiesto y los recursos; `jadx` devuelve Java legible; en React Native, `index.android.bundle` es JavaScript que se lee con un editor de texto. Hermes cambia el formato, no el hecho: existen decompiladores de bytecode Hermes.
 
@@ -53,7 +53,7 @@ Frontera 4: App ←→ Red               → Wi-Fi hostil, proxy de intercepció
 
 ---
 
-## ⚡ REGLAS INQUEBRANTABLES
+## REGLAS INQUEBRANTABLES
 
 ### MSEC-001: Cero secretos en el APK — `EXPO_PUBLIC_` significa público, literalmente
 
@@ -293,7 +293,7 @@ if (!isRooted()) { habilitarTransferencias() }
 
 ---
 
-## 📋 CHECKLIST DE AUDITORÍA MÓVIL (PRE-PUBLICACIÓN)
+## CHECKLIST DE AUDITORÍA MÓVIL (PRE-PUBLICACIÓN)
 
 **Secretos y build**
 - [ ] `MSEC-001` — grep sobre el bundle del APK no revela claves privilegiadas

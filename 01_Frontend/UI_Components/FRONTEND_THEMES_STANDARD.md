@@ -9,9 +9,9 @@ updated: 2026-07-27
 status: current
 ---
 
-# 🌗 PATRÓN SISTEMA DE TEMAS (Claro/Oscuro/Sistema)
+# PATRÓN SISTEMA DE TEMAS (Claro/Oscuro/Sistema)
 
-## 🎯 ¿Qué es y por qué es crítico?
+## ¿Qué es y por qué es crítico?
 Un sistema de temas moderno detecta la preferencia del OS del usuario, le permite sobreescribirla manualmente, y no presenta un "flashazo" blanco al cargar la página en modo oscuro.
 
 > **[REQUIRED] REGLA:** Soportar Dark Mode y System Mode es OBLIGATORIO desde el día 1. PROHIBIDO hardcodear colores de Tailwind (`bg-gray-100`); usar SIEMPRE variables CSS semánticas (`bg-surface-primary`).
@@ -20,7 +20,7 @@ Un sistema de temas moderno detecta la preferencia del OS del usuario, le permit
 
 ---
 
-## 🎨 1. CONFIGURACIÓN TAILWIND + CSS VARIABLES
+## 1. CONFIGURACIÓN TAILWIND + CSS VARIABLES
 
 Usamos la clase `dark` inyectada en el `<html>` y definimos paletas semánticas en `globals.css`.
 
@@ -76,7 +76,7 @@ module.exports = {
 
 ---
 
-## ⚡ 2. ANTI-FLASH SCRIPT (En el `<head>`)
+## 2. ANTI-FLASH SCRIPT (En el `<head>`)
 
 Si React se encarga de inyectar la clase `dark`, habrá un milisegundo blanco mientras el bundle JS carga. Para evitarlo, ponemos este script minificado directamente en el `index.html` o `layout.tsx` (antes del body).
 
@@ -101,7 +101,7 @@ Si React se encarga de inyectar la clase `dark`, habrá un milisegundo blanco mi
 
 ---
 
-## 💻 3. CONTEXTO DE REACT (Theme Provider)
+## 3. CONTEXTO DE REACT (Theme Provider)
 
 Controla el estado (`light`, `dark`, `system`), persistencia en `localStorage` y actualiza la clase del DOM.
 
@@ -181,7 +181,7 @@ export const useTheme = () => {
 
 ---
 
-## 🎨 4. USO EN LA UI (El Theme Switcher)
+## 4. USO EN LA UI (El Theme Switcher)
 
 ```tsx
 import { useTheme } from '@/hooks/useTheme'

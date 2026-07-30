@@ -9,14 +9,14 @@ updated: 2026-07-27
 status: current
 ---
 
-# 📱 ESTÁNDAR AVANZADO DE PWA Y CAPACIDADES WEB NATIVAS
+# ESTÁNDAR AVANZADO DE PWA Y CAPACIDADES WEB NATIVAS
 
-## 🎯 OBJETIVO
+## OBJETIVO
 Transformar la aplicación web React en una Progressive Web App (PWA) de nivel nativo, con capacidad de ejecución offline fluida, sincronización en segundo plano y acceso a APIs de dispositivo.
 
 ---
 
-## 🎯 REGLAS INQUEBRANTABLES
+## REGLAS INQUEBRANTABLES
 
 **[REQUIRED] PWA-001: La aplicación DEBE funcionar offline con los datos de las últimas 24 horas.** La pérdida de conexión a internet no debe bloquear la interfaz ni mostrar pantallas de error en blanco.
 
@@ -28,7 +28,7 @@ Transformar la aplicación web React en una Progressive Web App (PWA) de nivel n
 
 ---
 
-## 🔄 1. BACKGROUND SYNC Y BADGING API
+## 1. BACKGROUND SYNC Y BADGING API
 
 ```typescript
 // Registra sincronización en segundo plano desde el Service Worker
@@ -53,7 +53,7 @@ export function updateAppBadge(unreadCount: number) {
 
 ---
 
-## 📂 2. FILE SYSTEM ACCESS API (Guardar Archivos Locales)
+## 2. FILE SYSTEM ACCESS API (Guardar Archivos Locales)
 
 ```typescript
 // Guardar un documento directamente en el disco del usuario sin descargas por URL
@@ -85,7 +85,7 @@ export async function saveFileToDisk(content: string, defaultName: string) {
 
 ---
 
-## 📋 CHECKLIST PWA AVANZADO
+## CHECKLIST PWA AVANZADO
 
 - [ ] Service Worker activo con estrategia Cache-First para assets.
 - [ ] Manifest de PWA válido (`manifest.webmanifest`) con íconos maskable.

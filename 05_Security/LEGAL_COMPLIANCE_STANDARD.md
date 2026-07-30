@@ -9,13 +9,13 @@ updated: 2026-07-27
 status: current
 ---
 
-# 📜 ESTÁNDAR DE CUMPLIMIENTO LEGAL Y PRIVACIDAD PARA SAAS
+# ESTÁNDAR DE CUMPLIMIENTO LEGAL Y PRIVACIDAD PARA SAAS
 
 > ⚠️ **DISCLAIMER:** Este documento es una guía técnica e ingenieril de cumplimiento y arquitectura de software. **NO sustituye el consejo legal profesional.** Siempre valida tus documentos finales con un abogado especializado en derecho digital y privacidad de tu jurisdicción.
 
 ---
 
-## 🎯 LOS 4 DOCUMENTOS LEGALES OBLIGATORIOS
+## LOS 4 DOCUMENTOS LEGALES OBLIGATORIOS
 
 | Documento | Obligatorio | Propósito Principal |
 |---|---|---|
@@ -26,7 +26,7 @@ status: current
 
 ---
 
-## 📄 1. TÉRMINOS Y CONDICIONES (Estructura Base)
+## 1. TÉRMINOS Y CONDICIONES (Estructura Base)
 
 ```markdown
 # Términos y Condiciones de [NOMBRE DEL SAAS]
@@ -48,7 +48,7 @@ status: current
 
 ---
 
-## 📄 2. POLÍTICA DE PRIVACIDAD (GDPR & CCPA Compliant)
+## 2. POLÍTICA DE PRIVACIDAD (GDPR & CCPA Compliant)
 
 ### 2.1 Matriz de Bases Legales de Procesamiento (GDPR Art. 6)
 
@@ -63,7 +63,7 @@ status: current
 
 ---
 
-## 💻 3. IMPLEMENTACIÓN TÉCNICA EN CÓDIGO
+## 3. IMPLEMENTACIÓN TÉCNICA EN CÓDIGO
 
 ### 3.1 Banner de Cookies Granular (`CookieBanner.tsx`)
 
@@ -162,7 +162,7 @@ WHERE id = p_user_id;
 
 ---
 
-## 🛠️ 4. RUTAS LEGALES ESTÁNDAR
+## 4. RUTAS LEGALES ESTÁNDAR
 
 Todo producto SaaS debe exponer las siguientes rutas públicas accesibles desde el footer:
 
@@ -175,7 +175,7 @@ https://tudominio.com/dpa       ──→ Acuerdo de Procesamiento de Datos (DPA
 
 ---
 
-## 📋 CHECKLIST LEGAL PRE-LANZAMIENTO
+## CHECKLIST LEGAL PRE-LANZAMIENTO
 
 ### Documentación Pública
 - [ ] Términos y Condiciones redactados y accesibles en `/terms`.

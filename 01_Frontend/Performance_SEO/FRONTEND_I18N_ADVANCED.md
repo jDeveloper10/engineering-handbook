@@ -9,14 +9,14 @@ updated: 2026-07-27
 status: current
 ---
 
-# 🌐 ESTÁNDAR AVANZADO DE INTERNACIONALIZACIÓN (I18N) Y L10N
+# ESTÁNDAR AVANZADO DE INTERNACIONALIZACIÓN (I18N) Y L10N
 
-## 🎯 OBJETIVO
+## OBJETIVO
 Garantizar la adaptación cultural y lingüística de la aplicación para mercados globales, soportando idiomas RTL (derecha a izquierda), reglas de pluralización dinámicas y formateo de fechas y divisas seguras.
 
 ---
 
-## 🎯 REGLAS INQUEBRANTABLES
+## REGLAS INQUEBRANTABLES
 
 **[REQUIRED] I18N-001: NUNCA hardcodear cadenas de texto en componentes UI.** Todos los textos expuestos al usuario deben provenir de claves de traducción.
 
@@ -32,7 +32,7 @@ Garantizar la adaptación cultural y lingüística de la aplicación para mercad
 
 ---
 
-## 🌍 1. SOPORTE RTL (RIGHT-TO-LEFT) Y PLURALIZACIÓN
+## 1. SOPORTE RTL (RIGHT-TO-LEFT) Y PLURALIZACIÓN
 
 ### Configuración del Documento y Dirección CSS
 ```typescript
@@ -60,7 +60,7 @@ export function formatRelativeTime(value: number, unit: Intl.RelativeTimeFormatU
 
 ---
 
-## 📋 CHECKLIST DE I18N AVANZADO
+## CHECKLIST DE I18N AVANZADO
 
 - [ ] Cero cadenas de texto plano hardcodeadas en JSX.
 - [ ] Cambio de atributo `dir="rtl"` para idiomas de derecha a izquierda.

@@ -9,14 +9,14 @@ updated: 2026-07-27
 status: current
 ---
 
-# 🔍 ESTÁNDAR AVANZADO DE SEO Y DATOS ESTRUCTURADOS
+# ESTÁNDAR AVANZADO DE SEO Y DATOS ESTRUCTURADOS
 
-## 🎯 OBJETIVO
+## OBJETIVO
 Definir las técnicas de optimización en motores de búsqueda (SEO técnico) y marcado semántico para asegurar la máxima indexabilidad, fragmentos enriquecidos (Rich Snippets) e previsualizaciones perfectas en redes sociales.
 
 ---
 
-## 🎯 REGLAS INQUEBRANTABLES
+## REGLAS INQUEBRANTABLES
 
 **[REQUIRED] SEO-001: Toda página pública DEBE incluir datos estructurados JSON-LD válidos según Schema.org.**
 
@@ -32,7 +32,7 @@ Definir las técnicas de optimización en motores de búsqueda (SEO técnico) y 
 
 ---
 
-## 📄 1. SCHEMA.ORG / JSON-LD PARA SAAS
+## 1. SCHEMA.ORG / JSON-LD PARA SAAS
 
 ```tsx
 // src/components/SEOHead.tsx
@@ -67,7 +67,7 @@ export function SaaSStructuredData() {
 
 ---
 
-## 🌐 2. GENERACIÓN DINÁMICA DE SITEMAP.XML Y ROBOTS.TXT EN WORKERS
+## 2. GENERACIÓN DINÁMICA DE SITEMAP.XML Y ROBOTS.TXT EN WORKERS
 
 ```typescript
 // GET /sitemap.xml (Generado dinámicamente en el Edge)
@@ -102,7 +102,7 @@ export async function handleSitemap(request: Request, env: Env): Promise<Respons
 
 ---
 
-## 🏷️ 3. META TAGS META, OPEN GRAPH Y HREFLANG
+## 3. META TAGS META, OPEN GRAPH Y HREFLANG
 
 ```html
 <!-- Cabeceras estándar en index.html -->
@@ -133,7 +133,7 @@ export async function handleSitemap(request: Request, env: Env): Promise<Respons
 
 ---
 
-## 📋 CHECKLIST SEO TÉCNICO
+## CHECKLIST SEO TÉCNICO
 
 - [ ] Marcado JSON-LD válido verificado con Google Rich Results Test.
 - [ ] Canonical URL presente en todas las páginas.

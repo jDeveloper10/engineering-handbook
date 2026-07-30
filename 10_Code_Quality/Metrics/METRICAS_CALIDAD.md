@@ -9,7 +9,7 @@ updated: 2026-07-27
 status: current
 ---
 
-# 📊 Métricas de Calidad de Código
+# Métricas de Calidad de Código
 
 Este estándar define los límites y métricas objetivas que usamos para medir la deuda técnica y saber cuándo es necesario detener el desarrollo de nuevas features para refactorizar.
 

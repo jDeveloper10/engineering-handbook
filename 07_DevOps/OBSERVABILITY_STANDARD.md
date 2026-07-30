@@ -11,12 +11,12 @@ status: current
 
 # Estándar de Observabilidad (OBS)
 
-## 🎯 Objetivo
+## Objetivo
 Garantizar que cualquier fallo en producción pueda ser diagnosticado, trazado y resuelto en menos de 15 minutos, incluso en arquitecturas distribuidas con 8+ servicios.
 
 ---
 
-## ⚡ REGLAS INQUEBRANTABLES
+## REGLAS INQUEBRANTABLES
 
 ### OBS-001: TODO SERVICIO DEBE EMITIR LOGS ESTRUCTURADOS (JSON)
 
@@ -217,7 +217,7 @@ export async function healthCheck(env: Env): Promise<Response> {
 
 ---
 
-## 📊 STACK DE OBSERVABILIDAD RECOMENDADO
+## STACK DE OBSERVABILIDAD RECOMENDADO
 
 | Herramienta | Uso | Costo |
 |-------------|-----|-------|
@@ -229,7 +229,7 @@ export async function healthCheck(env: Env): Promise<Response> {
 
 ---
 
-## 🧪 CHECKLIST DE OBSERVABILIDAD
+## CHECKLIST DE OBSERVABILIDAD
 
 - [ ] ¿Todos los servicios emiten logs en JSON?
 - [ ] ¿Cada request tiene trace_id?

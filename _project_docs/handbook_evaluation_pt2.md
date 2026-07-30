@@ -1,4 +1,4 @@
-# 🧪 Resultados de la Evaluación (Parte 2: Pruebas 5 a 9)
+# Resultados de la Evaluación (Parte 2: Pruebas 5 a 9)
 
 He ejecutado las pruebas de estrés contra tu handbook. Aquí están los resultados desnudos, evidenciando tanto el nivel PRO como las fisuras ocultas.
 

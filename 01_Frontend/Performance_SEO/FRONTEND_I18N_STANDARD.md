@@ -9,9 +9,9 @@ updated: 2026-07-27
 status: current
 ---
 
-# 🌍 PATRÓN INTERNACIONALIZACIÓN (i18n)
+# PATRÓN INTERNACIONALIZACIÓN (i18n)
 
-## 🎯 ¿Qué es y por qué es crítico?
+## ¿Qué es y por qué es crítico?
 Un software global debe adaptarse a diferentes idiomas, formatos de fecha, monedas y direcciones de lectura (RTL). Hardcodear texto en los componentes hace imposible escalar a nuevos mercados.
 
 > **[REQUIRED] REGLA:** NUNCA hardcodear strings en la UI. TODO texto (botones, alertas, tooltips) DEBE vivir en los archivos de traducción JSON. El componente solo llama a `t('clave')`.
@@ -20,7 +20,7 @@ Un software global debe adaptarse a diferentes idiomas, formatos de fecha, moned
 
 ---
 
-## 🗂️ ESTRUCTURA DE ARCHIVOS
+## ESTRUCTURA DE ARCHIVOS
 
 Se separa por idioma, y dentro del idioma, por *namespaces* (archivos JSON) para no tener un solo archivo gigante de 10,000 líneas que sature la memoria inicial.
 
@@ -55,7 +55,7 @@ Se separa por idioma, y dentro del idioma, por *namespaces* (archivos JSON) para
 
 ---
 
-## ⚙️ CONFIGURACIÓN CORE (react-i18next)
+## CONFIGURACIÓN CORE (react-i18next)
 
 Usamos `i18next` con detección automática de idioma en el navegador.
 
@@ -91,7 +91,7 @@ export default i18n
 
 ---
 
-## 💻 USO EN COMPONENTES (React Hooks)
+## USO EN COMPONENTES (React Hooks)
 
 El hook `useTranslation` nos da la función `t()` para traducir y el objeto `i18n` para cambiar de idioma.
 
@@ -151,7 +151,7 @@ export function UserDashboard({ user, messagesCount }) {
 
 ---
 
-## 🚀 FORMATOS LOCALIZADOS (Fechas y Monedas)
+## FORMATOS LOCALIZADOS (Fechas y Monedas)
 
 No uses librerías pesadas como `moment`. Confía en el API nativa de JavaScript `Intl`, pasándole el `i18n.language`.
 

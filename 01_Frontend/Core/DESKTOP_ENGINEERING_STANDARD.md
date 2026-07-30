@@ -13,7 +13,7 @@ status: current
 
 > 🔒 **Este documento define cómo se construye la app, no qué la mantiene segura.** Las reglas de seguridad del runtime de escritorio (ACL de IPC, validación de comandos nativos, CSP del webview, secretos en el keychain, updater firmado, code signing) viven en [05_Security/DESKTOP_SECURITY_STANDARD.md](../../05_Security/DESKTOP_SECURITY_STANDARD.md) (`DSEC-001` a `DSEC-011`) y son de lectura obligatoria antes de exponer cualquier comando al webview. Ante conflicto, manda el documento de seguridad.
 
-## 🎯 Stack
+## Stack
 - **Framework:** Tauri v2 + React
 - **Backend nativo:** Rust
 - **Comunicación:** IPC (invoke) + Events
@@ -22,7 +22,7 @@ status: current
 
 ---
 
-## ⚡ REGLAS INQUEBRANTABLES
+## REGLAS INQUEBRANTABLES
 
 ### DESK-001: LÓGICA PESADA EN RUST, UI EN REACT
 

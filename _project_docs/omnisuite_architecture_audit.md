@@ -100,7 +100,7 @@ Has planteado un escenario empresarial de escala corporativa (`OmniSuite`). Este
 
 ---
 
-## 📊 RESUMEN EJECUTIVO Y MÉTRICAS
+## RESUMEN EJECUTIVO Y MÉTRICAS
 
 - **Total de componentes:** 14
 - **Cubiertos completamente:** 3 (Web App, PostgreSQL, Servicios CRUD/Files)
@@ -108,7 +108,7 @@ Has planteado un escenario empresarial de escala corporativa (`OmniSuite`). Este
 - **No cubiertos:** 6 (Mobile, Desktop, Elastic/Timescale, Heavy Compute, Observability, DevOps/IaC)
 - **Porcentaje de cobertura:** **~39.2%** (Considerando pesos iguales por componente)
 
-### 🚨 LISTA PRIORIZADA DE LO QUE FALTA (Por Criticidad)
+### LISTA PRIORIZADA DE LO QUE FALTA (Por Criticidad)
 
 1. **`07_DevOps/INFRA_AS_CODE.md` y CI/CD Monorepo** (Crítico). 8 microservicios sin Terraform y pipelines automatizados garantizan el caos el día 1 de desarrollo.
 2. **`07_DevOps/OBSERVABILITY_STANDARD.md`** (Crítico). En una arquitectura distribuida (Cloudflare Workers), sin OpenTelemetry o Sentry, un fallo es imposible de trazar.

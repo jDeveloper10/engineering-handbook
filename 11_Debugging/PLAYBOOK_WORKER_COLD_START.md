@@ -9,19 +9,19 @@ updated: 2026-07-27
 status: current
 ---
 
-# 🚨 PLAYBOOK: WORKER COLD START (LATENCIA INTERMITENTE)
+# PLAYBOOK: WORKER COLD START (LATENCIA INTERMITENTE)
 
-## 🩺 SÍNTOMA
+## SÍNTOMA
 Los usuarios se quejan de que "a veces la app es rápida y a veces tarda un segundo entero en responder". Los monitores de Uptime muestran picos ocasionales de latencia de 400-800ms.
 
-## ⏱️ DIAGNÓSTICO EN 30 SEGUNDOS
+## DIAGNÓSTICO EN 30 SEGUNDOS
 1. Ve al dashboard de Cloudflare Workers → Metrics. Busca picos en la latencia p99 y p90, mientras la mediana (p50) es estable.
 2. Inspect en el navegador: Si el header `cf-worker-start` no coincide o es muy lento respecto al TTFB (Time To First Byte), el Worker estaba dormido.
 3. El *Cold Start* es el tiempo que tarda Cloudflare en inicializar el *V8 isolate* y cargar tu código Javascript en memoria global.
 
 ---
 
-## 🔍 SOLUCIONES (DE MENOR A MAYOR DIFICULTAD)
+## SOLUCIONES (DE MENOR A MAYOR DIFICULTAD)
 
 ### Solución 1: El CRON Warm-up (La curita rápida)
 Si tu aplicación tiene bajo tráfico (ej: un SaaS corporativo que nadie usa a las 3 AM), los Workers se duermen. 
@@ -71,7 +71,7 @@ Si el problema no es el arranque sino que la petición requiere más de 50ms de 
 
 ---
 
-## 💻 CÓDIGO: HEALTH CHECK DE LATENCIA
+## CÓDIGO: HEALTH CHECK DE LATENCIA
 
 Implementa este endpoint para medir empíricamente cuándo ocurre un cold start vs tiempo de DB.
 

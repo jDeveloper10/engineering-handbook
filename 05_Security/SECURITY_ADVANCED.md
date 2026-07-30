@@ -9,14 +9,14 @@ updated: 2026-07-27
 status: current
 ---
 
-# 🛡️ ESTÁNDAR AVANZADO DE CIBERSEGURIDAD Y HARDENING
+# ESTÁNDAR AVANZADO DE CIBERSEGURIDAD Y HARDENING
 
-## 🎯 OBJETIVO
+## OBJETIVO
 Implementar capas de defensa en profundidad para proteger la infraestructura, mitigar vectores de ataque avanzados (XSS, Clickjacking, Supply Chain Attacks, Man-in-the-Middle) y garantizar la postura de seguridad de la organización.
 
 ---
 
-## 🎯 REGLAS INQUEBRANTABLES
+## REGLAS INQUEBRANTABLES
 
 **[REQUIRED] SEC-001: Content Security Policy (CSP) Estricta en todas las respuestas HTTP.**
 
@@ -32,7 +32,7 @@ Implementar capas de defensa en profundidad para proteger la infraestructura, mi
 
 ---
 
-## 🛡️ 1. CONTENT SECURITY POLICY (CSP) ESTRUCTURADA EN WORKERS
+## 1. CONTENT SECURITY POLICY (CSP) ESTRUCTURADA EN WORKERS
 
 ```typescript
 // Middleware de cabeceras de seguridad en Cloudflare Worker
@@ -65,7 +65,7 @@ export function applySecurityHeaders(headers: Headers): Headers {
 
 ---
 
-## 📄 2. ARCHIVO ESTÁNDAR `/.well-known/security.txt`
+## 2. ARCHIVO ESTÁNDAR `/.well-known/security.txt`
 
 ```text
 Contact: mailto:security@collabscribe.com
@@ -77,7 +77,7 @@ Policy: https://collabscribe.com/security
 
 ---
 
-## 📋 CHECKLIST DE SEGURIDAD AVANZADA
+## CHECKLIST DE SEGURIDAD AVANZADA
 
 - [ ] Cabeceras CSP activas sin la directiva `'unsafe-eval'`.
 - [ ] Atributos SRI `integrity="sha384-..."` en scripts de CDNs de terceros.

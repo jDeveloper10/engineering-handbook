@@ -9,9 +9,9 @@ updated: 2026-07-29
 status: current
 ---
 
-# 🤝 PATRÓN COLABORACIÓN EN TIEMPO REAL (CRDTs)
+# PATRÓN COLABORACIÓN EN TIEMPO REAL (CRDTs)
 
-## 🎯 ¿Qué es y por qué importa?
+## ¿Qué es y por qué importa?
 Los **CRDTs (Conflict-free Replicated Data Types)** son estructuras de datos matemáticamente diseñadas para resolver ediciones concurrentes sin conflictos. Si dos usuarios editan la misma línea al mismo tiempo, un CRDT garantiza que ambos terminen con el mismo documento consistente, sin necesidad de un servidor de "quién tiene razón".
 
 **Yjs** es la librería CRDT más madura del ecosistema. Se integra nativamente con TipTap via `@tiptap/extension-collaboration`.
@@ -22,7 +22,7 @@ Los **CRDTs (Conflict-free Replicated Data Types)** son estructuras de datos mat
 
 ---
 
-## ⚙️ 1. INSTALACIÓN
+## 1. INSTALACIÓN
 
 ```bash
 npm install yjs @tiptap/extension-collaboration @tiptap/extension-collaboration-cursor y-supabase
@@ -31,7 +31,7 @@ npm install yjs @tiptap/extension-collaboration @tiptap/extension-collaboration-
 
 ---
 
-## 💻 2. PROVEEDOR DE SINCRONIZACIÓN: `useYjsDocument`
+## 2. PROVEEDOR DE SINCRONIZACIÓN: `useYjsDocument`
 
 El proveedor conecta el documento Yjs con Supabase Realtime como canal de broadcast para sincronizar los cambios binarios entre los usuarios conectados.
 
@@ -111,7 +111,7 @@ export function useYjsDocument(documentId: string, currentUser: CollaboratorInfo
 
 ---
 
-## 💻 3. EDITOR CON COLABORACIÓN (TipTap + Yjs)
+## 3. EDITOR CON COLABORACIÓN (TipTap + Yjs)
 
 ```tsx
 import { useEditor } from '@tiptap/react'
@@ -181,7 +181,7 @@ export function CollaborativeEditor({
 
 ---
 
-## 🟢 4. UI: AVATARES DE COLABORADORES Y ESTADO
+## 4. UI: AVATARES DE COLABORADORES Y ESTADO
 
 ```tsx
 // Avatares de colaboradores activos (como Google Docs)
@@ -232,7 +232,7 @@ function ConnectionStatus({ status, collaborators }) {
 
 ---
 
-## 🎨 5. ESTILOS CSS PARA LOS CURSORES
+## 5. ESTILOS CSS PARA LOS CURSORES
 
 ```css
 /* globals.css — estilos para cursores CRDT */
@@ -264,7 +264,7 @@ function ConnectionStatus({ status, collaborators }) {
 
 ---
 
-## 🔄 6. HISTORIAL DE VERSIONES (Time Travel con Yjs)
+## 6. HISTORIAL DE VERSIONES (Time Travel con Yjs)
 
 ```typescript
 // Cada N minutos, persistir un snapshot del documento en document_versions

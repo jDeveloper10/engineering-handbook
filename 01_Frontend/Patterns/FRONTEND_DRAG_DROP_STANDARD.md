@@ -9,9 +9,9 @@ updated: 2026-07-29
 status: current
 ---
 
-# 🃏 PATRÓN DRAG & DROP (dnd-kit)
+# PATRÓN DRAG & DROP (dnd-kit)
 
-## 🎯 ¿Qué es y cuándo usarlo?
+## ¿Qué es y cuándo usarlo?
 **dnd-kit** es la librería oficial del ecosistema de shadcn/ui para drag & drop. Es accesible (ARIA), performante (cero dependencias de DOM imperativo) y funciona de forma nativa con React. Usar **SIEMPRE dnd-kit** — PROHIBIDO usar `react-beautiful-dnd` (no mantenida) o implementar drag & drop manual con `mousedown/mousemove`.
 
 > **[REQUIRED] REGLA:** Todo Drag & Drop DEBE ser **Optimistic** (FRONTEND_OPTIMISTIC_MUTATIONS.md). El estado visual cambia al instante al soltar. Si el guardado en el servidor falla, rollback inmediato con Toast de error.
@@ -20,7 +20,7 @@ status: current
 
 ---
 
-## ⚙️ 1. INSTALACIÓN
+## 1. INSTALACIÓN
 
 ```bash
 npm install @dnd-kit/core @dnd-kit/sortable @dnd-kit/utilities
@@ -28,7 +28,7 @@ npm install @dnd-kit/core @dnd-kit/sortable @dnd-kit/utilities
 
 ---
 
-## 💻 2. TABLERO KANBAN COMPLETO
+## 2. TABLERO KANBAN COMPLETO
 
 ### 2.1 Hook: `useKanbanBoard`
 
@@ -262,7 +262,7 @@ function KanbanCardItem({ card, isDragging = false }: { card: KanbanCard; isDrag
 
 ---
 
-## 🔧 3. HELPERS DE MANIPULACIÓN DE COLUMNAS
+## 3. HELPERS DE MANIPULACIÓN DE COLUMNAS
 
 ```typescript
 // Encontrar la card en cualquier columna

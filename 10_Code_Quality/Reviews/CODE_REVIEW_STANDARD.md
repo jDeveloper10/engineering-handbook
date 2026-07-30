@@ -9,7 +9,7 @@ updated: 2026-07-27
 status: current
 ---
 
-# 🕵️ Estándar de Code Review
+# Estándar de Code Review
 
 Este documento detalla el checklist y las reglas de oro para las revisiones de código en este repositorio. Una revisión de código efectiva previene bugs, mantiene el estándar y comparte el conocimiento entre el equipo.
 

@@ -9,13 +9,13 @@ updated: 2026-07-29
 status: current
 ---
 
-# 🔒 SEGURIDAD A PROFUNDIDAD - LA GUÍA DEFINITIVA
+# SEGURIDAD A PROFUNDIDAD - LA GUÍA DEFINITIVA
 
 Esto no es teoría. Son **reglas de hierro quirúrgicas** que blindan cada capa. Sin excusas. Sin atajos.
 
 ---
 
-## 🎯 LAS 7 CAPAS DE SEGURIDAD
+## LAS 7 CAPAS DE SEGURIDAD
 
 ```
 Capa 1: Validación de Inputs       → NADA entra sin ser validado
@@ -29,7 +29,7 @@ Capa 7: Headers de Seguridad        → Defensa en el navegador
 
 ---
 
-# 🛡️ CAPA 1: VALIDACIÓN DE INPUTS (La más importante)
+# CAPA 1: VALIDACIÓN DE INPUTS (La más importante)
 
 El **80% de los ataques** entran por inputs mal validados.
 
@@ -288,7 +288,7 @@ const result = await db.query(`SELECT id, email, created_at FROM users ${orderCl
 
 ---
 
-# 🌐 CAPA 2: CORS (Cross-Origin Resource Sharing)
+# CAPA 2: CORS (Cross-Origin Resource Sharing)
 
 ## Regla S-005: CORS EXPLÍCITO, NUNCA WILDCARD
 
@@ -420,7 +420,7 @@ export async function handleDashboard(request: Request) {
 
 ---
 
-# 🔐 CAPA 3: AUTENTICACIÓN
+# CAPA 3: AUTENTICACIÓN
 
 ## Regla S-007: JWT con rotación de tokens
 
@@ -552,7 +552,7 @@ async function loginWithPasskey() {
 
 ---
 
-# 👮 CAPA 4: AUTORIZACIÓN
+# CAPA 4: AUTORIZACIÓN
 
 ## Regla S-009: RBAC + RLS (Defensa en profundidad)
 
@@ -677,7 +677,7 @@ CREATE POLICY "public_by_token" ON proposals
 
 ---
 
-# ⏱️ CAPA 5: RATE LIMITING
+# CAPA 5: RATE LIMITING
 
 ## Regla S-011: Rate Limiting en 3 niveles
 
@@ -772,7 +772,7 @@ async function rateLimitMiddleware(request: Request, env: Env) {
 
 ---
 
-# 🔐 CAPA 6: CIFRADO
+# CAPA 6: CIFRADO
 
 ## Regla S-012: Cifrado en reposo (datos sensibles)
 
@@ -872,7 +872,7 @@ async function verifyPassword(hash: string, password: string): Promise<boolean> 
 
 ---
 
-# 🛡️ CAPA 7: HEADERS DE SEGURIDAD
+# CAPA 7: HEADERS DE SEGURIDAD
 
 ## Regla S-014: Headers de seguridad OBLIGATORIOS
 
@@ -947,7 +947,7 @@ function addSecurityHeaders(response: Response): Response {
 
 ---
 
-# 🧪 CHECKLIST FINAL DE SEGURIDAD
+# CHECKLIST FINAL DE SEGURIDAD
 
 ```markdown
 ## AUDITORÍA DE SEGURIDAD PRE-DEPLOY

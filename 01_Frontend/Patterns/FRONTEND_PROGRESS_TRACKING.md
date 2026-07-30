@@ -9,9 +9,9 @@ updated: 2026-07-27
 status: current
 ---
 
-# ⏳ PATRÓN PROGRESS TRACKING (Jobs Largos)
+# PATRÓN PROGRESS TRACKING (Jobs Largos)
 
-## 🎯 ¿Qué es y cuándo usarlo?
+## ¿Qué es y cuándo usarlo?
 Cualquier acción que tarde más de 5 segundos no puede depender de un simple spinner. Si el usuario procesa un CSV de 10,000 filas o genera un reporte en PDF, necesita feedback del progreso real para saber que la app no colapsó.
 
 > **[REQUIRED] REGLA:** Si un Job en el backend (Worker/Queue) tarda > 5s, DEBE tener seguimiento de progreso. PROHIBIDO dejar al usuario con una pantalla en blanco o spinner infinito sin ETA.
@@ -20,7 +20,7 @@ Cualquier acción que tarde más de 5 segundos no puede depender de un simple sp
 
 ---
 
-## 🚦 3 ESTRATEGIAS DE TRACKING (Cuándo usar cuál)
+## 3 ESTRATEGIAS DE TRACKING (Cuándo usar cuál)
 
 ### 1. WebSockets / Supabase Realtime (Recomendado)
 - **Cuándo:** La base de datos es Postgres (Supabase) y ya tenemos conexión persistente.
@@ -36,7 +36,7 @@ Cualquier acción que tarde más de 5 segundos no puede depender de un simple sp
 
 ---
 
-## 💻 CÓDIGO: POLLING CON REACT QUERY (Estrategia 3)
+## CÓDIGO: POLLING CON REACT QUERY (Estrategia 3)
 
 La solución más robusta y fácil de implementar si tu Worker envía el progreso a una DB o KV.
 
@@ -67,7 +67,7 @@ function useJobProgress(jobId: string) {
 
 ---
 
-## 💻 CÓDIGO: SERVER-SENT EVENTS (Estrategia 2)
+## CÓDIGO: SERVER-SENT EVENTS (Estrategia 2)
 
 **Backend (Cloudflare Worker - Stream Response):**
 ```typescript
@@ -124,7 +124,7 @@ function useSSEProgress(jobId: string) {
 
 ---
 
-## 🎨 UI: COMPONENTE PROGRESS BAR ANIMADO
+## UI: COMPONENTE PROGRESS BAR ANIMADO
 
 Componente reutilizable, semántico e informativo.
 

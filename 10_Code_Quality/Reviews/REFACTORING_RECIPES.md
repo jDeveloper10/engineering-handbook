@@ -9,7 +9,7 @@ updated: 2026-07-27
 status: current
 ---
 
-# 🛠️ Recetas de Refactoring
+# Recetas de Refactoring
 
 Estas recetas te guían paso a paso para limpiar código acoplado o deuda técnica en el proyecto, siguiendo los estándares del manual sin necesidad de buscar técnicas externas.
 

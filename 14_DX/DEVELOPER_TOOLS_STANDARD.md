@@ -9,14 +9,14 @@ updated: 2026-07-27
 status: current
 ---
 
-# 🛠️ ESTÁNDAR DE HERRAMIENTAS DE DESARROLLO Y PRODUCTIVIDAD
+# ESTÁNDAR DE HERRAMIENTAS DE DESARROLLO Y PRODUCTIVIDAD
 
-## 🎯 OBJETIVO
+## OBJETIVO
 Automatizar tareas repetitivas de desarrollo, garantizar entornos de trabajo 100% reproducibles y eliminar la fricción al crear nuevos componentes, módulos o Workers.
 
 ---
 
-## 🎯 REGLAS INQUEBRANTABLES
+## REGLAS INQUEBRANTABLES
 
 **[RECOMMENDED] DEV-001: Todo proyecto nuevo DEBE crearse mediante el script automatizado `new-project.ps1`.**
 
@@ -28,7 +28,7 @@ Automatizar tareas repetitivas de desarrollo, garantizar entornos de trabajo 100
 
 ---
 
-## ⚙️ 1. GENERADOR DE CÓDIGO CON PLOP.JS
+## 1. GENERADOR DE CÓDIGO CON PLOP.JS
 
 ```javascript
 // plopfile.js - Generador de código para el Monorepo
@@ -61,7 +61,7 @@ export default function (plop) {
 
 ---
 
-## 🐳 2. DEV CONTAINER REPRODUCIBLE (`.devcontainer/devcontainer.json`)
+## 2. DEV CONTAINER REPRODUCIBLE (`.devcontainer/devcontainer.json`)
 
 ```json
 {
@@ -83,7 +83,7 @@ export default function (plop) {
 
 ---
 
-## 📋 CHECKLIST DE HERRAMIENTAS DX
+## CHECKLIST DE HERRAMIENTAS DX
 
 - [ ] Generadores Plop/Hygen configurados para componentes y hooks.
 - [ ] Configuración `.vscode/settings.json` y `extensions.json` en el repositorio.

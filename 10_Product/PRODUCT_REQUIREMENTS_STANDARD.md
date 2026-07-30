@@ -9,13 +9,13 @@ updated: 2026-07-27
 status: current
 ---
 
-# 🎯 ESTÁNDAR DE REQUISITOS DE PRODUCTO (PRD)
+# ESTÁNDAR DE REQUISITOS DE PRODUCTO (PRD)
 
 > **Objetivo:** Definir una metodología clara e inequívoca para redactar Requisitos de Producto (PRDs) que permitan a desarrolladores y agentes de IA implementar features con **cero ambigüedad**, alineados con objetivos de negocio medibles.
 
 ---
 
-## 🎯 LAS 5 REGLAS INQUEBRANTABLES DE PRODUCTO
+## LAS 5 REGLAS INQUEBRANTABLES DE PRODUCTO
 
 1. **[REQUIRED] Ninguna feature se codifica sin un PRD previo** que responda el *Problema*, los *Criterios de Aceptación* y el *Modelo de Datos*.
 2. **[REQUIRED] Todos los PRD deben incluir Criterios de Aceptación verificables** en formato de checklist `[ ]`.
@@ -25,7 +25,7 @@ status: current
 
 ---
 
-## 📄 1. PLANTILLA DE PRD (PRODUCT REQUIREMENTS DOCUMENT)
+## 1. PLANTILLA DE PRD (PRODUCT REQUIREMENTS DOCUMENT)
 
 **[REQUIRED]** Estructura estándar a utilizar para proponer e implementar cualquier nueva funcionalidad:
 
@@ -105,7 +105,7 @@ status: current
 
 ---
 
-## 📊 2. MATRIZ DE PRIORIZACIÓN RICE
+## 2. MATRIZ DE PRIORIZACIÓN RICE
 
 Para decidir qué construir primero en el backlog, se calcula el **RICE Score**:
 
@@ -128,7 +128,7 @@ $$\text{RICE Score} = \frac{\text{Reach (Alcance)} \times \text{Impact (Impacto)
 
 ---
 
-## 🗺️ 3. USER STORY MAPPING TEMPLATE
+## 3. USER STORY MAPPING TEMPLATE
 
 El **User Story Map** organiza el backlog en dos dimensiones: el flujo del usuario (horizontal) y la profundidad de entrega (vertical por versiones).
 
@@ -154,7 +154,7 @@ El **User Story Map** organiza el backlog en dos dimensiones: el flujo del usuar
 
 ---
 
-## 📈 4. MÉTRICAS DE PRODUCTO (NORTH STAR & KPIS)
+## 4. MÉTRICAS DE PRODUCTO (NORTH STAR & KPIS)
 
 Toda feature debe estar conectada con la salud global del producto.
 

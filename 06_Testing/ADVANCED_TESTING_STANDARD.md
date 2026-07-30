@@ -9,14 +9,14 @@ updated: 2026-07-27
 status: current
 ---
 
-# 🧪 ESTÁNDAR AVANZADO DE PRUEBAS Y QA
+# ESTÁNDAR AVANZADO DE PRUEBAS Y QA
 
-## 🎯 OBJETIVO
+## OBJETIVO
 Definir las técnicas de validación avanzadas para garantizar el rendimiento bajo presión, la resiliencia ante fallos catastróficos, la calidad visual y la cobertura efectiva de las aplicaciones.
 
 ---
 
-## 🎯 REGLAS INQUEBRANTABLES
+## REGLAS INQUEBRANTABLES
 
 **[REQUIRED] TEST-001: Pruebas de Carga (k6) OBLIGATORIAS antes de cada release mayor.** Ninguna aplicación sale a producción sin validar que soporta el percentil 95 (P95) < 300ms al 150% de la carga esperada.
 
@@ -32,7 +32,7 @@ Definir las técnicas de validación avanzadas para garantizar el rendimiento ba
 
 ---
 
-## ⚡ 1. PRUEBAS DE CARGA Y ESTRÉS CON K6
+## 1. PRUEBAS DE CARGA Y ESTRÉS CON K6
 
 ### Script de Rendimiento k6
 ```javascript
@@ -64,7 +64,7 @@ export default function () {
 
 ---
 
-## 🎲 2. PROPERTY-BASED TESTING CON FAST-CHECK
+## 2. PROPERTY-BASED TESTING CON FAST-CHECK
 
 Prueba funciones con cientos de inputs generados aleatoriamente para descubrir edge cases que ningún desarrollador imaginó.
 
@@ -87,7 +87,7 @@ test('Property: sanitizeInput NUNCA debe retornar etiquetas script', () => {
 
 ---
 
-## 🎨 3. VISUAL REGRESSION TESTING CON CHROMATIC / PERCY
+## 3. VISUAL REGRESSION TESTING CON CHROMATIC / PERCY
 
 Detecta cambios involuntarios de estilo o pixel-shift en componentes React.
 
@@ -113,7 +113,7 @@ export const Danger: StoryObj<typeof Button> = {
 
 ---
 
-## 🤝 4. CONTRACT TESTING CON PACT
+## 4. CONTRACT TESTING CON PACT
 
 Garantiza que los cambios en el backend Worker no rompan el contrato consumido por el frontend React.
 
@@ -155,7 +155,7 @@ test('Contrato API: Obtener documento por ID', async () => {
 
 ---
 
-## 🧬 5. MUTATION TESTING CON STRYKER
+## 5. MUTATION TESTING CON STRYKER
 
 Inyecta mutaciones (bugs sintéticos) en tu código para comprobar si tus pruebas fallan como deberían.
 
@@ -173,7 +173,7 @@ Inyecta mutaciones (bugs sintéticos) en tu código para comprobar si tus prueba
 
 ---
 
-## 📋 CHECKLIST AVANZADO DE QA
+## CHECKLIST AVANZADO DE QA
 
 - [ ] Pruebas de carga k6 ejecutadas en entorno Staging.
 - [ ] Percentil P95 < 300ms y tasa de error < 1% bajo 200 VUs.

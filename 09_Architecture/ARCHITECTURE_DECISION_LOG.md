@@ -9,7 +9,7 @@ updated: 2026-07-27
 status: current
 ---
 
-# 🏛️ ARCHITECTURE DECISION LOG (ADR)
+# ARCHITECTURE DECISION LOG (ADR)
 
 Este documento centraliza las decisiones arquitectónicas fundamentales (ADR) de la empresa. Las decisiones aquí tomadas son **INQUEBRANTABLES** a menos que se presente una propuesta formal de re-evaluación en base a las condiciones estipuladas.
 

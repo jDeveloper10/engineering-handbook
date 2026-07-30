@@ -9,7 +9,7 @@ updated: 2026-07-27
 status: current
 ---
 
-# ⚡ Performance Debugging
+# Performance Debugging
 
 Guía para diagnosticar aplicaciones lentas, ya sea en el renderizado (UI jank) o en el tiempo de carga (Load time).
 

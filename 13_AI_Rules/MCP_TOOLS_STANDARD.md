@@ -9,13 +9,13 @@ updated: 2026-07-27
 status: current
 ---
 
-# 🤖 ESTÁNDAR DE HERRAMIENTAS Y SERVIDORES MCP (MODEL CONTEXT PROTOCOL)
+# ESTÁNDAR DE HERRAMIENTAS Y SERVIDORES MCP (MODEL CONTEXT PROTOCOL)
 
 > **Objetivo:** Definir cómo construir, integrar y extender servidores MCP (Model Context Protocol) para conectar asistentes de IA (como Claude Code o Claude Desktop) de forma segura con nuestras bases de datos, APIs de pago y servicios cloud.
 
 ---
 
-## 🎯 LAS 4 REGLAS INQUEBRANTABLES DE MCP
+## LAS 4 REGLAS INQUEBRANTABLES DE MCP
 
 **[REQUIRED] MCP-001: Todo MCP Server DEBE validar sus inputs con Zod.** NUNCA ejecutar consultas o comandos con argumentos sin validar.
 
@@ -35,7 +35,7 @@ status: current
 
 ---
 
-## 🌐 1. ¿QUÉ ES MCP (MODEL CONTEXT PROTOCOL)?
+## 1. ¿QUÉ ES MCP (MODEL CONTEXT PROTOCOL)?
 
 El **Model Context Protocol (MCP)** es un estándar abierto que permite a los modelos de lenguaje (LLMs) interactuar de forma segura con herramientas externas, recursos de datos y APIs locales o remotas a través de una interfaz cliente-servidor JSON-RPC 2.0.
 
@@ -48,7 +48,7 @@ El **Model Context Protocol (MCP)** es un estándar abierto que permite a los mo
 
 ---
 
-## 💻 2. ESTRUCTURA Y CÓDIGO DE UN MCP SERVER COMPLETO
+## 2. ESTRUCTURA Y CÓDIGO DE UN MCP SERVER COMPLETO
 
 A continuación se muestra la implementación de referencia de un servidor MCP en TypeScript usando el SDK oficial `@modelcontextprotocol/sdk`.
 
@@ -190,7 +190,7 @@ main().catch(console.error)
 
 ---
 
-## ⚙️ 3. CONFIGURACIÓN EN CLAUDE DESKTOP Y ANTHROPIC CLI
+## 3. CONFIGURACIÓN EN CLAUDE DESKTOP Y ANTHROPIC CLI
 
 Para registrar servidores MCP en tu entorno de desarrollo, edita el archivo de configuración global:
 
@@ -229,7 +229,7 @@ Para registrar servidores MCP en tu entorno de desarrollo, edita el archivo de c
 
 ---
 
-## 📚 4. CATÁLOGO RECOMENDADO DE SERVIDORES MCP
+## 4. CATÁLOGO RECOMENDADO DE SERVIDORES MCP
 
 | Servidor MCP | Propósito | Prioridad | Variables requeridas |
 |---|---|---|---|
@@ -242,7 +242,7 @@ Para registrar servidores MCP en tu entorno de desarrollo, edita el archivo de c
 
 ---
 
-## 🛡️ 5. SEGURIDAD Y AUDITORÍA DE EJECUCIÓN MCP
+## 5. SEGURIDAD Y AUDITORÍA DE EJECUCIÓN MCP
 
 ```
 Petición de la IA (Llamar a herramienta query_table)

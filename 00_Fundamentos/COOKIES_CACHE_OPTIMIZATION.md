@@ -9,13 +9,13 @@ updated: 2026-07-27
 status: current
 ---
 
-# 🍪⚡ ESTÁNDAR DE COOKIES, CACHÉ Y OPTIMIZACIONES DE ALTO RENDIMIENTO
+# ESTÁNDAR DE COOKIES, CACHÉ Y OPTIMIZACIONES DE ALTO RENDIMIENTO
 
 Este documento es el estándar definitivo para la gestión de cookies seguras, la arquitectura de caché en 4 niveles y la aplicación de optimizaciones avanzadas de red y frontend en el stack **Cloudflare Workers + Supabase + React/Vite**.
 
 ---
 
-## 🍪 1. COOKIES: GUÍA COMPLETA Y SEGURIDAD
+## 1. COOKIES: GUÍA COMPLETA Y SEGURIDAD
 
 ### 1.1 ¿Qué es una cookie y cuáles son sus tipos?
 
@@ -155,7 +155,7 @@ export async function handleRefresh(request: Request, env: Env): Promise<Respons
 
 ---
 
-## ⚡ 2. CACHÉ EN 4 NIVELES: ARQUITECTURA MAESTRA
+## 2. CACHÉ EN 4 NIVELES: ARQUITECTURA MAESTRA
 
 ```
 Nivel 1: Browser Cache     ──→ Header Cache-Control (Gratis, en dispositivo del usuario)
@@ -306,7 +306,7 @@ SELECT cron.schedule(
 
 ---
 
-### 📊 MATRIZ MAESTRA DE ESTRATEGIAS DE CACHÉ
+### MATRIZ MAESTRA DE ESTRATEGIAS DE CACHÉ
 
 | Tipo de Dato | Estrategia | TTL Replicación | Ubicación |
 |---|---|---|---|
@@ -321,7 +321,7 @@ SELECT cron.schedule(
 
 ---
 
-## 🚀 3. OPTIMIZACIONES AVANZADAS DE RENDIMIENTO DE RED Y FRONTEND
+## 3. OPTIMIZACIONES AVANZADAS DE RENDIMIENTO DE RED Y FRONTEND
 
 ### 3.1 Early Hints (HTTP 103) en Cloudflare Workers
 Permite informar al navegador sobre recursos críticos que debe pre-cargar mientras el servidor aún genera el HTML final.
@@ -421,7 +421,7 @@ export default defineConfig({
 
 ---
 
-## 📊 Presupuestos de Rendimiento (Performance Budgets)
+## Presupuestos de Rendimiento (Performance Budgets)
 
 | Métrica | Valor Límite (Target) | Herramienta de Medición |
 |---|---|---|

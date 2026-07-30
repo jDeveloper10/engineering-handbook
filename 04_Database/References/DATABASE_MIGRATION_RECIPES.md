@@ -9,7 +9,7 @@ updated: 2026-07-27
 status: current
 ---
 
-# 🔄 Recetas de Migraciones
+# Recetas de Migraciones
 
 Las migraciones en Supabase/Postgres pueden romper el entorno de producción si no se hacen con cuidado. Estas recetas aseguran **Zero-Downtime Migrations**.
 

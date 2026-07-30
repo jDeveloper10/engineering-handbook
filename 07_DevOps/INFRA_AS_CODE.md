@@ -11,12 +11,12 @@ status: current
 
 # Infraestructura como Código (IaC-001 a IaC-004)
 
-## 🎯 Objetivo
+## Objetivo
 Toda la infraestructura Cloudflare + Supabase debe estar definida en código (Terraform/Wrangler), NUNCA configurada a mano desde el dashboard.
 
 ---
 
-## ⚡ REGLAS INQUEBRANTABLES
+## REGLAS INQUEBRANTABLES
 
 ### IaC-001: TODO RECURSO CLOUDFLARE EN TERRAFORM
 

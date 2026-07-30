@@ -9,14 +9,14 @@ updated: 2026-07-27
 status: current
 ---
 
-# 🚀 ESTÁNDAR AVANZADO DE CI/CD Y AUTOMATIZACIÓN DE DESPLIEGUES
+# ESTÁNDAR AVANZADO DE CI/CD Y AUTOMATIZACIÓN DE DESPLIEGUES
 
-## 🎯 OBJETIVO
+## OBJETIVO
 Definir los flujos de integración y despliegue continuos (CI/CD) para automatizar pruebas, migraciones de base de datos, escaneo de vulnerabilidades y revertir despliegues defectuosos de forma autónoma.
 
 ---
 
-## 🎯 REGLAS INQUEBRANTABLES
+## REGLAS INQUEBRANTABLES
 
 **[REQUIRED] CICD-001: Rollback Automático si la tasa de errores supera el 1% en los primeros 5 minutos.** Si tras un deploy el Health Check falla, Cloudflare retrotrae el tráfico al deployment previo inmediatamente.
 
@@ -32,7 +32,7 @@ Definir los flujos de integración y despliegue continuos (CI/CD) para automatiz
 
 ---
 
-## 🔄 1. WORKFLOW DE GITHUB ACTIONS CON ROLLBACK AUTOMÁTICO
+## 1. WORKFLOW DE GITHUB ACTIONS CON ROLLBACK AUTOMÁTICO
 
 ```yaml
 # .github/workflows/deploy.yml
@@ -79,7 +79,7 @@ jobs:
 
 ---
 
-## 📋 CHECKLIST DE CI/CD AVANZADO
+## CHECKLIST DE CI/CD AVANZADO
 
 - [ ] Escaneo de secretos (Gitleaks/Trufflehog) ejecutado en CI.
 - [ ] Pruebas unitarias e integración en verde antes del paso de deploy.

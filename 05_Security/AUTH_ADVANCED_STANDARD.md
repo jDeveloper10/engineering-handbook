@@ -9,14 +9,14 @@ updated: 2026-07-27
 status: current
 ---
 
-# 🔒 ESTÁNDAR DE AUTENTICACIÓN AVANZADA Y CONTROL DE SESIONES
+# ESTÁNDAR DE AUTENTICACIÓN AVANZADA Y CONTROL DE SESIONES
 
-## 🎯 OBJETIVO
+## OBJETIVO
 Definir los mecanismos de autenticación empresarial y biométrica (Enterprise SSO, Social Login, Passkeys) y la gestión de sesiones seguras contra ataques de fuerza bruta y suplantación de identidad.
 
 ---
 
-## 🎯 REGLAS INQUEBRANTABLES
+## REGLAS INQUEBRANTABLES
 
 **[REQUIRED] AUTH-001: Bloqueo Progresivo en Login.** Máximo 5 intentos fallidos en 5 minutos por IP o cuenta. El intento 6 impone un bloqueo de 15 minutos.
 
@@ -32,7 +32,7 @@ Definir los mecanismos de autenticación empresarial y biométrica (Enterprise S
 
 ---
 
-## 🔑 1. AUTHENTICATION CON PASSKEYS (WEBAUTHN) NATIVAS
+## 1. AUTHENTICATION CON PASSKEYS (WEBAUTHN) NATIVAS
 
 ```typescript
 // Registro de Passkey en el navegador del usuario
@@ -64,7 +64,7 @@ export async function registerWebAuthnPasskey(userId: string) {
 
 ---
 
-## 🏢 2. ENTERPRISE SSO / SAML 2.0 (SUPABASE / WORKERS)
+## 2. ENTERPRISE SSO / SAML 2.0 (SUPABASE / WORKERS)
 
 ```typescript
 // Redirección a SSO Empresarial según el dominio del email corporativo
@@ -94,7 +94,7 @@ export async function redirectToEnterpriseSSO(email: string, env: Env) {
 
 ---
 
-## 🛡️ 3. DETECCIÓN DE SESIONES SOSPECHOSAS Y RATE LIMITING
+## 3. DETECCIÓN DE SESIONES SOSPECHOSAS Y RATE LIMITING
 
 ```typescript
 // Middleware para verificar integridad de sesión en cada petición
@@ -125,7 +125,7 @@ export async function validateSessionIntegrity(request: Request, env: Env) {
 
 ---
 
-## 📋 CHECKLIST DE AUTENTICACIÓN AVANZADA
+## CHECKLIST DE AUTENTICACIÓN AVANZADA
 
 - [ ] Rate limiting de 5 intentos / 5 min activado en `/api/auth/login`.
 - [ ] Passkeys (WebAuthn) integradas y probadas en iOS/Android/Windows.

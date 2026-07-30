@@ -11,12 +11,12 @@ status: current
 
 # Estándar de CI/CD para Monorepo (CI-001 a CI-006)
 
-## 🎯 Objetivo
+## Objetivo
 Automatizar linting, testing, building y deploy para monorepos con múltiples servicios (Workers, frontends, packages).
 
 ---
 
-## ⚡ REGLAS INQUEBRANTABLES
+## REGLAS INQUEBRANTABLES
 
 ### CI-001: MONOREPO CON TURBOREPO (O NX)
 
@@ -263,7 +263,7 @@ jobs:
 
 ---
 
-## 📋 CHECKLIST PRE-DEPLOY
+## CHECKLIST PRE-DEPLOY
 
 - [ ] Todos los tests pasan
 - [ ] Linting sin errores

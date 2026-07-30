@@ -9,14 +9,14 @@ updated: 2026-07-27
 status: current
 ---
 
-# 💰 ESTÁNDAR DE MONETIZACIÓN Y COBRANZA
+# ESTÁNDAR DE MONETIZACIÓN Y COBRANZA
 
-## 🎯 OBJETIVO
+## OBJETIVO
 Definir los modelos de precios, la estrategia freemium, el cobro por métricas de uso (Metered Billing) y el cumplimiento de impuestos globales para maximizar el MRR (Monthly Recurring Revenue).
 
 ---
 
-## 🎯 REGLAS INQUEBRANTABLES
+## REGLAS INQUEBRANTABLES
 
 **[REQUIRED] MONEY-001: Precios NUNCA definidos en el frontend.** El frontend envía identificadores de plan (`planId: 'pro'`); el Worker resuelve montos e IDs de Stripe server-side (`PAYMENTS_SECURITY_STANDARD.md`).
 
@@ -32,7 +32,7 @@ Definir los modelos de precios, la estrategia freemium, el cobro por métricas d
 
 ---
 
-## 💳 1. TABLA DE NIVELES DE PRECIO (PRICING TIERS)
+## 1. TABLA DE NIVELES DE PRECIO (PRICING TIERS)
 
 | Nivel (Tier) | Precio | Límites | Características |
 |---|---|---|---|
@@ -42,7 +42,7 @@ Definir los modelos de precios, la estrategia freemium, el cobro por métricas d
 
 ---
 
-## 📈 2. FACTURACIÓN BASADA EN USO (USAGE-BASED BILLING)
+## 2. FACTURACIÓN BASADA EN USO (USAGE-BASED BILLING)
 
 ```typescript
 // Reportar uso consumido a Stripe Metered Billing desde un Worker
@@ -69,7 +69,7 @@ export async function reportUsageToStripe(
 
 ---
 
-## 📑 3. GENERACIÓN DE FACTURAS PDF
+## 3. GENERACIÓN DE FACTURAS PDF
 
 ```typescript
 // Ref: PATRON_GENERACION_PDF_EDGE.md — Generar factura PDF en el Edge con pdf-lib
@@ -97,7 +97,7 @@ export async function generateInvoicePDF(invoiceData: InvoiceData): Promise<Uint
 
 ---
 
-## 📋 CHECKLIST DE MONETIZACIÓN
+## CHECKLIST DE MONETIZACIÓN
 
 - [ ] Estructura de planes configurada en Stripe Dashboard.
 - [ ] Precios y Stripe Price IDs resueltos 100% en backend Workers.

@@ -9,7 +9,7 @@ updated: 2026-07-29
 status: current
 ---
 
-# 🏎️ Performance de Base de Datos
+# Performance de Base de Datos
 
 Conceptos vitales para evitar que la base de datos sea el cuello de botella.
 

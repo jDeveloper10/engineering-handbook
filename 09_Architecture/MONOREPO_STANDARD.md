@@ -9,9 +9,9 @@ updated: 2026-07-27
 status: current
 ---
 
-# 🗂️ ESTÁNDAR DE MONOREPO (Turborepo)
+# ESTÁNDAR DE MONOREPO (Turborepo)
 
-## 🎯 ¿Qué es y cuándo usarlo?
+## ¿Qué es y cuándo usarlo?
 Un **Monorepo** es un repositorio único que contiene múltiples proyectos relacionados (workers, frontend, paquetes compartidos). **Turborepo** es el orquestador de builds elegido porque: tiene caché de builds inteligente (no rebuildea lo que no cambió), escala a 100+ paquetes, es Zero-Config con TypeScript y se integra nativamente con Cloudflare Workers.
 
 > **[REQUIRED] REGLA:** Todo código compartido entre ≥ 2 proyectos (helpers de response, tipos TypeScript, schemas Zod) vive en un **paquete `packages/`** — NUNCA copiado entre proyectos. Copiar es crear deuda técnica garantizada. Ref: BACKEND_ENGINEERING_STANDARD.md §03 (módulo CORS compartido).
@@ -20,7 +20,7 @@ Un **Monorepo** es un repositorio único que contiene múltiples proyectos relac
 
 ---
 
-## 🏗️ 1. ESTRUCTURA DE DIRECTORIOS
+## 1. ESTRUCTURA DE DIRECTORIOS
 
 ```text
 collabscribe/                     ← Raíz del monorepo
@@ -48,7 +48,7 @@ collabscribe/                     ← Raíz del monorepo
 
 ---
 
-## ⚙️ 2. CONFIGURACIÓN BASE
+## 2. CONFIGURACIÓN BASE
 
 ### `turbo.json` (Pipelines)
 
@@ -116,7 +116,7 @@ packages:
 
 ---
 
-## 📦 3. PAQUETES COMPARTIDOS (El corazón del monorepo)
+## 3. PAQUETES COMPARTIDOS (El corazón del monorepo)
 
 ### `packages/shared-types` — Tipos TypeScript
 
@@ -220,7 +220,7 @@ export function getCorsHeaders(environment: string, origin: string | null): Head
 
 ---
 
-## 🚀 4. FLUJO DE DEPLOY EN CI (GitHub Actions)
+## 4. FLUJO DE DEPLOY EN CI (GitHub Actions)
 
 Turborepo detecta qué apps cambiaron y solo despliega esas.
 
@@ -265,7 +265,7 @@ jobs:
 
 ---
 
-## 📋 CHECKLIST DE SETUP
+## CHECKLIST DE SETUP
 
 - [ ] `pnpm` como package manager (no npm, no yarn — consistencia)
 - [ ] `turbo.json` con pipeline `deploy` que depende de `build + test + typecheck`

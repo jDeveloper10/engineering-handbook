@@ -9,19 +9,19 @@ updated: 2026-07-27
 status: current
 ---
 
-# 🚨 PLAYBOOK: SPINNER INFINITO
+# PLAYBOOK: SPINNER INFINITO
 
-## 🩺 SÍNTOMA
+## SÍNTOMA
 La interfaz se queda colgada con un spinner girando eternamente (en un botón, en toda la página o en una tabla). El usuario no puede interactuar.
 
-## ⏱️ DIAGNÓSTICO EN 30 SEGUNDOS
+## DIAGNÓSTICO EN 30 SEGUNDOS
 1. **Network Tab:** ¿Hay un request atascado en `pending`? ¿O el request ya terminó y la UI no se enteró?
 2. **Console:** ¿Hay un error rojo gigante que frenó la ejecución de JavaScript impidiendo que `setLoading(false)` se ejecute?
 3. **React DevTools:** Selecciona el componente con el spinner. ¿El estado `isLoading` es `true` y nada lo está cambiando?
 
 ---
 
-## 🔍 CAUSAS Y SOLUCIONES DE HIERRO
+## CAUSAS Y SOLUCIONES DE HIERRO
 
 ### Causa 1: Promesa No Resuelta (Try sin Finally)
 Si un error ocurre dentro de un bloque `try` y no hay un bloque `finally`, el `setLoading(false)` jamás se ejecuta.
@@ -85,7 +85,7 @@ El navegador bloquea el request por CORS ANTES de salir a la red. El catch captu
 
 ---
 
-## 📋 CHECKLIST DE 10 PUNTOS DE DEBUGGING
+## CHECKLIST DE 10 PUNTOS DE DEBUGGING
 
 Ejecuta esto sin piedad cuando veas un spinner infinito:
 

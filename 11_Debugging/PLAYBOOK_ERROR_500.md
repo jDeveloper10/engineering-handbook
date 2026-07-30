@@ -9,19 +9,19 @@ updated: 2026-07-27
 status: current
 ---
 
-# 🚨 PLAYBOOK: ERROR 500 GLOBAL (CRASH)
+# PLAYBOOK: ERROR 500 GLOBAL (CRASH)
 
-## 🩺 SÍNTOMA
+## SÍNTOMA
 Los usuarios reportan un mensaje genérico de "Something went wrong" (Error HTTP 500). Puede ser en un solo endpoint o en toda la aplicación.
 
-## ⏱️ DIAGNÓSTICO EN 30 SEGUNDOS
+## DIAGNÓSTICO EN 30 SEGUNDOS
 1. **Cloudflare Dashboard (Workers):** Observa los **Exceptions** (errores no controlados) en tiempo real. Activa el Tail Logging (Logs en vivo).
 2. **Si no hay logs:** Significa que Cloudflare bloqueó la ejecución *antes* de que iniciara (falta variable de entorno, binding roto o error de sintaxis JS).
 3. **Sentry/Logflare:** ¿Hay un stack trace que apunte a un `undefined is not an object` o a un fallo de parseo JSON?
 
 ---
 
-## 🔍 CAUSAS Y SOLUCIONES DE HIERRO
+## CAUSAS Y SOLUCIONES DE HIERRO
 
 ### Causa 1: Excepción No Controlada (JSON parsing)
 Alguien intentó parsear el body de un request como JSON sin un bloque `try/catch`.
@@ -45,7 +45,7 @@ Tu worker se quedó iterando un bucle gigante. Cloudflare lo mató por la fuerza
 
 ---
 
-## 💻 CÓDIGO: GLOBAL ERROR HANDLER BLINDADO
+## CÓDIGO: GLOBAL ERROR HANDLER BLINDADO
 
 El Worker NUNCA debe devolver el string puro de Cloudflare "Error 1101". ES OBLIGATORIO envolver toda la aplicación con un interceptor de errores globales.
 

@@ -9,9 +9,9 @@ updated: 2026-07-29
 status: current
 ---
 
-# 📝 PATRÓN FORMULARIOS MULTI-STEP
+# PATRÓN FORMULARIOS MULTI-STEP
 
-## 🎯 ¿Qué es y cuándo usarlo?
+## ¿Qué es y cuándo usarlo?
 Los formularios largos (> 10 campos) causan fatiga cognitiva y abandono. Dividir el formulario en pasos lógicos (Wizard) aumenta exponencialmente la tasa de conversión.
 
 > **[REQUIRED] REGLA:** NUNCA perder datos del formulario al cambiar de paso o si el usuario recarga accidentalmente la página. Persistencia en `localStorage` o URL es OBLIGATORIA.
@@ -20,7 +20,7 @@ Los formularios largos (> 10 campos) causan fatiga cognitiva y abandono. Dividir
 
 ---
 
-## 💻 HOOK: `useMultiStepForm`
+## HOOK: `useMultiStepForm`
 
 Un hook para orquestar la navegación y el estado de guardado.
 
@@ -104,7 +104,7 @@ export function useMultiStepForm<T extends FieldValues>({
 
 ---
 
-## 🚀 IMPLEMENTACIÓN DEL WIZARD (UI)
+## IMPLEMENTACIÓN DEL WIZARD (UI)
 
 ```tsx
 // Validación por Paso usando Pick de Zod
@@ -199,7 +199,7 @@ export function OnboardingWizard() {
 }
 ```
 
-## 🧠 PATRONES DE NAVEGACIÓN
+## PATRONES DE NAVEGACIÓN
 1. **Wizard Lineal Estricto:** Validación dura, sin atajos. Botón "Siguiente" bloqueado hasta que el paso es válido.
 2. **Navegación por Pestañas:** El usuario puede saltar libremente, pero no puede hacer `Submit` final sin llenar los requeridos.
 3. **Pasos Opcionales (Skippable):** Incluir un botón claro "Omitir este paso por ahora" que limpia las validaciones de ese tab y avanza.

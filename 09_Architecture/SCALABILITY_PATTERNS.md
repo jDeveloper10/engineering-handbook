@@ -9,14 +9,14 @@ updated: 2026-07-27
 status: current
 ---
 
-# ⚡ PATRONES AVANZADOS DE ESCALABILIDAD HORIZONTAL
+# PATRONES AVANZADOS DE ESCALABILIDAD HORIZONTAL
 
-## 🎯 OBJETIVO
+## OBJETIVO
 Definir los patrones de diseño para absorber picos de tráfico extremos, distribuir el almacenamiento de forma masiva y garantizar que el sistema se degrade de forma elegante antes de colapsar.
 
 ---
 
-## 🎯 REGLAS INQUEBRANTABLES
+## REGLAS INQUEBRANTABLES
 
 **[REQUIRED] SCALE-001: Degradación Elegante (Graceful Degradation) bajo saturación.** Si el sistema detecta alta latencia, deshabilita funciones secundarias (búsqueda semántica, estadísticas) para preservar el flujo principal (lectura y pagos).
 
@@ -32,7 +32,7 @@ Definir los patrones de diseño para absorber picos de tráfico extremos, distri
 
 ---
 
-## 📦 1. SUBIDA MULTIPART A R2 (ARCHIVOS GRANDES)
+## 1. SUBIDA MULTIPART A R2 (ARCHIVOS GRANDES)
 
 ```typescript
 // Iniciar subida multipart para archivos pesados (hasta 5TB)
@@ -52,7 +52,7 @@ export async function handleMultipartUpload(request: Request, env: Env) {
 
 ---
 
-## 🛡️ 2. LOAD SHEDDING Y DEGRADACIÓN ELEGANTE
+## 2. LOAD SHEDDING Y DEGRADACIÓN ELEGANTE
 
 ```typescript
 // Middleware de protección contra sobrecarga en el API Gateway
@@ -74,7 +74,7 @@ export async function applyLoadShedding(request: Request, env: Env) {
 
 ---
 
-## 📋 CHECKLIST DE ESCALABILIDAD
+## CHECKLIST DE ESCALABILIDAD
 
 - [ ] Estrategia de sharding definida para cargas masivas en D1/Postgres.
 - [ ] Subida multipart implementada para objetos R2 > 100MB.
