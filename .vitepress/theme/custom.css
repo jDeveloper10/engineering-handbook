@@ -627,3 +627,14 @@
     transform: none;
   }
 }
+
+/* Marca de agua de autoría jDeveloper10 */
+.VPSidebar::after {
+  content: '🛡️ Engineering Handbook © jDeveloper10';
+  display: block;
+  font-size: 11px;
+  color: var(--vp-c-text-3, #888);
+  text-align: center;
+  padding: 1.25rem 0;
+  opacity: 0.7;
+}
