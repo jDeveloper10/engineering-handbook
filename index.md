@@ -50,6 +50,8 @@ features:
     link: /11_Debugging/ERROR_INDEX
 ---
 
+<RecipeRouter />
+
 ## Cómo está organizado
 
 Este handbook sigue una jerarquía de 3 niveles ([ver §00_HANDBOOK_FORMAT](/00_HANDBOOK_FORMAT)):
