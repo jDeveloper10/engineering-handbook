@@ -6026,9 +6026,47 @@
         "vitest",
         "handoff"
       ],
-      "tokens": 597,
+      "tokens": 650,
       "status": "current",
       "updated": "2026-09-22",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Modelos System One (Jev, Clef-flash y Laya) en Arquitectura de Software",
+      "path": "13_AI_Rules/SYSTEM_ONE_MODELS_JEV_STANDARD.md",
+      "category": "13_AI_Rules",
+      "doc_type": "estandar",
+      "tags": [
+        "ai",
+        "system-one",
+        "jev",
+        "clef-flash",
+        "laya",
+        "cloudflare",
+        "agents",
+        "latency",
+        "decisions",
+        "rlcd",
+        "probabilistic-branching"
+      ],
+      "summary": "Estándar de arquitectura para modelos System One: decisiones deterministas y tipadas de ultra baja latencia (<50ms), paralelismo masivo de preguntas, calibración de confianza RLCD, uso de Cloudflare Clef-flash a coste $0 (10k neuronas diarias), Laya en local y orquestación híbrida System 1 + System 2.",
+      "keywords": [
+        "system-one",
+        "jev",
+        "clef-flash",
+        "laya",
+        "cloudflare-workers-ai",
+        "rlcd",
+        "llm",
+        "fast-decisions",
+        "agents",
+        "compound-ai",
+        "conditional-logic",
+        "typescript-sdk"
+      ],
+      "tokens": 3271,
+      "status": "current",
+      "updated": "2026-10-05",
       "has_frontmatter": true
     },
     {
@@ -7326,8 +7364,8 @@
     }
   ],
   "_meta": {
-    "generated_at": "2026-10-06T02:26:27.256Z",
-    "total_docs": 280,
-    "total_tokens": 593701
+    "generated_at": "2026-10-06T02:44:21.083Z",
+    "total_docs": 281,
+    "total_tokens": 597025
   }
 }

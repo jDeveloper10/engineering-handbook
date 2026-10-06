@@ -5,7 +5,7 @@ title: Engineering Handbook
 hero:
   name: "Engineering Handbook"
   text: "Base de conocimiento de ingeniería"
-  tagline: 280 documentos técnicos. Un solo protocolo de auto-ruteo para IA. Cero reglas sueltas — todo es REQUIRED o RECOMMENDED, con su porqué.
+  tagline: 281 documentos técnicos. Un solo protocolo de auto-ruteo para IA. Cero reglas sueltas — todo es REQUIRED o RECOMMENDED, con su porqué.
   actions:
     - theme: brand
       text: Empezar por el mapa de ruteo

@@ -32,6 +32,7 @@ Este dominio recopila los estándares obligatorios de interacción, razonamiento
 | **[AI_PROMPTS_LIBRARY.md](AI_PROMPTS_LIBRARY.md)** | `referencia` | Biblioteca canónica de prompts para auditoría, refactorización y depuración guiada. |
 | **[MCP_TOOLS_STANDARD.md](MCP_TOOLS_STANDARD.md)** | `estandar` | Estándar de integración del Model Context Protocol (MCP) y herramientas de terminal compartidas. |
 | **[AI_ML_PRODUCTION.md](AI_ML_PRODUCTION.md)** | `estandar` | Requisitos para despliegue y consumo de modelos de machine learning en producción. |
+| **[SYSTEM_ONE_MODELS_JEV_STANDARD.md](SYSTEM_ONE_MODELS_JEV_STANDARD.md)** | `estandar` | Modelos System One (Jev / TypeSafe AI): decisiones deterministas ultra rápidas (<50ms), paralelismo y RLCD. |
 
 ---
 
