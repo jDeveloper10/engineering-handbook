@@ -5,8 +5,8 @@
 
 [![Live Documentation](https://img.shields.io/badge/📖_Live_Portal-handbook--explorer.pages.dev-ff6b00?style=for-the-badge&logo=cloudflare&logoColor=white)](https://master.handbook-explorer.pages.dev/README)
 [![Author](https://img.shields.io/badge/Author-jDeveloper10-18181b?style=for-the-badge&logo=github&logoColor=white)](https://github.com/jDeveloper10)
-[![Documents](https://img.shields.io/badge/Documents-171+_Standards-3b82f6?style=for-the-badge&logo=files&logoColor=white)](INDEX.json)
-[![License](https://img.shields.io/badge/License-Proprietary-red?style=for-the-badge&logo=shield)](LICENSE)
+[![Documents](https://img.shields.io/badge/Documents-280_Standards-3b82f6?style=for-the-badge&logo=files&logoColor=white)](INDEX.json)
+[![License](https://img.shields.io/badge/License-Proprietary-red?style=for-the-badge&logo=shield)](#-propiedad-intelectual)
 
 <p align="center">
   <b>Sistema operativo de ingeniería, patrones de arquitectura y directrices de desarrollo para software de alta escala y agentes de Inteligencia Artificial.</b>

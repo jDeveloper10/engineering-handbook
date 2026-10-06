@@ -34,7 +34,7 @@ status: current
 
 ---
 
-## 00. Las 5 Reglas Inquebrantables de Base de Datos
+## 00. Las 7 Reglas Inquebrantables de Base de Datos
 
 **[REQUIRED]** Si rompes alguna de estas reglas, el PR será rechazado sin discusión. Son los cimientos de la estabilidad de los datos.
 

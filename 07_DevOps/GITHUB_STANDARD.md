@@ -149,6 +149,8 @@ Thumbs.db
 
 **Por qué:** el force-push es la única operación Git que destruye historia remota — un `git push --force` equivocado (o una IA con acceso al repo que lo ejecute) puede borrar semanas de trabajo sin recuperación fácil. Bloquearlo cuesta cero fricción diaria. En cambio, exigir PR + approval a un equipo de 1 es teatro: nadie más va a aprobar, así que solo agrega un click. Los status checks sí valen: son la única "revisión" automática que existe cuando no hay segundo humano — un merge no puede entrar con typecheck o tests rotos.
 
+**Excepción real, no teórica:** esto asume UN proyecto propio. Con varios clientes en paralelo, cada deploy a producción es el sitio de OTRO, y ahí un gate final deja de ser teatro — es la última red antes de romper algo ajeno mientras saltás entre proyectos. Para ese caso: `GITHUB_ACTIONS_WORKFLOW_TEMPLATE.md`, sección "Gate de producción con aprobación manual" — **no** es PR approval (eso sigue siendo teatro) ni el Environment con *required reviewers* (esa función no existe para repos privados de cuenta personal bajo ningún plan, solo para organizaciones en Team+ — verificado en docs oficiales). El mecanismo que sí funciona en cuenta personal: un workflow de deploy separado con `on: workflow_dispatch` como único trigger — nunca corre solo con el push, hace falta un click humano para dispararlo.
+
 **Implementación (gh CLI — verificar sintaxis exacta del endpoint en docs oficiales si cambia):**
 ```bash
 gh api -X PUT "repos/JCDIGITALL/<repo>/branches/main/protection" \

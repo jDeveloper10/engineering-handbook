@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Angelin & Jeilica — Desktop Pet Widget</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #09090d;
+      --red: #ff0033;
+      --cyan: #00e5ff;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-sans: 'Inter', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: var(--bg); color: #fff; font-family: var(--font-sans); }
+
+    /* Subtle Background Grid */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 30%, rgba(255, 0, 51, 0.06) 0%, transparent 70%),
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 100% 100%, 24px 24px, 24px 24px;
+      pointer-events: none;
+    }
+
+    /* TOP WIDGET BAR */
+    #top-bar {
+      position: fixed;
+      top: 10px;
+      left: 12px;
+      right: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 50;
+      background: rgba(18, 18, 24, 0.9);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 6px 12px;
+      border-radius: 10px;
+      font-size: 0.76rem;
+      font-family: var(--font-mono);
+    }
+    .brand { font-weight: 800; }
+    .brand span { color: var(--red); }
+
+    /* CANVAS STAGE */
+    #stage { position: fixed; inset: 0; pointer-events: none; }
+    .mascot-cv {
+      position: absolute;
+      width: 140px; height: 140px;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+      cursor: grab;
+      user-select: none;
+      touch-action: none;
+      pointer-events: auto;
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.7));
+    }
+    .mascot-cv.dragging { cursor: grabbing; filter: drop-shadow(0 14px 28px rgba(0,0,0,0.9)); }
+
+    /* SPEECH BUBBLES */
+    .speech-bubble {
+      position: fixed;
+      pointer-events: none;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: #fff;
+      background: rgba(18, 18, 24, 0.94);
+      border: 1px solid rgba(255, 0, 51, 0.3);
+      padding: 6px 10px;
+      border-radius: 8px;
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.2s, transform 0.2s;
+      z-index: 40;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.8);
+    }
+    .speech-bubble.show { opacity: 1; transform: translateY(0); }
+    .speech-bubble::before { content: '>'; color: var(--red); margin-right: 5px; font-weight: 700; }
+    #bubble-jeilica { border-color: rgba(0,229,255,0.35); }
+    #bubble-jeilica::before { color: var(--cyan); }
+
+    /* BOTTOM QUICK ACTIONS */
+    #bottom-bar {
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      z-index: 50;
+      background: rgba(18, 18, 24, 0.9);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 5px 8px;
+      border-radius: 20px;
+    }
+    .act-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #e5e7eb;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .act-btn:hover { background: rgba(255, 0, 51, 0.25); border-color: rgba(255, 0, 51, 0.4); color: #fff; }
+
+    .pixel-particle { position: fixed; pointer-events: none; z-index: 60; image-rendering: pixelated; }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div id="top-bar">
+    <div class="brand">🖤 Angelin & 🤍 Jeilica <span>Widget</span></div>
+    <div>Desktop Mascot Duo</div>
+  </div>
+
+  <!-- STAGE -->
+  <div id="stage">
+    <canvas id="cv-angelin" class="mascot-cv" width="48" height="48"></canvas>
+    <canvas id="cv-jeilica" class="mascot-cv" width="48" height="48"></canvas>
+  </div>
+
+  <!-- SPEECH BUBBLES -->
+  <div id="bubble-angelin" class="speech-bubble">¡Hola! Soy Angelin 🖤</div>
+  <div id="bubble-jeilica" class="speech-bubble">¡Hola! Soy Jeilica 🤍</div>
+
+  <!-- BOTTOM BAR -->
+  <div id="bottom-bar">
+    <button class="act-btn" onclick="setAction('kiss')">💋 Beso</button>
+    <button class="act-btn" onclick="setAction('dance')">🎵 Baile</button>
+    <button class="act-btn" onclick="setAction('coffee')">☕ Café</button>
+    <button class="act-btn" onclick="setAction('sleep')">😴 Dormir</button>
+    <button class="act-btn" onclick="window.location.href='angelin.html'">👾 Studio</button>
+  </div>
+
+  <script>
+    const cv1 = document.getElementById('cv-angelin'), ctx1 = cv1.getContext('2d'), b1 = document.getElementById('bubble-angelin');
+    const cv2 = document.getElementById('cv-jeilica'), ctx2 = cv2.getContext('2d'), b2 = document.getElementById('bubble-jeilica');
+
+    let mode = 'idle', frame = 0, wasSeparated = false;
+    let x1 = 50, y1 = 90, vx1 = 0, vy1 = 0, isDrag1 = false, ds1X = 0, ds1Y = 0, l1X = 0, l1Y = 0;
+    let x2 = 210, y2 = 90, vx2 = 0, vy2 = 0, isDrag2 = false, ds2X = 0, ds2Y = 0, l2X = 0, l2Y = 0;
+
+    cv1.onpointerdown = (e) => { isDrag1 = true; cv1.setPointerCapture(e.pointerId); cv1.classList.add('dragging'); ds1X = e.clientX - x1; ds1Y = e.clientY - y1; l1X = e.clientX; l1Y = e.clientY; vx1 = 0; vy1 = 0; speak1('¡Woah! Me estás moviendo 😯'); };
+    cv1.onpointermove = (e) => { if (!isDrag1) return; x1 = e.clientX - ds1X; y1 = e.clientY - ds1Y; vx1 = e.clientX - l1X; vy1 = e.clientY - l1Y; l1X = e.clientX; l1Y = e.clientY; };
+    cv1.onpointerup = cv1.onpointercancel = () => { isDrag1 = false; cv1.classList.remove('dragging'); };
+
+    cv2.onpointerdown = (e) => { isDrag2 = true; cv2.setPointerCapture(e.pointerId); cv2.classList.add('dragging'); ds2X = e.clientX - x2; ds2Y = e.clientY - y2; l2X = e.clientX; l2Y = e.clientY; vx2 = 0; vy2 = 0; speak2('¡Oye! ¡Me estás moviendo a mí! 😯'); };
+    cv2.onpointermove = (e) => { if (!isDrag2) return; x2 = e.clientX - ds2X; y2 = e.clientY - ds2Y; vx2 = e.clientX - l2X; vy2 = e.clientY - l2Y; l2X = e.clientX; l2Y = e.clientY; };
+    cv2.onpointerup = cv2.onpointercancel = () => { isDrag2 = false; cv2.classList.remove('dragging'); };
+
+    function speak1(t) { b1.textContent = t; b1.classList.add('show'); updateB(cv1, b1); clearTimeout(b1._t); b1._t = setTimeout(() => b1.classList.remove('show'), 3000); }
+    function speak2(t) { b2.textContent = t; b2.classList.add('show'); updateB(cv2, b2); clearTimeout(b2._t); b2._t = setTimeout(() => b2.classList.remove('show'), 3000); }
+
+    function updateB(cv, b) {
+      const r = cv.getBoundingClientRect();
+      let bx = r.left + r.width / 2 - b.offsetWidth / 2;
+      let by = r.top - 34;
+      bx = Math.max(8, Math.min(bx, window.innerWidth - b.offsetWidth - 8));
+      by = Math.max(8, by);
+      b.style.left = bx + 'px'; b.style.top = by + 'px';
+    }
+
+    function setAction(m) {
+      mode = m;
+      if (m === 'kiss') { speak1('💋 ¡Muak! ¡Beso cibernético! ❤️'); speak2('💋 ¡Te amo Angelin! ❤️'); }
+      if (m === 'dance') { speak1('🎵 ¡Bailando en el Widget!'); speak2('🕺 ¡A bailar!'); }
+      if (m === 'coffee') { speak1('☕ Expreso recargado.'); speak2('☕ ¡Delicioso!'); }
+      if (m === 'sleep') { speak1('😴 Zzz...'); speak2('😴 Zzz...'); }
+    }
+
+    function drawSprite(targetCtx, f, curMode, mascotType) {
+      targetCtx.clearRect(0, 0, 48, 48);
+      const floatOff = (mascotType === 'jeilica') ? 12 : 0;
+      const bobY = Math.round(Math.sin((f + floatOff) * 0.06) * 1.8);
+
+      const isJ = (mascotType === 'jeilica');
+      const bBody = isJ ? '#f1f5f9' : '#161620';
+      const bFrame = isJ ? '#cbd5e1' : '#242432';
+      const glow = isJ ? '#00e5ff' : '#ff0033';
+      const eye = isJ ? '#0f172a' : '#ffffff';
+      const silv = isJ ? '#94a3b8' : '#d1d5db';
+      const sBg = isJ ? '#e2e8f0' : '#050508';
+
+      targetCtx.fillStyle = isJ ? 'rgba(0,229,255,0.25)' : 'rgba(255,0,51,0.2)';
+      targetCtx.fillRect(16, 42, 16, 2);
+
+      const antX = 23, antY = 5 + bobY;
+      targetCtx.fillStyle = silv; targetCtx.fillRect(antX, antY + 2, 2, 4);
+      targetCtx.fillStyle = glow; targetCtx.fillRect(antX - 1, antY, 4, 3);
+
+      targetCtx.fillStyle = bBody; targetCtx.fillRect(11, 25 + bobY, 4, 10);
+      targetCtx.fillStyle = glow; targetCtx.fillRect(10, 28 + bobY, 1, 4);
+
+      const hX = 13, hY = 10 + bobY;
+      targetCtx.fillStyle = bFrame; targetCtx.fillRect(hX, hY, 22, 15);
+      targetCtx.fillStyle = glow; targetCtx.fillRect(hX - 1, hY + 4, 1, 7); targetCtx.fillRect(hX + 22, hY + 4, 1, 7);
+
+      targetCtx.fillStyle = sBg; targetCtx.fillRect(hX + 2, hY + 2, 18, 11);
+
+      if (curMode === 'cry') {
+        targetCtx.fillStyle = glow; targetCtx.fillRect(hX + 4, hY + 4, 5, 2); targetCtx.fillRect(hX + 13, hY + 4, 5, 2);
+        targetCtx.fillStyle = eye; targetCtx.fillRect(hX + 5, hY + 6, 3, 2); targetCtx.fillRect(hX + 14, hY + 6, 3, 2);
+        targetCtx.fillStyle = glow; targetCtx.fillRect(hX + 9, hY + 11, 4, 1);
+        const tY = (f * 2) % 16;
+        targetCtx.fillStyle = '#00e5ff'; targetCtx.fillRect(hX + 3, hY + 6 + tY, 2, 3); targetCtx.fillRect(hX + 17, hY + 6 + tY, 2, 3);
+      } else if (curMode === 'kiss') {
+        targetCtx.fillStyle = eye; targetCtx.fillRect(hX + 4, hY + 6, 4, 1); targetCtx.fillRect(hX + 14, hY + 6, 4, 1);
+        targetCtx.fillRect(hX + 5, hY + 5, 2, 1); targetCtx.fillRect(hX + 15, hY + 5, 2, 1);
+        targetCtx.fillStyle = glow; targetCtx.fillRect(hX + 9, hY + 9, 4, 2);
+        targetCtx.fillStyle = '#ffb6c1'; targetCtx.fillRect(hX + 2, hY + 8, 3, 2); targetCtx.fillRect(hX + 17, hY + 8, 3, 2);
+      } else {
+        targetCtx.fillStyle = eye; targetCtx.fillRect(hX + 4, hY + 5, 4, 5); targetCtx.fillRect(hX + 14, hY + 5, 4, 5);
+        targetCtx.fillStyle = glow; targetCtx.fillRect(hX + 10, hY + 10, 4, 1);
+      }
+
+      targetCtx.fillStyle = bBody; targetCtx.fillRect(17, 27 + bobY, 14, 10);
+      targetCtx.fillStyle = glow; targetCtx.fillRect(20, 38 + bobY, 8, 1);
+
+      let hL = 28 + bobY, hR = 28 + bobY;
+      if (curMode === 'dance') { hL += Math.sin(f * 0.3) * 4; hR += Math.cos(f * 0.3) * 4; }
+      targetCtx.fillStyle = bBody; targetCtx.fillRect(12, hL, 4, 4); targetCtx.fillRect(32, hR, 4, 4);
+    }
+
+    function spawnHeart() {
+      if (frame % 6 !== 0) return;
+      const mx = (x1 + x2) / 2 + 70, my = (y1 + y2) / 2 - 20;
+      const c = document.createElement('canvas');
+      c.className = 'pixel-particle'; c.width = 28; c.height = 24;
+      c.style.left = (mx + (Math.random() - 0.5) * 40) + 'px'; c.style.top = my + 'px';
+      const p = c.getContext('2d'); p.imageRendering = 'pixelated';
+      const col = ['#ff0055', '#00e5ff', '#ff00aa', '#ffcc00'][Math.floor(Math.random() * 4)];
+      const grid = [[0,1,1,0,1,1,0],[1,1,1,1,1,1,1],[1,1,1,1,1,1,1],[0,1,1,1,1,1,0],[0,0,1,1,1,0,0],[0,0,0,1,0,0,0]];
+      for (let r = 0; r < 6; r++) { for (let cl = 0; cl < 7; cl++) { if (grid[r][cl] === 1) { p.fillStyle = (r===1&&cl===1)?'#fff':col; p.fillRect(cl*3, r*3, 3, 3); } } }
+      document.body.appendChild(c);
+      let vy = -2 - Math.random() * 2, op = 1;
+      function loop() { op -= 0.03; c.style.top = (parseFloat(c.style.top) + vy) + 'px'; c.style.opacity = op; if (op > 0) requestAnimationFrame(loop); else c.remove(); }
+      loop();
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+      frame++;
+
+      if (mode === 'kiss' && !isDrag1 && !isDrag2) {
+        x1 += (100 - x1) * 0.1;
+        x2 += (170 - x2) * 0.1;
+        spawnHeart();
+      }
+
+      // Separation check
+      const d = Math.hypot(x1 - x2, y1 - y2);
+      let m1 = mode, m2 = mode;
+      if (d > 220) {
+        m1 = 'cry'; m2 = 'cry';
+        if (frame % 160 === 0 || !wasSeparated) { speak1('😭 ¡No me alejes de Jeilica!'); speak2('😭 ¡Regrésame con Angelin!'); }
+        wasSeparated = true;
+      } else if (wasSeparated && d <= 150) {
+        wasSeparated = false;
+        speak1('🥰 ¡Juntos otra vez!'); speak2('🥰 ¡Te extrañé!');
+        spawnHeart();
+      }
+
+      const float1 = isDrag1 ? 0 : Math.sin(frame * 0.05) * 5;
+      const float2 = isDrag2 ? 0 : Math.sin((frame + 12) * 0.05) * 5;
+
+      cv1.style.transform = `translateY(${float1}px)`; cv2.style.transform = `translateY(${float2}px)`;
+      cv1.style.left = x1 + 'px'; cv1.style.top = y1 + 'px';
+      cv2.style.left = x2 + 'px'; cv2.style.top = y2 + 'px';
+
+      updateB(cv1, b1); updateB(cv2, b2);
+
+      drawSprite(ctx1, frame, m1, 'angelin');
+      drawSprite(ctx2, frame, m2, 'jeilica');
+    }
+
+    animate();
+    setTimeout(() => { speak1('¡Hola! Somos Angelin 🖤 y Jeilica 🤍'); speak2('¡Tus mascotas de escritorio!'); }, 600);
+  </script>
+</body>
+</html>

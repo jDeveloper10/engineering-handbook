@@ -5,7 +5,7 @@ doc_type: referencia
 tags: [formato, convenciones, meta, estilo]
 summary: "Convenciones de escritura de todo el handbook: etiquetado REQUIRED/RECOMMENDED, regla agnóstica separada de la implementación de referencia, jerarquía de especialización en 3 niveles y frontmatter de trazabilidad."
 keywords: [required, recommended, convenciones, niveles, frontmatter, trazabilidad]
-updated: 2026-07-27
+updated: 2026-08-03
 status: current
 ---
 
@@ -129,5 +129,6 @@ ENGINEERING_HANDBOOK/
 ├── 12_Documentation/
 ├── 13_AI_Rules/
 ├── 14_DX/
-└── 15_Knowledge_System/
+├── 15_Knowledge_System/
+└── 16_Accounting/
 ```

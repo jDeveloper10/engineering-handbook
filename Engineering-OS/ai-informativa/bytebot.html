@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ByteBot</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%; height: 100%;
+      overflow: hidden;
+      background: #0a0a14;
+    }
+
+    #bot {
+      position: fixed;
+      width: 130px;
+      height: 160px;
+      cursor: grab;
+      user-select: none;
+      filter: drop-shadow(0 8px 14px rgba(0,0,0,0.4));
+      transition: filter 0.2s, transform 0.05s linear;
+      transform-origin: 50% 30%;
+    }
+    #bot.drag {
+      cursor: grabbing;
+      filter: drop-shadow(0 14px 24px rgba(0,0,0,0.6));
+    }
+
+    #bot canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.06s;
+    }
+    #bot canvas.active { opacity: 1; }
+
+    /* Bubble */
+    #bubble {
+      position: fixed;
+      pointer-events: none;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      color: #e2e8f0;
+      background: rgba(20, 22, 30, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 6px 12px;
+      border-radius: 8px 8px 8px 0;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s;
+      transform: translateY(4px);
+      z-index: 10;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    }
+    #bubble.on { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<div id="bot">
+  <!-- Right-facing canvases -->
+  <canvas id="f-idle_r" class="active"></canvas>
+  <canvas id="f-walk1_r"></canvas>
+  <canvas id="f-walk2_r"></canvas>
+  <canvas id="f-wave_r"></canvas>
+  <canvas id="f-grabbed_r"></canvas>
+
+  <!-- Left-facing canvases -->
+  <canvas id="f-idle_l"></canvas>
+  <canvas id="f-walk1_l"></canvas>
+  <canvas id="f-walk2_l"></canvas>
+  <canvas id="f-wave_l"></canvas>
+  <canvas id="f-grabbed_l"></canvas>
+</div>
+
+<div id="bubble"></div>
+
+<script>
+const bot    = document.getElementById('bot');
+const bubble = document.getElementById('bubble');
+
+// ── Chroma Key Background Removal + Mirroring ────────────────
+function processChroma(img, flipX = false) {
+  const w = img.naturalWidth;
+  const h = img.naturalHeight;
+  const tempCv = document.createElement('canvas');
+  tempCv.width = w; tempCv.height = h;
+  const ctx = tempCv.getContext('2d');
+
+  if (flipX) {
+    ctx.translate(w, 0);
+    ctx.scale(-1, 1);
+  }
+  ctx.drawImage(img, 0, 0);
+
+  const d = ctx.getImageData(0, 0, w, h);
+  const px = d.data;
+
+  // Chroma Key green removal
+  function isGreen(idx) {
+    const r = px[idx], g = px[idx+1], b = px[idx+2];
+    return (g > 115 && g > r * 1.18 && g > b * 1.08) || (g > 165 && g > r + 22 && g > b + 22);
+  }
+
+  const visited = new Uint8Array(w * h);
+  const queue = [];
+  for (let x = 0; x < w; x++) { queue.push(x, 0, x, h - 1); }
+  for (let y = 1; y < h - 1; y++) { queue.push(0, y, w - 1, y); }
+
+  let head = 0;
+  while (head < queue.length) {
+    const x = queue[head++];
+    const y = queue[head++];
+    const pIdx = y * w + x;
+    if (visited[pIdx]) continue;
+    visited[pIdx] = 1;
+
+    const i = pIdx * 4;
+    if (isGreen(i)) {
+      px[i + 3] = 0;
+      if (x > 0 && !visited[pIdx - 1]) queue.push(x - 1, y);
+      if (x < w - 1 && !visited[pIdx + 1]) queue.push(x + 1, y);
+      if (y > 0 && !visited[pIdx - w]) queue.push(x, y - 1);
+      if (y < h - 1 && !visited[pIdx + w]) queue.push(x, y + 1);
+    }
+  }
+
+  // Soft edge cleaning
+  for (let i = 0; i < px.length; i += 4) {
+    if (px[i + 3] !== 0) {
+      const r = px[i], g = px[i+1], b = px[i+2];
+      if (g > 125 && g > r * 1.12 && g > b * 1.05) {
+        px[i + 3] = 0;
+      }
+    }
+  }
+
+  ctx.putImageData(d, 0, 0);
+  return tempCv;
+}
+
+function loadSpritePair(canvasIdRight, canvasIdLeft, srcRight, srcLeftFallback = null) {
+  const cR = document.getElementById(canvasIdRight);
+  const cL = document.getElementById(canvasIdLeft);
+
+  const imgR = new Image();
+  imgR.onload = () => {
+    // Process Right canvas
+    const cvR = processChroma(imgR, false);
+    cR.width = cvR.width; cR.height = cvR.height;
+    cR.getContext('2d').drawImage(cvR, 0, 0);
+
+    // If dedicated left image exists, load it, otherwise flip right image natively in canvas
+    if (srcLeftFallback) {
+      const imgL = new Image();
+      imgL.onload = () => {
+        const cvL = processChroma(imgL, false);
+        cL.width = cvL.width; cL.height = cvL.height;
+        cL.getContext('2d').drawImage(cvL, 0, 0);
+      };
+      imgL.src = srcLeftFallback;
+    } else {
+      const cvL = processChroma(imgR, true);
+      cL.width = cvL.width; cL.height = cvL.height;
+      cL.getContext('2d').drawImage(cvL, 0, 0);
+    }
+  };
+  imgR.src = srcRight;
+}
+
+loadSpritePair('f-idle_r',    'f-idle_l',    'sprites/idle_r.png', 'sprites/idle_l.png');
+loadSpritePair('f-walk1_r',   'f-walk1_l',   'sprites/walk1_r.png', 'sprites/walk1_l.png');
+loadSpritePair('f-walk2_r',   'f-walk2_l',   'sprites/walk2_r.png');
+loadSpritePair('f-wave_r',    'f-wave_l',    'sprites/wave.png');
+loadSpritePair('f-grabbed_r', 'f-grabbed_l', 'sprites/grabbed.png');
+
+const BW = 130, BH = 160;
+const GROUND = () => window.innerHeight - BH - 20;
+
+// ── State ────────────────────────────────────────────────────
+let posX     = window.innerWidth / 2 - BW / 2;
+let posY     = GROUND();
+let dir      = 1; // 1 = facing/moving Right, -1 = facing/moving Left
+let speed    = 2.0;
+let moving   = true;
+let waving   = false;
+let waveTil  = 0;
+let tick     = 0;
+let walkStep = 0;
+let walkTimer= 0;
+let tiltRot  = 0;
+
+let activeCanvasId = 'f-idle_r';
+function setFrame(baseName) {
+  const dirSuffix = dir === 1 ? '_r' : '_l';
+  const targetId  = 'f-' + baseName + dirSuffix;
+
+  if (activeCanvasId === targetId) return;
+  const currentEl = document.getElementById(activeCanvasId);
+  const targetEl  = document.getElementById(targetId);
+
+  if (currentEl) currentEl.classList.remove('active');
+  if (targetEl)  targetEl.classList.add('active');
+  activeCanvasId = targetId;
+}
+
+// ── Drag & Physics ───────────────────────────────────────────
+let dragging = false;
+let dOX = 0, dOY = 0;
+let velX = 0, velY = 0;
+let pmX = 0, pmY = 0;
+let throwing = false;
+
+function applyPos(extraRot = 0, scaleY = 1) {
+  bot.style.left = posX + 'px';
+  bot.style.top  = posY + 'px';
+  bot.style.transform = `scale(1, ${scaleY}) rotate(${extraRot}deg)`;
+}
+
+function startDrag(mx, my) {
+  dragging = true; waving = false; moving = false; throwing = false;
+  dOX = mx - posX; dOY = my - posY;
+  pmX = mx; pmY = my;
+  bot.classList.add('drag');
+  setFrame('grabbed');
+  showBubble('¡Waaaa! 😮');
+}
+
+function moveDrag(mx, my) {
+  if (!dragging) return;
+  velX = mx - pmX;
+  velY = my - pmY;
+  pmX  = mx; pmY = my;
+  posX = mx - dOX;
+  posY = my - dOY;
+
+  if (velX > 1)  dir = 1;
+  if (velX < -1) dir = -1;
+
+  tiltRot = Math.max(-25, Math.min(25, velX * 1.5));
+  setFrame('grabbed');
+  applyPos(tiltRot);
+}
+
+function endDrag() {
+  if (!dragging) return;
+  dragging = false;
+  bot.classList.remove('drag');
+
+  if (Math.abs(velX) + Math.abs(velY) > 2) {
+    throwing = true;
+    showBubble('¡Wheeee! 🚀');
+    throwLoop();
+  } else {
+    posY = GROUND();
+    moving = true;
+    tiltRot = 0;
+    setFrame('idle');
+    applyPos();
+  }
+}
+
+function throwLoop() {
+  if (!throwing) return;
+  velX *= 0.88;
+  velY += 0.75;
+  posX += velX;
+  posY += velY;
+
+  tiltRot = velX * 2.5;
+
+  if (posX < 0)                      { posX = 0;                      velX =  Math.abs(velX) * 0.5; }
+  if (posX > window.innerWidth - BW) { posX = window.innerWidth - BW; velX = -Math.abs(velX) * 0.5; }
+
+  if (posY >= GROUND()) {
+    posY = GROUND();
+    velY = 0;
+    throwing = false;
+    dir = velX >= 0 ? 1 : -1;
+    moving = true;
+    tiltRot = 0;
+    setFrame('idle');
+  } else {
+    setFrame('grabbed');
+  }
+
+  applyPos(tiltRot);
+  if (throwing) requestAnimationFrame(throwLoop);
+}
+
+// Events
+bot.addEventListener('mousedown',  e => { e.preventDefault(); startDrag(e.clientX, e.clientY); });
+document.addEventListener('mousemove', e => moveDrag(e.clientX, e.clientY));
+document.addEventListener('mouseup',   () => endDrag());
+
+bot.addEventListener('touchstart',  e => { e.preventDefault(); startDrag(e.touches[0].clientX, e.touches[0].clientY); }, {passive:false});
+document.addEventListener('touchmove', e => moveDrag(e.touches[0].clientX, e.touches[0].clientY), {passive:true});
+document.addEventListener('touchend',  () => endDrag());
+
+// Click → wave
+bot.addEventListener('click', () => {
+  if (dragging || throwing) return;
+  waving  = true;
+  moving  = false;
+  waveTil = Date.now() + 1800;
+  setFrame('wave');
+  showBubble('¡Hola! 👋 👾');
+});
+
+// ── Speech Bubble ────────────────────────────────────────────
+const PHRASES = [
+  '¡Arrástrame y lánzame! 🖱️',
+  'UI-DEC-001: Mínima decoración.',
+  'NUNCA SELECT * en SQL',
+  'RLS activo en tablas',
+  'handbook loaded ✓',
+  'Aurora_UI: #14ffcc',
+  '>_ listo para codear',
+  'tipografía > cards',
+];
+let pi = 0;
+
+function showBubble(t) {
+  bubble.textContent = t;
+  bubble.classList.add('on');
+  const bx = dir === 1 ? posX + 10 : posX + BW - bubble.offsetWidth - 10;
+  bubble.style.left = Math.max(4, Math.min(bx, window.innerWidth - bubble.offsetWidth - 8)) + 'px';
+  bubble.style.top  = (posY - 38) + 'px';
+  clearTimeout(bubble._t);
+  bubble._t = setTimeout(() => bubble.classList.remove('on'), 2800);
+}
+
+// ── Main Loop ────────────────────────────────────────────────
+function loop() {
+  requestAnimationFrame(loop);
+  tick++;
+
+  if (waving) {
+    setFrame('wave');
+    const sway = Math.sin(tick * 0.2) * 8;
+    applyPos(sway);
+    if (Date.now() > waveTil) {
+      waving = false;
+      moving = true;
+      setFrame('idle');
+    }
+    return;
+  }
+
+  if (!dragging && !throwing) {
+    if (moving) {
+      posX += speed * dir;
+      if (posX > window.innerWidth - BW - 2) { dir = -1; }
+      if (posX < 2)                          { dir =  1; }
+      posY = GROUND();
+
+      // 4-step Walk Cycle
+      walkTimer++;
+      if (walkTimer >= 10) {
+        walkTimer = 0;
+        walkStep  = (walkStep + 1) % 4;
+      }
+
+      let stepFrame = 'idle';
+      let bounceY = 0;
+      let stepRot = 0;
+
+      if (walkStep === 0) { stepFrame = 'idle';  bounceY = 0;  stepRot = 0; }
+      if (walkStep === 1) { stepFrame = 'walk1'; bounceY = -4; stepRot = dir * 3; }
+      if (walkStep === 2) { stepFrame = 'idle';  bounceY = -1; stepRot = 0; }
+      if (walkStep === 3) { stepFrame = 'walk2'; bounceY = -4; stepRot = -dir * 3; }
+
+      setFrame(stepFrame);
+      posY += bounceY;
+      applyPos(stepRot);
+    } else {
+      setFrame('idle');
+      const bob = Math.sin(tick * 0.08) * 3;
+      posY = GROUND() + bob;
+      applyPos(0);
+    }
+
+    if (tick % 380 === 0) {
+      pi = (pi + 1) % PHRASES.length;
+      showBubble(PHRASES[pi]);
+    }
+  }
+}
+
+applyPos();
+loop();
+setTimeout(() => showBubble(PHRASES[0]), 800);
+</script>
+</body>
+</html>

@@ -69,7 +69,7 @@ Campos como `author`, `version`, `created`, `aliases` o `priority` **no se agreg
 
 **Reglas por campo:**
 
-- **[REQUIRED]** `category` es **un solo valor** de esta lista cerrada (coincide con las carpetas del handbook): `frontend`, `backend`, `api`, `database`, `security`, `testing`, `devops`, `cloud`, `architecture`, `ai-rules`, `dx`, `knowledge`. Un doc que parece necesitar dos categorías está mal partido (ver sección 03) o la segunda categoría en realidad es un tag.
+- **[REQUIRED]** `category` es **un solo valor** de esta lista cerrada (coincide con las carpetas del handbook): `frontend`, `backend`, `api`, `database`, `security`, `testing`, `devops`, `cloud`, `architecture`, `ai-rules`, `dx`, `knowledge`, `engineering-os`. Un doc que parece necesitar dos categorías está mal partido (ver sección 03) o la segunda categoría en realidad es un tag.
 - **[REQUIRED]** `tags`: entre 3 y 8, en `kebab-case`, tomados del vocabulario controlado (sección 02). Menos de 3 = el doc es ininfiltrable transversalmente; más de 8 = los tags dejan de discriminar.
 - **[REQUIRED]** `summary`: 1-2 frases, en español, autocontenidas (no "este documento define..." repetido del título — decir *qué* define). Es el texto que un buscador o una IA muestra para decidir si abre el doc.
 - **[REQUIRED]** `keywords`: solo términos que un buscador usaría y que **no aparecen en el título** (sinónimos, siglas, términos en el otro idioma, nombres de herramientas). No duplicar tags ni palabras del título — eso es ruido sin recall extra.

@@ -1,277 +1,328 @@
 ---
-title: "Estándar de Monorepo (Turborepo)"
+title: "Estándar de Monorepo"
 category: 09_Architecture
 doc_type: estandar
-tags: [monorepo, turborepo, nx, typescript, ci, pnpm]
-summary: "Monorepo con Turborepo: estructura de directorios, configuración base, diseño de los paquetes compartidos que son su razón de ser, y flujo de despliegue selectivo en CI."
-keywords: [monorepo, turborepo, nx, typescript, ci, pnpm, estructura, directorios, configuracion, base, diseno, paquetes, compartidos, razon]
-updated: 2026-07-27
+tags: [monorepo, pnpm, turborepo, workspace, arquitectura]
+summary: "Estándar del dominio Arquitectura para monorepos: estructura, workspaces, dependencias, scripts y deployment."
+keywords: [monorepo, pnpm, workspace, turborepo, arquitectura, packages]
+updated: 2026-08-30
 status: current
 ---
 
-# ESTÁNDAR DE MONOREPO (Turborepo)
+# MONOREPO ENGINEERING STANDARD
 
-## ¿Qué es y cuándo usarlo?
-Un **Monorepo** es un repositorio único que contiene múltiples proyectos relacionados (workers, frontend, paquetes compartidos). **Turborepo** es el orquestador de builds elegido porque: tiene caché de builds inteligente (no rebuildea lo que no cambió), escala a 100+ paquetes, es Zero-Config con TypeScript y se integra nativamente con Cloudflare Workers.
-
-> **[REQUIRED] REGLA:** Todo código compartido entre ≥ 2 proyectos (helpers de response, tipos TypeScript, schemas Zod) vive en un **paquete `packages/`** — NUNCA copiado entre proyectos. Copiar es crear deuda técnica garantizada. Ref: BACKEND_ENGINEERING_STANDARD.md §03 (módulo CORS compartido).
->
-> **Por qué:** copiar un helper entre proyectos crea dos copias que empiezan idénticas y divergen en la primera corrección de bug que solo se aplica a una de ellas. Un paquete compartido garantiza que corregir en un lugar corrige en todos los consumidores a la vez.
+> **Stack de referencia:** pnpm workspaces + Turborepo (opcional)
+> **Depende de:** ARCHITECTURE_STANDARD.md
+> **Aplica a:** Todo proyecto con múltiples paquetes/apps en un solo repo
 
 ---
 
-## 1. ESTRUCTURA DE DIRECTORIOS
+## 01. Estructura
 
-```text
-collabscribe/                     ← Raíz del monorepo
-├── package.json                  ← workspaces: ["apps/*", "packages/*"]
-├── turbo.json                    ← Configuración de pipelines
-├── pnpm-workspace.yaml           ← pnpm workspaces
-│
-├── apps/                         ← Aplicaciones desplegables
-│   ├── web/                      ← Frontend React (Cloudflare Pages)
-│   ├── api-gateway/              ← Cloudflare Worker: punto de entrada
-│   ├── auth-worker/              ← Cloudflare Worker: /api/auth/*
-│   ├── docs-worker/              ← Cloudflare Worker: /api/documents/*
-│   ├── teams-worker/             ← Cloudflare Worker: /api/teams/*
-│   ├── notifs-worker/            ← Cloudflare Worker: /api/notifications/*
-│   ├── search-worker/            ← Cloudflare Worker: /api/search/*
-│   └── embeddings-worker/        ← Cloudflare Worker: Queue consumer
-│
-└── packages/                     ← Código compartido (nunca desplegado directamente)
-    ├── shared-types/             ← Tipos TypeScript compartidos (Document, Team, User...)
-    ├── shared-schemas/           ← Schemas Zod compartidos (validación frontend + backend)
-    ├── shared-http/              ← Helpers: ok(), fail(), getCorsHeaders(), rateLimit()
-    ├── shared-db/                ← Cliente Supabase + helpers de queries
-    └── tsconfig/                 ← tsconfig.json base compartido
+### 1.1 Estructura de carpetas
+
+**[REQUIRED]** Monorepo con apps/ y packages/:
+
+```
+mi-monorepo/
+├── apps/
+│   ├── web/                    # Frontend principal
+│   │   ├── src/
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── mobile/                 # App móvil (Expo/React Native)
+│   │   ├── src/
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   └── api/                    # Backend (Worker/Express)
+│       ├── src/
+│       ├── package.json
+│       └── tsconfig.json
+├── packages/
+│   ├── shared/                 # Tipos, utils compartidos
+│   │   ├── src/
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   ├── ui/                     # Componentes UI compartidos
+│   │   ├── src/
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   └── contracts/              # Schemas Zod compartidos
+│       ├── src/
+│       ├── package.json
+│       └── tsconfig.json
+├── package.json                # Root
+├── pnpm-workspace.yaml
+├── tsconfig.json               # Base tsconfig
+└── turbo.json                  # (Opcional) Turborepo config
 ```
 
----
+### 1.2 pnpm-workspace.yaml
 
-## 2. CONFIGURACIÓN BASE
-
-### `turbo.json` (Pipelines)
-
-```json
-{
-  "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": ["**/.env.*local"],
-  "pipeline": {
-    "build": {
-      "dependsOn": ["^build"],     // Buildear dependencias antes que el proyecto
-      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
-    },
-    "dev": {
-      "cache": false,              // Dev nunca se cachea
-      "persistent": true
-    },
-    "test": {
-      "dependsOn": ["^build"],
-      "outputs": ["coverage/**"]
-    },
-    "lint": {
-      "outputs": []
-    },
-    "typecheck": {
-      "dependsOn": ["^build"],
-      "outputs": []
-    },
-    "deploy": {
-      "dependsOn": ["build", "test", "typecheck"],
-      "outputs": []
-    }
-  }
-}
-```
-
-### `pnpm-workspace.yaml`
+**[REQUIRED]** Definir workspaces:
 
 ```yaml
+# pnpm-workspace.yaml
 packages:
   - 'apps/*'
   - 'packages/*'
 ```
 
-### `package.json` raíz
+### 1.3 package.json root
+
+**[REQUIRED]** Scripts en el root:
 
 ```json
 {
-  "name": "collabscribe",
+  "name": "mi-monorepo",
   "private": true,
   "scripts": {
-    "dev":       "turbo run dev",
-    "build":     "turbo run build",
-    "test":      "turbo run test",
-    "lint":      "turbo run lint",
-    "typecheck": "turbo run typecheck",
-    "deploy":    "turbo run deploy"
+    "dev": "pnpm --parallel -r run dev",
+    "dev:web": "pnpm --filter @mi/web dev",
+    "dev:api": "pnpm --filter @mi/api dev",
+    "build": "pnpm --parallel -r run build",
+    "build:web": "pnpm --filter @mi/web build",
+    "lint": "pnpm --parallel -r run lint",
+    "typecheck": "pnpm --parallel -r run typecheck",
+    "test": "pnpm --parallel -r run test",
+    "clean": "pnpm --parallel -r run clean"
   },
   "devDependencies": {
-    "turbo":  "^2.0.0",
-    "typescript": "^5.4.0"
-  },
-  "packageManager": "pnpm@9.0.0"
-}
-```
-
----
-
-## 3. PAQUETES COMPARTIDOS (El corazón del monorepo)
-
-### `packages/shared-types` — Tipos TypeScript
-
-```typescript
-// packages/shared-types/src/index.ts
-// Estos tipos son importados por el frontend Y por cada worker
-
-export type MemberRole = 'owner' | 'admin' | 'editor' | 'viewer'
-export type DocStatus = 'backlog' | 'draft' | 'review' | 'published' | 'archived'
-
-export interface Team {
-  id: string; name: string; slug: string
-  created_at: string; updated_at: string
-}
-
-export interface Document {
-  id: string; team_id: string; created_by: string
-  title: string; content: string
-  status: DocStatus; is_public: boolean
-  created_at: string; updated_at: string
-}
-
-export interface TeamMember {
-  team_id: string; user_id: string
-  role: MemberRole; invited_at: string
-}
-
-// Respuesta envelope estándar del API (API_ENGINEERING_STANDARD.md §04)
-export interface ApiResponse<T> {
-  success: true; data: T
-}
-export interface ApiError {
-  success: false; error: { code: string; message: string }
-}
-```
-
-### `packages/shared-schemas` — Schemas Zod
-
-```typescript
-// packages/shared-schemas/src/documents.ts
-import { z } from 'zod'
-
-export const createDocumentSchema = z.object({
-  team_id: z.string().uuid(),
-  title:   z.string().min(1).max(500).trim(),
-  content: z.string().max(5_000_000).default(''),
-  status:  z.enum(['backlog', 'draft', 'review', 'published', 'archived']).default('draft')
-})
-
-export const updateDocumentSchema = createDocumentSchema.partial().omit({ team_id: true })
-
-export type CreateDocumentInput = z.infer<typeof createDocumentSchema>
-export type UpdateDocumentInput = z.infer<typeof updateDocumentSchema>
-```
-
-### `packages/shared-http` — Helpers de Response y CORS
-
-```typescript
-// packages/shared-http/src/response.ts
-// Ref: BACKEND_ENGINEERING_STANDARD.md §01 — helper único, no repetido en cada worker
-
-export function ok<T>(data: T, corsHeaders?: HeadersInit): Response {
-  return new Response(JSON.stringify({ success: true, data }), {
-    status: 200,
-    headers: { 'Content-Type': 'application/json', ...corsHeaders }
-  })
-}
-
-export function fail(
-  code: string,
-  message: string,
-  status: number,
-  corsHeaders?: HeadersInit
-): Response {
-  return new Response(JSON.stringify({ success: false, error: { code, message } }), {
-    status,
-    headers: { 'Content-Type': 'application/json', ...corsHeaders }
-  })
-}
-
-// packages/shared-http/src/cors.ts
-// Ref: BACKEND_ENGINEERING_STANDARD.md §03 — módulo compartido, NO copiado
-
-const ALLOWED_ORIGINS: Record<string, string[]> = {
-  production:  ['https://collabscribe.com', 'https://app.collabscribe.com'],
-  staging:     ['https://staging.collabscribe.com'],
-  development: ['http://localhost:3000', 'http://localhost:5173']
-}
-
-export function getCorsHeaders(environment: string, origin: string | null): HeadersInit {
-  const allowed = ALLOWED_ORIGINS[environment] ?? []
-  const isAllowed = origin && allowed.includes(origin)
-  return {
-    'Access-Control-Allow-Origin':  isAllowed ? origin : (allowed[0] ?? ''),
-    'Access-Control-Allow-Methods': 'GET, POST, PATCH, DELETE, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-    'Access-Control-Max-Age':       '86400'
+    "typescript": "^5.8.3"
   }
 }
 ```
 
 ---
 
-## 4. FLUJO DE DEPLOY EN CI (GitHub Actions)
+## 02. Dependencias
 
-Turborepo detecta qué apps cambiaron y solo despliega esas.
+### 2.1 Dependencias compartidas en root
+
+**[REQUIRED]** Dependencias de desarrollo compartidas viven en root:
+
+```json
+// package.json root
+{
+  "devDependencies": {
+    "typescript": "^5.8.3",
+    "eslint": "^9.0.0",
+    "prettier": "^3.0.0"
+  }
+}
+```
+
+### 2.2 Dependencias de app en su package.json
+
+**[REQUIRED]** Cada app declara sus dependencias:
+
+```json
+// apps/web/package.json
+{
+  "name": "@mi/web",
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "@mi/ui": "workspace:*",
+    "@mi/contracts": "workspace:*"
+  }
+}
+```
+
+### 2.3 Paquetes internos con "workspace:*"
+
+**[REQUIRED]** Referenciar paquetes internos con `workspace:*`:
+
+```json
+// apps/web/package.json
+{
+  "dependencies": {
+    "@mi/shared": "workspace:*",   // ← Referencia interna
+    "react": "^19.0.0"             // ← Dependencia externa
+  }
+}
+```
+
+---
+
+## 03. TypeScript
+
+### 3.1 tsconfig base compartido
+
+**[REQUIRED]** tsconfig.json en root con config compartida:
+
+```jsonc
+// tsconfig.json root
+{
+  "compilerOptions": {
+    "strict": true,
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true
+  }
+}
+```
+
+### 3.2 Herencia de tsconfig
+
+**[REQUIRED]** Cada app hereda del root:
+
+```jsonc
+// apps/web/tsconfig.json
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@mi/ui": ["../../packages/ui/src"],
+      "@mi/shared": ["../../packages/shared/src"]
+    }
+  },
+  "include": ["src"]
+}
+```
+
+---
+
+## 04. Paquetes Internos
+
+### 4.1 Paquete shared
+
+**[REQUIRED]** Utils y tipos compartidos:
+
+```typescript
+// packages/shared/src/index.ts
+export * from './types';
+export * from './utils';
+export * from './constants';
+```
+
+### 4.2 Paquete ui
+
+**[REQUIRED]** Componentes UI compartidos:
+
+```typescript
+// packages/ui/src/index.ts
+export { Button } from './Button';
+export { Card } from './Card';
+export { Input } from './Input';
+```
+
+### 4.3 Paquete contracts
+
+**[REQUIRED]** Schemas Zod compartidos frontend↔backend:
+
+```typescript
+// packages/contracts/src/orders.ts
+import { z } from 'zod';
+
+export const CreateOrderSchema = z.object({
+  productId: z.string().uuid(),
+  quantity: z.number().int().min(1).max(100),
+  notes: z.string().max(500).optional(),
+});
+
+export type CreateOrder = z.infer<typeof CreateOrderSchema>;
+```
+
+---
+
+## 05. Scripts
+
+### 5.1 Scripts por paquete
+
+**[REQUIRED]** Cada paquete tiene scripts mínimos:
+
+```json
+{
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint src/",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest"
+  }
+}
+```
+
+### 5.2 Scripts de filtrado
+
+**[REQUIRED]** Usar `pnpm --filter` para ejecutar en paquetes específicos:
+
+```bash
+# Desarrollar solo web
+pnpm --filter @mi/web dev
+
+# Build solo api
+pnpm --filter @mi/api build
+
+# Typecheck todos
+pnpm --parallel -r run typecheck
+```
+
+---
+
+## 06. Deployment
+
+### 6.1 Deploy independiente
+
+**[REQUIRED]** Cada app se despliega independientemente:
+
+```json
+// apps/web/package.json
+{
+  "scripts": {
+    "deploy": "wrangler pages deploy dist --project-name mi-web"
+  }
+}
+
+// apps/api/package.json
+{
+  "scripts": {
+    "deploy": "wrangler deploy"
+  }
+}
+```
+
+### 6.2 CI/CD por paquete
+
+**[REQUIRED]** GitHub Actions por paquete:
 
 ```yaml
-# .github/workflows/deploy.yml
-name: Deploy
+# .github/workflows/web.yml
+name: Deploy Web
 on:
   push:
-    branches: [main]
+    paths: ['apps/web/**']
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - uses: pnpm/action-setup@v3
-        with: { version: 9 }
-
-      - uses: actions/setup-node@v4
-        with: { node-version: 20, cache: pnpm }
-
-      - run: pnpm install --frozen-lockfile
-
-      # Turborepo Remote Cache (evita re-buildear lo que ya está cacheado en el servidor de CI)
-      - name: Build
-        run: pnpm turbo run build
-        env:
-          TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
-          TURBO_TEAM:  ${{ secrets.TURBO_TEAM }}
-
-      # Desplegar cada Worker independientemente
-      - name: Deploy Workers
-        run: pnpm turbo run deploy --filter="./apps/*-worker"
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-
-      # Desplegar Frontend (Cloudflare Pages)
-      - name: Deploy Frontend
-        run: pnpm turbo run deploy --filter="./apps/web"
+      - uses: pnpm/action-setup@v4
+      - run: pnpm install
+      - run: pnpm --filter @mi/web build
+      - run: pnpm --filter @mi/web deploy
 ```
 
 ---
 
-## CHECKLIST DE SETUP
+## Checklist Monorepo
 
-- [ ] `pnpm` como package manager (no npm, no yarn — consistencia)
-- [ ] `turbo.json` con pipeline `deploy` que depende de `build + test + typecheck`
-- [ ] `packages/shared-http` importado por todos los workers (no copiado)
-- [ ] `packages/shared-schemas` importado por frontend Y workers (single source of truth)
-- [ ] `packages/shared-types` importado por todos (coherencia de contratos)
-- [ ] Remote Cache de Turborepo configurado en CI (ahorra 5-10 min por deploy)
-- [ ] Cada worker tiene su propio `wrangler.toml` con bindings específicos
-- [ ] `.env.example` en la raíz con todas las variables necesarias documentadas
+- [ ] pnpm-workspace.yaml configurado
+- [ ] Estructura apps/ y packages/
+- [ ] tsconfig base compartido
+- [ ] Dependencias compartidas en root
+- [ ] Paquetes internos con workspace:*
+- [ ] Scripts de filtrado configurados
+- [ ] CI/CD por paquete
+- [ ] Paquetes shared, ui, contracts

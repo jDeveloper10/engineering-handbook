@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Intelligence — El mapa de la inteligencia artificial</title>
+  <meta name="description" content="Modelos, categorías y casos de uso de la inteligencia artificial moderna, explicados con claridad." />
+  <meta name="theme-color" content="#121212" />
+  <meta property="og:title" content="AI Intelligence" />
+  <meta property="og:description" content="El mapa completo de la inteligencia artificial moderna." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── TOKENS — Aurora_UI (handbook) ─────────────────────────── */
+    :root {
+      --bg:        #121212;
+      --surface:   #1a1a1a;
+      --border:    rgba(255,255,255,0.08);
+      --text:      #f0f0f0;
+      --muted:     #888;
+      --dim:       #444;
+
+      /* UN solo gradiente de acento — Aurora */
+      --green:     #14ffcc;
+      --pink:      #ff3399;
+      --accent:    var(--green);
+
+      --font: 'Inter', system-ui, sans-serif;
+      --max: 820px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ────────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 2rem;
+      background: rgba(18,18,18,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--green);
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.82rem;
+      color: var(--muted);
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    @media (max-width: 600px) { .nav-links { display: none; } }
+
+    /* ── CONTENT WRAPPER ────────────────────────────────────────── */
+    .page {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── HERO ───────────────────────────────────────────────────── */
+    .hero {
+      padding: 8rem 0 5rem;
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 1.5rem;
+    }
+    h1 {
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1.02;
+      margin-bottom: 1.75rem;
+    }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--muted);
+      font-weight: 300;
+      max-width: 540px;
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.65rem 1.5rem;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.8; }
+    .btn-fill {
+      background: var(--green);
+      color: #000;
+    }
+    .btn-ghost {
+      color: var(--muted);
+      font-weight: 400;
+    }
+    .btn-ghost::after { content: ' →'; }
+
+    /* ── STATS STRIP ────────────────────────────────────────────── */
+    .stats {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin: 4rem 0;
+      padding: 2.5rem 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .stat {
+      padding: 0 2rem 0 0;
+      border-right: 1px solid var(--border);
+    }
+    .stat:last-child { border-right: none; padding-left: 2rem; padding-right: 0; }
+    .stat:not(:first-child) { padding-left: 2rem; }
+    .stat-n {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--green);
+    }
+    .stat-l {
+      font-size: 0.75rem;
+      color: var(--dim);
+      margin-top: 0.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    @media (max-width: 640px) {
+      .stats { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .stat { border-right: none; padding: 0; }
+      .stat:not(:first-child) { padding-left: 0; }
+    }
+
+    /* ── SECTION ────────────────────────────────────────────────── */
+    .section {
+      padding: 5rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .section-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .section-lead {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 3.5rem;
+    }
+
+    /* ── CATEGORIES — layout editorial, sin cards ───────────────── */
+    .cat-list {
+      display: flex;
+      flex-direction: column;
+    }
+    .cat-item {
+      display: grid;
+      grid-template-columns: 2rem 1fr;
+      gap: 1.5rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: opacity 0.2s;
+    }
+    .cat-item:hover { opacity: 0.8; }
+    .cat-num {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--dim);
+      padding-top: 0.2rem;
+      font-variant-numeric: tabular-nums;
+    }
+    .cat-body {}
+    .cat-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .cat-desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 0.75rem;
+    }
+    .tag-row {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .tag {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--dim);
+      border: 1px solid var(--border);
+      padding: 0.15rem 0.55rem;
+      border-radius: 3px;
+    }
+
+    /* ── MODELS — tabla limpia ──────────────────────────────────── */
+    .model-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .model-table thead tr {
+      border-bottom: 1px solid var(--border);
+    }
+    .model-table th {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--dim);
+      padding: 0 0 0.75rem;
+      text-align: left;
+    }
+    .model-table th:not(:first-child) { padding-left: 1.5rem; }
+    .model-table tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+    .model-table tbody tr:hover { background: rgba(255,255,255,0.02); }
+    .model-table td {
+      padding: 1.1rem 0;
+      font-size: 0.875rem;
+      vertical-align: middle;
+    }
+    .model-table td:not(:first-child) { padding-left: 1.5rem; }
+    .model-name-cell { font-weight: 700; }
+    .model-maker-cell {
+      color: var(--dim);
+      font-size: 0.8rem;
+    }
+    .model-desc-cell {
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 600;
+      padding: 0.15rem 0.5rem;
+      border-radius: 3px;
+      background: rgba(20,255,204,0.08);
+      color: var(--green);
+      border: 1px solid rgba(20,255,204,0.2);
+      white-space: nowrap;
+    }
+    .badge.pink {
+      background: rgba(255,51,153,0.08);
+      color: var(--pink);
+      border-color: rgba(255,51,153,0.2);
+    }
+    .badge.neutral {
+      background: rgba(255,255,255,0.04);
+      color: var(--muted);
+      border-color: var(--border);
+    }
+
+    @media (max-width: 640px) {
+      .model-table .hide-mobile { display: none; }
+    }
+
+    /* ── TIMELINE ───────────────────────────────────────────────── */
+    .tl {
+      display: flex;
+      flex-direction: column;
+    }
+    .tl-row {
+      display: grid;
+      grid-template-columns: 4rem 1fr;
+      gap: 1.5rem;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .tl-year {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--green);
+      padding-top: 0.15rem;
+    }
+    .tl-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+    .tl-body {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── USE CASES — 2-col list ─────────────────────────────────── */
+    .uses {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .use-row {
+      display: flex;
+      gap: 1rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .use-row:nth-child(odd) { padding-right: 2.5rem; border-right: 1px solid var(--border); }
+    .use-row:nth-child(even) { padding-left: 2.5rem; }
+    .use-icon {
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      padding-top: 0.1rem;
+    }
+    .use-title {
+      font-size: 0.875rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+    .use-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 600px) {
+      .uses { grid-template-columns: 1fr; }
+      .use-row:nth-child(odd) { padding-right: 0; border-right: none; }
+      .use-row:nth-child(even) { padding-left: 0; }
+    }
+
+    /* ── FOOTER ─────────────────────────────────────────────────── */
+    .footer-section {
+      padding: 3rem 0;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .footer-text {
+      font-size: 0.8rem;
+      color: var(--dim);
+    }
+    .footer-cta {
+      font-size: 0.82rem;
+      color: var(--green);
+      font-weight: 600;
+    }
+    .footer-cta:hover { text-decoration: underline; }
+
+    /* ── REVEAL ─────────────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .reveal.in { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <span class="logo">AI Intelligence</span>
+    <ul class="nav-links">
+      <li><a href="#categorias">Categorías</a></li>
+      <li><a href="#modelos">Modelos</a></li>
+      <li><a href="#historia">Historia</a></li>
+      <li><a href="#usos">Usos</a></li>
+    </ul>
+  </nav>
+
+  <main class="page">
+
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+      <p class="hero-eyebrow">Estado del arte · 2025</p>
+      <h1>El mapa de la<br />inteligencia<br />artificial</h1>
+      <p class="hero-sub">
+        127 modelos activos, tres grandes categorías y un mercado de 390&nbsp;B.
+        Aquí está todo lo que necesitas entender, sin rodeos.
+      </p>
+      <div class="hero-actions">
+        <a href="#categorias" class="btn btn-fill">Leer el mapa</a>
+        <a href="#modelos" class="btn btn-ghost">Ver modelos</a>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-n" id="s1">0+</div>
+          <div class="stat-l">Modelos activos</div>
+        </div>
+        <div class="stat">
+          <div class="stat-n" id="s2">0T</div>
+          <div class="stat-l">Parámetros máx.</div>
+        </div>
+        <div class="stat">
+          <div class="stat-n" id="s3">$0B</div>
+          <div class="stat-l">Mercado global</div>
+        </div>
+        <div class="stat">
+          <div class="stat-n" id="s4">0M+</div>
+          <div class="stat-l">Usuarios gen-AI</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORÍAS -->
+    <section class="section reveal" id="categorias">
+      <p class="section-eyebrow">Tipos</p>
+      <h2>Las tres grandes categorías</h2>
+      <p class="section-lead">No toda la IA hace lo mismo. Cada categoría tiene superpoderes distintos — y limitaciones distintas.</p>
+
+      <div class="cat-list">
+        <div class="cat-item">
+          <span class="cat-num">01</span>
+          <div class="cat-body">
+            <div class="cat-title">IA Generativa</div>
+            <div class="cat-desc">Crea contenido original — texto, imágenes, audio, código — a partir de un prompt. Es la categoría que popularizó ChatGPT y Midjourney y que ahora está integrada en casi todas las herramientas de trabajo.</div>
+            <div class="tag-row">
+              <span class="tag">LLMs</span>
+              <span class="tag">Difusión</span>
+              <span class="tag">Multimodal</span>
+              <span class="tag">Text-to-X</span>
+            </div>
+          </div>
+        </div>
+        <div class="cat-item">
+          <span class="cat-num">02</span>
+          <div class="cat-body">
+            <div class="cat-title">IA Agéntica</div>
+            <div class="cat-desc">Planifica y ejecuta tareas de múltiples pasos sin supervisión constante. Usa herramientas, navega la web, escribe código y lo despliega. Es la dirección hacia donde evoluciona toda la industria en 2025.</div>
+            <div class="tag-row">
+              <span class="tag">Agentes autónomos</span>
+              <span class="tag">Tool use</span>
+              <span class="tag">MCP</span>
+              <span class="tag">Planificación</span>
+            </div>
+          </div>
+        </div>
+        <div class="cat-item">
+          <span class="cat-num">03</span>
+          <div class="cat-body">
+            <div class="cat-title">IA Analítica</div>
+            <div class="cat-desc">Encuentra patrones en datos masivos, predice resultados y clasifica información. Es la IA que ya lleva décadas en producción silenciosa dentro de finanzas, logística y salud.</div>
+            <div class="tag-row">
+              <span class="tag">ML clásico</span>
+              <span class="tag">Predicción</span>
+              <span class="tag">Clasificación</span>
+              <span class="tag">Anomalías</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODELOS -->
+    <section class="section reveal" id="modelos">
+      <p class="section-eyebrow">2024 – 2025</p>
+      <h2>Los jugadores principales</h2>
+      <p class="section-lead">Los modelos que definen el estado del arte hoy, con su fortaleza diferencial.</p>
+
+      <table class="model-table" aria-label="Modelos de IA principales">
+        <thead>
+          <tr>
+            <th>Modelo</th>
+            <th>Empresa</th>
+            <th class="hide-mobile">Enfoque</th>
+            <th>Tipo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="model-name-cell">GPT-4o</td>
+            <td class="model-maker-cell">OpenAI</td>
+            <td class="model-desc-cell hide-mobile">Velocidad y versatilidad. Texto, imagen y audio en tiempo real. El más usado del mundo.</td>
+            <td><span class="badge">Generativo</span></td>
+          </tr>
+          <tr>
+            <td class="model-name-cell">Claude 4 Sonnet</td>
+            <td class="model-maker-cell">Anthropic</td>
+            <td class="model-desc-cell hide-mobile">Razonamiento largo y generación de código complejo. Preferido en ingeniería de software.</td>
+            <td><span class="badge">Agéntico</span></td>
+          </tr>
+          <tr>
+            <td class="model-name-cell">Gemini 2.5 Pro</td>
+            <td class="model-maker-cell">Google DeepMind</td>
+            <td class="model-desc-cell hide-mobile">Contexto de 2M tokens. El mejor para análisis de documentos masivos y código a escala.</td>
+            <td><span class="badge">Multimodal</span></td>
+          </tr>
+          <tr>
+            <td class="model-name-cell">Llama 3.3</td>
+            <td class="model-maker-cell">Meta AI</td>
+            <td class="model-desc-cell hide-mobile">Open source, corre localmente. Sin API, sin censura de plataforma. Ideal para privacidad.</td>
+            <td><span class="badge neutral">Open source</span></td>
+          </tr>
+          <tr>
+            <td class="model-name-cell">Mistral Large</td>
+            <td class="model-maker-cell">Mistral AI</td>
+            <td class="model-desc-cell hide-mobile">Eficiencia extrema, multilenguaje nativo, GDPR-compliant. Favorito en entornos enterprise europeos.</td>
+            <td><span class="badge neutral">Enterprise</span></td>
+          </tr>
+          <tr>
+            <td class="model-name-cell">DeepSeek R1</td>
+            <td class="model-maker-cell">DeepSeek</td>
+            <td class="model-desc-cell hide-mobile">Chain-of-thought visible. Razonamiento transparente paso a paso. Precio disruptivo.</td>
+            <td><span class="badge pink">Razonamiento</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- HISTORIA -->
+    <section class="section reveal" id="historia">
+      <p class="section-eyebrow">Línea de tiempo</p>
+      <h2>Cómo llegamos hasta aquí</h2>
+      <p class="section-lead">Los hitos que transformaron la IA de laboratorio en infraestructura global.</p>
+
+      <div class="tl">
+        <div class="tl-row">
+          <span class="tl-year">2017</span>
+          <div>
+            <div class="tl-title">Attention Is All You Need</div>
+            <div class="tl-body">Google publica el paper que introduce los Transformers. Sin él no existiría ningún LLM moderno.</div>
+          </div>
+        </div>
+        <div class="tl-row">
+          <span class="tl-year">2020</span>
+          <div>
+            <div class="tl-title">GPT-3 — La escala como estrategia</div>
+            <div class="tl-body">OpenAI demuestra que escalar parámetros produce capacidades emergentes. 175B parámetros cambian la conversación del campo.</div>
+          </div>
+        </div>
+        <div class="tl-row">
+          <span class="tl-year">2022</span>
+          <div>
+            <div class="tl-title">ChatGPT — Un millón de usuarios en 5 días</div>
+            <div class="tl-body">La interfaz de chat democratiza los LLMs. Por primera vez el público general interactúa con un modelo de lenguaje avanzado sin fricciones técnicas.</div>
+          </div>
+        </div>
+        <div class="tl-row">
+          <span class="tl-year">2023</span>
+          <div>
+            <div class="tl-title">GPT-4 + LLaMA — Open vs. Closed</div>
+            <div class="tl-body">GPT-4 establece el nuevo techo de capacidades. Meta libera LLaMA y democratiza el entrenamiento local — el campo se bifurca.</div>
+          </div>
+        </div>
+        <div class="tl-row">
+          <span class="tl-year">2024</span>
+          <div>
+            <div class="tl-title">Era Agéntica</div>
+            <div class="tl-body">Los modelos dejan de responder preguntas y empiezan a ejecutar tareas autónomas de múltiples pasos con herramientas reales.</div>
+          </div>
+        </div>
+        <div class="tl-row">
+          <span class="tl-year">2025</span>
+          <div>
+            <div class="tl-title">IA en producción real</div>
+            <div class="tl-body">Los agentes despliegan código, gestionan infraestructura y toman decisiones de negocio. El debate ya no es "si" sino "cómo" y "hasta dónde".</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- USOS -->
+    <section class="section reveal" id="usos">
+      <p class="section-eyebrow">Aplicaciones</p>
+      <h2>Dónde está cambiando todo</h2>
+      <p class="section-lead">La IA ya no es una promesa — está en producción en estas industrias ahora mismo.</p>
+
+      <div class="uses">
+        <div class="use-row">
+          <span class="use-icon">💻</span>
+          <div>
+            <div class="use-title">Desarrollo de software</div>
+            <div class="use-desc">Generación, revisión y refactorización de código. Los modelos escriben tests, documentación y PRs completos.</div>
+          </div>
+        </div>
+        <div class="use-row">
+          <span class="use-icon">🏥</span>
+          <div>
+            <div class="use-title">Salud</div>
+            <div class="use-desc">Diagnóstico por imagen, análisis de genómica, descubrimiento de fármacos y resúmenes de historiales clínicos.</div>
+          </div>
+        </div>
+        <div class="use-row">
+          <span class="use-icon">⚖️</span>
+          <div>
+            <div class="use-title">Legal</div>
+            <div class="use-desc">Revisión de contratos, análisis de jurisprudencia y redacción de documentos legales en segundos.</div>
+          </div>
+        </div>
+        <div class="use-row">
+          <span class="use-icon">📈</span>
+          <div>
+            <div class="use-title">Finanzas</div>
+            <div class="use-desc">Detección de fraude en tiempo real, predicción de mercados y generación automática de reportes regulatorios.</div>
+          </div>
+        </div>
+        <div class="use-row">
+          <span class="use-icon">🎓</span>
+          <div>
+            <div class="use-title">Educación</div>
+            <div class="use-desc">Tutores personalizados que adaptan el ritmo y estilo a cada estudiante. La clase magistral se vuelve conversación.</div>
+          </div>
+        </div>
+        <div class="use-row">
+          <span class="use-icon">🛡️</span>
+          <div>
+            <div class="use-title">Ciberseguridad</div>
+            <div class="use-desc">Detección de amenazas, análisis de vulnerabilidades y respuesta automática a incidentes antes de que escalen.</div>
+          </div>
+        </div>
+        <div class="use-row">
+          <span class="use-icon">🏭</span>
+          <div>
+            <div class="use-title">Manufactura</div>
+            <div class="use-desc">Mantenimiento predictivo, control de calidad visual y optimización de cadenas de suministro en tiempo real.</div>
+          </div>
+        </div>
+        <div class="use-row">
+          <span class="use-icon">🎨</span>
+          <div>
+            <div class="use-title">Diseño y creatividad</div>
+            <div class="use-desc">Generación de imágenes, música y video a partir de un brief en lenguaje natural.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer-section">
+      <span class="footer-text">AI Intelligence · 2025</span>
+      <a href="https://handbook-explorer.pages.dev" target="_blank" rel="noopener" class="footer-cta">
+        Engineering Handbook →
+      </a>
+    </footer>
+
+  </main>
+
+  <script>
+    /* Reveal on scroll */
+    const io = new IntersectionObserver(
+      es => es.forEach(e => e.isIntersecting && e.target.classList.add('in')),
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    /* Counter animation */
+    function count(el, end, suffix, dur = 1400) {
+      const t0 = performance.now();
+      const tick = now => {
+        const p = Math.min((now - t0) / dur, 1);
+        const v = Math.round((1 - Math.pow(1 - p, 3)) * end);
+        el.textContent = (el.id === 's3' ? '$' : '') + v + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }
+
+    const statsEl = document.querySelector('.stats');
+    let done = false;
+    new IntersectionObserver(([e]) => {
+      if (e.isIntersecting && !done) {
+        done = true;
+        count(document.getElementById('s1'), 127, '+');
+        count(document.getElementById('s2'), 1,   'T+');
+        count(document.getElementById('s3'), 390, 'B');
+        count(document.getElementById('s4'), 600, 'M+');
+      }
+    }, { threshold: 0.3 }).observe(statsEl);
+  </script>
+
+  <!-- ── ANGELIN & JEILICA AUTONOMOUS WEB-MASCOT DUO OVERLAY ───────── -->
+  <style>
+    .web-mascot-cv {
+      position: fixed;
+      width: 150px;
+      height: 150px;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+      cursor: grab;
+      user-select: none;
+      touch-action: none;
+      z-index: 9990;
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.7));
+      transition: filter 0.2s;
+    }
+    .web-mascot-cv.dragging {
+      cursor: grabbing;
+      filter: drop-shadow(0 14px 28px rgba(0,0,0,0.85)) drop-shadow(0 0 10px rgba(255,0,51,0.25));
+    }
+
+    .web-speech-bubble {
+      position: fixed;
+      pointer-events: none;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.76rem;
+      color: #ffffff;
+      background: rgba(18, 18, 24, 0.94);
+      border: 1px solid rgba(255, 0, 51, 0.3);
+      padding: 7px 12px;
+      border-radius: 8px;
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.25s, transform 0.25s;
+      z-index: 9995;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.8);
+    }
+    .web-speech-bubble.show { opacity: 1; transform: translateY(0); }
+    .web-speech-bubble::before { content: '>'; color: #ff0033; margin-right: 5px; font-weight: 700; }
+
+    #bubble-jeilica-web { border-color: rgba(0, 229, 255, 0.35); }
+    #bubble-jeilica-web::before { color: #00e5ff; }
+
+    /* FLOATING DUO WIDGET CONTROLLER */
+    #mascot-widget-bar {
+      position: fixed;
+      bottom: 18px;
+      right: 18px;
+      z-index: 9998;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(18, 18, 24, 0.92);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 6px 12px;
+      border-radius: 30px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.8);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+    }
+    .widget-pill-title {
+      font-weight: 700;
+      color: #f3f4f6;
+      margin-right: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .widget-btn {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #e5e7eb;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .widget-btn:hover {
+      background: rgba(255,0,51,0.25);
+      border-color: rgba(255,0,51,0.4);
+      color: #fff;
+    }
+
+    .web-pixel-particle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      image-rendering: pixelated;
+    }
+  </style>
+
+  <!-- CANVASES & SPEECH BUBBLES -->
+  <canvas id="cv-angelin-web" class="web-mascot-cv" width="48" height="48"></canvas>
+  <canvas id="cv-jeilica-web" class="web-mascot-cv" width="48" height="48"></canvas>
+
+  <div id="bubble-angelin-web" class="web-speech-bubble">¡Hola! Paseándome por AI Intelligence 🖤</div>
+  <div id="bubble-jeilica-web" class="web-speech-bubble">¡Hola! Inspeccionando la web con Angelin 🤍</div>
+
+  <!-- CONTROLLER BAR -->
+  <div id="mascot-widget-bar">
+    <div class="widget-pill-title">🖤 Angelin & 🤍 Jeilica</div>
+    <button class="widget-btn" onclick="triggerWebDuoAction('kiss')">💋 Beso</button>
+    <button class="widget-btn" onclick="triggerWebDuoAction('dance')">🎵 Baile</button>
+    <button class="widget-btn" onclick="triggerWebDuoAction('coffee')">☕ Café</button>
+    <button class="widget-btn" onclick="window.location.href='angelin.html'">👾 Abrir Studio</button>
+  </div>
+
+  <script>
+    (function() {
+      const cv1 = document.getElementById('cv-angelin-web');
+      const ctx1 = cv1.getContext('2d');
+      const b1 = document.getElementById('bubble-angelin-web');
+
+      const cv2 = document.getElementById('cv-jeilica-web');
+      const ctx2 = cv2.getContext('2d');
+      const b2 = document.getElementById('bubble-jeilica-web');
+
+      let mode = 'idle';
+      let frame = 0;
+
+      // Positions & Physics
+      let x1 = window.innerWidth * 0.15, y1 = window.innerHeight * 0.55;
+      let vx1 = 0, vy1 = 0; let isDrag1 = false, ds1X = 0, ds1Y = 0, l1X = 0, l1Y = 0;
+
+      let x2 = window.innerWidth * 0.28, y2 = window.innerHeight * 0.55;
+      let vx2 = 0, vy2 = 0; let isDrag2 = false, ds2X = 0, ds2Y = 0, l2X = 0, l2Y = 0;
+
+      let wasSeparated = false;
+      let targetX1 = x1, targetY1 = y1, targetX2 = x2, targetY2 = y2;
+      let aiTimer = 0;
+
+      // Dragging handlers
+      cv1.onpointerdown = (e) => {
+        isDrag1 = true; cv1.setPointerCapture(e.pointerId); cv1.classList.add('dragging');
+        ds1X = e.clientX - x1; ds1Y = e.clientY - y1; l1X = e.clientX; l1Y = e.clientY; vx1 = 0; vy1 = 0;
+        speak1('¡Woah! Me estás moviendo por la web 😯');
+      };
+      cv1.onpointermove = (e) => { if (!isDrag1) return; x1 = e.clientX - ds1X; y1 = e.clientY - ds1Y; vx1 = e.clientX - l1X; vy1 = e.clientY - l1Y; l1X = e.clientX; l1Y = e.clientY; };
+      cv1.onpointerup = cv1.onpointercancel = () => { isDrag1 = false; cv1.classList.remove('dragging'); };
+
+      cv2.onpointerdown = (e) => {
+        isDrag2 = true; cv2.setPointerCapture(e.pointerId); cv2.classList.add('dragging');
+        ds2X = e.clientX - x2; ds2Y = e.clientY - y2; l2X = e.clientX; l2Y = e.clientY; vx2 = 0; vy2 = 0;
+        speak2('¡Oye! ¡Me estás moviendo a mí! 😯');
+      };
+      cv2.onpointermove = (e) => { if (!isDrag2) return; x2 = e.clientX - ds2X; y2 = e.clientY - ds2Y; vx2 = e.clientX - l2X; vy2 = e.clientY - l2Y; l2X = e.clientX; l2Y = e.clientY; };
+      cv2.onpointerup = cv2.onpointercancel = () => { isDrag2 = false; cv2.classList.remove('dragging'); };
+
+      function speak1(txt) { b1.textContent = txt; b1.classList.add('show'); updateB(cv1, b1); clearTimeout(b1._t); b1._t = setTimeout(() => b1.classList.remove('show'), 3200); }
+      function speak2(txt) { b2.textContent = txt; b2.classList.add('show'); updateB(cv2, b2); clearTimeout(b2._t); b2._t = setTimeout(() => b2.classList.remove('show'), 3200); }
+
+      function updateB(cv, b) {
+        const r = cv.getBoundingClientRect();
+        let bx = r.left + r.width / 2 - b.offsetWidth / 2;
+        let by = r.top - 36;
+        bx = Math.max(10, Math.min(bx, window.innerWidth - b.offsetWidth - 10));
+        by = Math.max(10, by);
+        b.style.left = bx + 'px'; b.style.top = by + 'px';
+      }
+
+      window.triggerWebDuoAction = function(actMode) {
+        mode = actMode;
+        if (actMode === 'kiss') { speak1('💋 ¡Muak! ¡Beso cibernético! ❤️'); speak2('💋 ¡Te amo Angelin! ❤️'); }
+        if (actMode === 'dance') { speak1('🎵 ¡Bailando en AI Intelligence!'); speak2('🕺 ¡Sigue mi ritmo!'); }
+        if (actMode === 'coffee') { speak1('☕ Hora del café dev.'); speak2('☕ ¡Delicioso expreso!'); }
+      };
+
+      // ── PIXEL SPRITE RENDER ENGINE ────────────────────────────────
+      function drawMascot(targetCtx, f, curMode, mascotType) {
+        targetCtx.clearRect(0, 0, 48, 48);
+        const floatOffset = (mascotType === 'jeilica') ? 12 : 0;
+        const bobY = Math.round(Math.sin((f + floatOffset) * 0.06) * 1.8);
+
+        const isJ = (mascotType === 'jeilica');
+        const bBody = isJ ? '#f1f5f9' : '#161620';
+        const bFrame = isJ ? '#cbd5e1' : '#242432';
+        const glow = isJ ? '#00e5ff' : '#ff0033';
+        const eye = isJ ? '#0f172a' : '#ffffff';
+        const silv = isJ ? '#94a3b8' : '#d1d5db';
+        const sBg = isJ ? '#e2e8f0' : '#050508';
+
+        targetCtx.fillStyle = isJ ? 'rgba(0,229,255,0.25)' : 'rgba(255,0,51,0.2)';
+        targetCtx.fillRect(16, 42, 16, 2);
+
+        const antX = 23, antY = 5 + bobY;
+        targetCtx.fillStyle = silv; targetCtx.fillRect(antX, antY + 2, 2, 4);
+        targetCtx.fillStyle = glow; targetCtx.fillRect(antX - 1, antY, 4, 3);
+
+        targetCtx.fillStyle = bBody; targetCtx.fillRect(11, 25 + bobY, 4, 10);
+        targetCtx.fillStyle = glow; targetCtx.fillRect(10, 28 + bobY, 1, 4);
+
+        const hX = 13, hY = 10 + bobY;
+        targetCtx.fillStyle = bFrame; targetCtx.fillRect(hX, hY, 22, 15);
+        targetCtx.fillStyle = glow; targetCtx.fillRect(hX - 1, hY + 4, 1, 7); targetCtx.fillRect(hX + 22, hY + 4, 1, 7);
+
+        targetCtx.fillStyle = sBg; targetCtx.fillRect(hX + 2, hY + 2, 18, 11);
+
+        if (curMode === 'cry') {
+          targetCtx.fillStyle = glow; targetCtx.fillRect(hX + 4, hY + 4, 5, 2); targetCtx.fillRect(hX + 13, hY + 4, 5, 2);
+          targetCtx.fillStyle = eye; targetCtx.fillRect(hX + 5, hY + 6, 3, 2); targetCtx.fillRect(hX + 14, hY + 6, 3, 2);
+          targetCtx.fillStyle = glow; targetCtx.fillRect(hX + 9, hY + 11, 4, 1);
+          const tY = (f * 2) % 16;
+          targetCtx.fillStyle = '#00e5ff'; targetCtx.fillRect(hX + 3, hY + 6 + tY, 2, 3); targetCtx.fillRect(hX + 17, hY + 6 + tY, 2, 3);
+        } else if (curMode === 'kiss') {
+          targetCtx.fillStyle = eye; targetCtx.fillRect(hX + 4, hY + 6, 4, 1); targetCtx.fillRect(hX + 14, hY + 6, 4, 1);
+          targetCtx.fillRect(hX + 5, hY + 5, 2, 1); targetCtx.fillRect(hX + 15, hY + 5, 2, 1);
+          targetCtx.fillStyle = glow; targetCtx.fillRect(hX + 9, hY + 9, 4, 2);
+          targetCtx.fillStyle = '#ffb6c1'; targetCtx.fillRect(hX + 2, hY + 8, 3, 2); targetCtx.fillRect(hX + 17, hY + 8, 3, 2);
+        } else {
+          targetCtx.fillStyle = eye; targetCtx.fillRect(hX + 4, hY + 5, 4, 5); targetCtx.fillRect(hX + 14, hY + 5, 4, 5);
+          targetCtx.fillStyle = glow; targetCtx.fillRect(hX + 10, hY + 10, 4, 1);
+        }
+
+        targetCtx.fillStyle = bBody; targetCtx.fillRect(17, 27 + bobY, 14, 10);
+        targetCtx.fillStyle = glow; targetCtx.fillRect(20, 38 + bobY, 8, 1);
+
+        let hL = 28 + bobY, hR = 28 + bobY;
+        if (curMode === 'dance') { hL += Math.sin(f * 0.3) * 4; hR += Math.cos(f * 0.3) * 4; }
+        targetCtx.fillStyle = bBody; targetCtx.fillRect(12, hL, 4, 4); targetCtx.fillRect(32, hR, 4, 4);
+      }
+
+      function spawnWebHeart() {
+        if (frame % 6 !== 0) return;
+        const mx = (x1 + x2) / 2 + 75; const my = (y1 + y2) / 2 - 20;
+        const c = document.createElement('canvas');
+        c.className = 'web-pixel-particle';
+        c.width = 28; c.height = 24;
+        c.style.left = (mx + (Math.random() - 0.5) * 40) + 'px';
+        c.style.top = my + 'px';
+        const p = c.getContext('2d'); p.imageRendering = 'pixelated';
+        const col = ['#ff0055', '#00e5ff', '#ff00aa', '#ffcc00'][Math.floor(Math.random() * 4)];
+        const grid = [[0,1,1,0,1,1,0],[1,1,1,1,1,1,1],[1,1,1,1,1,1,1],[0,1,1,1,1,1,0],[0,0,1,1,1,0,0],[0,0,0,1,0,0,0]];
+        for (let r = 0; r < 6; r++) { for (let cl = 0; cl < 7; cl++) { if (grid[r][cl] === 1) { p.fillStyle = (r===1&&cl===1)?'#fff':col; p.fillRect(cl*3, r*3, 3, 3); } } }
+        document.body.appendChild(c);
+        let vy = -2 - Math.random() * 2, op = 1;
+        function loop() { op -= 0.03; c.style.top = (parseFloat(c.style.top) + vy) + 'px'; c.style.opacity = op; if (op > 0) requestAnimationFrame(loop); else c.remove(); }
+        loop();
+      }
+
+      // ── AUTONOMOUS WEB WANDERING ENGINE ───────────────────────────
+      function webLoop() {
+        requestAnimationFrame(webLoop);
+        frame++;
+        aiTimer++;
+
+        // Autonomous Wandering AI Decision Routine
+        if (aiTimer % 320 === 0 && !isDrag1 && !isDrag2) {
+          const randAction = Math.random();
+          if (randAction < 0.35) {
+            // Meeting for a kiss!
+            mode = 'kiss';
+            targetX1 = window.innerWidth * 0.42;
+            targetX2 = window.innerWidth * 0.42 + 65;
+            targetY1 = window.innerHeight * 0.55;
+            targetY2 = window.innerHeight * 0.55;
+            speak1('💋 ¡Reunión para beso cibernético!');
+            speak2('💋 ¡Te encontré Angelin!');
+          } else if (randAction < 0.70) {
+            // Wandering to inspect web categories!
+            mode = 'idle';
+            const catSection = document.getElementById('categorias');
+            const rect = catSection ? catSection.getBoundingClientRect() : { top: 400 };
+            targetX1 = window.innerWidth * 0.1 + Math.random() * (window.innerWidth * 0.3);
+            targetX2 = targetX1 + 120 + Math.random() * 80;
+            targetY1 = Math.max(100, Math.min(window.innerHeight - 200, rect.top + 100));
+            targetY2 = targetY1;
+            speak1('🔍 Paseando e inspeccionando categorías...');
+            speak2('⚡ ¡Miren todos estos modelos de IA!');
+          } else {
+            // Dancing together!
+            mode = 'dance';
+            speak1('🎵 ¡Fiesta dev en AI Intelligence!');
+            speak2('💃 ¡Ritmo de código!');
+          }
+        }
+
+        // Autonomous Movement Interpolation
+        if (mode === 'kiss' && !isDrag1 && !isDrag2) {
+          x1 += (targetX1 - x1) * 0.08; y1 += (targetY1 - y1) * 0.08;
+          x2 += (targetX2 - x2) * 0.08; y2 += (targetY2 - y2) * 0.08;
+          spawnWebHeart();
+        } else if (!isDrag1 && !isDrag2) {
+          x1 += (targetX1 - x1) * 0.04; y1 += (targetY1 - y1) * 0.04;
+          x2 += (targetX2 - x2) * 0.04; y2 += (targetY2 - y2) * 0.04;
+        }
+
+        // Distance Check & Crying Sensor
+        const d = Math.hypot(x1 - x2, y1 - y2);
+        let m1 = mode, m2 = mode;
+        if (d > 350) {
+          m1 = 'cry'; m2 = 'cry';
+          if (frame % 160 === 0 || !wasSeparated) { speak1('😭 ¡No me alejes de Jeilica!'); speak2('😭 ¡Regrésame con Angelin!'); }
+          wasSeparated = true;
+        } else if (wasSeparated && d <= 200) {
+          wasSeparated = false;
+          speak1('🥰 ¡Juntos otra vez!'); speak2('🥰 ¡Te extrañé!');
+          spawnWebHeart();
+        }
+
+        const float1 = isDrag1 ? 0 : Math.sin(frame * 0.05) * 5;
+        const float2 = isDrag2 ? 0 : Math.sin((frame + 12) * 0.05) * 5;
+
+        cv1.style.transform = `translateY(${float1}px)`; cv2.style.transform = `translateY(${float2}px)`;
+        cv1.style.left = x1 + 'px'; cv1.style.top = y1 + 'px';
+        cv2.style.left = x2 + 'px'; cv2.style.top = y2 + 'px';
+
+        updateB(cv1, b1); updateB(cv2, b2);
+
+        drawMascot(ctx1, frame, m1, 'angelin');
+        drawMascot(ctx2, frame, m2, 'jeilica');
+      }
+
+      webLoop();
+      setTimeout(() => { speak1('¡Hola! Somos Angelin 🖤 y Jeilica 🤍'); speak2('¡Nos pasearemos por AI Intelligence! 👾👾'); }, 800);
+    })();
+  </script>
+</body>
+</html>

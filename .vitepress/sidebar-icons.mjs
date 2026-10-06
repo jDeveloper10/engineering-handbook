@@ -39,6 +39,7 @@ export const ICONO_CATEGORIA = {
   '13_AI_Rules': 'brain',
   '14_DX': 'wrench',
   '15_Knowledge_System': 'refresh-cw',
+  '16_Accounting': 'calculator',
   root: 'pin',
 }
 

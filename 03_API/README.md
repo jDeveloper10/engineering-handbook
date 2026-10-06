@@ -9,6 +9,15 @@ updated: 2026-07-09
 status: current
 ---
 
-# API Engineering Standard
+# Dominio API — Contratos, Envelopes e Idempotencia
 
-> Pendiente. Ver [README.md](../README.md) raíz para el estado general del handbook y [00_HANDBOOK_FORMAT.md](../00_HANDBOOK_FORMAT.md) para las convenciones que este documento seguirá cuando se escriba.
+Este dominio define los contratos de interfaz pública hacia el cliente, el formato de respuestas estándar `{ ok, data }` / `{ ok, error }`, y el procesamiento seguro de webhooks idempotentes.
+
+## Documentos del Dominio
+
+| Documento | Tipo | Descripción |
+|---|---|---|
+| [API_ENGINEERING_STANDARD.md](API_ENGINEERING_STANDARD.md) | Estándar | Contrato hacia afuera, envelope estándar, versionado y validación |
+| [WEBHOOK_IDEMPOTENCY_STANDARD.md](WEBHOOK_IDEMPOTENCY_STANDARD.md) | Estándar | Procesamiento seguro e idempotente de webhooks (Stripe/Wompi/NowPayments) sin dobles cobros |
+| [PAGUELOFACIL_INTEGRATION.md](PAGUELOFACIL_INTEGRATION.md) | Referencia | Forma real del webhook de PagueloFácil (Enlace de Pago): `customFields` por `nameOrLabel`, sin firma ni endpoint de re-verificación, `operationType` obligatorio |
+

@@ -40,6 +40,30 @@ status: current
 
 ---
 
+## Principio de Mínima Decoración (`UI-DEC-001`)
+
+**[REQUIRED]** Antes de añadir una card con fondo/borde o un gradiente decorativo, aplica este test de tres preguntas:
+
+1. ¿Puede la **tipografía y el espaciado** transmitir la misma jerarquía sin el box?
+2. ¿Puede un `border-top` o `border-bottom` separar el contenido sin necesitar un contenedor completo?
+3. ¿Es este gradiente el **único** gradiente de acento en pantalla?
+
+Si la respuesta a (1) o (2) es **sí** → elimina la card.
+Si la respuesta a (3) es **no** → elimina el gradiente extra.
+
+**Reglas concretas:**
+
+- **Cards con fondo/borde**: úsalas solo cuando el elemento es seleccionable, draggable o tiene una acción primaria propia (botón, enlace de card completa). Para contenido puramente informativo, usa listas, tablas o secciones con separador de línea.
+- **Gradientes**: máximo **un gradiente de acento por página**. Si tienes más de uno activo en pantalla simultáneamente, tienes uno de más. El fondo del viewport no cuenta como gradiente de acento.
+- **Blur / glassmorphism** (`backdrop-filter`): solo en elementos flotantes (nav fijo, modales, drawers, tooltips). Nunca como decoración de secciones de contenido scrollable.
+- **Box-shadow glow**: un único elemento puede tener glow como énfasis. Si más de un elemento brilla, ninguno brilla.
+
+**Por qué:** cada capa de decoración compite con el contenido por la atención del usuario. Cuando todo brilla, nada brilla. El contenido es el protagonista — la UI es la infraestructura invisible que lo sirve. Una IA que genera UI sin este principio produce páginas que se ven "de plantilla genérica de SaaS" aunque hayan costado horas de trabajo.
+
+**Cómo verificarlo:** abre DevTools → desactiva temporalmente todos los `background`, `box-shadow` y `border` decorativos. Si la página sigue siendo legible y la jerarquía se entiende → la decoración estaba cumpliendo su función. Si la página se derrumba → la decoración estaba haciendo el trabajo que debería hacer la tipografía.
+
+---
+
 ## Catálogo completo (30 estilos)
 
 ### 8_bit

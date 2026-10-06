@@ -13,3 +13,5 @@ status: current
 
 El protocolo de auto-ruteo para IA vive en **[`AGENTS.md`](AGENTS.md)** (fuente única, común a todas
 las herramientas). Léelo antes de cualquier tarea de generación o revisión de código y síguelo tal cual.
+El primer paso operativo es el Gate del Engineering OS indicado allí: perfil, riesgo, matriz de
+completitud y evidencia antes de implementar.

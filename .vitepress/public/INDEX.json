@@ -1,0 +1,5959 @@
+{
+  "docs": [
+    {
+      "title": "Estándar de Cookies, Caché y Optimizaciones de Alto Rendimiento",
+      "path": "00_Fundamentos/COOKIES_CACHE_OPTIMIZATION.md",
+      "category": "00_Fundamentos",
+      "doc_type": "estandar",
+      "tags": [
+        "cookies",
+        "cache",
+        "kv",
+        "browser-cache",
+        "cdn",
+        "stale-while-revalidate",
+        "early-hints",
+        "http3",
+        "brotli",
+        "bundle-splitting",
+        "performance"
+      ],
+      "summary": "Guía maestra y quirúrgica sobre cookies seguras (HttpOnly, SameSite, rotación de refresh tokens), las 4 capas de caché (Browser, CDN, KV, Materialized Views), Early Hints 103, HTTP/3, Brotli y bundle splitting.",
+      "keywords": [
+        "cookies",
+        "httponly",
+        "samesite",
+        "refresh-token",
+        "cache",
+        "cache-control",
+        "kv",
+        "cache-aside",
+        "stale-while-revalidate",
+        "early-hints",
+        "brotli",
+        "lazy-loading",
+        "bundle-splitting",
+        "vite",
+        "lcp",
+        "ttfb"
+      ],
+      "tokens": 3715,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Feature Kickstart (El Checklist Maestro)",
+      "path": "00_Fundamentos/FEATURE_KICKSTART.md",
+      "category": "00_Fundamentos",
+      "doc_type": "referencia",
+      "tags": [
+        "checklist",
+        "kickoff",
+        "feature",
+        "arquitectura"
+      ],
+      "summary": "Checklist maestro de 77 preguntas obligatorio antes de programar cualquier feature, organizado por fases: definición, base de datos, API y backend, frontend y los casos de borde que siempre se olvidan.",
+      "keywords": [
+        "checklist",
+        "kickoff",
+        "feature",
+        "arquitectura",
+        "kickstart",
+        "maestro",
+        "preguntas",
+        "obligatorio",
+        "programar",
+        "organizado",
+        "fases",
+        "definicion",
+        "base",
+        "datos"
+      ],
+      "tokens": 1798,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "00_Fundamentos — Historia de la Ingeniería de Software",
+      "path": "00_Fundamentos/HISTORIA_INGENIERIA_SOFTWARE.md",
+      "category": "00_Fundamentos",
+      "doc_type": "referencia",
+      "tags": [
+        "history",
+        "foundations",
+        "software-engineering",
+        "methodologies",
+        "paradigms"
+      ],
+      "summary": "Recorrido cronológico y conceptual de la Ingeniería de Software como disciplina: desde la 'crisis del software' de 1968 hasta la era de la IA generativa. No es un estándar normativo; es el contexto histórico que explica por qué cada estándar del handbook existe.",
+      "keywords": [
+        "historia",
+        "nato-conference",
+        "waterfall",
+        "agile",
+        "devops",
+        "dijkstra",
+        "brooks",
+        "beck",
+        "hamilton",
+        "crisis-del-software",
+        "metodologias",
+        "paradigmas"
+      ],
+      "tokens": 4300,
+      "status": "current",
+      "updated": "2026-07-26",
+      "has_frontmatter": true
+    },
+    {
+      "title": "00_Fundamentos — Historia de Internet",
+      "path": "00_Fundamentos/HISTORIA_INTERNET.md",
+      "category": "00_Fundamentos",
+      "doc_type": "referencia",
+      "tags": [
+        "history",
+        "internet",
+        "networking",
+        "web",
+        "technology"
+      ],
+      "summary": "Recorrido cronológico y conceptual de Internet: desde ARPANET (1969) y la conmutación de paquetes hasta la web moderna, las redes sociales, la nube y el impacto de Internet en la ingeniería de software.",
+      "keywords": [
+        "arpanet",
+        "tcp-ip",
+        "tim-berners-lee",
+        "world-wide-web",
+        "html",
+        "http",
+        "dns",
+        "mosaic",
+        "netscape",
+        "burbuja-puntocom",
+        "web-2.0",
+        "cloud-computing",
+        "redes-sociales"
+      ],
+      "tokens": 3884,
+      "status": "current",
+      "updated": "2026-07-26",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Optimización Quirúrgica",
+      "path": "00_Fundamentos/OPTIMIZATION_STANDARD.md",
+      "category": "00_Fundamentos",
+      "doc_type": "estandar",
+      "tags": [
+        "optimización",
+        "rendimiento",
+        "costos",
+        "clean-code"
+      ],
+      "summary": "Reglas O-001 en adelante sobre los tres pilares de la optimización real: código más corto y legible (early returns, destructuring, operadores modernos), rendimiento medido y reducción de costo de infraestructura.",
+      "keywords": [
+        "optimizacion",
+        "rendimiento",
+        "costos",
+        "clean-code",
+        "quirurgica",
+        "o-001",
+        "adelante",
+        "tres",
+        "pilares",
+        "real",
+        "codigo",
+        "corto",
+        "legible",
+        "early"
+      ],
+      "tokens": 9788,
+      "status": "current",
+      "updated": "2026-07-29",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Índice de Patrones (Resolución Rápida)",
+      "path": "00_Fundamentos/PATRONES_INDEX.md",
+      "category": "00_Fundamentos",
+      "doc_type": "referencia",
+      "tags": [
+        "index",
+        "patrones",
+        "faq",
+        "arquitectura"
+      ],
+      "summary": "Tabla de resolución rápida que mapea un caso de uso concreto al patrón y al documento del handbook que lo resuelve, para no empezar buscando en Google.",
+      "keywords": [
+        "index",
+        "patrones",
+        "faq",
+        "arquitectura",
+        "indice",
+        "resolucion",
+        "rapida",
+        "tabla",
+        "mapea",
+        "caso",
+        "concreto",
+        "handbook",
+        "resuelve",
+        "empezar"
+      ],
+      "tokens": 1178,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Metodología de Desarrollo: Spec-Driven y Contratos Primero",
+      "path": "00_Fundamentos/SPEC_DRIVEN_DEVELOPMENT.md",
+      "category": "00_Fundamentos",
+      "doc_type": "estandar",
+      "tags": [
+        "metodologia",
+        "spec-driven",
+        "tdd",
+        "zod",
+        "contratos",
+        "flujo-trabajo"
+      ],
+      "summary": "Protocolo obligatorio de desarrollo para la agencia: Especificación -> Contrato Zod -> Prueba Unitaria -> Implementación -> Verificación. Elimina la improvisación y garantiza que el código cumpla exactamente con los requerimientos.",
+      "keywords": [
+        "spec-driven",
+        "contratos",
+        "zod",
+        "tdd",
+        "flujo",
+        "desarrollo",
+        "metodologia",
+        "testing"
+      ],
+      "tokens": 993,
+      "status": "VERIFIED",
+      "updated": "2026-08-14",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Formato y Convenciones del Handbook",
+      "path": "00_HANDBOOK_FORMAT.md",
+      "category": "root",
+      "doc_type": "referencia",
+      "tags": [
+        "formato",
+        "convenciones",
+        "meta",
+        "estilo"
+      ],
+      "summary": "Convenciones de escritura de todo el handbook: etiquetado REQUIRED/RECOMMENDED, regla agnóstica separada de la implementación de referencia, jerarquía de especialización en 3 niveles y frontmatter de trazabilidad.",
+      "keywords": [
+        "required",
+        "recommended",
+        "convenciones",
+        "niveles",
+        "frontmatter",
+        "trazabilidad"
+      ],
+      "tokens": 2157,
+      "status": "current",
+      "updated": "2026-08-03",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Análisis de Design Systems Públicos del Mundo Real",
+      "path": "01_Frontend/Advanced/FRONTEND_REAL_WORLD_ANALYSIS.md",
+      "category": "01_Frontend",
+      "doc_type": "referencia",
+      "tags": [
+        "frontend",
+        "design-system",
+        "analisis",
+        "spacing",
+        "tipografia"
+      ],
+      "summary": "Análisis comparado de design systems públicos (Atlassian, Material, otros): por qué la grilla operativa real es de 4px y no de 8, cómo estructuran tipografía, color en tres capas y librerías de componentes.",
+      "keywords": [
+        "design-system",
+        "spacing",
+        "grilla-4px",
+        "tipografia",
+        "tokens",
+        "dark-mode",
+        "componentes"
+      ],
+      "tokens": 8409,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Desarrollo Desktop (Tauri)",
+      "path": "01_Frontend/Core/DESKTOP_ENGINEERING_STANDARD.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "desktop",
+        "tauri",
+        "rust",
+        "react",
+        "offline"
+      ],
+      "summary": "Reglas DESK-001 a DESK-005 para apps de escritorio con Tauri v2 + React + Rust: lógica pesada en Rust, comunicación IPC, offline con SQLite, auto-updater e impresión directa.",
+      "keywords": [
+        "tauri",
+        "rust",
+        "ipc",
+        "sqlite",
+        "offline",
+        "updater",
+        "desktop",
+        "impresion"
+      ],
+      "tokens": 1254,
+      "status": "current",
+      "updated": "2026-07-29",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Patrones de Autenticación en Frontend",
+      "path": "01_Frontend/Core/FRONTEND_AUTH_PATTERNS.md",
+      "category": "01_Frontend",
+      "doc_type": "patron",
+      "tags": [
+        "frontend",
+        "auth",
+        "login",
+        "ux",
+        "formularios"
+      ],
+      "summary": "Patrones de UI para autenticación: layouts de login y registro, orden de campos, minimización de datos en el alta y UX de contraseñas.",
+      "keywords": [
+        "login",
+        "registro",
+        "auth",
+        "password",
+        "formularios",
+        "layout",
+        "ux"
+      ],
+      "tokens": 2887,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "FRONTEND ENGINEERING STANDARD",
+      "path": "01_Frontend/Core/FRONTEND_ENGINEERING_STANDARD.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "standards",
+        "conventions",
+        "design-tokens",
+        "components",
+        "react",
+        "accessibility",
+        "performance"
+      ],
+      "summary": "Nivel 1 del dominio Frontend. Define las reglas base de todo proyecto frontend: design system (spacing, colores, tipografía, grid), arquitectura por feature, componentes, estado, API integration, TypeScript, routing, formularios, CSS, performance, seguridad y accesibilidad.",
+      "keywords": [
+        "ui",
+        "architecture",
+        "state-management",
+        "css",
+        "testing",
+        "git",
+        "bundle"
+      ],
+      "tokens": 8299,
+      "status": "current",
+      "updated": "2026-07-26",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Formateo de Números, Moneda y Fechas",
+      "path": "01_Frontend/Core/FRONTEND_FORMATTING_STANDARD.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "frontend",
+        "formato",
+        "intl",
+        "moneda",
+        "fechas"
+      ],
+      "summary": "Cómo se muestran números, moneda, porcentajes y fechas en la interfaz: uso de la API Intl, fecha absoluta frente a relativa y manejo de zona horaria.",
+      "keywords": [
+        "intl",
+        "numberformat",
+        "datetimeformat",
+        "moneda",
+        "porcentaje",
+        "fechas",
+        "timezone"
+      ],
+      "tokens": 1447,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Estructura HTML Semántica",
+      "path": "01_Frontend/Core/FRONTEND_HTML_STRUCTURE_STANDARD.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "frontend",
+        "html",
+        "semantica",
+        "accesibilidad"
+      ],
+      "summary": "Estructura base de una página con HTML5 semántico: qué etiqueta usa cada región, jerarquía de headings, un solo h1 por página y cuándo corresponde button frente a enlace.",
+      "keywords": [
+        "html5",
+        "semantica",
+        "landmarks",
+        "headings",
+        "h1",
+        "button",
+        "accesibilidad"
+      ],
+      "tokens": 2134,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "FRONTEND REACT STANDARD",
+      "path": "01_Frontend/Core/FRONTEND_REACT_STANDARD.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "react",
+        "typescript",
+        "components",
+        "forms",
+        "performance",
+        "standards"
+      ],
+      "summary": "Nivel 2 del dominio Frontend. Define cómo se escribe React en concreto: estructura de carpetas por feature, composición sobre configuración, custom hooks, useEffect como último recurso, Context, matriz de estado, data fetching con TanStack Query, Suspense/lazy, performance y APIs de React 19.",
+      "keywords": [
+        "hooks",
+        "tanstack-query",
+        "context-api",
+        "suspense",
+        "error-boundaries",
+        "code-splitting",
+        "jsx"
+      ],
+      "tokens": 7802,
+      "status": "current",
+      "updated": "2026-07-26",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Diseño Responsive",
+      "path": "01_Frontend/Core/FRONTEND_RESPONSIVE_STANDARD.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "frontend",
+        "responsive",
+        "breakpoints",
+        "mobile-first"
+      ],
+      "summary": "Breakpoints estándar y su forma conceptual, tamaños fluidos en vez de fijos, comportamiento responsive por componente, áreas táctiles e imágenes adaptativas.",
+      "keywords": [
+        "responsive",
+        "breakpoints",
+        "mobile-first",
+        "fluido",
+        "touch",
+        "imagenes"
+      ],
+      "tokens": 2182,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Tailwind CSS v4",
+      "path": "01_Frontend/Core/FRONTEND_TAILWIND_V4_STANDARD.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "tailwind",
+        "css",
+        "v4",
+        "design-system",
+        "tokens"
+      ],
+      "summary": "Estándar del dominio Frontend para Tailwind CSS v4: configuración, tokens, design system, responsive, dark mode y patrones.",
+      "keywords": [
+        "tailwind",
+        "css",
+        "v4",
+        "design-system",
+        "tokens",
+        "responsive",
+        "dark-mode"
+      ],
+      "tokens": 1746,
+      "status": "current",
+      "updated": "2026-08-30",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de TypeScript en Frontend",
+      "path": "01_Frontend/Core/FRONTEND_TYPESCRIPT_STANDARD.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "frontend",
+        "typescript",
+        "tipos",
+        "zod"
+      ],
+      "summary": "Configuración base de tsconfig y reglas de tipado: prohibición de any con sus alternativas, tipos de dominio derivados y nunca redeclarados, props, eventos y la decisión entre type e interface.",
+      "keywords": [
+        "typescript",
+        "tsconfig",
+        "any",
+        "unknown",
+        "zod",
+        "props",
+        "type",
+        "interface"
+      ],
+      "tokens": 5264,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Desarrollo Mobile (React Native + Expo)",
+      "path": "01_Frontend/Core/MOBILE_ENGINEERING_STANDARD.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "mobile",
+        "react-native",
+        "expo",
+        "offline",
+        "biometria"
+      ],
+      "summary": "Reglas MOB-001 a MOB-006 para apps móviles con React Native y Expo: prohibición de WebView para funcionalidad core, offline-first, biometría, push, deep links y captura de fotos con OCR.",
+      "keywords": [
+        "react-native",
+        "expo",
+        "webview",
+        "offline",
+        "watermelondb",
+        "biometria",
+        "push",
+        "deep-links",
+        "ocr"
+      ],
+      "tokens": 1757,
+      "status": "current",
+      "updated": "2026-07-29",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Analítica y Gráficos",
+      "path": "01_Frontend/Patterns/FRONTEND_ANALYTICS_CHARTS_STANDARD.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "frontend",
+        "charts",
+        "analytics",
+        "accesibilidad"
+      ],
+      "summary": "Reglas para visualización de datos: integridad del dato, el color nunca como único indicador, interactividad, accesibilidad de la información graficada y comportamiento responsive.",
+      "keywords": [
+        "charts",
+        "graficos",
+        "analytics",
+        "color",
+        "accesibilidad",
+        "responsive",
+        "anti-patrones"
+      ],
+      "tokens": 987,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Colaboración en Tiempo Real (CRDTs + Supabase)",
+      "path": "01_Frontend/Patterns/FRONTEND_CRDT_COLLABORATION.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "yjs",
+        "crdt",
+        "realtime",
+        "collaboration",
+        "cursors",
+        "supabase"
+      ],
+      "summary": "Colaboración simultánea con CRDTs y Yjs: proveedor de sincronización sobre Supabase, integración con TipTap, cursores y avatares de colaboradores en vivo.",
+      "keywords": [
+        "yjs",
+        "crdt",
+        "realtime",
+        "collaboration",
+        "cursors",
+        "supabase",
+        "colaboracion",
+        "tiempo",
+        "real",
+        "crdts",
+        "simultanea",
+        "proveedor",
+        "sincronizacion",
+        "integracion"
+      ],
+      "tokens": 2516,
+      "status": "current",
+      "updated": "2026-07-29",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Patrones de Pantallas CRUD",
+      "path": "01_Frontend/Patterns/FRONTEND_CRUD_PATTERNS.md",
+      "category": "01_Frontend",
+      "doc_type": "patron",
+      "tags": [
+        "frontend",
+        "crud",
+        "patrones",
+        "ux"
+      ],
+      "summary": "Anatomía de un módulo CRUD completo: vista de listado, decisión entre modal y página dedicada para crear o editar, vista de detalle, borrado y acciones en lote.",
+      "keywords": [
+        "crud",
+        "listado",
+        "detalle",
+        "modal",
+        "eliminar",
+        "bulk",
+        "paginacion"
+      ],
+      "tokens": 1224,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Patrones de Dashboard",
+      "path": "01_Frontend/Patterns/FRONTEND_DASHBOARD_PATTERNS.md",
+      "category": "01_Frontend",
+      "doc_type": "patron",
+      "tags": [
+        "frontend",
+        "dashboard",
+        "kpi",
+        "patrones"
+      ],
+      "summary": "Composición de un dashboard: tiles de KPI, gráficos, filtros de rango de fecha, densidad de información y cómo comunicar la frescura de los datos.",
+      "keywords": [
+        "dashboard",
+        "kpi",
+        "graficos",
+        "filtros",
+        "densidad",
+        "frescura"
+      ],
+      "tokens": 1203,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Patrón Drag & Drop",
+      "path": "01_Frontend/Patterns/FRONTEND_DRAG_DROP_STANDARD.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "dnd-kit",
+        "drag-drop",
+        "kanban",
+        "react",
+        "optimistic"
+      ],
+      "summary": "Drag and drop accesible con dnd-kit: tablero Kanban completo, helpers de manipulación de columnas e integración con mutaciones optimistas.",
+      "keywords": [
+        "dnd-kit",
+        "drag-drop",
+        "kanban",
+        "react",
+        "optimistic",
+        "drag",
+        "drop",
+        "accesible",
+        "tablero",
+        "completo",
+        "helpers",
+        "manipulacion",
+        "columnas",
+        "integracion"
+      ],
+      "tokens": 2553,
+      "status": "current",
+      "updated": "2026-07-29",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Páginas de Error (404, 403, 500)",
+      "path": "01_Frontend/Patterns/FRONTEND_ERROR_PAGES_STANDARD.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "frontend",
+        "errores",
+        "404",
+        "ux"
+      ],
+      "summary": "Qué debe decir y ofrecer cada página de error: ruta inexistente, falta de permisos y error no capturado, con los anti-patrones habituales.",
+      "keywords": [
+        "404",
+        "403",
+        "500",
+        "error",
+        "error-boundary",
+        "microcopy"
+      ],
+      "tokens": 970,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Patrones de Formularios",
+      "path": "01_Frontend/Patterns/FRONTEND_FORMS_PATTERNS.md",
+      "category": "01_Frontend",
+      "doc_type": "patron",
+      "tags": [
+        "frontend",
+        "formularios",
+        "validacion",
+        "ux"
+      ],
+      "summary": "Anatomía del campo, validación en tres momentos con una sola fuente de reglas, tratamiento de errores de servidor, submit, contraseñas y códigos OTP para MFA.",
+      "keywords": [
+        "formularios",
+        "validacion",
+        "zod",
+        "errores",
+        "submit",
+        "password",
+        "otp",
+        "mfa"
+      ],
+      "tokens": 8013,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "FRONTEND LANDING PAGE STANDARD",
+      "path": "01_Frontend/Patterns/FRONTEND_LANDING_PATTERNS.md",
+      "category": "01_Frontend",
+      "doc_type": "patron",
+      "tags": [
+        "landing-pages",
+        "patterns",
+        "standards",
+        "seo",
+        "responsive",
+        "performance"
+      ],
+      "summary": "Nivel 2 del dominio Frontend. Define la estructura de bloques, CTAs, tipografía del Hero, espaciado entre secciones, imágenes, SEO, rendimiento y accesibilidad específicos de landing pages de alto tráfico y conversión.",
+      "keywords": [
+        "conversion",
+        "hero",
+        "cta",
+        "social-proof",
+        "pricing",
+        "testimonials",
+        "faq",
+        "lead-generation"
+      ],
+      "tokens": 4157,
+      "status": "current",
+      "updated": "2026-07-26",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Patrones de Modales y Drawers",
+      "path": "01_Frontend/Patterns/FRONTEND_MODALS_PATTERNS.md",
+      "category": "01_Frontend",
+      "doc_type": "patron",
+      "tags": [
+        "frontend",
+        "modal",
+        "drawer",
+        "slide-over",
+        "accesibilidad",
+        "ux"
+      ],
+      "summary": "Árbol de decisión entre modal, drawer lateral, in-line editing y página completa, matriz según cantidad de campos, anatomía UX de edición y accesibilidad.",
+      "keywords": [
+        "modal",
+        "drawer",
+        "slide-over",
+        "dialog",
+        "in-line editing",
+        "confirmacion",
+        "focus-trap",
+        "accesibilidad"
+      ],
+      "tokens": 1534,
+      "status": "current",
+      "updated": "2026-09-02",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Patrón Formularios Multi-Step",
+      "path": "01_Frontend/Patterns/FRONTEND_MULTISTEP_FORMS.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "react",
+        "formularios",
+        "wizard",
+        "zod",
+        "ux"
+      ],
+      "summary": "Formularios largos divididos en pasos tipo wizard para reducir abandono: hook useMultiStepForm, validación por paso con Zod, persistencia del progreso y patrones de navegación.",
+      "keywords": [
+        "react",
+        "formularios",
+        "wizard",
+        "zod",
+        "ux",
+        "multi-step",
+        "largos",
+        "divididos",
+        "pasos",
+        "tipo",
+        "reducir",
+        "abandono",
+        "hook",
+        "usemultistepform"
+      ],
+      "tokens": 1657,
+      "status": "current",
+      "updated": "2026-07-29",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Patrones de Navegación",
+      "path": "01_Frontend/Patterns/FRONTEND_NAVIGATION_PATTERNS.md",
+      "category": "01_Frontend",
+      "doc_type": "patron",
+      "tags": [
+        "frontend",
+        "navegacion",
+        "navbar",
+        "sidebar"
+      ],
+      "summary": "Árbol y matriz de decisión para elegir el patrón de navegación principal según el tipo de producto, reglas transversales y patrones complementarios fuera del navbar y el sidebar.",
+      "keywords": [
+        "navegacion",
+        "navbar",
+        "sidebar",
+        "menu",
+        "breadcrumb",
+        "tabs",
+        "decision"
+      ],
+      "tokens": 4153,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Patrones de Notificaciones en Interfaz",
+      "path": "01_Frontend/Patterns/FRONTEND_NOTIFICATIONS_PATTERNS.md",
+      "category": "01_Frontend",
+      "doc_type": "patron",
+      "tags": [
+        "frontend",
+        "notificaciones",
+        "toast",
+        "accesibilidad"
+      ],
+      "summary": "Cuándo corresponde un toast, un banner, un badge o un centro de notificaciones, según si la información requiere acción inmediata, y sus requisitos de accesibilidad.",
+      "keywords": [
+        "toast",
+        "banner",
+        "badge",
+        "centro-notificaciones",
+        "aria-live",
+        "accesibilidad"
+      ],
+      "tokens": 905,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Patrón Optimistic Mutations",
+      "path": "01_Frontend/Patterns/FRONTEND_OPTIMISTIC_MUTATIONS.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "react-query",
+        "ux",
+        "mutations",
+        "optimistic-ui"
+      ],
+      "summary": "Mutaciones optimistas con React Query: hook genérico que actualiza la caché al instante, hace rollback ante error y ofrece deshacer, con tres ejemplos reales de UX instantánea.",
+      "keywords": [
+        "react-query",
+        "ux",
+        "mutations",
+        "optimistic-ui",
+        "optimistic",
+        "mutaciones",
+        "optimistas",
+        "react",
+        "query",
+        "hook",
+        "generico",
+        "actualiza",
+        "cache",
+        "instante"
+      ],
+      "tokens": 1269,
+      "status": "current",
+      "updated": "2026-07-29",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Patrón Progress Tracking",
+      "path": "01_Frontend/Patterns/FRONTEND_PROGRESS_TRACKING.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "react",
+        "ux",
+        "background-jobs",
+        "sse",
+        "websockets",
+        "polling"
+      ],
+      "summary": "Seguimiento de trabajos largos que no pueden resolverse con un spinner: cuándo usar polling, Server-Sent Events o WebSockets, con implementación de cada estrategia y componente de barra de progreso.",
+      "keywords": [
+        "react",
+        "ux",
+        "background-jobs",
+        "sse",
+        "websockets",
+        "polling",
+        "progress",
+        "tracking",
+        "seguimiento",
+        "trabajos",
+        "largos",
+        "resolverse",
+        "spinner",
+        "server-sent"
+      ],
+      "tokens": 1562,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Patrón Chat en Tiempo Real (Supabase)",
+      "path": "01_Frontend/Patterns/FRONTEND_REALTIME_CHAT.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "react",
+        "realtime",
+        "chat",
+        "supabase",
+        "websockets"
+      ],
+      "summary": "Chat en tiempo real sobre Supabase Realtime: esquema SQL con RLS, hook useChat con broadcast e indicador de escritura, y ventana de chat virtualizada.",
+      "keywords": [
+        "react",
+        "realtime",
+        "chat",
+        "supabase",
+        "websockets",
+        "tiempo",
+        "real",
+        "esquema",
+        "hook",
+        "usechat",
+        "broadcast",
+        "indicador",
+        "escritura",
+        "ventana"
+      ],
+      "tokens": 2427,
+      "status": "current",
+      "updated": "2026-07-29",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Patrón: React Query + Supabase Realtime",
+      "path": "01_Frontend/Patterns/FRONTEND_REALTIME_PATTERN.md",
+      "category": "01_Frontend",
+      "doc_type": "patron",
+      "tags": [
+        "react-query",
+        "realtime",
+        "supabase",
+        "websockets"
+      ],
+      "summary": "Cómo conviven Supabase Realtime y React Query sin pisarse: hook de suscripción que invalida la caché en lugar de escribir estado en paralelo.",
+      "keywords": [
+        "react-query",
+        "realtime",
+        "supabase",
+        "websockets",
+        "react",
+        "query",
+        "conviven",
+        "pisarse",
+        "hook",
+        "suscripcion",
+        "invalida",
+        "cache",
+        "lugar",
+        "escribir"
+      ],
+      "tokens": 1215,
+      "status": "current",
+      "updated": "2026-07-29",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Editor de Texto Enriquecido (WYSIWYG)",
+      "path": "01_Frontend/Patterns/FRONTEND_RICH_TEXT_EDITOR.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "tiptap",
+        "editor",
+        "wysiwyg",
+        "react",
+        "markdown"
+      ],
+      "summary": "Editor WYSIWYG con TipTap: configuración base, hook useDocumentEditor con autoguardado, componente de editor y serialización del contenido hacia Supabase.",
+      "keywords": [
+        "tiptap",
+        "editor",
+        "wysiwyg",
+        "react",
+        "markdown",
+        "texto",
+        "enriquecido",
+        "configuracion",
+        "base",
+        "hook",
+        "usedocumenteditor",
+        "autoguardado",
+        "componente",
+        "serializacion"
+      ],
+      "tokens": 2169,
+      "status": "current",
+      "updated": "2026-07-29",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Patrones de Sidebar",
+      "path": "01_Frontend/Patterns/FRONTEND_SIDEBAR_PATTERNS.md",
+      "category": "01_Frontend",
+      "doc_type": "patron",
+      "tags": [
+        "frontend",
+        "sidebar",
+        "navegacion",
+        "responsive"
+      ],
+      "summary": "Patrones de barra lateral, jerarquía interna del contenido, reglas de agrupación, comportamiento responsive y anti-patrones frecuentes.",
+      "keywords": [
+        "sidebar",
+        "navegacion",
+        "colapsable",
+        "jerarquia",
+        "responsive",
+        "anti-patrones"
+      ],
+      "tokens": 2031,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Patrones de Estados de UI (Loading, Empty, Error)",
+      "path": "01_Frontend/Patterns/FRONTEND_STATES_PATTERNS.md",
+      "category": "01_Frontend",
+      "doc_type": "patron",
+      "tags": [
+        "frontend",
+        "estados",
+        "loading",
+        "empty",
+        "error"
+      ],
+      "summary": "Los cuatro estados obligatorios de todo componente asíncrono: carga con skeletons en vez de spinners globales, vacío, error y sin conexión, con reglas de tono y longitud del copy.",
+      "keywords": [
+        "loading",
+        "skeleton",
+        "empty-state",
+        "error",
+        "offline",
+        "copy",
+        "anti-patrones"
+      ],
+      "tokens": 1122,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Patrones de Tablas",
+      "path": "01_Frontend/Patterns/FRONTEND_TABLE_PATTERNS.md",
+      "category": "01_Frontend",
+      "doc_type": "patron",
+      "tags": [
+        "frontend",
+        "tablas",
+        "paginacion",
+        "patrones"
+      ],
+      "summary": "Anatomía de una tabla, decisión entre paginación y scroll infinito, diseño de columnas, ordenamiento, selección y estados de fila.",
+      "keywords": [
+        "tabla",
+        "paginacion",
+        "scroll-infinito",
+        "columnas",
+        "ordenamiento",
+        "seleccion"
+      ],
+      "tokens": 1049,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Patrones de UI por Tipo de Contenido",
+      "path": "01_Frontend/Patterns/FRONTEND_UI_PATTERNS.md",
+      "category": "01_Frontend",
+      "doc_type": "patron",
+      "tags": [
+        "frontend",
+        "ui",
+        "patrones",
+        "cards"
+      ],
+      "summary": "Tabla de decisión que mapea tipo de contenido a patrón de presentación, patrones por tipo de página o módulo, cuándo sí corresponde una card y reglas de prueba social.",
+      "keywords": [
+        "patrones",
+        "cards",
+        "listas",
+        "comparacion",
+        "social-proof",
+        "decision",
+        "maquetado"
+      ],
+      "tokens": 3581,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Progressive Web Apps (PWA)",
+      "path": "01_Frontend/Patterns/PWA_STANDARD.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "pwa",
+        "service-worker",
+        "manifest",
+        "offline",
+        "vite-plugin-pwa"
+      ],
+      "summary": "Estándar del dominio Frontend para PWAs: service workers, manifest, offline-first, caching strategies y vite-plugin-pwa.",
+      "keywords": [
+        "pwa",
+        "progressive-web-app",
+        "service-worker",
+        "manifest",
+        "offline",
+        "cache",
+        "vite-plugin-pwa",
+        "workbox"
+      ],
+      "tokens": 1949,
+      "status": "current",
+      "updated": "2026-08-30",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar Avanzado de Internacionalización (i18n, RTL y Pluralización)",
+      "path": "01_Frontend/Performance_SEO/FRONTEND_I18N_ADVANCED.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "i18n",
+        "l10n",
+        "rtl",
+        "intl",
+        "pluralization",
+        "lazy-loading",
+        "translation"
+      ],
+      "summary": "Estándar avanzado para aplicaciones i18n/L10n: soporte para lenguajes RTL (Árabe/Hebreo), reglas de pluralización complejas, formateo numérico/moneda con Intl API, detección automática de locale y lazy loading de traducciones.",
+      "keywords": [
+        "i18n",
+        "l10n",
+        "rtl",
+        "intl",
+        "pluralization",
+        "locale",
+        "translation",
+        "lazy-loading"
+      ],
+      "tokens": 802,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Patrón de Internacionalización (i18n)",
+      "path": "01_Frontend/Performance_SEO/FRONTEND_I18N_STANDARD.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "react",
+        "i18next",
+        "idiomas",
+        "traducciones"
+      ],
+      "summary": "Internacionalización con react-i18next: estructura de archivos de traducción, configuración base, uso en componentes y formatos localizados de fecha y moneda.",
+      "keywords": [
+        "react",
+        "i18next",
+        "idiomas",
+        "traducciones",
+        "internacionalizacion",
+        "i18n",
+        "react-i18next",
+        "estructura",
+        "archivos",
+        "traduccion",
+        "configuracion",
+        "base",
+        "componentes",
+        "formatos"
+      ],
+      "tokens": 1302,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "FRONTEND OFFLINE STANDARD",
+      "path": "01_Frontend/Performance_SEO/FRONTEND_OFFLINE_STANDARD.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "standards",
+        "conventions",
+        "offline",
+        "sync"
+      ],
+      "summary": "Nivel 2 del dominio Frontend. Define la estrategia offline-first para PWAs o aplicaciones con requisitos de disponibilidad sin conexión.",
+      "keywords": [
+        "offline",
+        "dexie",
+        "indexeddb",
+        "sync",
+        "pwa"
+      ],
+      "tokens": 552,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Rendimiento Frontend",
+      "path": "01_Frontend/Performance_SEO/FRONTEND_PERFORMANCE_STANDARD.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "frontend",
+        "performance",
+        "core-web-vitals",
+        "lcp"
+      ],
+      "summary": "Core Web Vitals tratados como objetivos de diseño: identificación y optimización del elemento LCP, prevención de CLS, control de INP y estrategia de imágenes, fuentes y bundle.",
+      "keywords": [
+        "core-web-vitals",
+        "lcp",
+        "cls",
+        "inp",
+        "lazy-loading",
+        "imagenes",
+        "bundle",
+        "preload"
+      ],
+      "tokens": 9622,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar Avanzado de PWA y Capacidades Web Nativas",
+      "path": "01_Frontend/Performance_SEO/FRONTEND_PWA_ADVANCED.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "pwa",
+        "service-worker",
+        "background-sync",
+        "web-share",
+        "badging",
+        "file-system",
+        "offline"
+      ],
+      "summary": "Estándar avanzado de Progressive Web Apps (PWA): Sincronización en segundo plano (Background Sync), Badging API, Web Share API, File System Access API e instalación personalizada.",
+      "keywords": [
+        "pwa",
+        "service-worker",
+        "background-sync",
+        "badging",
+        "web-share",
+        "file-system",
+        "offline",
+        "install-prompt"
+      ],
+      "tokens": 882,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de PWA e Internacionalización",
+      "path": "01_Frontend/Performance_SEO/FRONTEND_PWA_I18N_STANDARD.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "frontend",
+        "pwa",
+        "i18n",
+        "service-worker"
+      ],
+      "summary": "Criterio para adoptar PWA, manifest, estrategias de service worker por tipo de recurso, qué nunca debe cachearse, flujo de actualización sin forzar y límites reales en iOS.",
+      "keywords": [
+        "pwa",
+        "manifest",
+        "service-worker",
+        "cache",
+        "update-flow",
+        "ios",
+        "i18n"
+      ],
+      "tokens": 5011,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Patrón Progressive Web App (PWA) Offline-First",
+      "path": "01_Frontend/Performance_SEO/FRONTEND_PWA_STANDARD.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "pwa",
+        "offline",
+        "service-worker",
+        "workbox",
+        "dexie"
+      ],
+      "summary": "Convertir la aplicación en PWA instalable y offline-first: manifest, service worker con Workbox y sus estrategias de caché, lógica de red en React y notificaciones push nativas.",
+      "keywords": [
+        "pwa",
+        "offline",
+        "service-worker",
+        "workbox",
+        "dexie",
+        "progressive",
+        "offline-first",
+        "convertir",
+        "aplicacion",
+        "instalable",
+        "manifest",
+        "service",
+        "worker",
+        "estrategias"
+      ],
+      "tokens": 1977,
+      "status": "current",
+      "updated": "2026-07-29",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar Avanzado de SEO, Datos Estructurados y Meta Tags",
+      "path": "01_Frontend/Performance_SEO/FRONTEND_SEO_ADVANCED.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "seo",
+        "schema-org",
+        "json-ld",
+        "sitemap",
+        "open-graph",
+        "twitter-cards",
+        "canonical",
+        "hreflang"
+      ],
+      "summary": "Estándar avanzado de SEO técnico para aplicaciones web y SaaS: JSON-LD (Schema.org), generación de sitemap.xml dinámico, robots.txt, Open Graph, Breadcrumbs semánticos y soporte hreflang multi-idioma.",
+      "keywords": [
+        "seo",
+        "schema-org",
+        "json-ld",
+        "sitemap",
+        "robots",
+        "open-graph",
+        "og",
+        "twitter-card",
+        "canonical",
+        "hreflang"
+      ],
+      "tokens": 1272,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de SEO Técnico",
+      "path": "01_Frontend/Performance_SEO/FRONTEND_SEO_STANDARD.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "frontend",
+        "seo",
+        "meta-tags",
+        "json-ld"
+      ],
+      "summary": "SEO técnico para aplicaciones renderizadas en cliente: la limitación de las dos olas de indexación, head mínimo por página, Open Graph, datos estructurados JSON-LD, URLs y jerarquía de headings.",
+      "keywords": [
+        "seo",
+        "csr",
+        "crawler",
+        "meta-tags",
+        "open-graph",
+        "json-ld",
+        "slugs",
+        "headings"
+      ],
+      "tokens": 6284,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar Avanzado de Accesibilidad Web (WCAG 2.1 AA y ARIA)",
+      "path": "01_Frontend/UI_Components/FRONTEND_ACCESSIBILITY_ADVANCED.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "accessibility",
+        "a11y",
+        "wcag",
+        "aria",
+        "keyboard-navigation",
+        "focus-trap",
+        "screen-readers"
+      ],
+      "summary": "Estándar avanzado de accesibilidad web (a11y): checklist WCAG 2.1 AA, navegación por teclado, captura y gestión de foco en modales (Focus Trapping), roles ARIA y pruebas automatizadas con axe-core.",
+      "keywords": [
+        "accessibility",
+        "a11y",
+        "wcag",
+        "aria",
+        "keyboard",
+        "focus-trap",
+        "screen-reader",
+        "axe-core",
+        "lighthouse"
+      ],
+      "tokens": 975,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Accesibilidad Web",
+      "path": "01_Frontend/UI_Components/FRONTEND_ACCESSIBILITY_STANDARD.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "frontend",
+        "accesibilidad",
+        "wcag",
+        "aria"
+      ],
+      "summary": "Nivel de conformidad objetivo y su implementación: base semántica, navegación por teclado, gestión de foco, la regla de oro de ARIA, contraste y respeto por prefers-reduced-motion.",
+      "keywords": [
+        "accesibilidad",
+        "wcag",
+        "aria",
+        "teclado",
+        "foco",
+        "contraste",
+        "reduced-motion"
+      ],
+      "tokens": 2283,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Color y Contraste (Dark y Light Mode)",
+      "path": "01_Frontend/UI_Components/FRONTEND_COLOR_CONTRAST_STANDARD.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "frontend",
+        "color",
+        "contraste",
+        "dark-mode",
+        "wcag"
+      ],
+      "summary": "Tokens de color por rol en lugar de colores sueltos, construcción de light y dark mode, contraste mínimo exigido por WCAG y paleta semántica de estados.",
+      "keywords": [
+        "color",
+        "contraste",
+        "wcag",
+        "dark-mode",
+        "light-mode",
+        "tokens",
+        "paleta"
+      ],
+      "tokens": 2314,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Elevación y Z-Index",
+      "path": "01_Frontend/UI_Components/FRONTEND_ELEVATION_STANDARD.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "frontend",
+        "z-index",
+        "sombras",
+        "elevacion"
+      ],
+      "summary": "Escala fija de elevación y z-index para que ninguna capa se invente su valor, con su implementación en configuración de Tailwind y los anti-patrones que genera no tenerla.",
+      "keywords": [
+        "z-index",
+        "elevacion",
+        "sombras",
+        "capas",
+        "tailwind",
+        "overlay"
+      ],
+      "tokens": 1062,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Controles de Formulario",
+      "path": "01_Frontend/UI_Components/FRONTEND_FORM_CONTROLS_STANDARD.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "frontend",
+        "componentes",
+        "formularios",
+        "accesibilidad"
+      ],
+      "summary": "Reglas transversales a todo control y especificación de cada uno: button, input, textarea, select nativo frente a custom, checkbox, radio, switch y combobox con autocompletado.",
+      "keywords": [
+        "button",
+        "input",
+        "textarea",
+        "select",
+        "checkbox",
+        "radio",
+        "switch",
+        "combobox",
+        "autocomplete"
+      ],
+      "tokens": 6661,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Referencia de Elementos HTML",
+      "path": "01_Frontend/UI_Components/FRONTEND_HTML_ELEMENTS_REFERENCE.md",
+      "category": "01_Frontend",
+      "doc_type": "referencia",
+      "tags": [
+        "frontend",
+        "html",
+        "referencia",
+        "semantica"
+      ],
+      "summary": "Referencia elemento por elemento con tabla de conversión de div-soup al elemento correcto: estructura, controles nativos, formularios, contenido y el landmark de búsqueda.",
+      "keywords": [
+        "html",
+        "referencia",
+        "div-soup",
+        "semantica",
+        "landmarks",
+        "formularios",
+        "search"
+      ],
+      "tokens": 6552,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Sistema de Iconos",
+      "path": "01_Frontend/UI_Components/FRONTEND_ICON_SYSTEM_STANDARD.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "frontend",
+        "iconos",
+        "accesibilidad"
+      ],
+      "summary": "Tamaño de icono ligado a la tipografía que acompaña, nombre accesible según sea decorativo o significativo, y anti-patrones del uso de iconos.",
+      "keywords": [
+        "iconos",
+        "lucide",
+        "tamano",
+        "aria-hidden",
+        "nombre-accesible"
+      ],
+      "tokens": 714,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Microcopy y UX Writing",
+      "path": "01_Frontend/UI_Components/FRONTEND_MICROCOPY_STANDARD.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "frontend",
+        "microcopy",
+        "ux-writing",
+        "tono"
+      ],
+      "summary": "Tono consistente en todo el producto, glosario de un concepto una palabra, capitalización de botones y etiquetas, redacción de CTAs y límites de longitud y puntuación.",
+      "keywords": [
+        "microcopy",
+        "ux-writing",
+        "tono",
+        "glosario",
+        "cta",
+        "capitalizacion"
+      ],
+      "tokens": 1018,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Animación y Movimiento",
+      "path": "01_Frontend/UI_Components/FRONTEND_MOTION_STANDARD.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "frontend",
+        "animacion",
+        "motion",
+        "accesibilidad"
+      ],
+      "summary": "Escala de duración y easing para animaciones, reutilización mediante variantes, respeto obligatorio por prefers-reduced-motion y prohibición de animaciones que bloqueen la interacción.",
+      "keywords": [
+        "animacion",
+        "motion",
+        "duracion",
+        "easing",
+        "framer-motion",
+        "reduced-motion"
+      ],
+      "tokens": 831,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Superposiciones y Elementos de Display",
+      "path": "01_Frontend/UI_Components/FRONTEND_OVERLAY_DISPLAY_STANDARD.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "frontend",
+        "overlay",
+        "tooltip",
+        "popover",
+        "componentes"
+      ],
+      "summary": "Reglas transversales a toda superposición y especificación de tooltip, popover, dropdown, command palette, badge, chip, tag y avatar, siempre sobre la escala de elevación definida.",
+      "keywords": [
+        "tooltip",
+        "popover",
+        "dropdown",
+        "command-palette",
+        "badge",
+        "chip",
+        "avatar",
+        "z-index"
+      ],
+      "tokens": 7642,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Patrón Sistema de Temas (Claro/Oscuro)",
+      "path": "01_Frontend/UI_Components/FRONTEND_THEMES_STANDARD.md",
+      "category": "01_Frontend",
+      "doc_type": "estandar",
+      "tags": [
+        "react",
+        "tailwind",
+        "css-variables",
+        "dark-mode",
+        "ux"
+      ],
+      "summary": "Sistema de temas claro, oscuro y automático: variables CSS con Tailwind, script anti-flash en el head, contexto de React y el conmutador de tema en la interfaz.",
+      "keywords": [
+        "react",
+        "tailwind",
+        "css-variables",
+        "dark-mode",
+        "ux",
+        "sistema",
+        "temas",
+        "claro",
+        "oscuro",
+        "automatico",
+        "variables",
+        "script",
+        "anti-flash",
+        "head"
+      ],
+      "tokens": 1526,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Catálogo de Estilos Visuales",
+      "path": "01_Frontend/UI_Components/FRONTEND_UI_STYLE_CATALOG.md",
+      "category": "01_Frontend",
+      "doc_type": "referencia",
+      "tags": [
+        "frontend",
+        "estilos",
+        "design-tokens",
+        "tailwind"
+      ],
+      "summary": "Catálogo de 30 estilos visuales con criterio de elección y el procedimiento para convertir un estilo del catálogo en tokens semánticos de Tailwind.",
+      "keywords": [
+        "estilos",
+        "catalogo",
+        "paleta",
+        "tokens",
+        "tailwind",
+        "design-system"
+      ],
+      "tokens": 4641,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Patrón API Gateway para Microservicios",
+      "path": "02_Backend/API_GATEWAY_PATTERN.md",
+      "category": "02_Backend",
+      "doc_type": "patron",
+      "tags": [
+        "backend",
+        "api-gateway",
+        "microservicios",
+        "arquitectura"
+      ],
+      "summary": "Reglas API-007 a API-012: por qué exponer 8 o más microservicios directamente falla y cómo un gateway como punto único de entrada resuelve enrutado, autenticación y agregación.",
+      "keywords": [
+        "api-gateway",
+        "microservicios",
+        "enrutado",
+        "punto-unico",
+        "agregacion"
+      ],
+      "tokens": 1937,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "BACKEND ENGINEERING STANDARD",
+      "path": "02_Backend/BACKEND_ENGINEERING_STANDARD.md",
+      "category": "02_Backend",
+      "doc_type": "estandar",
+      "tags": [
+        "standards",
+        "conventions",
+        "workers",
+        "rest-api",
+        "validation",
+        "error-handling"
+      ],
+      "summary": "Nivel 1 del dominio Backend. Define la arquitectura multi-worker, handlers, servicios, middleware (auth, CORS, logging), validación, formato de respuesta, manejo de errores y testing para Cloudflare Workers.",
+      "keywords": [
+        "cloudflare-workers",
+        "handlers",
+        "middleware",
+        "services",
+        "deployment"
+      ],
+      "tokens": 4446,
+      "status": "current",
+      "updated": "2026-07-26",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Patrón Circuit Breaker",
+      "path": "02_Backend/CIRCUIT_BREAKER_PATTERN.md",
+      "category": "02_Backend",
+      "doc_type": "patron",
+      "tags": [
+        "resiliencia",
+        "api",
+        "circuit-breaker",
+        "fallos",
+        "dependencias"
+      ],
+      "summary": "Circuit breaker para dependencias externas: los tres estados del interruptor, umbrales recomendados de apertura y recuperación, implementación en TypeScript e integración con Stripe.",
+      "keywords": [
+        "resiliencia",
+        "api",
+        "circuit-breaker",
+        "fallos",
+        "dependencias",
+        "circuit",
+        "breaker",
+        "externas",
+        "tres",
+        "estados",
+        "interruptor",
+        "umbrales",
+        "recomendados",
+        "apertura"
+      ],
+      "tokens": 1718,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar Avanzado de Envíos de Email y Entregabilidad",
+      "path": "02_Backend/EMAIL_ADVANCED_STANDARD.md",
+      "category": "02_Backend",
+      "doc_type": "estandar",
+      "tags": [
+        "email",
+        "resend",
+        "react-email",
+        "tracking",
+        "webhooks",
+        "warming",
+        "spam-score",
+        "ab-testing"
+      ],
+      "summary": "Estándar para entregabilidad avanzada de emails: plantillas versionadas con React Email, A/B testing de asuntos, tracking respetuoso de privacidad, webhook de rebotes (bounces), calentamiento de IP/dominio y análisis de spam.",
+      "keywords": [
+        "email",
+        "resend",
+        "react-email",
+        "tracking",
+        "webhooks",
+        "bounces",
+        "spam",
+        "warming",
+        "ab-testing"
+      ],
+      "tokens": 923,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Firebase",
+      "path": "02_Backend/FIREBASE_ENGINEERING_STANDARD.md",
+      "category": "02_Backend",
+      "doc_type": "estandar",
+      "tags": [
+        "firebase",
+        "firestore",
+        "firebase-auth",
+        "firebase-functions",
+        "realtime-database"
+      ],
+      "summary": "Estándar del dominio Backend para Firebase: Firestore, Authentication, Cloud Functions, seguridad, patrones y anti-patrones.",
+      "keywords": [
+        "firebase",
+        "firestore",
+        "firebase-auth",
+        "cloud-functions",
+        "realtime-database",
+        "firebase-admin"
+      ],
+      "tokens": 2312,
+      "status": "current",
+      "updated": "2026-08-30",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Patrón Graceful Degradation",
+      "path": "02_Backend/GRACEFUL_DEGRADATION_PATTERN.md",
+      "category": "02_Backend",
+      "doc_type": "patron",
+      "tags": [
+        "resiliencia",
+        "api",
+        "fallback",
+        "bulkhead"
+      ],
+      "summary": "Degradación elegante con bulkhead y fallback: aislar lo no vital para que su fallo no tumbe la aplicación, tanto en el gateway de Workers como en componentes resilientes del frontend.",
+      "keywords": [
+        "resiliencia",
+        "api",
+        "fallback",
+        "bulkhead",
+        "graceful",
+        "degradation",
+        "degradacion",
+        "elegante",
+        "aislar",
+        "vital",
+        "fallo",
+        "tumbe",
+        "aplicacion",
+        "gateway"
+      ],
+      "tokens": 1329,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Cómputo Pesado",
+      "path": "02_Backend/HEAVY_COMPUTE_STANDARD.md",
+      "category": "02_Backend",
+      "doc_type": "estandar",
+      "tags": [
+        "backend",
+        "workers",
+        "containers",
+        "performance"
+      ],
+      "summary": "Reglas HC-001 a HC-004 para trabajo que excede el límite de CPU de un Worker: Workers para lógica ligera, Containers para cómputo pesado, con árbol de decisión rápida.",
+      "keywords": [
+        "cpu",
+        "limite",
+        "workers",
+        "containers",
+        "computo-pesado",
+        "colas"
+      ],
+      "tokens": 1157,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Sistema de Notificaciones: Email + Push + In-App",
+      "path": "02_Backend/NOTIFICATIONS_STANDARD.md",
+      "category": "02_Backend",
+      "doc_type": "estandar",
+      "tags": [
+        "notificaciones",
+        "resend",
+        "vapid",
+        "fcm",
+        "apns",
+        "expo",
+        "push",
+        "email",
+        "realtime"
+      ],
+      "summary": "Estándar completo del sistema de notificaciones multicanal: Email transaccional con Resend + React Email, Web Push con VAPID, Mobile Push con Expo (FCM/APNs), e In-App con Supabase Realtime.",
+      "keywords": [
+        "notifications",
+        "resend",
+        "react-email",
+        "vapid",
+        "service-worker",
+        "expo-push",
+        "mobile-push",
+        "in-app"
+      ],
+      "tokens": 6051,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Patrón Retry (Exponential Backoff + Jitter)",
+      "path": "02_Backend/RETRY_PATTERN.md",
+      "category": "02_Backend",
+      "doc_type": "patron",
+      "tags": [
+        "resiliencia",
+        "api",
+        "retry",
+        "backoff",
+        "jitter"
+      ],
+      "summary": "Reintentos con backoff exponencial y jitter: qué errores se reintentan y cuáles no, por qué el backoff lineal provoca thundering herd, e implementación integrada con una API crítica.",
+      "keywords": [
+        "resiliencia",
+        "api",
+        "retry",
+        "backoff",
+        "jitter",
+        "exponential",
+        "reintentos",
+        "exponencial",
+        "errores",
+        "reintentan",
+        "lineal",
+        "provoca",
+        "thundering",
+        "herd"
+      ],
+      "tokens": 1435,
+      "status": "current",
+      "updated": "2026-07-29",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Supabase",
+      "path": "02_Backend/SUPABASE_ENGINEERING_STANDARD.md",
+      "category": "02_Backend",
+      "doc_type": "estandar",
+      "tags": [
+        "supabase",
+        "postgresql",
+        "rls",
+        "realtime",
+        "auth"
+      ],
+      "summary": "Estándar del dominio Backend para Supabase: PostgreSQL, RLS, Auth, Realtime, Edge Functions y patrones de uso.",
+      "keywords": [
+        "supabase",
+        "postgresql",
+        "rls",
+        "row-level-security",
+        "realtime",
+        "edge-functions",
+        "auth"
+      ],
+      "tokens": 2383,
+      "status": "current",
+      "updated": "2026-08-30",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estrategias de Sincronización de Datos (Offline-First y Conflict Resolution)",
+      "path": "02_Backend/SYNC_STRATEGIES.md",
+      "category": "02_Backend",
+      "doc_type": "estandar",
+      "tags": [
+        "sync",
+        "offline-first",
+        "crdt",
+        "last-write-wins",
+        "indexeddb",
+        "react-query",
+        "workers"
+      ],
+      "summary": "Estándar para sincronización de datos bidireccional entre clientes y el servidor: cola offline con IndexedDB/Dexie, resolución de conflictos (LWW vs CRDTs), tracking de estados y hook useSync.",
+      "keywords": [
+        "sync",
+        "offline",
+        "bidireccional",
+        "crdt",
+        "last-write-wins",
+        "dexie",
+        "indexeddb",
+        "react-query",
+        "conflict-resolution",
+        "offline-queue"
+      ],
+      "tokens": 1765,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de WebSockets y Socket.io",
+      "path": "02_Backend/WEBSOCKETS_STANDARD.md",
+      "category": "02_Backend",
+      "doc_type": "estandar",
+      "tags": [
+        "websocket",
+        "socket.io",
+        "realtime",
+        "eventos",
+        "streaming"
+      ],
+      "summary": "Estándar del dominio Backend para WebSockets: Socket.io, eventos, autenticación, salas, rate limiting y patrones.",
+      "keywords": [
+        "websocket",
+        "socket.io",
+        "realtime",
+        "eventos",
+        "streaming",
+        "salas"
+      ],
+      "tokens": 2153,
+      "status": "current",
+      "updated": "2026-08-30",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Worker Template (Implementación de Referencia)",
+      "path": "02_Backend/worker-template/README.md",
+      "category": "02_Backend",
+      "doc_type": "referencia",
+      "tags": [
+        "backend",
+        "template",
+        "workers",
+        "referencia"
+      ],
+      "summary": "Implementación de referencia que cumple todos los puntos del estándar de backend: arquitectura de carpetas, comandos disponibles y configuración inicial.",
+      "keywords": [
+        "template",
+        "worker",
+        "referencia",
+        "arquitectura",
+        "comandos",
+        "setup"
+      ],
+      "tokens": 364,
+      "status": "current",
+      "updated": "2026-07-10",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Workers como Backend Único",
+      "path": "02_Backend/WORKERS_AS_BACKEND.md",
+      "category": "02_Backend",
+      "doc_type": "estandar",
+      "tags": [
+        "workers",
+        "backend",
+        "cloudflare",
+        "arquitectura",
+        "migration"
+      ],
+      "summary": "Workers reemplaza TODO backend tradicional: Express, Django, Laravel, VPS, Docker, Kubernetes. Este documento es la fuente de verdad sobre qué puede hacer un Worker y cómo se estructura el backend completo.",
+      "keywords": [
+        "workers-as-backend",
+        "serverless",
+        "edge",
+        "microservicios",
+        "migration"
+      ],
+      "tokens": 3094,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Cloudflare Workers",
+      "path": "02_Backend/WORKERS_CLOUDFLARE_STANDARD.md",
+      "category": "02_Backend",
+      "doc_type": "estandar",
+      "tags": [
+        "workers",
+        "cloudflare",
+        "d1",
+        "kv",
+        "r2",
+        "serverless"
+      ],
+      "summary": "Estándar del dominio Backend para Cloudflare Workers: estructura, seguridad, D1/KV/R2, patrones de error, autenticación y deployment.",
+      "keywords": [
+        "workers",
+        "cloudflare",
+        "d1",
+        "kv",
+        "r2",
+        "wrangler",
+        "serverless",
+        "edge"
+      ],
+      "tokens": 2913,
+      "status": "current",
+      "updated": "2026-08-30",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Optimización Workers",
+      "path": "02_Backend/WORKERS_OPTIMIZATION.md",
+      "category": "02_Backend",
+      "doc_type": "estandar",
+      "tags": [
+        "cloudflare",
+        "workers",
+        "optimización",
+        "edge"
+      ],
+      "summary": "Reglas O-032 a O-035 de optimización avanzada de Cloudflare Workers: eliminar cold starts, no saturar los 128MB de memoria, perfilado de CPU y procesamiento con Web Streams.",
+      "keywords": [
+        "cloudflare",
+        "workers",
+        "optimizacion",
+        "edge",
+        "o-032",
+        "o-035",
+        "avanzada",
+        "eliminar",
+        "cold",
+        "starts",
+        "saturar",
+        "128mb",
+        "memoria",
+        "perfilado"
+      ],
+      "tokens": 2415,
+      "status": "current",
+      "updated": "2026-07-29",
+      "has_frontmatter": true
+    },
+    {
+      "title": "API ENGINEERING STANDARD",
+      "path": "03_API/API_ENGINEERING_STANDARD.md",
+      "category": "03_API",
+      "doc_type": "estandar",
+      "tags": [
+        "standards",
+        "conventions",
+        "rest-api",
+        "error-handling",
+        "validation"
+      ],
+      "summary": "Nivel 1 del dominio API. Define el contrato hacia afuera del sistema: rutas, métodos HTTP, códigos de respuesta, envelope de respuesta, códigos de error estables, versionado, paginación, auth, rate limiting e idempotencia.",
+      "keywords": [
+        "rest",
+        "envelope",
+        "http-status",
+        "contracts",
+        "openapi"
+      ],
+      "tokens": 7245,
+      "status": "current",
+      "updated": "2026-07-26",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Dominio API — Índice",
+      "path": "03_API/README.md",
+      "category": "03_API",
+      "doc_type": "referencia",
+      "tags": [
+        "api",
+        "indice"
+      ],
+      "summary": "Índice del dominio API. El estándar operativo vive en API_ENGINEERING_STANDARD.md.",
+      "keywords": [
+        "api",
+        "indice",
+        "rest",
+        "contratos"
+      ],
+      "tokens": 169,
+      "status": "current",
+      "updated": "2026-07-09",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Idempotencia y Resiliencia en Webhooks (Pagos y Eventos)",
+      "path": "03_API/WEBHOOK_IDEMPOTENCY_STANDARD.md",
+      "category": "03_API",
+      "doc_type": "estandar",
+      "tags": [
+        "api",
+        "webhooks",
+        "idempotency",
+        "pagos",
+        "stripe",
+        "wompi",
+        "nowpayments",
+        "resiliencia"
+      ],
+      "summary": "Protocolo de procesamiento seguro e idempotente de webhooks externos (Wompi, Stripe, NowPayments, WhatsApp). Uso de llaves de idempotencia, deduplicación en base de datos, validación criptográfica de firmas HMAC y manejo de reintentos sin duplicar cobros ni pedidos.",
+      "keywords": [
+        "webhooks",
+        "idempotencia",
+        "idempotency-key",
+        "pagos",
+        "firma-hmac",
+        "deduplicacion",
+        "transacciones"
+      ],
+      "tokens": 1130,
+      "status": "VERIFIED",
+      "updated": "2026-08-14",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Optimización D1 (Base de Datos)",
+      "path": "04_Database/D1_OPTIMIZATION.md",
+      "category": "04_Database",
+      "doc_type": "estandar",
+      "tags": [
+        "d1",
+        "sqlite",
+        "optimización",
+        "rendimiento"
+      ],
+      "summary": "Reglas O-026 en adelante para Cloudflare D1: índices parciales y compuestos con el orden de columnas correcto, vistas materializadas y comportamiento del write-ahead log.",
+      "keywords": [
+        "d1",
+        "sqlite",
+        "optimizacion",
+        "rendimiento",
+        "base",
+        "datos",
+        "o-026",
+        "adelante",
+        "cloudflare",
+        "indices",
+        "parciales",
+        "compuestos",
+        "orden",
+        "columnas"
+      ],
+      "tokens": 1814,
+      "status": "current",
+      "updated": "2026-07-29",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estrategias Avanzadas de Migración de Datos",
+      "path": "04_Database/DATA_MIGRATION_STRATEGIES.md",
+      "category": "04_Database",
+      "doc_type": "estandar",
+      "tags": [
+        "database",
+        "migration",
+        "postgresql",
+        "d1",
+        "firebase",
+        "zero-downtime",
+        "backfill",
+        "rollback"
+      ],
+      "summary": "Estándar para migraciones de datos sin caídas (zero-downtime), doble escritura, backfill por lotes, migración PostgreSQL a D1, Firestore a Supabase y protocolos de rollback testeados.",
+      "keywords": [
+        "migration",
+        "data-migration",
+        "zero-downtime",
+        "d1",
+        "firestore",
+        "supabase",
+        "backfill",
+        "rollback",
+        "checksum",
+        "double-write"
+      ],
+      "tokens": 1926,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "DATABASE ENGINEERING STANDARD",
+      "path": "04_Database/DATABASE_ENGINEERING_STANDARD.md",
+      "category": "04_Database",
+      "doc_type": "estandar",
+      "tags": [
+        "standards",
+        "conventions",
+        "postgres",
+        "supabase",
+        "rls",
+        "migrations",
+        "naming"
+      ],
+      "summary": "Nivel 1 del dominio Database. Define reglas de Postgres/Supabase: naming de tablas y columnas, tipos de datos, timestamps, constraints, índices, RLS, migraciones versionadas y backups.",
+      "keywords": [
+        "postgresql",
+        "sql",
+        "schema",
+        "row-level-security",
+        "auth",
+        "triggers"
+      ],
+      "tokens": 8513,
+      "status": "current",
+      "updated": "2026-07-26",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Escalabilidad de Base de Datos",
+      "path": "04_Database/DATABASE_SCALABILITY_STANDARD.md",
+      "category": "04_Database",
+      "doc_type": "estandar",
+      "tags": [
+        "postgresql",
+        "escalabilidad",
+        "rendimiento",
+        "integridad"
+      ],
+      "summary": "Reglas DB-010 a DB-025 sobre los cuatro pilares de una base de datos escalable: esquema sin huecos, rendimiento quirúrgico, integridad absoluta y operabilidad.",
+      "keywords": [
+        "postgresql",
+        "escalabilidad",
+        "rendimiento",
+        "integridad",
+        "base",
+        "datos",
+        "db-010",
+        "db-025",
+        "cuatro",
+        "pilares",
+        "escalable",
+        "esquema",
+        "huecos",
+        "quirurgico"
+      ],
+      "tokens": 3749,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Búsqueda Vectorial y Semántica (pgvector)",
+      "path": "04_Database/DATABASE_VECTOR_SEARCH.md",
+      "category": "04_Database",
+      "doc_type": "estandar",
+      "tags": [
+        "pgvector",
+        "embeddings",
+        "búsqueda-semántica",
+        "openai",
+        "postgres"
+      ],
+      "summary": "Búsqueda semántica con pgvector: configuración de la base, generación y guardado de embeddings desde un Worker, endpoint que combina full-text y semántica, y búsqueda difusa.",
+      "keywords": [
+        "pgvector",
+        "embeddings",
+        "busqueda-semantica",
+        "openai",
+        "postgres",
+        "busqueda",
+        "vectorial",
+        "semantica",
+        "configuracion",
+        "base",
+        "generacion",
+        "guardado",
+        "worker",
+        "endpoint"
+      ],
+      "tokens": 2655,
+      "status": "current",
+      "updated": "2026-07-29",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar Avanzado de Multi-Tenancy y Aislamiento de Datos",
+      "path": "04_Database/MULTI_TENANCY_ADVANCED.md",
+      "category": "04_Database",
+      "doc_type": "estandar",
+      "tags": [
+        "database",
+        "multi-tenancy",
+        "rls",
+        "postgres",
+        "supabase",
+        "tenant-isolation",
+        "white-labeling"
+      ],
+      "summary": "Estándar para arquitecturas Multi-Tenant: comparación de estrategias (DB per tenant vs Schema vs RLS), políticas de RLS para aislamiento estricto, onboarding automatizado de organizaciones, rate-limiting por tenant y backups isolados.",
+      "keywords": [
+        "multi-tenancy",
+        "tenant",
+        "rls",
+        "supabase",
+        "postgres",
+        "tenant-isolation",
+        "white-labeling",
+        "rate-limiting"
+      ],
+      "tokens": 958,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar Maestro de Optimización de Consultas SQL y Rendimiento de Base de Datos",
+      "path": "04_Database/OPTIMIZACION_CONSULTAS_SQL_STANDARD.md",
+      "category": "04_Database",
+      "doc_type": "estandar",
+      "tags": [
+        "database",
+        "sql",
+        "postgres",
+        "optimizacion",
+        "indices",
+        "explain-analyze",
+        "cursor-pagination",
+        "n1",
+        "performance"
+      ],
+      "summary": "Guía definitiva y reglas de optimización de consultas SQL en PostgreSQL, Supabase y D1: eliminación de SELECT *, índices compuestos y parciales, paginación por cursor, eliminación del problema N+1 con JSON relacional, lectura de EXPLAIN (ANALYZE, BUFFERS) y conteos rápidos.",
+      "keywords": [
+        "optimizacion-sql",
+        "indices",
+        "explain-analyze",
+        "seq-scan",
+        "index-only-scan",
+        "n1-problem",
+        "cursor-pagination",
+        "postgres",
+        "supabase",
+        "d1"
+      ],
+      "tokens": 1379,
+      "status": "VERIFIED",
+      "updated": "2026-08-14",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Patrón: Acceso Público con RLS (Token Anónimo)",
+      "path": "04_Database/PATRON_ACCESO_PUBLICO_RLS.md",
+      "category": "04_Database",
+      "doc_type": "patron",
+      "tags": [
+        "rls",
+        "seguridad",
+        "public-access",
+        "supabase"
+      ],
+      "summary": "Dar acceso a un recurso concreto a un usuario sin cuenta mediante un token indivinable inyectado en las políticas RLS, con las reglas de seguridad que ese patrón obliga a cumplir.",
+      "keywords": [
+        "rls",
+        "seguridad",
+        "public-access",
+        "supabase",
+        "acceso",
+        "publico",
+        "token",
+        "anonimo",
+        "recurso",
+        "concreto",
+        "usuario",
+        "cuenta",
+        "mediante",
+        "indivinable"
+      ],
+      "tokens": 1128,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Dominio Database — Índice",
+      "path": "04_Database/README.md",
+      "category": "04_Database",
+      "doc_type": "referencia",
+      "tags": [
+        "database",
+        "indice"
+      ],
+      "summary": "Índice del dominio Database. El estándar operativo vive en DATABASE_ENGINEERING_STANDARD.md.",
+      "keywords": [
+        "database",
+        "indice",
+        "postgres",
+        "supabase",
+        "d1"
+      ],
+      "tokens": 564,
+      "status": "current",
+      "updated": "2026-07-09",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Queries Comunes Optimizadas",
+      "path": "04_Database/References/DATABASE_COMMON_QUERIES.md",
+      "category": "04_Database",
+      "doc_type": "referencia",
+      "tags": [
+        "sql",
+        "postgres",
+        "queries",
+        "supabase"
+      ],
+      "summary": "Recetas de SQL y de cliente Supabase para operaciones diarias que suelen implementarse mal: paginación por cursor, búsqueda de texto completo, CTEs y upserts.",
+      "keywords": [
+        "sql",
+        "postgres",
+        "queries",
+        "supabase",
+        "comunes",
+        "optimizadas",
+        "recetas",
+        "cliente",
+        "operaciones",
+        "diarias",
+        "suelen",
+        "implementarse",
+        "paginacion",
+        "cursor"
+      ],
+      "tokens": 571,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Plan de Migración de Emergencia y Portabilidad de Base de Datos (Disaster Recovery)",
+      "path": "04_Database/References/DATABASE_DISASTER_RECOVERY_MIGRATION.md",
+      "category": "04_Database",
+      "doc_type": "runbook",
+      "tags": [
+        "database",
+        "migrations",
+        "disaster-recovery",
+        "pg_dump",
+        "postgres",
+        "supabase",
+        "vps",
+        "backup",
+        "zero-downtime"
+      ],
+      "summary": "Runbook completo para migrar bases de datos en caliente o ante contingencias graves (Disaster Recovery). Incluye exportación segura con pg_dump (omitiendo roles propietarios), importación en VPS o Postgres alternativo, migración de auth.users y rollback sin pérdida de datos.",
+      "keywords": [
+        "migracion",
+        "disaster-recovery",
+        "pg_dump",
+        "pg_restore",
+        "supabase-a-vps",
+        "backup",
+        "portabilidad",
+        "zero-downtime"
+      ],
+      "tokens": 1295,
+      "status": "VERIFIED",
+      "updated": "2026-08-14",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Recetas de Migraciones de Base de Datos",
+      "path": "04_Database/References/DATABASE_MIGRATION_RECIPES.md",
+      "category": "04_Database",
+      "doc_type": "referencia",
+      "tags": [
+        "migrations",
+        "sql",
+        "supabase",
+        "zero-downtime"
+      ],
+      "summary": "Recetas de migración sin downtime: añadir una columna obligatoria, renombrar una columna y crear índices de forma segura sobre tablas en producción.",
+      "keywords": [
+        "migrations",
+        "sql",
+        "supabase",
+        "zero-downtime",
+        "recetas",
+        "migraciones",
+        "base",
+        "datos",
+        "migracion",
+        "downtime",
+        "anadir",
+        "columna",
+        "obligatoria",
+        "renombrar"
+      ],
+      "tokens": 452,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Performance de Base de Datos",
+      "path": "04_Database/References/DATABASE_PERFORMANCE.md",
+      "category": "04_Database",
+      "doc_type": "referencia",
+      "tags": [
+        "performance",
+        "database",
+        "indexes",
+        "explain"
+      ],
+      "summary": "Conceptos para que la base de datos no sea el cuello de botella: cuándo y dónde crear índices, lectura de EXPLAIN ANALYZE, vacuum y bloat, y cómo evitar el problema N+1.",
+      "keywords": [
+        "performance",
+        "database",
+        "indexes",
+        "explain",
+        "base",
+        "datos",
+        "conceptos",
+        "cuello",
+        "botella",
+        "crear",
+        "indices",
+        "lectura",
+        "analyze",
+        "vacuum"
+      ],
+      "tokens": 480,
+      "status": "current",
+      "updated": "2026-07-29",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Guía de Ingesta y Migración de Datos de Clientes (CSV / Excel a Base de Datos)",
+      "path": "04_Database/References/GUIA_MIGRACION_DATOS_CLIENTE.md",
+      "category": "04_Database",
+      "doc_type": "runbook",
+      "tags": [
+        "database",
+        "ingesta",
+        "csv",
+        "excel",
+        "supabase",
+        "postgres",
+        "migracion-datos",
+        "sanitizacion",
+        "zod"
+      ],
+      "summary": "Protocolo para procesar, sanitizar, validar con Zod e importar masivamente datos desordenados de clientes (Excel/CSV antiguos) hacia PostgreSQL/Supabase en lotes (batch chunks) con control de duplicados y transacciones.",
+      "keywords": [
+        "ingesta-datos",
+        "csv",
+        "excel",
+        "migracion",
+        "supabase",
+        "batch-insert",
+        "sanitizacion",
+        "deduplicacion"
+      ],
+      "tokens": 1090,
+      "status": "VERIFIED",
+      "updated": "2026-08-14",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Patrón de Arquitectura Multi-Tenant (Organizaciones y Equipos)",
+      "path": "04_Database/References/PATRON_MULTI_TENANT_ORGANIZATIONS.md",
+      "category": "04_Database",
+      "doc_type": "patron",
+      "tags": [
+        "database",
+        "multi-tenant",
+        "rls",
+        "organizaciones",
+        "tenant-isolation",
+        "b2b",
+        "supabase"
+      ],
+      "summary": "Esquema y arquitectura estándar para aplicaciones SaaS B2B Multi-tenant: tabla de organizaciones (tenants), miembros con roles, invitaciones con token seguro e inquebrantable aislamiento de datos por RLS (TENANT-001).",
+      "keywords": [
+        "multi-tenant",
+        "tenant-isolation",
+        "organizaciones",
+        "saas",
+        "b2b",
+        "rls",
+        "supabase",
+        "invitaciones"
+      ],
+      "tokens": 881,
+      "status": "VERIFIED",
+      "updated": "2026-08-14",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Patrón Oficial de Roles y Permisos (RBAC Multi-tenant)",
+      "path": "04_Database/References/PATRON_RBAC_PERMISOS.md",
+      "category": "04_Database",
+      "doc_type": "patron",
+      "tags": [
+        "database",
+        "postgres",
+        "supabase",
+        "rbac",
+        "roles",
+        "permisos",
+        "multi-tenant",
+        "rls"
+      ],
+      "summary": "Esquema SQL y patrón reutilizable de control de acceso basado en roles (RBAC) para PostgreSQL y Supabase. Incluye tablas de roles, permisos, asignación de usuarios y funciones de verificación para RLS (has_permission).",
+      "keywords": [
+        "rbac",
+        "roles",
+        "permisos",
+        "supabase",
+        "postgres",
+        "rls",
+        "multi-tenant",
+        "autorizacion"
+      ],
+      "tokens": 674,
+      "status": "VERIFIED",
+      "updated": "2026-08-14",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Librería de Políticas RLS",
+      "path": "04_Database/References/RLS_POLICIES_LIBRARY.md",
+      "category": "04_Database",
+      "doc_type": "referencia",
+      "tags": [
+        "rls",
+        "security",
+        "supabase",
+        "postgres"
+      ],
+      "summary": "Políticas RLS probadas y listas para copiar: acceso del usuario solo a sus propios datos, lectura pública con escritura restringida al propietario, y acceso por roles.",
+      "keywords": [
+        "rls",
+        "security",
+        "supabase",
+        "postgres",
+        "libreria",
+        "politicas",
+        "probadas",
+        "listas",
+        "copiar",
+        "acceso",
+        "usuario",
+        "datos",
+        "lectura",
+        "publica"
+      ],
+      "tokens": 637,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar y Toolkit de Auditoría Web con Kali Linux (WSL)",
+      "path": "05_Security/AUDIT_TOOLKIT_KALI_WSL.md",
+      "category": "05_Security",
+      "doc_type": "estandar",
+      "tags": [
+        "seguridad",
+        "auditoria",
+        "kali-linux",
+        "wsl",
+        "nmap",
+        "sslscan",
+        "ffuf",
+        "nuclei",
+        "pre-lanzamiento"
+      ],
+      "summary": "Protocolo y herramientas de auditoría de seguridad defensiva y caja negra usando Kali Linux en WSL 2: escaneo de puertos, análisis TLS/SSL, descubrimiento de archivos sensibles expuestos (.env, .git), validación de CORS y escaneo automatizado con Nuclei.",
+      "keywords": [
+        "kali",
+        "wsl",
+        "auditoria",
+        "pentesting-defensivo",
+        "nmap",
+        "sslscan",
+        "ffuf",
+        "nuclei",
+        "cors",
+        "csp",
+        "pre-lanzamiento",
+        "hardening"
+      ],
+      "tokens": 1800,
+      "status": "VERIFIED",
+      "updated": "2026-08-14",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Autenticación Avanzada: SAML SSO, Social Login, Passkeys y Sesiones",
+      "path": "05_Security/AUTH_ADVANCED_STANDARD.md",
+      "category": "05_Security",
+      "doc_type": "estandar",
+      "tags": [
+        "auth",
+        "saml",
+        "sso",
+        "oauth",
+        "passkeys",
+        "webauthn",
+        "magic-links",
+        "sessions",
+        "rate-limit"
+      ],
+      "summary": "Estándar para esquemas avanzados de autenticación: SAML Enterprise SSO (Okta, Azure AD), Social OAuth (Google, GitHub, Apple), Magic Links con expiración corta, Passkeys (WebAuthn) y gestión de sesiones sospechosas.",
+      "keywords": [
+        "saml",
+        "sso",
+        "oauth",
+        "passkeys",
+        "webauthn",
+        "magic-links",
+        "sessions",
+        "security",
+        "rate-limit",
+        "okta",
+        "azure-ad"
+      ],
+      "tokens": 1274,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Autenticación MFA: TOTP, Passkeys y Magic Links",
+      "path": "05_Security/AUTH_MFA_STANDARD.md",
+      "category": "05_Security",
+      "doc_type": "estandar",
+      "tags": [
+        "mfa",
+        "totp",
+        "webauthn",
+        "passkeys",
+        "magic-link",
+        "auth",
+        "supabase"
+      ],
+      "summary": "Autenticación de segundo factor completa: TOTP con aplicaciones de autenticación, passkeys WebAuthn biométricas, y magic links de login e invitaciones a equipo con sus TTL y reglas de un solo uso.",
+      "keywords": [
+        "mfa",
+        "totp",
+        "webauthn",
+        "passkeys",
+        "magic-link",
+        "auth",
+        "supabase",
+        "autenticacion",
+        "magic",
+        "links",
+        "segundo",
+        "factor",
+        "completa",
+        "aplicaciones"
+      ],
+      "tokens": 4235,
+      "status": "current",
+      "updated": "2026-07-29",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Seguridad en Aplicaciones de Escritorio (Tauri)",
+      "path": "05_Security/DESKTOP_SECURITY_STANDARD.md",
+      "category": "05_Security",
+      "doc_type": "estandar",
+      "tags": [
+        "seguridad",
+        "desktop",
+        "tauri",
+        "ipc",
+        "code-signing",
+        "updater",
+        "keychain",
+        "rust"
+      ],
+      "summary": "Reglas de seguridad DSEC-001 a DSEC-011 para apps de escritorio Tauri v2: ACL de capabilities, validación de comandos IPC, CSP del webview, secretos en el keychain del SO, updater firmado, code signing y notarización, sidecars, SQLite local y cadena de suministro.",
+      "keywords": [
+        "tauri",
+        "desktop",
+        "ipc",
+        "capabilities",
+        "acl",
+        "csp",
+        "updater",
+        "minisign",
+        "authenticode",
+        "notarization",
+        "gatekeeper",
+        "keychain",
+        "keyring",
+        "stronghold",
+        "sqlite",
+        "sidecar",
+        "path-traversal",
+        "cargo-audit"
+      ],
+      "tokens": 5743,
+      "status": "VERIFIED",
+      "updated": "2026-07-29",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Rate Limiting",
+      "path": "05_Security/ESTANDAR_RATE_LIMITING.md",
+      "category": "05_Security",
+      "doc_type": "estandar",
+      "tags": [
+        "rate-limit",
+        "ddos",
+        "seguridad",
+        "workers"
+      ],
+      "summary": "Rate limiting en Cloudflare Workers contra fuerza bruta, password spraying y enumeración de identificadores, con las reglas inquebrantables de por dónde y cómo aplicarlo.",
+      "keywords": [
+        "rate-limit",
+        "ddos",
+        "seguridad",
+        "workers",
+        "rate",
+        "limiting",
+        "cloudflare",
+        "contra",
+        "fuerza",
+        "bruta",
+        "password",
+        "spraying",
+        "enumeracion",
+        "identificadores"
+      ],
+      "tokens": 883,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Checklist de Verificación Externa — qué replicar y cómo probarlo tú mismo",
+      "path": "05_Security/EXTERNAL_AUDIT_CHECKLIST.md",
+      "category": "05_Security",
+      "doc_type": "referencia",
+      "tags": [
+        "checklist",
+        "auditoria-externa",
+        "cors",
+        "csp",
+        "headers",
+        "rls",
+        "vps",
+        "verificacion"
+      ],
+      "summary": "Catálogo de prácticas confirmadas por auditoría de caja negra real (curl, nmap, Supabase Advisors) contra los proyectos en producción del usuario el 2026-08-11 — qué salió bien, en qué proyecto se verificó, y el comando exacto para volver a probarlo en cualquier proyecto nuevo.",
+      "keywords": [
+        "cors",
+        "csp",
+        "rls",
+        "headers de seguridad",
+        "nmap",
+        "supabase",
+        "vps",
+        "checklist pre-lanzamiento"
+      ],
+      "tokens": 2178,
+      "status": "VERIFIED",
+      "updated": "2026-08-11",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Respuesta a Incidentes — Runbook de la Primera Hora",
+      "path": "05_Security/INCIDENT_RESPONSE.md",
+      "category": "05_Security",
+      "doc_type": "runbook",
+      "tags": [
+        "seguridad",
+        "incidentes",
+        "runbook",
+        "operacion"
+      ],
+      "summary": "Runbook operativo de la primera hora ante un incidente: triage en 60 segundos y tres procedimientos encadenables para secreto filtrado, actividad anómala en la base de datos y deploy comprometido.",
+      "keywords": [
+        "incidente",
+        "runbook",
+        "triage",
+        "secreto-filtrado",
+        "rotacion",
+        "deploy-comprometido"
+      ],
+      "tokens": 4110,
+      "status": "current",
+      "updated": "2026-07-21",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Cumplimiento Legal y Privacidad para SaaS (GDPR, CCPA, DPA)",
+      "path": "05_Security/LEGAL_COMPLIANCE_STANDARD.md",
+      "category": "05_Security",
+      "doc_type": "estandar",
+      "tags": [
+        "legal",
+        "gdpr",
+        "ccpa",
+        "dpa",
+        "privacidad",
+        "cookies",
+        "privacidad-por-diseno",
+        "zod",
+        "security"
+      ],
+      "summary": "Estándar técnico y de cumplimiento legal para SaaS: estructura de Términos y Condiciones, Política de Privacidad (GDPR/CCPA), Política de Cookies (con banner React), Acuerdo de Procesamiento de Datos (DPA), esquemas SQL de consentimiento y checklist pre-lanzamiento.",
+      "keywords": [
+        "legal",
+        "gdpr",
+        "ccpa",
+        "dpa",
+        "privacidad",
+        "cookies",
+        "cookie-banner",
+        "terminos-condiciones",
+        "consent",
+        "privacidad-por-diseno"
+      ],
+      "tokens": 2008,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Seguridad en Aplicaciones Móviles (Android / APK)",
+      "path": "05_Security/MOBILE_SECURITY_STANDARD.md",
+      "category": "05_Security",
+      "doc_type": "estandar",
+      "tags": [
+        "seguridad",
+        "mobile",
+        "android",
+        "apk",
+        "react-native",
+        "expo",
+        "keystore",
+        "tls",
+        "ota",
+        "biometria"
+      ],
+      "summary": "Reglas de seguridad MSEC-001 a MSEC-012 para apps Android: cero secretos en el bundle, firma del APK/AAB y Play App Signing, Network Security Config y TLS, almacenamiento respaldado por Keystore, superficie exportada y App Links verificados, WebView, R8, Play Integrity, biometría, OTA firmado y permisos mínimos.",
+      "keywords": [
+        "android",
+        "apk",
+        "aab",
+        "keystore",
+        "apksigner",
+        "network-security-config",
+        "cleartext",
+        "certificate-pinning",
+        "expo-secure-store",
+        "encryptedsharedpreferences",
+        "exported",
+        "app-links",
+        "assetlinks",
+        "webview",
+        "r8",
+        "proguard",
+        "hermes",
+        "play-integrity",
+        "root-detection",
+        "biometric",
+        "eas-update",
+        "code-signing",
+        "jadx",
+        "apktool"
+      ],
+      "tokens": 5450,
+      "status": "VERIFIED",
+      "updated": "2026-07-29",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Seguridad en Pasarelas de Pago (Stripe + Workers)",
+      "path": "05_Security/PAYMENTS_SECURITY_STANDARD.md",
+      "category": "05_Security",
+      "doc_type": "estandar",
+      "tags": [
+        "pagos",
+        "stripe",
+        "pci-dss",
+        "webhooks",
+        "idempotencia",
+        "security",
+        "rls",
+        "workers"
+      ],
+      "summary": "Estándar inquebrantable de seguridad para pasarelas de pago y suscripciones: compliance PCI DSS, tokenización en frontend, verificación de firmas de webhooks, idempotencia, precios en centavos y prevención de fraude.",
+      "keywords": [
+        "stripe",
+        "pagos",
+        "pci-dss",
+        "webhooks",
+        "idempotency",
+        "billing",
+        "subscriptions",
+        "PCI",
+        "centavos",
+        "payment-intent"
+      ],
+      "tokens": 3835,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Dominio Security — Índice y Mapa de Cobertura",
+      "path": "05_Security/README.md",
+      "category": "05_Security",
+      "doc_type": "referencia",
+      "tags": [
+        "seguridad",
+        "indice",
+        "cobertura",
+        "plataformas"
+      ],
+      "summary": "Índice del dominio Security: qué documento aplica a cada plataforma (web, desktop, móvil), cómo se relacionan los tres niveles y qué queda explícitamente fuera de alcance.",
+      "keywords": [
+        "seguridad",
+        "indice",
+        "web",
+        "desktop",
+        "apk",
+        "android",
+        "tauri",
+        "cobertura",
+        "alcance"
+      ],
+      "tokens": 1433,
+      "status": "VERIFIED",
+      "updated": "2026-07-29",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Prevención de Fugas de Secretos en Bundles y Frontend",
+      "path": "05_Security/SECRET_LEAK_PREVENTION_STANDARD.md",
+      "category": "05_Security",
+      "doc_type": "estandar",
+      "tags": [
+        "seguridad",
+        "secretos",
+        "vite",
+        "bundle",
+        "frontend",
+        "backend-proxy",
+        "pre-build"
+      ],
+      "summary": "Reglas SEC-LEAK-001 a SEC-LEAK-005 para garantizar cero secretos en bundles de cliente (Vite, React, APK, Tauri). Define la arquitectura de proxy para APIs de terceros (MetaApi, Stripe), el peligro del prefijo VITE_ y el escáner de pre-build obligatorio.",
+      "keywords": [
+        "secretos",
+        "bundles",
+        "vite",
+        "frontend",
+        "metaapi",
+        "stripe",
+        "leak",
+        "scanner",
+        "pre-build",
+        "rls",
+        "workers"
+      ],
+      "tokens": 1930,
+      "status": "VERIFIED",
+      "updated": "2026-08-14",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar Avanzado de Ciberseguridad, CSP, SRI y Hardening",
+      "path": "05_Security/SECURITY_ADVANCED.md",
+      "category": "05_Security",
+      "doc_type": "estandar",
+      "tags": [
+        "security",
+        "csp",
+        "sri",
+        "dnssec",
+        "supply-chain",
+        "gitleaks",
+        "security-txt",
+        "hardening"
+      ],
+      "summary": "Estándar avanzado de seguridad ofensiva y defensiva: Content Security Policy (CSP) en Workers, Subresource Integrity (SRI), seguridad de cadena de suministro (Supply Chain), DNSSEC y archivo security.txt.",
+      "keywords": [
+        "security",
+        "csp",
+        "content-security-policy",
+        "sri",
+        "dnssec",
+        "supply-chain",
+        "gitleaks",
+        "security.txt",
+        "hardening"
+      ],
+      "tokens": 933,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Seguridad e Integridad",
+      "path": "05_Security/SECURITY_ENGINEERING_STANDARD.md",
+      "category": "05_Security",
+      "doc_type": "estandar",
+      "tags": [
+        "seguridad",
+        "owasp",
+        "auth",
+        "cifrado",
+        "cors"
+      ],
+      "summary": "Estándar base del dominio: reglas S-001 a S-014 organizadas en siete capas de defensa, desde validación de entrada, CORS, autenticación y autorización hasta rate limiting, cifrado y cabeceras de seguridad.",
+      "keywords": [
+        "seguridad",
+        "owasp",
+        "auth",
+        "cifrado",
+        "cors",
+        "integridad",
+        "base",
+        "dominio",
+        "s-001",
+        "s-014",
+        "organizadas",
+        "siete",
+        "defensa",
+        "validacion"
+      ],
+      "tokens": 8397,
+      "status": "current",
+      "updated": "2026-07-29",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Modelo de Amenazas — SaaS de Developer Solo",
+      "path": "05_Security/THREAT_MODEL.md",
+      "category": "05_Security",
+      "doc_type": "runbook",
+      "tags": [
+        "seguridad",
+        "threat-model",
+        "amenazas",
+        "hardening"
+      ],
+      "summary": "Ocho amenazas realistas para un developer solo sobre Cloudflare y Supabase, cada una con cómo ocurre, prevención, señales de detección, respuesta y recuperación, más un checklist de hardening priorizado.",
+      "keywords": [
+        "threat-model",
+        "amenazas",
+        "phishing",
+        "credential-stuffing",
+        "supply-chain",
+        "hardening"
+      ],
+      "tokens": 5183,
+      "status": "current",
+      "updated": "2026-07-21",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar Avanzado de Pruebas y QA",
+      "path": "06_Testing/ADVANCED_TESTING_STANDARD.md",
+      "category": "06_Testing",
+      "doc_type": "estandar",
+      "tags": [
+        "testing",
+        "k6",
+        "chaos-engineering",
+        "fast-check",
+        "percy",
+        "pact",
+        "stryker",
+        "coverage"
+      ],
+      "summary": "Estándar avanzado de pruebas de software: Pruebas de Carga con k6, Chaos Engineering, Property-based testing con fast-check, Visual Regression con Chromatic, Contract testing con Pact y Mutation testing con Stryker.",
+      "keywords": [
+        "k6",
+        "chaos-engineering",
+        "fast-check",
+        "percy",
+        "chromatic",
+        "pact",
+        "stryker",
+        "coverage",
+        "load-testing",
+        "mutation-testing"
+      ],
+      "tokens": 1507,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Agente de Code Review",
+      "path": "06_Testing/Agents/Code-Review-Agent.md",
+      "category": "06_Testing",
+      "doc_type": "ficha_agente",
+      "tags": [
+        "testing",
+        "qa",
+        "agente",
+        "code-review"
+      ],
+      "summary": "Ficha del agente de revisión de código: responsabilidades, herramientas, cuándo se activa, checklist de ejecución, qué errores detecta y cuáles quedan fuera de su alcance.",
+      "keywords": [
+        "code-review",
+        "agente",
+        "revision",
+        "checklist",
+        "alcance"
+      ],
+      "tokens": 1347,
+      "status": "current",
+      "updated": "2026-07-21",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Agente de Documentación",
+      "path": "06_Testing/Agents/Documentation-Agent.md",
+      "category": "06_Testing",
+      "doc_type": "ficha_agente",
+      "tags": [
+        "testing",
+        "qa",
+        "agente",
+        "documentacion"
+      ],
+      "summary": "Ficha del agente de QA de documentación: verifica que la documentación de API, el CHANGELOG y los docs de proyecto digan la verdad y nada más.",
+      "keywords": [
+        "documentacion",
+        "agente",
+        "changelog",
+        "api-docs",
+        "qa"
+      ],
+      "tokens": 1332,
+      "status": "current",
+      "updated": "2026-07-21",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Agente E2E",
+      "path": "06_Testing/Agents/E2E-Agent.md",
+      "category": "06_Testing",
+      "doc_type": "ficha_agente",
+      "tags": [
+        "testing",
+        "qa",
+        "agente",
+        "e2e",
+        "playwright"
+      ],
+      "summary": "Ficha del agente end-to-end, que fusiona Playwright, E2E, smoke, regresión y responsive en una sola base de tests con tres modos de ejecución.",
+      "keywords": [
+        "e2e",
+        "playwright",
+        "smoke",
+        "regresion",
+        "responsive",
+        "agente"
+      ],
+      "tokens": 1180,
+      "status": "current",
+      "updated": "2026-07-21",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Agente Orquestador de QA",
+      "path": "06_Testing/Agents/QA-Manager-Agent.md",
+      "category": "06_Testing",
+      "doc_type": "ficha_agente",
+      "tags": [
+        "testing",
+        "qa",
+        "agente",
+        "orquestador"
+      ],
+      "summary": "Ficha del agente que orquesta el departamento de QA: matriz que decide qué agentes activar según el diff y emite un único veredicto GO o NO-GO contra los quality gates.",
+      "keywords": [
+        "orquestador",
+        "go-no-go",
+        "gates",
+        "matriz",
+        "diff",
+        "agente"
+      ],
+      "tokens": 1201,
+      "status": "current",
+      "updated": "2026-07-21",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Agente de Quality Gates",
+      "path": "06_Testing/Agents/Quality-Gates-Agent.md",
+      "category": "06_Testing",
+      "doc_type": "ficha_agente",
+      "tags": [
+        "testing",
+        "qa",
+        "agente",
+        "accesibilidad",
+        "performance"
+      ],
+      "summary": "Ficha del agente que fusiona accesibilidad y rendimiento: verifica los gates con números medidos y reporta cumple o no cumple, nunca opiniones.",
+      "keywords": [
+        "quality-gates",
+        "accesibilidad",
+        "performance",
+        "lighthouse",
+        "axe",
+        "agente"
+      ],
+      "tokens": 1179,
+      "status": "current",
+      "updated": "2026-07-21",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Agentes QA — Índice y Mapa de Consolidación",
+      "path": "06_Testing/Agents/README.md",
+      "category": "06_Testing",
+      "doc_type": "referencia",
+      "tags": [
+        "testing",
+        "qa",
+        "agentes",
+        "indice"
+      ],
+      "summary": "Por qué los 18 agentes de QA pedidos se consolidaron en 8, con el mapa de correspondencia, el flujo de colaboración entre ellos y la convención de las fichas.",
+      "keywords": [
+        "agentes",
+        "qa",
+        "consolidacion",
+        "flujo",
+        "fichas"
+      ],
+      "tokens": 1457,
+      "status": "current",
+      "updated": "2026-07-21",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Agente de Seguridad y Dependencias",
+      "path": "06_Testing/Agents/Security-Dependency-Agent.md",
+      "category": "06_Testing",
+      "doc_type": "ficha_agente",
+      "tags": [
+        "testing",
+        "qa",
+        "agente",
+        "seguridad",
+        "dependencias"
+      ],
+      "summary": "Ficha del agente que fusiona escaneo de seguridad y auditoría de dependencias, detecta licencias problemáticas y escala al dominio de seguridad cuando corresponde.",
+      "keywords": [
+        "seguridad",
+        "dependencias",
+        "audit",
+        "licencias",
+        "escalado",
+        "agente"
+      ],
+      "tokens": 1251,
+      "status": "current",
+      "updated": "2026-07-21",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Agente de Tests Unitarios e Integración",
+      "path": "06_Testing/Agents/Unit-Integration-Agent.md",
+      "category": "06_Testing",
+      "doc_type": "ficha_agente",
+      "tags": [
+        "testing",
+        "qa",
+        "agente",
+        "vitest"
+      ],
+      "summary": "Ficha del agente que fusiona Vitest, tests unitarios e integración: unitarios para funciones puras, integración para workers y endpoints con sus dependencias reales.",
+      "keywords": [
+        "vitest",
+        "unitarios",
+        "integracion",
+        "workers",
+        "endpoints",
+        "agente"
+      ],
+      "tokens": 1082,
+      "status": "current",
+      "updated": "2026-07-21",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Agente de Regresión Visual",
+      "path": "06_Testing/Agents/Visual-Regression-Agent.md",
+      "category": "06_Testing",
+      "doc_type": "ficha_agente",
+      "tags": [
+        "testing",
+        "qa",
+        "agente",
+        "visual-regression"
+      ],
+      "summary": "Ficha del agente de regresión visual: compara contra baselines aprobados y nunca aprueba un baseline nuevo por su cuenta, porque esa es una decisión humana.",
+      "keywords": [
+        "regresion-visual",
+        "baseline",
+        "screenshots",
+        "aprobacion",
+        "agente"
+      ],
+      "tokens": 1204,
+      "status": "current",
+      "updated": "2026-07-21",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Checklist de Calidad y Release a Producción (QA Agencia)",
+      "path": "06_Testing/CHECKLIST_RELEASE_PRODUCCION.md",
+      "category": "06_Testing",
+      "doc_type": "referencia",
+      "tags": [
+        "qa",
+        "checklist",
+        "release",
+        "produccion",
+        "go-live",
+        "pre-entrega"
+      ],
+      "summary": "Checklist integral de control de calidad antes de liberar un proyecto a producción o entregarlo al cliente. Cubre pruebas unitarias, E2E, responsividad móvil (375px), 4 estados UI, auditoría de seguridad y rendimiento Core Web Vitals.",
+      "keywords": [
+        "qa",
+        "checklist",
+        "release",
+        "produccion",
+        "go-live",
+        "criterios",
+        "testing"
+      ],
+      "tokens": 679,
+      "status": "VERIFIED",
+      "updated": "2026-08-14",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Proceso de Release para un Dev Solo",
+      "path": "06_Testing/Guides/04_RELEASE_PROCESS.md",
+      "category": "06_Testing",
+      "doc_type": "estandar",
+      "tags": [
+        "testing",
+        "release",
+        "semver",
+        "changelog"
+      ],
+      "summary": "Proceso completo de release: versionado SemVer pragmático, CHANGELOG generado con release-please, tags y GitHub Releases, y qué cuenta como release.",
+      "keywords": [
+        "release",
+        "semver",
+        "changelog",
+        "release-please",
+        "tags",
+        "github-releases"
+      ],
+      "tokens": 6155,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Ciclo de Vida de un Bug",
+      "path": "06_Testing/Guides/05_BUG_LIFECYCLE.md",
+      "category": "06_Testing",
+      "doc_type": "runbook",
+      "tags": [
+        "testing",
+        "bugs",
+        "issues",
+        "proceso"
+      ],
+      "summary": "De la captura al cierre: toda fuente termina en el mismo lugar, registro mínimo de un issue de bug, criterios objetivos de severidad P0 a P3 y la regla de que todo fix deja un test de regresión.",
+      "keywords": [
+        "bug",
+        "issue",
+        "severidad",
+        "p0",
+        "regresion",
+        "triage",
+        "gh"
+      ],
+      "tokens": 2726,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Guía de Automatización de QA",
+      "path": "06_Testing/Guides/07_AUTOMATION_GUIDE.md",
+      "category": "06_Testing",
+      "doc_type": "estandar",
+      "tags": [
+        "testing",
+        "automatizacion",
+        "setup",
+        "vitest",
+        "playwright"
+      ],
+      "summary": "Setup de QA copy-paste en menos de una hora: estructura de carpetas de tests, scripts de package.json como contrato, y configuración de Vitest, Playwright, ESLint y Lighthouse.",
+      "keywords": [
+        "setup",
+        "vitest",
+        "playwright",
+        "eslint",
+        "lighthouse",
+        "scripts",
+        "automatizacion"
+      ],
+      "tokens": 5040,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Playbook de QA por Situación",
+      "path": "06_Testing/Guides/10_PLAYBOOK.md",
+      "category": "06_Testing",
+      "doc_type": "referencia",
+      "tags": [
+        "testing",
+        "playbook",
+        "qa",
+        "operacion"
+      ],
+      "summary": "Procedimientos por situación concreta: proyecto nuevo, bug en producción, test E2E inestable, pipeline lento y cómo saltarse un gate en una emergencia dejando rastro.",
+      "keywords": [
+        "playbook",
+        "flaky",
+        "pipeline-lento",
+        "emergencia",
+        "gate",
+        "bug-produccion"
+      ],
+      "tokens": 3689,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Pipeline de Testing por Capa",
+      "path": "06_Testing/Pipelines/02_TESTING_PIPELINE.md",
+      "category": "06_Testing",
+      "doc_type": "estandar",
+      "tags": [
+        "testing",
+        "pipeline",
+        "vitest",
+        "playwright"
+      ],
+      "summary": "Estándar técnico capa por capa: unitarios con Vitest, integración de Worker con datos, tests de componente con Testing Library, E2E con Playwright, regresión visual y reglas anti-flakiness.",
+      "keywords": [
+        "unit",
+        "integracion",
+        "componentes",
+        "e2e",
+        "regresion-visual",
+        "flaky",
+        "pipeline"
+      ],
+      "tokens": 7372,
+      "status": "current",
+      "updated": "2026-07-21",
+      "has_frontmatter": true
+    },
+    {
+      "title": "CI/CD — El Pipeline de QA por Etapas",
+      "path": "06_Testing/Pipelines/03_CI_CD.md",
+      "category": "06_Testing",
+      "doc_type": "estandar",
+      "tags": [
+        "testing",
+        "ci-cd",
+        "github-actions",
+        "pipeline"
+      ],
+      "summary": "Qué corre en cada push y qué no, presupuesto de tiempo del pipeline y cómo defenderlo, política ante un gate fallido y los workflows de integración y de despliegue.",
+      "keywords": [
+        "ci-cd",
+        "github-actions",
+        "cache",
+        "gates",
+        "workflow",
+        "deploy",
+        "presupuesto"
+      ],
+      "tokens": 6177,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Dominio Testing — Departamento de QA",
+      "path": "06_Testing/README.md",
+      "category": "06_Testing",
+      "doc_type": "referencia",
+      "tags": [
+        "testing",
+        "qa",
+        "indice"
+      ],
+      "summary": "Índice del departamento de QA: principio rector, mapa de documentos, qué leer para cada situación y relación con los demás dominios.",
+      "keywords": [
+        "qa",
+        "testing",
+        "indice",
+        "mapa",
+        "estrategia"
+      ],
+      "tokens": 1857,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estrategia de QA",
+      "path": "06_Testing/Strategy/01_QA_STRATEGY.md",
+      "category": "06_Testing",
+      "doc_type": "estandar",
+      "tags": [
+        "testing",
+        "estrategia",
+        "piramide",
+        "qa"
+      ],
+      "summary": "Pirámide de tests adaptada a un dev solo, qué se automatiza porque bloquea frente al riesgo residual documentado, y matriz de herramientas elegidas con su justificación y descartes.",
+      "keywords": [
+        "piramide",
+        "estrategia",
+        "automatizacion",
+        "riesgo-residual",
+        "herramientas",
+        "cobertura"
+      ],
+      "tokens": 4130,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Checklists de Test por Momento",
+      "path": "06_Testing/Strategy/06_TEST_CHECKLIST.md",
+      "category": "06_Testing",
+      "doc_type": "referencia",
+      "tags": [
+        "testing",
+        "checklist",
+        "proceso"
+      ],
+      "summary": "Qué corre antes de commit, de push, de merge, de release, de deploy y después del deploy, cada uno con su presupuesto de tiempo explícito.",
+      "keywords": [
+        "checklist",
+        "commit",
+        "push",
+        "merge",
+        "release",
+        "deploy",
+        "presupuesto"
+      ],
+      "tokens": 1827,
+      "status": "current",
+      "updated": "2026-07-21",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Quality Gates del Build",
+      "path": "06_Testing/Strategy/08_QUALITY_STANDARDS.md",
+      "category": "06_Testing",
+      "doc_type": "estandar",
+      "tags": [
+        "testing",
+        "quality-gates",
+        "accesibilidad",
+        "performance",
+        "seguridad"
+      ],
+      "summary": "Principios de diseño de los gates y su definición numérica: accesibilidad, rendimiento, seguridad de build, dependencias y calidad de código.",
+      "keywords": [
+        "quality-gates",
+        "accesibilidad",
+        "performance",
+        "seguridad",
+        "dependencias",
+        "umbrales"
+      ],
+      "tokens": 9743,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Métricas de QA",
+      "path": "06_Testing/Strategy/09_METRICS.md",
+      "category": "06_Testing",
+      "doc_type": "estandar",
+      "tags": [
+        "testing",
+        "metricas",
+        "coverage",
+        "web-vitals"
+      ],
+      "summary": "Las métricas que se miden y las dos reglas que gobiernan su uso: coverage, duración del pipeline, tasa de tests inestables, Web Vitals de producción y tasa de éxito de despliegue.",
+      "keywords": [
+        "metricas",
+        "coverage",
+        "pipeline",
+        "flaky-rate",
+        "web-vitals",
+        "deployment-success"
+      ],
+      "tokens": 2942,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar Avanzado de CI/CD, Despliegues y Rollbacks",
+      "path": "07_DevOps/CI_CD_ADVANCED.md",
+      "category": "07_DevOps",
+      "doc_type": "estandar",
+      "tags": [
+        "ci-cd",
+        "github-actions",
+        "rollbacks",
+        "blue-green",
+        "renovate",
+        "dependabot",
+        "security-scanning"
+      ],
+      "summary": "Estándar para pipelines avanzadas de CI/CD en GitHub Actions: migraciones automáticas de base de datos, desmarcado Blue/Green en Workers, rollback automático ante tasa de error > 1%, previsualizaciones por PR y auditoría de seguridad.",
+      "keywords": [
+        "ci-cd",
+        "github-actions",
+        "rollback",
+        "blue-green",
+        "dependabot",
+        "renovate",
+        "preview-environments",
+        "secret-rotation"
+      ],
+      "tokens": 890,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de CI/CD para Monorepo",
+      "path": "07_DevOps/CI_CD_PIPELINE.md",
+      "category": "07_DevOps",
+      "doc_type": "estandar",
+      "tags": [
+        "devops",
+        "ci-cd",
+        "monorepo",
+        "pipeline"
+      ],
+      "summary": "Reglas CI-001 a CI-006 para automatizar lint, test, build y deploy en monorepos con múltiples servicios, con checklist previo al despliegue.",
+      "keywords": [
+        "ci-cd",
+        "monorepo",
+        "lint",
+        "build",
+        "deploy",
+        "workers",
+        "pipeline"
+      ],
+      "tokens": 1960,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Despliegue y Fallos",
+      "path": "07_DevOps/DEPLOY_AND_FAILURES_STANDARD.md",
+      "category": "07_DevOps",
+      "doc_type": "estandar",
+      "tags": [
+        "devops",
+        "deploy",
+        "migraciones",
+        "rollback"
+      ],
+      "summary": "Pipeline mínimo que todo cambio atraviesa antes de producción, despliegue de Workers y Pages, variables por entorno y migraciones de base de datos con el patrón expandir, migrar y contraer.",
+      "keywords": [
+        "deploy",
+        "wrangler",
+        "pages",
+        "entornos",
+        "migraciones",
+        "expand-contract",
+        "rollback"
+      ],
+      "tokens": 6634,
+      "status": "current",
+      "updated": "2026-07-21",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Plantilla de Pipeline CI/CD con GitHub Actions",
+      "path": "07_DevOps/GITHUB_ACTIONS_WORKFLOW_TEMPLATE.md",
+      "category": "07_DevOps",
+      "doc_type": "referencia",
+      "tags": [
+        "devops",
+        "ci-cd",
+        "github-actions",
+        "pipeline",
+        "automated-test",
+        "secret-scan"
+      ],
+      "summary": "Plantilla de workflow de GitHub Actions (.github/workflows/ci.yml) para automatizar el control de calidad en cada Pull Request y push: typecheck, linting, escáner de secretos, tests automatizados y despliegue a Cloudflare.",
+      "keywords": [
+        "ci-cd",
+        "github-actions",
+        "pipeline",
+        "typecheck",
+        "lint",
+        "secret-scan",
+        "cloudflare",
+        "vitest"
+      ],
+      "tokens": 665,
+      "status": "VERIFIED",
+      "updated": "2026-08-14",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Uso de Git y GitHub",
+      "path": "07_DevOps/GITHUB_STANDARD.md",
+      "category": "07_DevOps",
+      "doc_type": "estandar",
+      "tags": [
+        "devops",
+        "git",
+        "github",
+        "seguridad"
+      ],
+      "summary": "Uso de Git y GitHub como plataforma: estrategia de ramas trunk-based simplificada, convención de commits, protección de main, seguridad de la cuenta y escaneo de secretos con push protection.",
+      "keywords": [
+        "git",
+        "github",
+        "trunk-based",
+        "commits",
+        "branch-protection",
+        "secret-scanning"
+      ],
+      "tokens": 5587,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Infraestructura como Código",
+      "path": "07_DevOps/INFRA_AS_CODE.md",
+      "category": "07_DevOps",
+      "doc_type": "estandar",
+      "tags": [
+        "devops",
+        "iac",
+        "terraform",
+        "wrangler"
+      ],
+      "summary": "Reglas IaC-001 a IaC-004: toda la infraestructura de Cloudflare y Supabase definida en código con Terraform o Wrangler, nunca configurada a mano desde un panel.",
+      "keywords": [
+        "iac",
+        "terraform",
+        "wrangler",
+        "infraestructura",
+        "reproducible",
+        "dashboard"
+      ],
+      "tokens": 1034,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Observabilidad",
+      "path": "07_DevOps/OBSERVABILITY_STANDARD.md",
+      "category": "07_DevOps",
+      "doc_type": "estandar",
+      "tags": [
+        "devops",
+        "observabilidad",
+        "logs",
+        "trazas"
+      ],
+      "summary": "Reglas para que cualquier fallo en producción se diagnostique y resuelva en menos de 15 minutos incluso en arquitecturas distribuidas, con el stack de observabilidad recomendado.",
+      "keywords": [
+        "observabilidad",
+        "logs",
+        "trazas",
+        "metricas",
+        "alertas",
+        "correlacion",
+        "mttr"
+      ],
+      "tokens": 1952,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Dominio DevOps — Índice",
+      "path": "07_DevOps/README.md",
+      "category": "07_DevOps",
+      "doc_type": "referencia",
+      "tags": [
+        "devops",
+        "indice"
+      ],
+      "summary": "Índice del dominio DevOps: pipelines de CI/CD, despliegue, infraestructura como código y observabilidad.",
+      "keywords": [
+        "devops",
+        "indice",
+        "ci-cd",
+        "deploy",
+        "iac",
+        "observabilidad"
+      ],
+      "tokens": 272,
+      "status": "current",
+      "updated": "2026-07-09",
+      "has_frontmatter": true
+    },
+    {
+      "title": "CLOUDFLARE PLATFORM STANDARD",
+      "path": "08_Cloud/CLOUDFLARE_PLATFORM_STANDARD.md",
+      "category": "08_Cloud",
+      "doc_type": "estandar",
+      "tags": [
+        "standards",
+        "conventions",
+        "cloudflare",
+        "storage",
+        "limits-costs",
+        "workers"
+      ],
+      "summary": "Nivel 1 del dominio Cloud. Define la plataforma Cloudflare: matriz de almacenamiento (Supabase, KV, R2, D1, DO, Queues), límites de Workers, WAF, rate limiting, Turnstile, DNS, cache CDN, costos por operación y observabilidad.",
+      "keywords": [
+        "pages",
+        "r2",
+        "kv",
+        "durable-objects",
+        "queues",
+        "d1",
+        "waf",
+        "turnstile",
+        "cdn",
+        "edge"
+      ],
+      "tokens": 11444,
+      "status": "current",
+      "updated": "2026-07-26",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Plan de Escalabilidad, Observabilidad y Mantenimiento Post-Lanzamiento",
+      "path": "08_Cloud/ESCALABILIDAD_Y_MANTENIMIENTO.md",
+      "category": "08_Cloud",
+      "doc_type": "estandar",
+      "tags": [
+        "cloud",
+        "escalabilidad",
+        "observabilidad",
+        "sentry",
+        "caching",
+        "backups",
+        "mantenimiento",
+        "sla"
+      ],
+      "summary": "Protocolo operativo para garantizar la estabilidad, observabilidad y escalabilidad de proyectos entregados: monitoreo de errores con Sentry, connection pooling de base de datos, caching en Edge de Cloudflare, políticas de backup y acuerdos de nivel de servicio (SLA).",
+      "keywords": [
+        "escalabilidad",
+        "mantenimiento",
+        "sentry",
+        "cloudflare",
+        "cache",
+        "backups",
+        "supabase",
+        "pooling",
+        "sla"
+      ],
+      "tokens": 956,
+      "status": "VERIFIED",
+      "updated": "2026-08-14",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Patrón: Generación de PDFs en el Edge",
+      "path": "08_Cloud/PATRON_GENERACION_PDF_EDGE.md",
+      "category": "08_Cloud",
+      "doc_type": "patron",
+      "tags": [
+        "cloudflare-workers",
+        "edge",
+        "pdf",
+        "streaming"
+      ],
+      "summary": "Generar PDFs en el edge sin Puppeteer: llenado de plantillas estáticas con pdf-lib como opción recomendada, y la API de Browser Rendering cuando se necesita convertir HTML.",
+      "keywords": [
+        "cloudflare-workers",
+        "edge",
+        "pdf",
+        "streaming",
+        "generacion",
+        "pdfs",
+        "generar",
+        "puppeteer",
+        "llenado",
+        "plantillas",
+        "estaticas",
+        "pdf-lib",
+        "opcion",
+        "recomendada"
+      ],
+      "tokens": 989,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Patrón de Subida Segura a Cloudflare R2 sin Exponer Secretos",
+      "path": "08_Cloud/PATRON_R2_UPLOAD_SEGURO.md",
+      "category": "08_Cloud",
+      "doc_type": "patron",
+      "tags": [
+        "cloud",
+        "r2",
+        "storage",
+        "upload",
+        "presigned-url",
+        "workers",
+        "seguridad"
+      ],
+      "summary": "Patrón arquitectónico obligatorio para subir archivos a Cloudflare R2 desde aplicaciones web (React/Vite) sin exponer jamás R2_ACCESS_KEY_ID ni R2_SECRET_ACCESS_KEY en el cliente. Implementación vía Presigned URLs y Worker Direct Binding.",
+      "keywords": [
+        "r2",
+        "cloudflare",
+        "s3",
+        "upload",
+        "presigned",
+        "signed-url",
+        "vite",
+        "seguridad",
+        "storage"
+      ],
+      "tokens": 1017,
+      "status": "VERIFIED",
+      "updated": "2026-08-14",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Dominio Cloud — Índice",
+      "path": "08_Cloud/README.md",
+      "category": "08_Cloud",
+      "doc_type": "referencia",
+      "tags": [
+        "cloud",
+        "indice"
+      ],
+      "summary": "Índice del dominio Cloud. El estándar operativo de la plataforma vive en CLOUDFLARE_PLATFORM_STANDARD.md.",
+      "keywords": [
+        "cloud",
+        "indice",
+        "cloudflare",
+        "workers",
+        "edge"
+      ],
+      "tokens": 213,
+      "status": "current",
+      "updated": "2026-07-09",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Architecture Decision Log (ADR)",
+      "path": "09_Architecture/ARCHITECTURE_DECISION_LOG.md",
+      "category": "09_Architecture",
+      "doc_type": "referencia",
+      "tags": [
+        "adr",
+        "architecture",
+        "decisions",
+        "stack"
+      ],
+      "summary": "Registro central de las decisiones arquitectónicas inquebrantables del stack, cada una con su contexto y alternativas descartadas: Workers frente a Node, Supabase frente a Firebase, React Query frente a useEffect.",
+      "keywords": [
+        "adr",
+        "architecture",
+        "decisions",
+        "stack",
+        "decision",
+        "registro",
+        "central",
+        "decisiones",
+        "arquitectonicas",
+        "inquebrantables",
+        "contexto",
+        "alternativas",
+        "descartadas",
+        "workers"
+      ],
+      "tokens": 2027,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Diagramas C4 y Modelado de Arquitectura",
+      "path": "09_Architecture/DIAGRAMAS_C4.md",
+      "category": "09_Architecture",
+      "doc_type": "referencia",
+      "tags": [
+        "c4",
+        "diagramas",
+        "mermaid",
+        "arquitectura",
+        "cloudflare",
+        "edge",
+        "sequence"
+      ],
+      "summary": "Estándar completo de diagramación C4 y modelado visual para arquitectura Serverless/Edge: Diagramas de Contexto, Contenedores, Componentes, Flujos de Secuencia (Pagos y Tiempo Real) y Despliegue en Cloudflare.",
+      "keywords": [
+        "c4",
+        "mermaid",
+        "diagramas",
+        "arquitectura",
+        "secuencia",
+        "contenedores",
+        "edge",
+        "cloudflare",
+        "durable-objects"
+      ],
+      "tokens": 2991,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Monorepo",
+      "path": "09_Architecture/MONOREPO_STANDARD.md",
+      "category": "09_Architecture",
+      "doc_type": "estandar",
+      "tags": [
+        "monorepo",
+        "pnpm",
+        "turborepo",
+        "workspace",
+        "arquitectura"
+      ],
+      "summary": "Estándar del dominio Arquitectura para monorepos: estructura, workspaces, dependencias, scripts y deployment.",
+      "keywords": [
+        "monorepo",
+        "pnpm",
+        "workspace",
+        "turborepo",
+        "arquitectura",
+        "packages"
+      ],
+      "tokens": 1624,
+      "status": "current",
+      "updated": "2026-08-30",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Patrones Arquitectónicos",
+      "path": "09_Architecture/PATRONES_ARQUITECTONICOS.md",
+      "category": "09_Architecture",
+      "doc_type": "estandar",
+      "tags": [
+        "patterns",
+        "cloudflare",
+        "edge",
+        "jamstack"
+      ],
+      "summary": "Arquitectura general de los proyectos sobre edge y Jamstack, y cuándo aplicar patrones específicos: event-driven con colas, coordinación de estado con Durable Objects y capas de caché.",
+      "keywords": [
+        "patterns",
+        "cloudflare",
+        "edge",
+        "jamstack",
+        "arquitectonicos",
+        "arquitectura",
+        "general",
+        "proyectos",
+        "aplicar",
+        "especificos",
+        "event-driven",
+        "colas",
+        "coordinacion",
+        "estado"
+      ],
+      "tokens": 617,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Dominio Architecture — Índice",
+      "path": "09_Architecture/README.md",
+      "category": "09_Architecture",
+      "doc_type": "referencia",
+      "tags": [
+        "architecture",
+        "indice"
+      ],
+      "summary": "Índice del dominio Architecture: visión global de cómo se conectan todos los dominios, patrones arquitectónicos, ADRs, diagramas C4 y escalabilidad.",
+      "keywords": [
+        "arquitectura",
+        "indice",
+        "adr",
+        "c4",
+        "monorepo",
+        "escalabilidad"
+      ],
+      "tokens": 275,
+      "status": "current",
+      "updated": "2026-07-09",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Patrones Avanzados de Escalabilidad Horizontal y Resiliencia",
+      "path": "09_Architecture/SCALABILITY_PATTERNS.md",
+      "category": "09_Architecture",
+      "doc_type": "patron",
+      "tags": [
+        "scalability",
+        "sharding",
+        "r2",
+        "multipart",
+        "load-shedding",
+        "graceful-degradation",
+        "queues"
+      ],
+      "summary": "Estándar para arquitectura de ultra-alta escalabilidad: sharding de D1, subida multipart en R2 para archivos > 100MB, descarte de carga (Load Shedding), degradación elegante y planificación de capacidad.",
+      "keywords": [
+        "scalability",
+        "sharding",
+        "d1",
+        "r2",
+        "multipart",
+        "load-shedding",
+        "graceful-degradation",
+        "capacity-planning"
+      ],
+      "tokens": 842,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Guía Universal de Migración y Portabilidad de Stack (Frontend, Backend, Storage y BD)",
+      "path": "09_Architecture/STACK_MIGRATION_AND_PORTABILITY_GUIDE.md",
+      "category": "09_Architecture",
+      "doc_type": "runbook",
+      "tags": [
+        "arquitectura",
+        "migracion",
+        "portabilidad",
+        "stack",
+        "cloudflare",
+        "vps",
+        "docker",
+        "r2",
+        "s3",
+        "zero-lock-in"
+      ],
+      "summary": "Protocolo completo de migración y portabilidad universal del stack de la agencia: cómo migrar frontend (Pages -> VPS/Vercel), backend (Workers -> Node/Bun/Docker), storage (R2 -> S3/MinIO) y autenticación sin reescribir código y con cero tiempo de inactividad.",
+      "keywords": [
+        "migracion-stack",
+        "portabilidad",
+        "zero-lock-in",
+        "cloudflare-a-vps",
+        "workers-a-node",
+        "r2-a-s3",
+        "docker"
+      ],
+      "tokens": 1158,
+      "status": "VERIFIED",
+      "updated": "2026-08-14",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Matriz de Selección de Stack Tecnológico y Arquitectura",
+      "path": "09_Architecture/STACK_SELECTION_MATRIX.md",
+      "category": "09_Architecture",
+      "doc_type": "estandar",
+      "tags": [
+        "arquitectura",
+        "stack",
+        "decision-matrix",
+        "frontend",
+        "backend",
+        "database"
+      ],
+      "summary": "Matriz y árbol de decisión para elegir el stack tecnológico óptimo según el tipo de cliente, modelo de negocio, presupuesto y requisitos de escalabilidad (SaaS, E-commerce, Trading, Móvil, Desktop).",
+      "keywords": [
+        "stack",
+        "decision-matrix",
+        "arquitectura",
+        "react",
+        "astro",
+        "workers",
+        "vps",
+        "supabase",
+        "tauri",
+        "expo"
+      ],
+      "tokens": 995,
+      "status": "VERIFIED",
+      "updated": "2026-08-14",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Codificación y Calidad de Agencia",
+      "path": "10_Code_Quality/AGENCY_CODING_STANDARD.md",
+      "category": "10_Code_Quality",
+      "doc_type": "estandar",
+      "tags": [
+        "code-quality",
+        "clean-code",
+        "error-handling",
+        "zod",
+        "envelope",
+        "typescript"
+      ],
+      "summary": "Reglas de codificación obligatorias para la agencia: validación estricta de inputs con Zod, tratamiento real de errores (prohibido try/catch vacíos y falsos 200 OK), formato de envelope estándar { ok, data } / { ok, error } y principios de Clean Code pragmático.",
+      "keywords": [
+        "clean-code",
+        "error-handling",
+        "zod",
+        "envelope",
+        "typescript",
+        "estandares",
+        "calidad"
+      ],
+      "tokens": 890,
+      "status": "VERIFIED",
+      "updated": "2026-08-14",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Métricas de Calidad de Código",
+      "path": "10_Code_Quality/Metrics/METRICAS_CALIDAD.md",
+      "category": "10_Code_Quality",
+      "doc_type": "estandar",
+      "tags": [
+        "metrics",
+        "coverage",
+        "complexity"
+      ],
+      "summary": "Límites objetivos para medir deuda técnica y saber cuándo detener el desarrollo: complejidad ciclomática, cobertura de tests, tamaño del bundle y profundidad de componentes.",
+      "keywords": [
+        "metrics",
+        "coverage",
+        "complexity",
+        "metricas",
+        "calidad",
+        "codigo",
+        "limites",
+        "objetivos",
+        "medir",
+        "deuda",
+        "tecnica",
+        "saber",
+        "detener",
+        "desarrollo"
+      ],
+      "tokens": 368,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Dominio Code Quality — Índice",
+      "path": "10_Code_Quality/README.md",
+      "category": "10_Code_Quality",
+      "doc_type": "referencia",
+      "tags": [
+        "code-quality",
+        "clean-code",
+        "error-handling",
+        "refactoring",
+        "code-review"
+      ],
+      "summary": "Índice del dominio Code Quality: estándares de codificación de agencia, manejo de errores, revisiones de código, catálogo de code smells y recetas de refactorización.",
+      "keywords": [
+        "code-quality",
+        "clean-code",
+        "error-handling",
+        "refactoring",
+        "code-review",
+        "static-analysis"
+      ],
+      "tokens": 292,
+      "status": "VERIFIED",
+      "updated": "2026-08-14",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Code Review",
+      "path": "10_Code_Quality/Reviews/CODE_REVIEW_STANDARD.md",
+      "category": "10_Code_Quality",
+      "doc_type": "estandar",
+      "tags": [
+        "code review",
+        "pr",
+        "pull request"
+      ],
+      "summary": "Reglas de oro de la revisión de código con checklist separado para el autor antes de pedir review y para el revisor, más el código de conducta de los comentarios.",
+      "keywords": [
+        "code-review",
+        "pr",
+        "pull-request",
+        "code",
+        "review",
+        "revision",
+        "codigo",
+        "checklist",
+        "separado",
+        "autor",
+        "pedir",
+        "revisor",
+        "conducta",
+        "comentarios"
+      ],
+      "tokens": 410,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Catálogo de Code Smells",
+      "path": "10_Code_Quality/Reviews/CODE_SMELLS_CATALOG.md",
+      "category": "10_Code_Quality",
+      "doc_type": "referencia",
+      "tags": [
+        "code smells",
+        "refactoring",
+        "react"
+      ],
+      "summary": "Catálogo de síntomas superficiales que delatan un problema de fondo: prop drilling excesivo, useEffect inflados o en cascada, comentarios usados como desodorante y anidamiento profundo.",
+      "keywords": [
+        "code-smells",
+        "refactoring",
+        "react",
+        "catalogo",
+        "code",
+        "smells",
+        "sintomas",
+        "superficiales",
+        "delatan",
+        "problema",
+        "fondo",
+        "prop",
+        "drilling",
+        "excesivo"
+      ],
+      "tokens": 486,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Plantilla OBLIGATORIA de Pull Request",
+      "path": "10_Code_Quality/Reviews/FEATURE_PR_TEMPLATE.md",
+      "category": "10_Code_Quality",
+      "doc_type": "referencia",
+      "tags": [
+        "pr",
+        "code-review",
+        "checklist",
+        "github"
+      ],
+      "summary": "Plantilla obligatoria de pull request para configurar en el repositorio: descripción del feature, checklist que no admite saltos, validación de reglas inquebrantables y evidencia visual.",
+      "keywords": [
+        "pr",
+        "code-review",
+        "checklist",
+        "github",
+        "plantilla",
+        "obligatoria",
+        "pull",
+        "request",
+        "configurar",
+        "repositorio",
+        "descripcion",
+        "feature",
+        "admite",
+        "saltos"
+      ],
+      "tokens": 836,
+      "status": "current",
+      "updated": "2026-07-29",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Recetas de Refactoring",
+      "path": "10_Code_Quality/Reviews/REFACTORING_RECIPES.md",
+      "category": "10_Code_Quality",
+      "doc_type": "referencia",
+      "tags": [
+        "refactoring",
+        "code quality",
+        "recipes"
+      ],
+      "summary": "Recetas paso a paso para limpiar deuda técnica: extraer un custom hook, reemplazar switches largos por diccionarios y simplificar Workers hinchados.",
+      "keywords": [
+        "refactoring",
+        "code-quality",
+        "recipes",
+        "recetas",
+        "paso",
+        "limpiar",
+        "deuda",
+        "tecnica",
+        "extraer",
+        "custom",
+        "hook",
+        "reemplazar",
+        "switches",
+        "largos"
+      ],
+      "tokens": 535,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Reglas de Análisis Estático (Linter)",
+      "path": "10_Code_Quality/Reviews/STATIC_ANALYSIS_RULES.md",
+      "category": "10_Code_Quality",
+      "doc_type": "estandar",
+      "tags": [
+        "eslint",
+        "prettier",
+        "static analysis"
+      ],
+      "summary": "Base conceptual de la configuración de análisis estático: reglas core de ESLint, formateo con Prettier y la configuración estricta de TypeScript.",
+      "keywords": [
+        "eslint",
+        "prettier",
+        "static-analysis",
+        "analisis",
+        "estatico",
+        "linter",
+        "base",
+        "conceptual",
+        "configuracion",
+        "core",
+        "formateo",
+        "estricta",
+        "typescript"
+      ],
+      "tokens": 939,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Monetización, Pricing y Facturación",
+      "path": "10_Product/MONETIZATION_STANDARD.md",
+      "category": "10_Product",
+      "doc_type": "estandar",
+      "tags": [
+        "monetization",
+        "stripe",
+        "pricing",
+        "freemium",
+        "usage-based",
+        "billing",
+        "invoices",
+        "vat"
+      ],
+      "summary": "Estándar para esquemas de monetización y cobranza: planes (Free, Pro, Enterprise), facturación basada en uso (Usage-based billing), periodos de prueba, cálculo de impuestos con Stripe Tax y generación de facturas PDF.",
+      "keywords": [
+        "monetization",
+        "stripe",
+        "pricing",
+        "freemium",
+        "billing",
+        "invoices",
+        "usage-based",
+        "VAT",
+        "tax"
+      ],
+      "tokens": 1074,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Product Analytics, Funnels y A/B Testing",
+      "path": "10_Product/PRODUCT_ANALYTICS_STANDARD.md",
+      "category": "10_Product",
+      "doc_type": "estandar",
+      "tags": [
+        "analytics",
+        "posthog",
+        "funnels",
+        "ab-testing",
+        "feature-flags",
+        "durable-objects",
+        "cohort"
+      ],
+      "summary": "Estándar para analítica de producto con PostHog: instrumentación de eventos en cliente/servidor, análisis de embudos y cohortes, experimentos A/B y Feature Flags con Cloudflare KV y Durable Objects.",
+      "keywords": [
+        "posthog",
+        "analytics",
+        "funnels",
+        "cohort",
+        "ab-testing",
+        "feature-flags",
+        "retention",
+        "events"
+      ],
+      "tokens": 1132,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Requisitos de Producto (PRD) para Ingeniería e IA",
+      "path": "10_Product/PRODUCT_REQUIREMENTS_STANDARD.md",
+      "category": "10_Product",
+      "doc_type": "estandar",
+      "tags": [
+        "product",
+        "prd",
+        "rice",
+        "user-stories",
+        "kpi",
+        "north-star",
+        "backlog"
+      ],
+      "summary": "Estándar para la definición de requisitos de producto (PRDs): plantilla estructurada para interpretación por agentes IA, matriz de priorización RICE, User Story Mapping y definición de métricas North Star.",
+      "keywords": [
+        "prd",
+        "product",
+        "rice",
+        "user-story",
+        "user-story-mapping",
+        "north-star",
+        "kpi",
+        "backlog",
+        "requirements"
+      ],
+      "tokens": 2104,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Dominio Product & Business — Índice",
+      "path": "10_Product/README.md",
+      "category": "10_Product",
+      "doc_type": "referencia",
+      "tags": [
+        "product",
+        "business",
+        "discovery",
+        "plantillas",
+        "requerimientos"
+      ],
+      "summary": "Índice del dominio de Producto y Gestión de Clientes. Estándares de requerimientos, analítica, monetización y plantillas de Discovery y Propuestas Técnicas.",
+      "keywords": [
+        "product",
+        "requerimientos",
+        "plantillas",
+        "discovery",
+        "propuesta",
+        "monetizacion"
+      ],
+      "tokens": 402,
+      "status": "VERIFIED",
+      "updated": "2026-08-14",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Acta de Entrega Formal, Handover y Traspaso de Cuentas",
+      "path": "10_Product/TEMPLATES/TEMPLATE_ACTA_ENTREGA_HANDOVER.md",
+      "category": "10_Product",
+      "doc_type": "referencia",
+      "tags": [
+        "product",
+        "handover",
+        "entrega",
+        "offboarding",
+        "garantia",
+        "traspaso-cuentas"
+      ],
+      "summary": "Plantilla formal de Acta de Entrega, Handover técnico y Cesión de Propiedad Intelectual. Define la transferencia de credenciales (Cloudflare, Supabase, Stripe), el inicio del periodo de garantía de 30 días y la exoneración de responsabilidad por mal uso posterior.",
+      "keywords": [
+        "acta-entrega",
+        "handover",
+        "traspaso-cuentas",
+        "garantia",
+        "cierre-proyecto",
+        "propiedad-intelectual"
+      ],
+      "tokens": 619,
+      "status": "VERIFIED",
+      "updated": "2026-08-14",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Plantilla de Orden de Cambio de Alcance (Change Request)",
+      "path": "10_Product/TEMPLATES/TEMPLATE_CHANGE_REQUEST.md",
+      "category": "10_Product",
+      "doc_type": "referencia",
+      "tags": [
+        "product",
+        "scope-creep",
+        "change-request",
+        "cliente",
+        "comercial",
+        "contratos"
+      ],
+      "summary": "Plantilla formal de Orden de Cambio (Change Request) para gestionar peticiones de clientes fuera del alcance inicial (MVP / Discovery). Documenta el impacto técnico, costo adicional y ajuste del cronograma.",
+      "keywords": [
+        "change-request",
+        "scope-creep",
+        "orden-cambio",
+        "alcance",
+        "presupuesto",
+        "cronograma"
+      ],
+      "tokens": 377,
+      "status": "VERIFIED",
+      "updated": "2026-08-14",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Plantilla de Contrato de Mantenimiento Mensual y Soporte SLA (Retainer)",
+      "path": "10_Product/TEMPLATES/TEMPLATE_CONTRATO_SOPORTE_MENSUAL.md",
+      "category": "10_Product",
+      "doc_type": "referencia",
+      "tags": [
+        "product",
+        "comercial",
+        "soporte",
+        "mantenimiento",
+        "retainer",
+        "sla",
+        "contrato"
+      ],
+      "summary": "Plantilla de Acuerdo de Nivel de Servicio (SLA) y Mantenimiento Mensual Recurrente para clientes. Define niveles de severidad (P1/P2/P3), horas incluidas de desarrollo menor, respaldos periódicos y costos de hosting.",
+      "keywords": [
+        "mantenimiento",
+        "soporte",
+        "retainer",
+        "sla",
+        "contrato-soporte",
+        "recurrente",
+        "garantia"
+      ],
+      "tokens": 535,
+      "status": "VERIFIED",
+      "updated": "2026-08-14",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Plantilla de Propuesta Técnica y Comercial",
+      "path": "10_Product/TEMPLATES/TEMPLATE_PROPUESTA_TECNICA.md",
+      "category": "10_Product",
+      "doc_type": "referencia",
+      "tags": [
+        "propuesta",
+        "comercial",
+        "cotizacion",
+        "hitos",
+        "arquitectura",
+        "cliente"
+      ],
+      "summary": "Plantilla formal de propuesta técnica y comercial de software para clientes. Incluye desglose de hitos de entrega (Milestones), esquema de pagos, arquitectura propuesta, SLAs de soporte y términos de garantía.",
+      "keywords": [
+        "propuesta-tecnica",
+        "cotizacion",
+        "hitos",
+        "milestones",
+        "sla",
+        "garantia",
+        "arquitectura"
+      ],
+      "tokens": 978,
+      "status": "VERIFIED",
+      "updated": "2026-08-14",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Plantilla de Requerimientos y Discovery de Cliente",
+      "path": "10_Product/TEMPLATES/TEMPLATE_REQUERIMIENTOS_CLIENTE.md",
+      "category": "10_Product",
+      "doc_type": "referencia",
+      "tags": [
+        "product",
+        "cliente",
+        "discovery",
+        "requerimientos",
+        "scope",
+        "plantilla"
+      ],
+      "summary": "Plantilla formal de toma de requerimientos (Client Intake / Discovery Document). Define el problema de negocio, usuarios/roles, alcance funcional MVP vs fase 2, integraciones, SLAs y criterios de aceptación verificables.",
+      "keywords": [
+        "discovery",
+        "requerimientos",
+        "cliente",
+        "scope",
+        "mvp",
+        "criterios-aceptacion",
+        "intake",
+        "sla"
+      ],
+      "tokens": 1102,
+      "status": "VERIFIED",
+      "updated": "2026-08-14",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Debugging Toolkit",
+      "path": "11_Debugging/DEBUGGING_TOOLKIT.md",
+      "category": "11_Debugging",
+      "doc_type": "referencia",
+      "tags": [
+        "tools",
+        "devtools",
+        "debugging"
+      ],
+      "summary": "Manual rápido de qué herramienta usar para diagnosticar antes de tocar código, dividido en frontend y navegador, backend en el edge, y base de datos.",
+      "keywords": [
+        "tools",
+        "devtools",
+        "debugging",
+        "toolkit",
+        "rapido",
+        "herramienta",
+        "diagnosticar",
+        "tocar",
+        "codigo",
+        "dividido",
+        "frontend",
+        "navegador",
+        "backend",
+        "edge"
+      ],
+      "tokens": 374,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Índice de Errores Global",
+      "path": "11_Debugging/ERROR_INDEX.md",
+      "category": "11_Debugging",
+      "doc_type": "referencia",
+      "tags": [
+        "errors",
+        "debugging",
+        "troubleshooting"
+      ],
+      "summary": "Índice unificado de los 20 errores más frecuentes de todo el stack con su causa y solución, agrupados por frontend, backend en el edge y base de datos.",
+      "keywords": [
+        "errors",
+        "debugging",
+        "troubleshooting",
+        "indice",
+        "errores",
+        "global",
+        "unificado",
+        "frecuentes",
+        "stack",
+        "causa",
+        "solucion",
+        "agrupados",
+        "frontend",
+        "backend"
+      ],
+      "tokens": 1207,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Performance Debugging",
+      "path": "11_Debugging/PERFORMANCE_DEBUGGING.md",
+      "category": "11_Debugging",
+      "doc_type": "runbook",
+      "tags": [
+        "performance",
+        "profiling",
+        "react",
+        "bundle"
+      ],
+      "summary": "Diagnóstico de aplicaciones lentas separando los dos problemas que se confunden: tiempo de carga y jank de renderizado durante la interacción.",
+      "keywords": [
+        "performance",
+        "profiling",
+        "react",
+        "bundle",
+        "debugging",
+        "diagnostico",
+        "aplicaciones",
+        "lentas",
+        "separando",
+        "problemas",
+        "confunden",
+        "tiempo",
+        "carga",
+        "jank"
+      ],
+      "tokens": 475,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Playbook: Caída de API",
+      "path": "11_Debugging/PLAYBOOK_CAIDA_API.md",
+      "category": "11_Debugging",
+      "doc_type": "runbook",
+      "tags": [
+        "incident",
+        "playbook",
+        "api",
+        "500"
+      ],
+      "summary": "Playbook ante API caída con error 500 o timeout: triage inmediato, diagnóstico diferenciado de error y de timeout, y mitigación rápida.",
+      "keywords": [
+        "incident",
+        "playbook",
+        "api",
+        "500",
+        "caida",
+        "ante",
+        "error",
+        "timeout",
+        "triage",
+        "inmediato",
+        "diagnostico",
+        "diferenciado",
+        "mitigacion",
+        "rapida"
+      ],
+      "tokens": 429,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Incident Playbook: Database Down",
+      "path": "11_Debugging/PLAYBOOK_DATABASE_DOWN.md",
+      "category": "11_Debugging",
+      "doc_type": "runbook",
+      "tags": [
+        "incident",
+        "playbook",
+        "database",
+        "d1",
+        "supabase",
+        "outage"
+      ],
+      "summary": "Playbook ante base de datos caída: diagnóstico en 30 segundos, causas habituales como agotamiento del pool de conexiones, y código de circuit breaker con fallback.",
+      "keywords": [
+        "incident",
+        "playbook",
+        "database",
+        "d1",
+        "supabase",
+        "outage",
+        "down",
+        "ante",
+        "base",
+        "datos",
+        "caida",
+        "diagnostico",
+        "segundos",
+        "causas"
+      ],
+      "tokens": 1035,
+      "status": "current",
+      "updated": "2026-07-29",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Incident Playbook: Error 500 Global",
+      "path": "11_Debugging/PLAYBOOK_ERROR_500.md",
+      "category": "11_Debugging",
+      "doc_type": "runbook",
+      "tags": [
+        "incident",
+        "playbook",
+        "error-500",
+        "crash",
+        "workers"
+      ],
+      "summary": "Playbook ante error 500 global: diagnóstico en 30 segundos, causas frecuentes de crash en Workers y manejador de errores global blindado.",
+      "keywords": [
+        "incident",
+        "playbook",
+        "error-500",
+        "crash",
+        "workers",
+        "error",
+        "global",
+        "ante",
+        "diagnostico",
+        "segundos",
+        "causas",
+        "frecuentes",
+        "manejador",
+        "errores"
+      ],
+      "tokens": 1077,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Incident Playbook: Spinner Infinito",
+      "path": "11_Debugging/PLAYBOOK_SPINNER_INFINITO.md",
+      "category": "11_Debugging",
+      "doc_type": "runbook",
+      "tags": [
+        "incident",
+        "playbook",
+        "ui",
+        "loading",
+        "react"
+      ],
+      "summary": "Playbook ante una interfaz colgada en estado de carga: diagnóstico en 30 segundos, causas habituales y checklist de diez puntos de depuración.",
+      "keywords": [
+        "incident",
+        "playbook",
+        "ui",
+        "loading",
+        "react",
+        "spinner",
+        "infinito",
+        "ante",
+        "interfaz",
+        "colgada",
+        "estado",
+        "carga",
+        "diagnostico",
+        "segundos"
+      ],
+      "tokens": 1058,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Incident Playbook: Upload Fail",
+      "path": "11_Debugging/PLAYBOOK_UPLOAD_FAIL.md",
+      "category": "11_Debugging",
+      "doc_type": "runbook",
+      "tags": [
+        "incident",
+        "playbook",
+        "upload",
+        "r2",
+        "timeout"
+      ],
+      "summary": "Playbook ante subidas de archivo que nunca terminan: diagnóstico en 30 segundos, causas ligadas a límites y timeouts, y hook de upload blindado con cancelación.",
+      "keywords": [
+        "incident",
+        "playbook",
+        "upload",
+        "r2",
+        "timeout",
+        "fail",
+        "ante",
+        "subidas",
+        "archivo",
+        "terminan",
+        "diagnostico",
+        "segundos",
+        "causas",
+        "ligadas"
+      ],
+      "tokens": 1227,
+      "status": "current",
+      "updated": "2026-07-29",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Incident Playbook: Worker Cold Start",
+      "path": "11_Debugging/PLAYBOOK_WORKER_COLD_START.md",
+      "category": "11_Debugging",
+      "doc_type": "runbook",
+      "tags": [
+        "incident",
+        "playbook",
+        "workers",
+        "performance",
+        "cold-start"
+      ],
+      "summary": "Playbook ante latencia intermitente por cold start de Workers: cómo confirmarlo en 30 segundos, soluciones ordenadas de menor a mayor dificultad y health check de latencia.",
+      "keywords": [
+        "incident",
+        "playbook",
+        "workers",
+        "performance",
+        "cold-start",
+        "worker",
+        "cold",
+        "start",
+        "ante",
+        "latencia",
+        "intermitente",
+        "confirmarlo",
+        "segundos",
+        "soluciones"
+      ],
+      "tokens": 956,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar Avanzado de Documentación Viva, Onboarding y Status Page",
+      "path": "12_Documentation/DOCUMENTATION_ADVANCED.md",
+      "category": "12_Documentation",
+      "doc_type": "estandar",
+      "tags": [
+        "documentation",
+        "changelog",
+        "storybook",
+        "onboarding",
+        "status-page",
+        "tooltips",
+        "openapi-diff"
+      ],
+      "summary": "Estándar para documentación avanzada y viva: Changelogs de API automáticos mediante diffs OpenAPI, despliegue de Storybook, guías de onboarding contextual e integración de Status Page.",
+      "keywords": [
+        "documentation",
+        "changelog",
+        "openapi-diff",
+        "storybook",
+        "onboarding",
+        "status-page",
+        "tooltips",
+        "walkthroughs"
+      ],
+      "tokens": 783,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Documentación de Proyectos y APIs",
+      "path": "12_Documentation/DOCUMENTATION_STANDARD.md",
+      "category": "12_Documentation",
+      "doc_type": "estandar",
+      "tags": [
+        "documentation",
+        "claude-md",
+        "openapi",
+        "swagger",
+        "changelog",
+        "readme",
+        "typedoc",
+        "storybook"
+      ],
+      "summary": "Estándar integral de documentación para código, APIs y repositorios: plantilla CLAUDE.md / AGENTS.md por proyecto, generación automática de OpenAPI 3.1 con Hono + Zod, TypeDoc, Storybook, plantillas de CHANGELOG y README.",
+      "keywords": [
+        "documentation",
+        "claude.md",
+        "agents.md",
+        "openapi",
+        "swagger",
+        "hono",
+        "typedoc",
+        "storybook",
+        "changelog",
+        "semver",
+        "readme"
+      ],
+      "tokens": 2653,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Dominio Documentation — Índice",
+      "path": "12_Documentation/README.md",
+      "category": "12_Documentation",
+      "doc_type": "referencia",
+      "tags": [
+        "documentation",
+        "indice"
+      ],
+      "summary": "Índice del dominio Documentation: qué se documenta, en qué formato y con qué plantillas.",
+      "keywords": [
+        "documentacion",
+        "indice",
+        "adr",
+        "readme",
+        "plantillas"
+      ],
+      "tokens": 64,
+      "status": "current",
+      "updated": "2026-07-09",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Plantilla de ADR (Architecture Decision Record)",
+      "path": "12_Documentation/TEMPLATES/TEMPLATE_ADR.md",
+      "category": "12_Documentation",
+      "doc_type": "referencia",
+      "tags": [
+        "documentation",
+        "plantilla",
+        "adr",
+        "arquitectura"
+      ],
+      "summary": "Plantilla para registrar una decisión arquitectónica: contexto y problema, opciones evaluadas, decisión adoptada y sus consecuencias.",
+      "keywords": [
+        "adr",
+        "plantilla",
+        "decision",
+        "arquitectura",
+        "consecuencias"
+      ],
+      "tokens": 205,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Plantilla de README de Proyecto",
+      "path": "12_Documentation/TEMPLATES/TEMPLATE_README.md",
+      "category": "12_Documentation",
+      "doc_type": "referencia",
+      "tags": [
+        "documentation",
+        "plantilla",
+        "readme"
+      ],
+      "summary": "Plantilla de README para un proyecto o servicio: inicio rápido, contenido del repositorio, arquitectura breve, variables de entorno, testing y referencias.",
+      "keywords": [
+        "readme",
+        "plantilla",
+        "inicio-rapido",
+        "variables-entorno",
+        "testing"
+      ],
+      "tokens": 223,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "IA y Machine Learning en Producción",
+      "path": "13_AI_Rules/AI_ML_PRODUCTION.md",
+      "category": "13_AI_Rules",
+      "doc_type": "estandar",
+      "tags": [
+        "ai",
+        "ml",
+        "rag",
+        "embeddings",
+        "pgvector",
+        "gateway",
+        "streaming",
+        "sse",
+        "kv-cache"
+      ],
+      "summary": "Estándar para producción de funciones con IA/ML: arquitectura RAG con pgvector, AI Gateway con rate-limiting y métricas, streaming con SSE, caché KV para prompts y sanitización de PII.",
+      "keywords": [
+        "ai",
+        "ml",
+        "rag",
+        "pgvector",
+        "ai-gateway",
+        "cloudflare",
+        "sse",
+        "streaming",
+        "prompt",
+        "caching"
+      ],
+      "tokens": 1305,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Librería de Prompts del Handbook",
+      "path": "13_AI_Rules/AI_PROMPTS_LIBRARY.md",
+      "category": "13_AI_Rules",
+      "doc_type": "referencia",
+      "tags": [
+        "ai-rules",
+        "prompts",
+        "ia",
+        "plantillas"
+      ],
+      "summary": "Prompts reutilizables y parametrizados para las tareas recurrentes del handbook: crear componentes, páginas completas de landing, dashboard y CRUD, endpoints con migración y refactorizaciones.",
+      "keywords": [
+        "prompts",
+        "ia",
+        "plantillas",
+        "componente",
+        "landing",
+        "dashboard",
+        "crud",
+        "refactor"
+      ],
+      "tokens": 3888,
+      "status": "current",
+      "updated": "2026-07-21",
+      "has_frontmatter": true
+    },
+    {
+      "title": "AI WORKFLOW — Protocolo de razonamiento antes de escribir código",
+      "path": "13_AI_Rules/AI_WORKFLOW.md",
+      "category": "13_AI_Rules",
+      "doc_type": "estandar",
+      "tags": [
+        "conventions",
+        "standards",
+        "checklists",
+        "error-handling"
+      ],
+      "summary": "Protocolo obligatorio para toda IA que genere o revise código: clasificar tarea, leer el estándar aplicable en orden, verificar contra el checklist y reportar desviaciones. Define la jerarquía de conflicto entre documentos y los anti-comportamientos de IA.",
+      "keywords": [
+        "workflow",
+        "reasoning",
+        "anti-patterns",
+        "code-generation",
+        "review",
+        "classification"
+      ],
+      "tokens": 6030,
+      "status": "current",
+      "updated": "2026-07-26",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Guía de Prompts en Lenguaje Natural para Usuarios No Programadores",
+      "path": "13_AI_Rules/GUIA_LENGUAJE_NATURAL_PARA_NO_PROGRAMADORES.md",
+      "category": "13_AI_Rules",
+      "doc_type": "guia",
+      "tags": [
+        "ai",
+        "prompts",
+        "lenguaje-natural",
+        "no-programadores",
+        "automatizacion",
+        "agency-os"
+      ],
+      "summary": "Guía para usar el Handbook con IA sin saber programación: ejemplos de frases cotidianas que cualquier persona puede escribir y cómo la IA auto-detecta la arquitectura, plantillas, reglas y código correcto.",
+      "keywords": [
+        "lenguaje-natural",
+        "no-programadores",
+        "prompts-simples",
+        "auto-deteccion",
+        "ai-prompts"
+      ],
+      "tokens": 643,
+      "status": "VERIFIED",
+      "updated": "2026-08-14",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Servidores y Herramientas MCP (Model Context Protocol)",
+      "path": "13_AI_Rules/MCP_TOOLS_STANDARD.md",
+      "category": "13_AI_Rules",
+      "doc_type": "estandar",
+      "tags": [
+        "mcp",
+        "model-context-protocol",
+        "ai",
+        "claude",
+        "tools",
+        "automation",
+        "typescript"
+      ],
+      "summary": "Estándar para la creación, configuración y consumo de servidores MCP (Model Context Protocol) en el ecosistema: integración con Supabase, Stripe, Cloudflare, Resend y reglas inquebrantables de seguridad.",
+      "keywords": [
+        "mcp",
+        "model-context-protocol",
+        "ai-tools",
+        "claude-desktop",
+        "mcp-server",
+        "mcp-tools",
+        "typescript",
+        "zod"
+      ],
+      "tokens": 2559,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Dominio AI Rules — Índice",
+      "path": "13_AI_Rules/README.md",
+      "category": "13_AI_Rules",
+      "doc_type": "referencia",
+      "tags": [
+        "ai-rules",
+        "indice"
+      ],
+      "summary": "Índice del dominio AI Rules: cómo debe razonar una IA antes de escribir código, flujo de trabajo, librería de prompts, MCP y modelos en producción.",
+      "keywords": [
+        "ia",
+        "indice",
+        "razonamiento",
+        "prompts",
+        "mcp",
+        "workflow"
+      ],
+      "tokens": 97,
+      "status": "current",
+      "updated": "2026-07-09",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Herramientas de Desarrollo y Productividad (DX Tools)",
+      "path": "14_DX/DEVELOPER_TOOLS_STANDARD.md",
+      "category": "14_DX",
+      "doc_type": "estandar",
+      "tags": [
+        "dx",
+        "cli",
+        "generators",
+        "eslint",
+        "hygen",
+        "plop",
+        "husky",
+        "devcontainer",
+        "vscode"
+      ],
+      "summary": "Estándar para herramientas de productividad de ingeniería: generadores de código (Plop/Hygen), reglas personalizadas de ESLint, snippets compartidos de VS Code, automatización con Husky y Dev Containers.",
+      "keywords": [
+        "dx",
+        "cli",
+        "generators",
+        "plop",
+        "hygen",
+        "eslint",
+        "husky",
+        "devcontainer",
+        "snippets",
+        "vscode"
+      ],
+      "tokens": 770,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Estándar de Developer Experience",
+      "path": "14_DX/DX_STANDARD.md",
+      "category": "14_DX",
+      "doc_type": "estandar",
+      "tags": [
+        "dx",
+        "tooling",
+        "scripts",
+        "editor"
+      ],
+      "summary": "Un solo procedimiento de arranque de proyecto, scripts npm idénticos en todos los repositorios, configuración de editor versionada y snippets para los patrones repetidos.",
+      "keywords": [
+        "dx",
+        "bootstrap",
+        "scripts",
+        "npm",
+        "editor",
+        "snippets",
+        "template"
+      ],
+      "tokens": 6567,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Checklist de Arranque de Proyecto",
+      "path": "14_DX/PROJECT_BOOTSTRAP_CHECKLIST.md",
+      "category": "14_DX",
+      "doc_type": "referencia",
+      "tags": [
+        "dx",
+        "checklist",
+        "bootstrap",
+        "setup"
+      ],
+      "summary": "Arranque de un proyecto nuevo paso a paso: prerequisitos por máquina, creación del repositorio desde plantilla, identidad del proyecto y colocación de cada secreto en su lugar.",
+      "keywords": [
+        "bootstrap",
+        "checklist",
+        "setup",
+        "repo",
+        "secretos",
+        "gh",
+        "plantilla"
+      ],
+      "tokens": 2309,
+      "status": "current",
+      "updated": "2026-07-27",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Engineering Intelligence — Auto-análisis del Trabajo",
+      "path": "15_Knowledge_System/ENGINEERING_INTELLIGENCE.md",
+      "category": "15_Knowledge_System",
+      "doc_type": "estandar",
+      "tags": [
+        "knowledge",
+        "metricas",
+        "proceso",
+        "mejora-continua"
+      ],
+      "summary": "Rutina operativa mensual que recolecta señales pasivas del propio trabajo, sin instrumentación nueva, y produce hallazgos que alimentan a los agentes existentes.",
+      "keywords": [
+        "auto-analisis",
+        "senales",
+        "mensual",
+        "hallazgos",
+        "mejora-continua",
+        "metricas"
+      ],
+      "tokens": 3263,
+      "status": "current",
+      "updated": "2026-07-21",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Knowledge System Standard",
+      "path": "15_Knowledge_System/KNOWLEDGE_SYSTEM_STANDARD.md",
+      "category": "15_Knowledge_System",
+      "doc_type": "estandar",
+      "tags": [
+        "knowledge-management",
+        "rag",
+        "indexing",
+        "conventions",
+        "standards"
+      ],
+      "summary": "Define cómo el handbook funciona como base de conocimiento consultable: schema de frontmatter, tamaño de documentos, links, READMEs por carpeta, INDEX.json generado y proceso de mantenimiento.",
+      "keywords": [
+        "frontmatter",
+        "metadata",
+        "yaml",
+        "obsidian",
+        "retrieval",
+        "base de conocimiento",
+        "tags",
+        "vocabulario controlado",
+        "embeddings"
+      ],
+      "tokens": 3564,
+      "status": "current",
+      "updated": "2026-07-20",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Proceso de Investigación Tecnológica Continua",
+      "path": "15_Knowledge_System/RESEARCH_PROCESS.md",
+      "category": "15_Knowledge_System",
+      "doc_type": "estandar",
+      "tags": [
+        "knowledge",
+        "investigacion",
+        "proceso",
+        "fuentes"
+      ],
+      "summary": "Cadencia y presupuesto de la investigación tecnológica, disparadores ad-hoc fuera de cadencia, el entregable RESEARCH_NOTE y la jerarquía de fuentes primarias admitidas.",
+      "keywords": [
+        "investigacion",
+        "cadencia",
+        "research-note",
+        "fuentes-primarias",
+        "disparadores"
+      ],
+      "tokens": 3698,
+      "status": "current",
+      "updated": "2026-07-21",
+      "has_frontmatter": true
+    },
+    {
+      "title": "AGENTS.md — Sistema de Decisión Central, Auto-Ruteo y Motor de Auditoría Autónoma",
+      "path": "AGENTS.md",
+      "category": "root",
+      "doc_type": "referencia",
+      "tags": [
+        "auto-routing",
+        "decision-tree",
+        "agent-rules",
+        "standards",
+        "architecture",
+        "security",
+        "core",
+        "trust-hierarchy",
+        "audit-scorecard",
+        "backlog-generator"
+      ],
+      "summary": "El cerebro central del Engineering Handbook. Guía de auto-ruteo obligatorio, reglas inquebrantables y checklist de revisión para trabajar de forma segura y consistente.",
+      "keywords": [
+        "agents.md",
+        "decision-tree",
+        "auto-routing",
+        "ai-rules",
+        "inquebrantables",
+        "hierarchy",
+        "checklist",
+        "standards",
+        "trust-hierarchy",
+        "scorecard",
+        "backlog"
+      ],
+      "tokens": 1941,
+      "status": "current",
+      "updated": "2026-08-05",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Cheatsheet Operativo del Engineering Handbook (Guía de Bolsillo)",
+      "path": "CHEATSHEET_OPERATIVO.md",
+      "category": "root",
+      "doc_type": "referencia",
+      "tags": [
+        "cheatsheet",
+        "guia-rapida",
+        "resumen",
+        "comandos",
+        "reglas-oro",
+        "agency-os"
+      ],
+      "summary": "Guía de bolsillo de 1 página: las 10 reglas inquebrantables, comandos frecuentes de terminal, buscador instantáneo y cómo trabajar en el día a día sin abrumarse con 190+ documentos.",
+      "keywords": [
+        "cheatsheet",
+        "guia-rapida",
+        "comandos",
+        "reglas-oro",
+        "buscador",
+        "flujo-diario"
+      ],
+      "tokens": 882,
+      "status": "VERIFIED",
+      "updated": "2026-08-14",
+      "has_frontmatter": true
+    },
+    {
+      "title": "Instrucciones de Proyecto para Claude Code",
+      "path": "CLAUDE.md",
+      "category": "root",
+      "doc_type": "referencia",
+      "tags": [
+        "meta",
+        "ia",
+        "configuracion"
+      ],
+      "summary": "Punto de entrada para Claude Code: delega el protocolo de auto-ruteo a AGENTS.md como fuente única común a todas las herramientas de IA.",
+      "keywords": [
+        "claude",
+        "agents",
+        "auto-ruteo",
+        "configuracion",
+        "ia"
+      ],
+      "tokens": 99,
+      "status": "current",
+      "updated": "2026-07-21",
+      "has_frontmatter": true
+    },
+    {
+      "title": "cosaslindas",
+      "path": "cosas que me gustaron/cosaslindas.md",
+      "category": "general",
+      "doc_type": null,
+      "tags": [],
+      "summary": "https://www.justinmind.com/es/blog/sitio-web-inspirador-paginas-de-inicio-de-sesion/",
+      "keywords": [],
+      "tokens": 102,
+      "status": "current",
+      "updated": null,
+      "has_frontmatter": false
+    },
+    {
+      "title": "MOTION_DESIGN_SYSTEM",
+      "path": "MOTION_DESIGN_SYSTEM.md",
+      "category": "general",
+      "doc_type": null,
+      "tags": [],
+      "summary": "",
+      "keywords": [],
+      "tokens": 1493,
+      "status": "current",
+      "updated": null,
+      "has_frontmatter": false
+    },
+    {
+      "title": "README",
+      "path": "README.md",
+      "category": "general",
+      "doc_type": null,
+      "tags": [],
+      "summary": "<div align=\"center\">",
+      "keywords": [],
+      "tokens": 2072,
+      "status": "current",
+      "updated": null,
+      "has_frontmatter": false
+    },
+    {
+      "title": "SOFTWARE_ENGINEERING_MODELS_AND_ARCHITECTURE",
+      "path": "SOFTWARE_ENGINEERING_MODELS_AND_ARCHITECTURE.md",
+      "category": "general",
+      "doc_type": null,
+      "tags": [],
+      "summary": "",
+      "keywords": [],
+      "tokens": 2122,
+      "status": "current",
+      "updated": null,
+      "has_frontmatter": false
+    },
+    {
+      "title": "TECHNICAL_SEO_AND_PERFORMANCE",
+      "path": "TECHNICAL_SEO_AND_PERFORMANCE.md",
+      "category": "general",
+      "doc_type": null,
+      "tags": [],
+      "summary": "",
+      "keywords": [],
+      "tokens": 1639,
+      "status": "current",
+      "updated": null,
+      "has_frontmatter": false
+    }
+  ],
+  "_meta": {
+    "generated_at": "2026-09-03T23:08:22.285Z",
+    "total_docs": 207,
+    "total_tokens": 485367
+  }
+}

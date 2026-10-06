@@ -47,6 +47,7 @@ El número es el identificador estable de cada documento. Los documentos 02, 03,
 | 08 | [08_QUALITY_STANDARDS.md](Strategy/08_QUALITY_STANDARDS.md) | **Quality gates del build**: los umbrales y verificaciones que bloquean (lint, coverage, seguridad, a11y, performance) |
 | 09 | [09_METRICS.md](Strategy/09_METRICS.md) | **Métricas**: las 7 que importan a un dev solo, cómo se recolectan solas, y qué decisión dispara cada una |
 | 10 | [10_PLAYBOOK.md](Guides/10_PLAYBOOK.md) | **Procedimientos operativos**: proyecto nuevo, bug en producción, test flaky, pipeline lento, saltarse un gate, proyecto heredado sin tests |
+| 11 | [CHECKLIST_RELEASE_PRODUCCION.md](CHECKLIST_RELEASE_PRODUCCION.md) | **Checklist de release y entrega a producción**: functional, UI 4 estados, mobile 375px, security y SEO |
 | — | [Agents/](Agents/README.md) | Instrucciones para que agentes IA (Claude Code) ejecuten este departamento: QA-Manager, Unit-Integration, E2E, Quality-Gates, Visual-Regression, Code-Review, Security-Dependency, Documentation |
 
 ---

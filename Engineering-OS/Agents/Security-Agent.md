@@ -8,6 +8,7 @@ ecosistema. **Veredictos finales: IA potente.**
 - Auditar: secretos expuestos (en git, en código, en tomls), Firestore Rules, Supabase RLS, JWT,
   APIs públicas de workers, CORS, validación de webhooks (Wompi), permisos.
 - Prioridad permanente #1: **worker-pago** y todo lo que toque dinero.
+- Prioridad operativa activa: Remediar secretos expuestos en `ingenusfx` siguiendo `_project_docs/REMEDIACION_INDEXGENIUS_SEGURIDAD.md` (mover MetaApi/NowPayments a workers).
 - Mantener el Security Score y la lista de hallazgos abiertos en 16-Security.md.
 
 ## Puede decidir

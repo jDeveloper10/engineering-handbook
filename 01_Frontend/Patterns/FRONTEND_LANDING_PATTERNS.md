@@ -132,7 +132,7 @@ Cada sección respeta el límite de tamaño/responsabilidad de `FRONTEND_ENGINEE
 
 ### 3.3 Peso de imagen
 
-**[RECOMMENDED]** Optimizar cada imagen para no comprometer el objetivo de Core Web Vitals (LCP <2.5s, sección 11 del estándar principal). Como referencia práctica actual, eso suele traducirse en: hero ~200KB, resto de imágenes ~100KB — esta cifra es una heurística de hoy, no una ley; lo que no se negocia es el objetivo de LCP que la sostiene.
+**[RECOMMENDED]** Optimizar cada imagen para no comprometer el objetivo de Core Web Vitals (LCP < 2.5s, sección 11 del estándar principal). Como referencia práctica actual, eso suele traducirse en: hero ~200KB, resto de imágenes ~100KB — esta cifra es una heurística de hoy, no una ley; lo que no se negocia es el objetivo de LCP que la sostiene.
 
 ### 3.4 Consistencia visual
 
@@ -150,18 +150,32 @@ Cada sección respeta el límite de tamaño/responsabilidad de `FRONTEND_ENGINEE
 
 **[REQUIRED]** Un CTA primario por viewport (máximo contraste, color de marca). CTAs secundarios con menor peso visual para acciones de menor prioridad (ej. "Ver demo" junto a "Empezar gratis").
 
-### 4.2 Tamaño mayor que en el resto de la app
+### 4.2 Proporciones sobrias y límites de tamaño (PROHIBIDO botones gigantes)
 
-**[RECOMMENDED]** El CTA primario del Hero usa el tamaño de botón más grande disponible en el design system.
+**[REQUIRED]** Ningún botón debe inflarse artificialmente con dimensiones o paddings desmedidos (evitar `px-8 py-4` o alturas excesivas que rompan la armonía visual). La jerarquía de un CTA se logra mediante **contraste cromático, posición y tipografía clara**, no mediante tamaño colosal.
 
-**Por qué:** el CTA de landing compite por atención en una página que el usuario nunca usó antes — necesita más peso visual que un botón dentro de una app donde el usuario ya sabe qué hacer.
+- **Altura máxima:** 40px a 48px en desktop (ej: `h-10` a `h-11`).
+- **Padding estándar equilibrado:** `px-5 py-2.5` o `px-6 py-2.5`.
+- **Tipografía:** 13px a 14px (`text-xs` a `text-sm font-bold`).
 
-**Implementación (Tailwind):**
+### 4.3 Anti-patrón: Prohibido luces neón y sombras de color saturadas
+
+**[REQUIRED]** Quedan terminantemente prohibidas las sombras de color difusas o halos tipo neón/fosforescentes (`shadow-[COLOR]/30`, `shadow-[COLOR]/40` o resplandores cibernéticos). Hacen que una interfaz corporativa o de agencia se vea barata y amateur.
+
 ```tsx
-<Button variant="primary" size="lg" className="px-8 py-4 text-base font-semibold">
-  Empezar gratis
-</Button>
+// ❌ PROHIBIDO:
+<button className="bg-orange-500 shadow-xl shadow-orange-500/40 ...">
+  {/* Halo neón estridente */}
+</button>
+
+// ✅ CORRECTO:
+<button className="bg-brand-500 text-white shadow-sm hover:bg-brand-600 active:scale-[0.98] ...">
+  {/* Sólido, sobrio, sombra neutra y limpia */}
+</button>
 ```
+
+- **Sombras permitidas:** Exclusivamente sombras neutras sutiles (`shadow-xs`, `shadow-sm`, `shadow-md` neutro) o bordes finos de 1px.
+- La tracción visual proviene del color de marca limpio y la micro-interacción hover, nunca de un resplandor fluorescente.
 
 ### 4.3 Microcopy
 
@@ -271,6 +285,28 @@ Aplica `FRONTEND_ENGINEERING_STANDARD.md` sección 13 sin excepción, con dos pu
 
 ---
 
+## 10. Anti-patrones de Landing Page y "AI Tells" (Diseño Genérico de IA)
+
+**[REQUIRED] REGLA INQUEBRANTABLE FE-009 — PROHIBICIÓN OBLIGATORIA (ESTO ES OBLIGATORIO: NO VA NUNCA A MENOS DE QUE EL USUARIO LO PIDA EXPLÍCITAMENTE):**
+- ❌ **Pill badges o pastillas flotantes decorativas encima del `<h1>`:** Prohibido colocar chips o pastillas redondeadas flotantes (ej. `[Award] AVAL INTERNACIONAL & COSMIATRÍA CLÍNICA`, `[Sparkles] LÍDER EN EL SECTOR`) encima del titular principal. Es un cliché evidente de landing generada por IA que diluye la fuerza tipográfica y resta seriedad clínica/comercial. **NO VA NUNCA salvo pedido explícito.**
+- ❌ **Filas de estadísticas y métricas ficticias ("Vanity Metrics"):** Prohibido colocar bloques o filas de 3-4 columnas debajo de los CTAs del Hero mostrando números inflados o ficticios (ej. `+1,800 Egresadas Certificadas`, `99.2% Aprobación`, `100% Prácticas`). Viola el principio de honestidad técnica y anti-fake: si una métrica no proviene de una base de datos real, auditada y vinculada a telemetría demostrable, **NO VA NUNCA salvo pedido explícito.**
+- ❌ **Eyebrow labels en mayúsculas espaciadas en cada bloque:** Colocar `[ / NOMBRE EN MAYÚSCULAS ]` o `TRACKING-WIDEST ALL-CAPS` encima de cada titular es el tell #1 de landing generada por IA. Usar titulares directos con jerarquía tipográfica real.
+- ❌ **Flechas automáticas `"→"` o `">"` en botones:** Evitar añadir flechitas por defecto a cada botón (`Work With Us →`, `Ver más >`). El botón comunica su interactividad por contraste, padding y cursor, no por símbolos repetitivos.
+- ❌ **Falsas acreditaciones y logotipos ambiguos:** Prohibido listar logos como Meta Partner, Google Premier Partner o marcas multinacionales con copies como "marcas que confían en nosotros" si no existe una acreditación legal verificable. El copy debe ser honesto (ej: "Plataformas y canales en los que operamos").
+- ❌ **Acumulación de efectos (Degradado + Borde + Sombra + Icono + Glow):** Regla de restricción: *un elemento visual memorable por pantalla, todo lo demás disciplinado y sobrio*. No sobrecargar cada tarjeta con kits de SaaS genéricos.
+- ❌ **Titulares con una sola palabra acentuada artificialmente en otro color/cursiva:** Produce fatiga visual y revela falta de criterio editorial.
+- ❌ **Promesas sin soporte ("Nosotros vs tradicionales" sin tabla):** Si se afirma una superioridad sobre agencias tradicionales, debe incluirse una comparativa punto por punto con hechos auditables (propiedad de cuentas, permanencia, métricas).
+
+
+
+**[REQUIRED]** Prohibidos en cualquier landing desarrollada bajo este estándar:
+- ❌ **Botones gigantes:** Nunca inflar botones con paddings descomunales (`px-8 py-4` o alturas mayores a 48px en desktop). La relevancia se obtiene con jerarquía, contraste y ubicación, no con gigantismo.
+- ❌ **Sombras neón o halos de color saturados:** Prohibido usar sombras difusas con el color del botón (`shadow-orange-500/40`, etc.) simulando luces de neón o estética cyberpunk en marcas corporativas/comerciales. Usar únicamente sombras neutras sutiles (`shadow-xs`, `shadow-sm`) o bordes finos.
+- ❌ **Múltiples CTAs primarios en un mismo viewport:** Confunde al usuario y diluye la tasa de clics.
+- ❌ **Carga lazy en la imagen principal del Hero:** Destruye el LCP (Largest Contentful Paint).
+
+---
+
 ## Checklist rápido antes de dar por terminada una landing
 
 - [ ] ¿Sigue el orden de bloques de la sección 1, sin secciones que no aportan a la conversión?
@@ -282,5 +318,5 @@ Aplica `FRONTEND_ENGINEERING_STANDARD.md` sección 13 sin excepción, con dos pu
 - [ ] ¿Padding de sección en la escala 64/96/128px, no valores sueltos?
 - [ ] ¿Cada sección es su propio componente, dentro del límite de tamaño del estándar?
 - [ ] ¿CTAs con atributo de tracking?
-- [ ] ¿LCP <2.5s medido, no asumido?
+- [ ] ¿LCP < 2.5s medido, no asumido?
 - [ ] ¿Contraste de texto sobre imagen validado, foco visible en CTAs?

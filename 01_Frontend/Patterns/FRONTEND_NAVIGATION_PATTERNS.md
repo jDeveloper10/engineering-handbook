@@ -130,6 +130,26 @@ LOGO   Inicio  Servicios  Contacto            LOGO   Inicio  Servicios  Contacto
 - Cuando hay muchas acciones/enlaces — el floating funciona con navegación corta; con 6-7 ítems + CTA ya se ve apretado.
 - Dashboards de uso intensivo — prioriza densidad de información sobre estética.
 
+#### 4.6.1 Floating Pill Navbar (Glassmorphic Agency Style)
+
+```
+╭────────────────────────────────────────────────────────────────────────╮
+│ (◉) DUO Agency    SERVICIOS   CAMPAÑA   CASOS   [IG] [LI]  [WORK WITH US] │
+╰────────────────────────────────────────────────────────────────────────╯
+```
+
+**[RECOMMENDED]** para agencias digitales, consultoras de alto valor y landings de producto premium:
+- **Estructura visual:** Píldora flotante con bordes redondeados completos (`rounded-full`), margen superior e inferior al scroll (`sticky top-4`), desenfoque de fondo (`backdrop-blur-md`), micro-borde sutil y sombra de elevación suave.
+- **Jerarquía interna:**
+  1. *Logo/Isotipo:* Monograma o emblema geométrico a la izquierda con texto de marca.
+  2. *Enlaces:* Tipografía condensada en mayúsculas (`tracking-wider`, 12-13px) en tono grafito/slate oscuro de alto contraste.
+  3. *Redes Sociales (RRSS):* Iconos mínimos discretos para presencia de marca.
+  4. *CTA Píldora:* Botón de alto contraste y esquinas redondeadas (`bg-[#182026]` con texto blanco) con micro-animación `scale-[1.02]`.
+- **Adaptación Mobile:**
+  - El contenedor principal preserva el formato píldora compacto en móviles, mostrando el logo y un botón hamburguesa accesible.
+  - Al abrirse, despliega un panel flotante (*Drawer*) con `backdrop-blur-xl`, objetivos táctiles amplios (mínimo 44px de alto para el pulgar), acceso al CTA principal y accesos directos a redes sociales.
+  - Soporte de accesibilidad: atributos `aria-expanded`, `aria-controls`, navegación por teclado y cierre con tecla `Escape` o clic externo.
+
 ### 4.7 Sidebar navigation
 
 ```

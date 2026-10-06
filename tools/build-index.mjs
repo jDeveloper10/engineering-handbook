@@ -2,7 +2,7 @@ import { readdir, readFile, writeFile } from 'fs/promises'
 import { join, extname } from 'path'
 
 const ROOT_DIR = process.cwd()
-const IGNORE_DIRS = ['node_modules', '.git', 'tools', 'Engineering-OS', '.claude', 'pruebas', '_project_docs', '.vitepress']
+const IGNORE_DIRS = ['node_modules', '.git', 'tools', '.claude', 'pruebas', '_project_docs', '.vitepress']
 // Archivos de chrome del sitio VitePress en la raíz — no son documentos del handbook
 // (sin category/summary/tags reales), así que no deben ensuciar INDEX.json.
 const IGNORE_FILES = ['index.md']
@@ -126,6 +126,7 @@ function guessCategory(relPath) {
   if (relPath.includes('13_AI_Rules')) return 'ai-rules'
   if (relPath.includes('14_DX')) return 'dx'
   if (relPath.includes('15_Knowledge_System')) return 'knowledge'
+  if (relPath.includes('16_Accounting')) return 'accounting'
   return 'general'
 }
 

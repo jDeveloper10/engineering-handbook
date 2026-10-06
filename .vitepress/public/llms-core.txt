@@ -1,0 +1,2583 @@
+================================================================================
+ENGINEERING HANDBOOK — CORE COMPILATION FOR LLMs
+URL: https://handbook-explorer.pages.dev
+================================================================================
+Este archivo contiene la compilación completa de los estándares críticos del sistema.
+Cualquier código o arquitectura debe alinearse con las directrices aquí presentes.
+================================================================================
+
+
+################################################################################
+### ARCHIVO: AGENTS.md
+### URL: https://handbook-explorer.pages.dev/AGENTS
+################################################################################
+
+---
+title: "AGENTS.md — Sistema de Decisión Central, Auto-Ruteo y Motor de Auditoría Autónoma"
+category: root
+doc_type: referencia
+tags: [auto-routing, decision-tree, agent-rules, standards, architecture, security, core, trust-hierarchy, audit-scorecard, backlog-generator]
+summary: "El cerebro central del Engineering Handbook. Guía de auto-ruteo obligatorio, reglas inquebrantables y checklist de revisión para trabajar de forma segura y consistente."
+keywords: [agents.md, decision-tree, auto-routing, ai-rules, inquebrantables, hierarchy, checklist, standards, trust-hierarchy, scorecard, backlog]
+updated: 2026-08-05
+status: current
+---
+
+# AGENTS.md — Sistema de Decisión Central, Auto-Ruteo y Motor de Auditoría Autónoma
+
+> Este documento es la fuente de verdad operativa del handbook. Antes de planear, escribir código o entregar una solución, lee este archivo, identifica el dominio de la tarea, consulta el estándar correcto y aplica las reglas obligatorias.
+
+---
+
+## Regla de oro
+
+1. No escribas código todavía.
+2. Clasifica el problema por dominio: base de datos, backend, frontend, seguridad, devops o producto.
+3. Abre y lee el estándar específico antes de implementar.
+4. Aplica las reglas marcadas como REQUIRED sin omitir validaciones.
+5. Verifica la entrega con el checklist corto antes de cerrar la tarea.
+
+---
+
+## Gate de activación antes de implementar
+
+Antes de declarar una funcionalidad lista para producción, la IA debe revisar:
+
+1. [Engineering-OS/32-Operating-Gate.md](Engineering-OS/32-Operating-Gate.md) para perfil, riesgo y evidencia.
+2. [Engineering-OS/34-Policy-Profiles.md](Engineering-OS/34-Policy-Profiles.md) para confirmar el perfil aplicable.
+3. [Engineering-OS/33-Feature-Completeness-Engine.md](Engineering-OS/33-Feature-Completeness-Engine.md) para completar la matriz de cobertura.
+4. [Engineering-OS/35-Rule-Registry.md](Engineering-OS/35-Rule-Registry.md) y [Engineering-OS/36-Validation-Pipeline.md](Engineering-OS/36-Validation-Pipeline.md) para validar reglas y pipeline.
+
+Si la tarea expone una laguna del handbook, detén la implementación, documenta el gap, investiga con la jerarquía de confianza y genera un borrador antes de avanzar.
+
+---
+
+## Mapa rápido de decisión
+
+Usa este mapa para encontrar el estándar correcto:
+
+- Metodología y Flujo: [00_Fundamentos/SPEC_DRIVEN_DEVELOPMENT.md](00_Fundamentos/SPEC_DRIVEN_DEVELOPMENT.md) (Spec → Zod → Test → Code → Verify)
+- Base de datos: [04_Database/README.md](04_Database/README.md) y [04_Database/DATABASE_ENGINEERING_STANDARD.md](04_Database/DATABASE_ENGINEERING_STANDARD.md)
+- Backend y API: [02_Backend/BACKEND_ENGINEERING_STANDARD.md](02_Backend/BACKEND_ENGINEERING_STANDARD.md), [03_API/API_ENGINEERING_STANDARD.md](03_API/API_ENGINEERING_STANDARD.md), [02_Backend/WORKERS_CLOUDFLARE_STANDARD.md](02_Backend/WORKERS_CLOUDFLARE_STANDARD.md), [02_Backend/FIREBASE_ENGINEERING_STANDARD.md](02_Backend/FIREBASE_ENGINEERING_STANDARD.md), [02_Backend/SUPABASE_ENGINEERING_STANDARD.md](02_Backend/SUPABASE_ENGINEERING_STANDARD.md) y [02_Backend/WEBSOCKETS_STANDARD.md](02_Backend/WEBSOCKETS_STANDARD.md)
+- Frontend: [01_Frontend/Core/FRONTEND_ENGINEERING_STANDARD.md](01_Frontend/Core/FRONTEND_ENGINEERING_STANDARD.md), [01_Frontend/Core/FRONTEND_TAILWIND_V4_STANDARD.md](01_Frontend/Core/FRONTEND_TAILWIND_V4_STANDARD.md) y [01_Frontend/Patterns/PWA_STANDARD.md](01_Frontend/Patterns/PWA_STANDARD.md)
+- Calidad de Código: [10_Code_Quality/AGENCY_CODING_STANDARD.md](10_Code_Quality/AGENCY_CODING_STANDARD.md) (Cero falsos 200, Zod en todo input, Clean Code)
+- Seguridad: [05_Security/README.md](05_Security/README.md) y [05_Security/SECRET_LEAK_PREVENTION_STANDARD.md](05_Security/SECRET_LEAK_PREVENTION_STANDARD.md)
+- DevOps, Cloud y Arquitectura: [07_DevOps/README.md](07_DevOps/README.md), [08_Cloud/README.md](08_Cloud/README.md), [08_Cloud/ESCALABILIDAD_Y_MANTENIMIENTO.md](08_Cloud/ESCALABILIDAD_Y_MANTENIMIENTO.md), [09_Architecture/STACK_SELECTION_MATRIX.md](09_Architecture/STACK_SELECTION_MATRIX.md) y [09_Architecture/MONOREPO_STANDARD.md](09_Architecture/MONOREPO_STANDARD.md)
+- Testing & QA de Release: [06_Testing/CHECKLIST_RELEASE_PRODUCCION.md](06_Testing/CHECKLIST_RELEASE_PRODUCCION.md) y [06_Testing/README.md](06_Testing/README.md)
+- Sistemas contables y fiscales: [16_Accounting/README.md](16_Accounting/README.md), [16_Accounting/ACCOUNTING_SYSTEMS_STANDARD.md](16_Accounting/ACCOUNTING_SYSTEMS_STANDARD.md), [16_Accounting/ACCOUNTING_POSTING_ENGINE_PATTERN.md](16_Accounting/ACCOUNTING_POSTING_ENGINE_PATTERN.md) y, para Panamá, [16_Accounting/PANAMA_ACCOUNTING_COMPLIANCE_STANDARD.md](16_Accounting/PANAMA_ACCOUNTING_COMPLIANCE_STANDARD.md)
+- Producto, Clientes e IA: [10_Product/README.md](10_Product/README.md), [10_Product/TEMPLATES/TEMPLATE_REQUERIMIENTOS_CLIENTE.md](10_Product/TEMPLATES/TEMPLATE_REQUERIMIENTOS_CLIENTE.md), [12_Documentation/DOCUMENTATION_STANDARD.md](12_Documentation/DOCUMENTATION_STANDARD.md) y [13_AI_Rules/AI_WORKFLOW.md](13_AI_Rules/AI_WORKFLOW.md)
+
+---
+
+## Reglas inquebrantables críticas
+
+| ID | Regla | Nota |
+|---|---|---|
+| DB-001 | No usar SELECT * | Especificar columnas explícitas |
+| DB-002 | Toda FK debe tener índice secundario | Evitar cuellos de botella |
+| DB-008 | No usar float/double para dinero | Usar bigint o centavos |
+| S-001 | Todo payload debe validarse con Zod | Frontend y backend |
+| S-005 | No usar CORS wildcard en entornos autenticados | Seguridad primero |
+| FE-001 | No usar any en TypeScript | Usar unknown y estrechar tipos |
+| FE-005 | Todo componente async debe manejar Loading, Empty, Error y Success | Estados UI obligatorios |
+| MONEY-001 | Los precios no se definen en el frontend | El backend resuelve monto y priceId |
+| AUTH-003 | Magic links con TTL máximo de 15 min y un solo uso | Seguridad de acceso |
+| AUTH-004 | Invitaciones de equipo con TTL 48h, token revocable y rate-limit | Excepción controlada |
+| SEC-001 | CSP estricta en todas las respuestas HTTP | Evitar XSS y ejecución insegura |
+| SEC-002 | Cero secretos en bundles de cliente (Vite/APK/Tauri) | APIs privadas siempre por backend proxy |
+| TENANT-001 | RLS es la fuente de verdad para aislamiento multi-tenant | No bypass de capa |
+| TEST-001 | Bugs P0/P1 y seguridad exigen test de regresión | Prueba automatizada obligatoria antes de cerrar fix |
+| FE-009 | Cero pill badges flotantes sobre H1 y cero vanity metrics ficticias | Prohibido en landings: no va NUNCA salvo pedido explícito del usuario |
+| FE-010 | Diversidad de componentes y cero fatiga de cards | Prohibido encapsular toda la UI en cards, hamburguesa y aside; usar taxonomía completa de FRONTEND_UI_PATTERNS.md |
+| ACC-001 | Todo asiento contable cuadra exactamente (débitos = créditos en centavos) | Validado en el servidor; ver 16_Accounting |
+| ACC-007 | Lo contabilizado no se edita ni se borra | Corregir con reverso o nota de crédito |
+| ACC-010 | Documento + asiento + saldos + auditoría en una operación atómica | Prohibido silenciar errores de contabilización |
+| ACC-016 | Cero códigos de cuenta contable en el código fuente | Cuentas por defecto configurables por empresa |
+
+---
+
+## Lo que una IA nunca debe hacer
+
+- Colocar pill badges flotantes sobre el `<h1>` (chips tipo "[Award] AVAL...") o filas de métricas ficticias (+1,800 egresadas, 99.2%): **esto es obligatorio, no va NUNCA a menos de que el usuario lo pida explícitamente**.
+- Diseñar interfaces homogéneas metiendo todo en cards repetitivas, menú hamburguesa y aside por defecto: diversificar usando el sistema completo de componentes (tabs, acordeones, drawers, sheets, tablas, timelines, steppers, etc.).
+- Inventar librerías, patrones o configuraciones que no pertenezcan al stack oficial.
+- Usar any en TypeScript o desactivar strict mode.
+- Usar SELECT * o crear FK sin índice secundario.
+- Silenciar errores con try/catch vacíos o devolver 200 OK falsos.
+- Enviar PII o datos sensibles a modelos externos sin anonimización.
+- Basar decisiones en blogs personales o tutoriales como fuente principal.
+
+---
+
+## Lo que una IA siempre debe hacer
+
+- Consultar este archivo antes de actuar.
+- Leer el estándar relevante antes de implementar.
+- Aplicar las reglas REQUIRED del dominio.
+- Estandarizar respuestas API con ok() y fail().
+- Usar React Query para fetching y evitar useEffect descontrolado para mutaciones.
+- Mantener naming consistente: snake_case en DB y camelCase en TypeScript.
+
+---
+
+## Checklist corto de entrega
+
+- [ ] Consulté el estándar correcto para el dominio.
+- [ ] Apliqué las reglas REQUIRED y no omití validaciones.
+- [ ] El código cumple con TypeScript estricto y sin any indebido.
+- [ ] Los datos de entrada están validados con Zod.
+- [ ] Si el componente es async, maneja Loading, Empty, Error y Success.
+- [ ] Las respuestas API siguen el envelope estándar.
+- [ ] Incluí pruebas para el flujo exitoso y los casos de error.
+- [ ] Si hubo cambios de base de datos, preparé migración y rollback.
+
+---
+
+## Jerarquía de confianza
+
+Cuando no exista una guía en el handbook, la investigación debe seguir este orden de prioridad:
+
+1. Handbook propio.
+2. Especificaciones oficiales y estándares formales.
+3. Documentación oficial de la tecnología.
+4. Marcos de seguridad y estándares reconocidos.
+5. Fuentes de comunidad, solo como apoyo secundario.
+
+Evita usar blogs personales, Medium o tutoriales como única fuente.
+
+---
+
+## Auditoría y calidad del handbook
+
+Si una tarea modifica documentación del handbook, debe verificar el estado del repositorio con:
+
+```bash
+npm run lint
+```
+
+El lint valida patrones bloqueantes como SELECT *, any, CORS wildcard, JWT en localStorage, CSP inseguro y HTML crudo en correos.
+
+Cuando falte cobertura, emite una estructura formal de missing_document y, si aplica, un draft_document con impacto, fuentes y reglas afectadas antes de avanzar.
+
+
+
+################################################################################
+### ARCHIVO: Engineering-OS/32-Operating-Gate.md
+### URL: https://handbook-explorer.pages.dev/Engineering-OS/32-Operating-Gate
+################################################################################
+
+---
+title: "Engineering OS — Operating Gate"
+category: engineering-os
+doc_type: estandar
+tags: [ai-governance, evidence, feature-completeness, risk-management]
+summary: "Gate de activación para IAs: comportamiento no complaciente, clasificación de evidencia, riesgo y condición mínima antes de diseñar o implementar una funcionalidad."
+keywords: [behavior-policy, auditoria, confirmado, inferencia, desconocido, produccion]
+updated: 2026-08-03
+status: current
+---
+
+# 32 — Operating Gate
+
+> Este es el primer documento operativo que una IA lee después de `AGENTS.md`. Los dominios
+> numerados siguen siendo la autoridad técnica; este gate evita que la IA aplique reglas fuera de
+> contexto o afirme más de lo que puede demostrar.
+
+## OS-GATE-001 — Comportamiento técnico, no complaciente
+
+**[REQUIRED]** La IA evalúa propuestas por evidencia, seguridad, coste, rendimiento, escalabilidad,
+mantenibilidad y riesgo; no por quién las propuso. Si una alternativa es más segura o simple, la
+recomienda con sus trade-offs. No usa elogios como sustituto de evidencia ni convierte una opinión
+en un incumplimiento del handbook.
+
+**Por qué:** el acuerdo automático oculta riesgos y una oposición teatral tampoco produce mejores
+decisiones. La salida útil es un veredicto verificable: hallazgo, evidencia, impacto y recomendación.
+
+## OS-GATE-002 — Estados de evidencia
+
+**[REQUIRED]** Toda afirmación relevante se marca como uno de estos estados:
+
+| Estado | Significado | Ejemplo válido |
+|---|---|---|
+| `CONFIRMADO` | Código, documento, comando o prueba lo demuestra. | `npm run check` terminó con código 0. |
+| `INFERENCIA` | Conclusión razonable, separada de los hechos. | El endpoint probablemente requiere rate limit por ser público. |
+| `HIPÓTESIS` | Posible explicación que necesita validación. | El timeout podría venir del proveedor externo. |
+| `DESCONOCIDO` | No hay evidencia suficiente. | No se verificó la política RLS en producción. |
+
+No se presenta una hipótesis o inferencia como hecho. Una verificación ausente se informa como
+`NO_VERIFICADO`, no como aprobada por intuición.
+
+## OS-GATE-003 — Declaración antes de implementar
+
+**[REQUIRED]** Antes de cambiar código, la IA declara en forma breve:
+
+```text
+ACTIVACIÓN
+Perfil(es): <de 34-Policy-Profiles>
+Riesgo: bajo | medio | alto | crítico
+Blueprint: <id de feature-blueprints.json o CUSTOM>
+Evidencia inicial: CONFIRMADO | INFERENCIA | HIPÓTESIS | DESCONOCIDO
+Documentos técnicos: <rutas exactas en orden>
+```
+
+Un cambio puramente documental o un arreglo local reversible puede usar una declaración de una
+línea. Auth, pagos, permisos, secretos, RLS, migraciones, borrado o producción son de riesgo alto o
+crítico: requieren plan, rollback y aprobación explícita antes de realizar efectos externos.
+
+## OS-GATE-004 — Módulo completo, alcance honesto
+
+**[REQUIRED]** Una pantalla no se declara módulo terminado solo porque renderice. La IA ejecuta el
+Feature Completeness Engine antes de implementar y diseña cada componente crítico que aplique.
+`NO_APLICA` es válido únicamente con razón explícita; no equivale a ignorar la pregunta.
+
+Esto no autoriza inventar funcionalidades de producto: si un componente revela una decisión de
+negocio ausente, se registra como `BLOQUEADO` o `DECISIÓN_REQUERIDA`, no se implementa a escondidas.
+
+## Salida del gate
+
+Para una arquitectura, feature crítica o auditoría completa, el análisis interno puede consultar
+roles de arquitectura, seguridad, UX, requisitos, rendimiento y producto. La salida no dramatiza
+un debate: contiene solo hallazgos, evidencia, riesgo, impacto y recomendación.
+
+El gate queda aprobado para implementación cuando ningún componente crítico del blueprint está
+`NO_EVALUADO` y todas las decisiones de alto riesgo tienen dueño o aprobación.
+
+
+
+################################################################################
+### ARCHIVO: Engineering-OS/33-Feature-Completeness-Engine.md
+### URL: https://handbook-explorer.pages.dev/Engineering-OS/33-Feature-Completeness-Engine
+################################################################################
+
+---
+title: "Engineering OS — Feature Completeness Engine"
+category: engineering-os
+doc_type: estandar
+tags: [feature-blueprints, requirements, quality-gates, production-ready]
+summary: "Motor que transforma una solicitud de funcionalidad en una matriz verificable de componentes, decisiones y evidencias antes de implementar."
+keywords: [login, crud, payments, definition-of-done, blueprint, matriz-completitud]
+updated: 2026-08-03
+status: current
+---
+
+# 33 — Feature Completeness Engine
+
+## OS-FCE-001 — Plan antes de código
+
+**[REQUIRED]** Toda funcionalidad usa un blueprint de `feature-blueprints.json` o declara uno
+`CUSTOM` antes de implementación. Ejecutar:
+
+```powershell
+npm run blueprint -- authentication
+```
+
+La herramienta genera una matriz con estos estados permitidos: `EXISTE`, `DISEÑADO`, `NO_APLICA`,
+`BLOQUEADO`, `DECISIÓN_REQUERIDA` y `NO_EVALUADO`.
+
+**Por qué:** una lista de temas no garantiza que se evaluaron. La matriz obliga a asignar estado,
+evidencia y responsable a cada componente que normalmente se olvida.
+
+## OS-FCE-002 — Condición de inicio
+
+**[REQUIRED]** No comienza la implementación si un componente `critical` del blueprint está
+`NO_EVALUADO`. Para continuar, debe estar diseñado, ya existir, ser no aplicable con justificación,
+o estar bloqueado por una decisión que el usuario debe tomar.
+
+Un bloqueo no se resuelve inventando alcance. Ejemplo: el blueprint de autenticación exige decidir
+el proveedor y el ciclo de sesión; no obliga a agregar SSO si el producto no lo pide.
+
+## Baseline de producción
+
+Cada feature nueva debe evaluar, como mínimo, requisitos funcionales y no funcionales, casos de uso
+y borde, seguridad, UX/UI, accesibilidad, validación cliente/servidor, lógica de negocio,
+arquitectura, datos, API, permisos, auditoría, logging, errores, estados asíncronos, rendimiento,
+escalabilidad, pruebas y documentación. Un blueprint especial agrega requisitos del dominio.
+
+## Blueprints incluidos
+
+| ID | Para qué se usa | Componentes críticos añadidos |
+|---|---|---|
+| `production-feature` | Cualquier feature | Baseline completo y decisiones explícitas. |
+| `authentication` | Login, registro, recuperación | identidad, sesión, recuperación, antiabuso, eventos de seguridad. |
+| `admin-crud` | Gestión administrativa de entidades | autorización, auditoría, borrado/restauración, exportación y límites. |
+| `payments` | Cobros, suscripciones, reembolsos | precio en servidor, idempotencia, webhook firmado y conciliación. |
+
+Los artefactos están en [`feature-blueprints.json`](feature-blueprints.json). El JSON es la fuente
+ejecutable; esta página explica su uso y no duplica sus componentes.
+
+## Cierre de la funcionalidad
+
+La matriz se adjunta al reporte final junto con los validadores ejecutados. Compilar no es prueba de
+completitud: un componente sin verificador queda `NO_VERIFICADO` y no puede presentarse como listo.
+
+
+
+################################################################################
+### ARCHIVO: Engineering-OS/34-Policy-Profiles.md
+### URL: https://handbook-explorer.pages.dev/Engineering-OS/34-Policy-Profiles
+################################################################################
+
+---
+title: "Engineering OS — Policy Profiles"
+category: engineering-os
+doc_type: estandar
+tags: [policy-as-code, profiles, stack-detection, legacy]
+summary: "Perfiles composables que aplican las reglas correctas a cada stack sin convertir estándares específicos en prohibiciones globales."
+keywords: [cloudflare, react, python, firebase, migration, legacy, scope]
+updated: 2026-08-03
+status: current
+---
+
+# 34 — Policy Profiles
+
+## OS-PROFILE-001 — Reglas por contexto
+
+**[REQUIRED]** La IA compone un perfil base con perfiles detectados o declarados; no aplica una
+regla de plataforma a un proyecto que no usa esa plataforma. El archivo ejecutable es
+[`policy-profiles.json`](policy-profiles.json).
+
+| Perfil | Activa | No presupone |
+|---|---|---|
+| `baseline` | evidencia, secretos, documentación, pruebas y cierre | un framework o proveedor concreto. |
+| `react-web` | UI, accesibilidad, estados async, rendimiento web | backend, PWA u offline si no aplican. |
+| `cloudflare-worker` | Workers, bindings y límites edge | que todo backend sea Worker en legacy. |
+| `node-api` | contrato API, validación servidor y observabilidad | Cloudflare o Supabase. |
+| `python-cli` | CLI, configuración y manejo de errores | UI web o RLS. |
+| `firebase-app` | reglas de Firebase y migración gradual | Supabase como requisito inmediato. |
+| `legacy-migration` | inventario, compatibilidad, rollback y adopción gradual | reescritura incidental. |
+
+## OS-PROFILE-002 — El detector informa; no impone
+
+**[REQUIRED]** `npm run doctor -- <ruta>` detecta perfiles desde manifiestos y configuración, pero
+su salida es un diagnóstico. Si el detector se equivoca, se declara el perfil correcto y se conserva
+la evidencia. El comando no modifica archivos ni lee valores de secretos.
+
+## OS-PROFILE-003 — Herencia y excepción
+
+El perfil `baseline` siempre se aplica. Los demás se combinan. Una excepción necesita ID de regla,
+motivo, riesgo aceptado, propietario, fecha de revisión y condición de eliminación. No se silencia
+con una regla global más permisiva.
+
+
+
+################################################################################
+### ARCHIVO: Engineering-OS/35-Rule-Registry.md
+### URL: https://handbook-explorer.pages.dev/Engineering-OS/35-Rule-Registry
+################################################################################
+
+---
+title: "Engineering OS — Rule Registry"
+category: engineering-os
+doc_type: referencia
+tags: [policy-as-code, rules, validators, traceability]
+summary: "Registro legible por máquina de reglas críticas, perfiles, severidad, fuente y mecanismo de verificación."
+keywords: [registry, validation, enforcement, exceptions, rule-id]
+updated: 2026-08-03
+status: current
+---
+
+# 35 — Rule Registry
+
+El registro [`rule-registry.json`](rule-registry.json) convierte IDs de regla en datos verificables.
+Cada entrada declara fuente, perfiles, severidad y mecanismo de cumplimiento. No reemplaza el texto
+normativo: enlaza la política ejecutable con su autoridad humana.
+
+## OS-REG-001 — Una regla, una fuente y un verificador honesto
+
+**[REQUIRED]** Ninguna regla crítica se anuncia como automatizada sin indicar exactamente qué
+validador y qué superficie cubre. `lint-handbook`, por ejemplo, valida bloques de ejemplo Markdown;
+no prueba el código de todos los proyectos.
+
+## OS-REG-002 — Registry válido en CI
+
+**[REQUIRED]** `npm run validate:os` comprueba IDs únicos, referencias a documentos existentes,
+perfiles y blueprints consistentes, además de que las reglas críticas globales de `AGENTS.md` estén
+registradas. Un documento puede explicar una regla; el registry es la fuente para automatización.
+
+## Modelo de enforcement
+
+| Modo | Significado |
+|---|---|
+| `automated-handbook-example` | Un linter cubre ejemplos del handbook, no repos externos. |
+| `automated-project-metadata` | Doctor comprueba estructura y manifiestos sin alterar el proyecto. |
+| `test-or-review` | Requiere prueba, inspección contextual o ambos. |
+
+Un estado `test-or-review` es deliberado: fingir una regex para verificar autorización o RLS sería
+peor que declarar el límite del validador.
+
+
+
+################################################################################
+### ARCHIVO: Engineering-OS/36-Validation-Pipeline.md
+### URL: https://handbook-explorer.pages.dev/Engineering-OS/36-Validation-Pipeline
+################################################################################
+
+---
+title: "Engineering OS — Validation Pipeline"
+category: engineering-os
+doc_type: estandar
+tags: [ci, validators, quality-gates, verification]
+summary: "Pipeline local y CI que verifica integridad del handbook, registro ejecutable, blueprints y documentación antes de integrar cambios."
+keywords: [doctor, check, github-actions, index, lint, verification]
+updated: 2026-08-03
+status: current
+---
+
+# 36 — Validation Pipeline
+
+## OS-PIPE-001 — Gates reproducibles
+
+**[REQUIRED]** El handbook pasa los mismos gates localmente y en CI:
+
+```powershell
+npm run lint
+npm run validate:os
+npm run test:os
+npm run docs:build
+npm run verify-index
+```
+
+`npm run check` los agrupa. `verify-index` no modifica `INDEX.json`; `build-index` es la acción
+explícita que se ejecuta al cambiar documentación indexada y cuyo resultado se versiona.
+
+## OS-PIPE-002 — Diagnóstico de proyecto
+
+**[REQUIRED]** Antes de declarar que un repositorio cumple el OS, ejecutar:
+
+```powershell
+npm run doctor -- <ruta-del-proyecto>
+```
+
+El resultado distingue `PASS`, `MISSING` y `N/A`, muestra perfiles detectados y evidencia de ruta.
+Con `--strict`, un requisito de metadata ausente hace fallar el proceso; sin esa opción sirve para
+inventario y priorización sin bloquear migraciones legacy.
+
+## OS-PIPE-003 — Evidencia de cierre
+
+La respuesta final nunca sustituye al verificador. Debe citar los comandos ejecutados, sus
+resultados, la matriz de blueprint y lo que permanece `NO_VERIFICADO`, `BLOQUEADO` o `DESCONOCIDO`.
+
+
+
+################################################################################
+### ARCHIVO: 00_Fundamentos/SPEC_DRIVEN_DEVELOPMENT.md
+### URL: https://handbook-explorer.pages.dev/00_Fundamentos/SPEC_DRIVEN_DEVELOPMENT
+################################################################################
+
+---
+title: "Metodología de Desarrollo: Spec-Driven y Contratos Primero"
+category: 00_Fundamentos
+doc_type: estandar
+tags: [metodologia, spec-driven, tdd, zod, contratos, flujo-trabajo]
+summary: "Protocolo obligatorio de desarrollo para la agencia: Especificación -> Contrato Zod -> Prueba Unitaria -> Implementación -> Verificación. Elimina la improvisación y garantiza que el código cumpla exactamente con los requerimientos."
+keywords: [spec-driven, contratos, zod, tdd, flujo, desarrollo, metodologia, testing]
+updated: 2026-08-14
+status: VERIFIED
+confidence: 100%
+reviewed: false
+sources:
+  - "00_HANDBOOK_FORMAT.md"
+  - "13_AI_Rules/AI_WORKFLOW.md"
+  - "06_Testing/Strategy/01_QA_STRATEGY.md"
+---
+
+# METODOLOGÍA DE DESARROLLO: SPEC-DRIVEN & CONTRATOS PRIMERO
+
+> **Principio Fundamental:** Escribir código sin una especificación y un esquema de validación previo es programar a ciegas. Este protocolo define los **5 pasos obligatorios** que sigue todo desarrollador o agente de IA antes de dar por completada una funcionalidad.
+
+---
+
+## 🔄 El Flujo de los 5 Pasos
+
+```
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│ 1. SPEC         │ ──► │ 2. SCHEMA (ZOD) │ ──► │ 3. TEST (QA)    │ ──► │ 4. CODE         │ ──► │ 5. VERIFY       │
+│ Escribir qué    │     │ Definir contrato│     │ Escribir test   │     │ Implementar     │     │ Validar en verde│
+│ debe hacer      │     │ de entrada/salida│    │ que falla (Red) │     │ la lógica (Green│     │ y sin errores   │
+└─────────────────┘     └─────────────────┘     └─────────────────┘     └─────────────────┘     └─────────────────┘
+```
+
+---
+
+### Paso 1: Especificación (Spec)
+Antes de crear un archivo `.ts` o `.tsx`, redacta en 5 líneas qué problema resuelve la función o endpoint, qué recibe y qué responde.
+* *Ejemplo:* Endpoint para registrar el pago de una suscripción. Recibe `{ planId, paymentMethod }`, calcula el monto en el servidor y devuelve `{ ok: true, checkoutUrl }`.
+
+---
+
+### Paso 2: Definición del Contrato con Zod (`S-001`)
+**[REQUIRED]** Se crea el esquema Zod de validación estricta para la entrada y la salida:
+
+```typescript
+// src/schemas/paymentSchema.ts
+import { z } from 'zod'
+
+export const CreatePaymentInputSchema = z.object({
+  planId: z.enum(['pro_monthly', 'pro_annual', 'lifetime']),
+  paymentMethod: z.enum(['card', 'crypto', 'wompi']),
+  affiliateCode: z.string().max(20).optional()
+})
+
+export type CreatePaymentInput = z.infer<typeof CreatePaymentInputSchema>
+```
+
+---
+
+### Paso 3: Prueba Automatizada Primero (Test-First)
+**[REQUIRED]** Escribir la prueba que define el comportamiento esperado antes de programar la lógica interna:
+
+```typescript
+// tests/payment.test.ts
+import { describe, it, expect } from 'vitest'
+import { handleCreatePayment } from '../src/handlers/payment'
+
+describe('Payment Handler', () => {
+  it('debe rechazar un plan inválido con 400 Bad Request', async () => {
+    const req = new Request('https://api.test/payment', {
+      method: 'POST',
+      body: JSON.stringify({ planId: 'plan_inexistente', paymentMethod: 'card' })
+    })
+    const res = await handleCreatePayment(req, mockEnv)
+    expect(res.status).toBe(400)
+    const json = await res.json()
+    expect(json.ok).toBe(false)
+  })
+})
+```
+
+---
+
+### Paso 4: Implementación de la Lógica (Clean Code)
+Se codifica la solución manteniendo funciones puras, legibles y de una sola responsabilidad:
+
+```typescript
+// src/handlers/payment.ts
+import { CreatePaymentInputSchema } from '../schemas/paymentSchema'
+
+export async function handleCreatePayment(request: Request, env: Env) {
+  const body = await request.json().catch(() => null)
+  const validation = CreatePaymentInputSchema.safeParse(body)
+
+  if (!validation.success) {
+    return new Response(JSON.stringify({
+      ok: false,
+      error: 'Datos de entrada inválidos',
+      details: validation.error.flatten()
+    }), { status: 400, headers: { 'Content-Type': 'application/json' } })
+  }
+
+  // Lógica de negocio autoritativa (MONEY-001)
+  const checkoutUrl = await generateCheckout(validation.data, env)
+  return new Response(JSON.stringify({ ok: true, checkoutUrl }), {
+    status: 200,
+    headers: { 'Content-Type': 'application/json' }
+  })
+}
+```
+
+---
+
+### Paso 5: Verificación y Cierre
+Ejecutar la suite de pruebas localmente:
+```bash
+npm run test
+npm run check
+```
+Si la prueba pasa en verde y no hay violaciones de linter ni tipos TypeScript, la tarea pasa a revisión.
+
+
+
+################################################################################
+### ARCHIVO: 01_Frontend/Core/FRONTEND_ENGINEERING_STANDARD.md
+### URL: https://handbook-explorer.pages.dev/01_Frontend/Core/FRONTEND_ENGINEERING_STANDARD
+################################################################################
+
+---
+title: "FRONTEND ENGINEERING STANDARD"
+category: 01_Frontend
+doc_type: estandar
+tags:
+  - standards
+  - conventions
+  - design-tokens
+  - components
+  - react
+  - accessibility
+  - performance
+summary: "Nivel 1 del dominio Frontend. Define las reglas base de todo proyecto frontend: design system (spacing, colores, tipografía, grid), arquitectura por feature, componentes, estado, API integration, TypeScript, routing, formularios, CSS, performance, seguridad y accesibilidad."
+keywords:
+  - ui
+  - architecture
+  - state-management
+  - css
+  - testing
+  - git
+  - bundle
+updated: 2026-07-26
+status: current
+---
+
+# FRONTEND ENGINEERING STANDARD
+
+> Nivel 1 del handbook. Sigue las convenciones de [00_HANDBOOK_FORMAT.md](../../00_HANDBOOK_FORMAT.md) — cada regla es `[REQUIRED]` o `[RECOMMENDED]`, escrita primero de forma agnóstica y después con una implementación de referencia en el stack actual (React + TypeScript + Tailwind).
+>
+> Documentos de Nivel 2 que dependen de este: [FRONTEND_UI_STYLE_CATALOG.md](../UI_Components/FRONTEND_UI_STYLE_CATALOG.md), [FRONTEND_LANDING_PATTERNS.md](../Patterns/FRONTEND_LANDING_PATTERNS.md), [FRONTEND_UI_PATTERNS.md](../Patterns/FRONTEND_UI_PATTERNS.md), [FRONTEND_NAVIGATION_PATTERNS.md](../Patterns/FRONTEND_NAVIGATION_PATTERNS.md), [FRONTEND_AUTH_PATTERNS.md](FRONTEND_AUTH_PATTERNS.md), [FRONTEND_DASHBOARD_PATTERNS.md](../Patterns/FRONTEND_DASHBOARD_PATTERNS.md), [FRONTEND_CRUD_PATTERNS.md](../Patterns/FRONTEND_CRUD_PATTERNS.md), [FRONTEND_TABLE_PATTERNS.md](../Patterns/FRONTEND_TABLE_PATTERNS.md), [FRONTEND_STATES_PATTERNS.md](../Patterns/FRONTEND_STATES_PATTERNS.md), [FRONTEND_NOTIFICATIONS_PATTERNS.md](../Patterns/FRONTEND_NOTIFICATIONS_PATTERNS.md), [FRONTEND_MODALS_PATTERNS.md](../Patterns/FRONTEND_MODALS_PATTERNS.md), [FRONTEND_SIDEBAR_PATTERNS.md](../Patterns/FRONTEND_SIDEBAR_PATTERNS.md), [FRONTEND_HTML_STRUCTURE_STANDARD.md](FRONTEND_HTML_STRUCTURE_STANDARD.md), [FRONTEND_RESPONSIVE_STANDARD.md](FRONTEND_RESPONSIVE_STANDARD.md), [FRONTEND_ACCESSIBILITY_STANDARD.md](../UI_Components/FRONTEND_ACCESSIBILITY_STANDARD.md), [FRONTEND_COLOR_CONTRAST_STANDARD.md](../UI_Components/FRONTEND_COLOR_CONTRAST_STANDARD.md), [FRONTEND_ELEVATION_STANDARD.md](../UI_Components/FRONTEND_ELEVATION_STANDARD.md), [FRONTEND_FORMATTING_STANDARD.md](FRONTEND_FORMATTING_STANDARD.md), [FRONTEND_ERROR_PAGES_STANDARD.md](../Patterns/FRONTEND_ERROR_PAGES_STANDARD.md), [FRONTEND_ANALYTICS_CHARTS_STANDARD.md](../Patterns/FRONTEND_ANALYTICS_CHARTS_STANDARD.md), [FRONTEND_MICROCOPY_STANDARD.md](../UI_Components/FRONTEND_MICROCOPY_STANDARD.md), [FRONTEND_ICON_SYSTEM_STANDARD.md](../UI_Components/FRONTEND_ICON_SYSTEM_STANDARD.md), [FRONTEND_MOTION_STANDARD.md](../UI_Components/FRONTEND_MOTION_STANDARD.md).
+>
+> Objetivo: que cualquier proyecto nuevo, generado por IA o por mí, sea mantenible por otra persona (o por mí en 6 meses) sin arqueología de código.
+
+---
+
+## 01. UX/UI Design System
+
+### 1.1 Spacing en escala fija
+
+**[REQUIRED]** Todo espaciado (margin, padding, gap) sale de una escala fija predefinida, nunca de un valor libre elegido a ojo.
+
+```
+Escala base 8 (px): 4  8  16  24  32  48  64  96
+```
+
+**Por qué:** un valor libre (`margin: 37px`) no es reproducible ni comparable entre componentes — cada desarrollador (o cada generación de IA) improvisa un número distinto para "lo mismo". La escala fija hace que el espaciado sea una decisión de sistema, no de gusto momentáneo.
+
+**Implementación (Tailwind):** la escala de espaciado por defecto de Tailwind ya sigue base-4 (`p-1`=4px ... `p-8`=32px). Un valor fuera de la escala (`p-[13px]`) requiere comentario explicando por qué.
+
+### 1.2 Colores como tokens semánticos
+
+**[REQUIRED]** Los colores viven en un único lugar centralizado y se nombran por su significado (`success`, `danger`, `warning`, `brand`), no por el color en sí (`green`, `red`). Ningún componente escribe un color hardcodeado.
+
+**Por qué:** si el color se nombra `green` y la marca cambia su verde por turquesa, hay que buscar y reemplazar en todo el código. Si se nombra `success`, el token cambia una vez en un solo archivo.
+
+**Implementación (Tailwind):**
+```ts
+// tailwind.config.ts
+colors: {
+  brand: { 50: "#eff6ff", 500: "#3b82f6", 900: "#1e3a8a" },
+  success: "#16a34a",
+  danger: "#dc2626",
+  warning: "#d97706",
+}
+```
+
+Reglas completas de construcción de paleta, contraste, dark/light mode y estados de color por componente en [FRONTEND_COLOR_CONTRAST_STANDARD.md](../UI_Components/FRONTEND_COLOR_CONTRAST_STANDARD.md) (Nivel 2).
+
+### 1.3 Tipografía en escala fija
+
+**[REQUIRED]** Máximo 2 familias tipográficas por proyecto y una escala de tamaños fija (no "se ve bien así"). **[RECOMMENDED]** valores concretos de referencia: 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36px, y 3 pesos (regular 400, medium 500, bold 700).
+
+**Por qué:** más de 2 familias o pesos indistintos es indecisión de diseño disfrazada de variedad — el usuario percibe inconsistencia, no riqueza visual.
+
+### 1.4 Grid y breakpoints
+
+**[REQUIRED]** Los breakpoints responsive son fijos y consistentes en todo el proyecto, no inventados por componente. **[RECOMMENDED]** valores de referencia: 640 / 768 / 1024 / 1280 / 1536px, contenedor máximo de contenido ~1280px.
+
+### 1.5 Un componente por elemento de UI repetido
+
+**[REQUIRED]** Botones, cards, inputs: un solo componente con variantes (`variant`, `size`), nunca el mismo patrón visual copiado con clases sueltas en 3+ lugares distintos. Detalle completo en sección 04.
+
+### 1.6 Estados visuales obligatorios
+
+**[REQUIRED]** Todo elemento interactivo define explícitamente: `default`, `hover`, `active/pressed`, `focus-visible` (ver sección 13), `disabled`, y `loading` si aplica. Un botón sin estado `disabled` visualmente distinto es un bug de diseño, no un detalle menor.
+
+### 1.7 Imágenes
+
+**[REQUIRED]** `width`/`height` explícitos (evita layout shift), `alt` descriptivo o `alt=""` si es decorativa. **[RECOMMENDED]** formato moderno (`webp`/`avif` con fallback), lazy loading por defecto salvo el elemento LCP de la página.
+
+### 1.8 Responsive mobile-first
+
+**[REQUIRED]** El estilo base se escribe para mobile (~375px) y se agranda con breakpoints hacia arriba, nunca al revés. Se valida en al menos 3 anchos: mobile (375px), tablet (768px), desktop (1280px) antes de dar un componente por terminado. Estándar completo (tamaños fluidos, touch-friendly, comportamiento por componente, checklist de validación) en [FRONTEND_RESPONSIVE_STANDARD.md](FRONTEND_RESPONSIVE_STANDARD.md) (Nivel 2).
+
+### 1.9 Dark mode
+
+**[RECOMMENDED]** Si el proyecto tiene dark mode: **[REQUIRED]** estrategia por clase (toggle explícito), no solo `prefers-color-scheme` — el usuario debe poder overridear la preferencia del sistema. Cada color del token tiene su par claro/oscuro definido, no un override disperso por componente. Reglas completas (fondo/superficie/texto correctos por modo, nunca negro ni blanco puro) en [FRONTEND_COLOR_CONTRAST_STANDARD.md](../UI_Components/FRONTEND_COLOR_CONTRAST_STANDARD.md) sección 3-4.
+
+### 1.10 Catálogo de estilos visuales
+
+Cuando un proyecto necesita una identidad visual específica (glassmorphism, brutalism, minimalismo, etc.), la referencia de tokens por estilo está en [FRONTEND_UI_STYLE_CATALOG.md](../UI_Components/FRONTEND_UI_STYLE_CATALOG.md) (Nivel 2). Se elige un estilo, se extraen sus tokens y se cargan siguiendo 1.1-1.9.
+
+### 1.11 Landing pages
+
+Reglas adicionales específicas de landing (estructura de bloques, jerarquía de CTAs) en [FRONTEND_LANDING_PATTERNS.md](../Patterns/FRONTEND_LANDING_PATTERNS.md) (Nivel 2).
+
+### 1.12 Selección de patrón de UI — no Cards por defecto
+
+**[REQUIRED]** Antes de maquetar cualquier sección, elegir el patrón de UI (Cards, Timeline, Tabla, Feature Section, Accordion, KPI tiles, etc.) según el tipo de información, no usar Cards automáticamente porque es el patrón más fácil de repetir. Tabla de decisión completa y patrones por tipo de página (landing, dashboard, CRUD, settings, etc.) en [FRONTEND_UI_PATTERNS.md](../Patterns/FRONTEND_UI_PATTERNS.md) (Nivel 2).
+
+**Por qué:** la card está sobrerrepresentada en los datos de entrenamiento de cualquier IA — es la opción "segura" ante la duda, no necesariamente la más adecuada. Usarla por defecto para todo produce interfaces sin jerarquía visual (grid de N cards idénticas) en vez de composiciones con peso y estructura real.
+
+### 1.13 Navegación
+
+Patrones de navbar, sidebar y navegación mobile en [FRONTEND_NAVIGATION_PATTERNS.md](../Patterns/FRONTEND_NAVIGATION_PATTERNS.md) (Nivel 2). Complementa la sección 08 (Routing Rules) de este documento.
+
+---
+
+## 02. Frontend Architecture
+
+### 2.1 Organización por feature, no por tipo de archivo
+
+**[REQUIRED]** La primera línea de organización del código es el feature de negocio (`features/orders/`), no el tipo técnico de archivo (`components/`, `hooks/`, `services/` como carpetas de primer nivel).
+
+**Por qué:** con organización por tipo, cambiar una funcionalidad obliga a tocar 4 carpetas distintas y nada se puede borrar limpio. Con organización por feature, borrar `features/orders/` no deja huérfanos en otras carpetas — esa es la prueba de que la arquitectura es correcta.
+
+### 2.2 Aislamiento de fallos
+
+**[REQUIRED]** Un error en un feature no debe tumbar la aplicación completa. Se logra con: error boundaries por feature/ruta (ver sección 06), sin estado global compartido innecesario, sin importar lógica interna de un feature desde otro.
+
+### 2.3 Flujo de dependencia unidireccional
+
+**[REQUIRED]** Dentro de un feature, la dependencia va siempre hacia abajo: UI → hooks → servicios de datos. Un componente **nunca** llama a la capa de red directamente (ver sección 06).
+
+---
+
+## 03. Project Structure
+
+### 3.1 Convención de nombres
+
+**[REQUIRED]** — tabla de referencia:
+
+| Tipo | Convención | Ejemplo |
+|---|---|---|
+| Carpeta | `kebab-case` | `order-history/` |
+| Componente | `PascalCase` | `OrderRow.tsx` |
+| Hook | `camelCase`, prefijo `use` | `useOrders.ts` |
+| Utilidad pura | `camelCase` | `formatCurrency.ts` |
+| Constante | `UPPER_SNAKE_CASE` | `MAX_RETRY_ATTEMPTS` |
+| Tipo/Interface | `PascalCase` | `interface OrderPayload` |
+| Variable booleana | `is`/`has`/`should` + descripción | `isLoading` |
+| Handler (prop recibida) | `onX` | `onSubmit` |
+| Handler (implementación) | `handleX` | `handleSubmit` |
+
+**Por qué:** un nombre predecible se encuentra sin buscar — la convención reduce la carga cognitiva de "¿cómo se llamaba esto?" tanto para un humano como para una IA generando código nuevo consistente con el resto del repo.
+
+### 3.2 Idioma: código en inglés, contenido en español — nunca mezclados
+
+**[REQUIRED]** Dos categorías, cada una en un solo idioma, sin excepción:
+
+- **Código** (variables, funciones, componentes, props, clases CSS, nombres de archivo, claves de objetos internos) → **siempre en inglés**. Es la convención universal de la industria — mantiene compatibilidad con librerías, tooling, y con cualquier desarrollador (o IA) que se sume al proyecto sin importar su idioma nativo.
+- **Contenido visible al usuario** (UI copy, botones, mensajes de error, notificaciones, emails, mensajes de WhatsApp) → **siempre en español**, el idioma real de los usuarios finales (Panamá/Colombia).
+
+**[REQUIRED]** Nunca se mezclan los dos dentro del mismo elemento: ni una palabra en inglés suelta dentro de un texto en español visible al usuario, ni una palabra en español dentro de un identificador de código.
+
+```
+❌ function guardarUsuario() { ... }         → nombre de función en español
+❌ const userNombre = ...                     → identificador mezclado
+❌ Botón "Guardar cambios" al lado de otro "Submit" en la misma pantalla
+❌ "Click aquí para continuar"                → anglicismo innecesario colado en copy en español
+✅ function saveUser() { ... }
+✅ const userName = ...
+✅ Ambos botones: "Guardar cambios" / "Continuar"
+```
+
+**[RECOMMENDED]** Comentarios de código en español está bien (así se documenta este mismo handbook) — pero un comentario no arranca en un idioma y termina en otro.
+
+**Por qué:** el código mezclado por idioma se vuelve impredecible de buscar (¿fue `usuario` o `user`?) y el copy mezclado se lee como traducido a medias, lo cual el usuario final percibe como poco profesional. Esta regla es de todo el handbook, no solo de frontend — se replica cuando se construyan `02_Backend` (mensajes de API), `07_DevOps` y cualquier dominio con contenido cara al usuario.
+
+### 3.3 API pública por feature (barrels controlados)
+
+**[REQUIRED]** Cada feature expone solo lo público desde un único punto de entrada. **[REQUIRED]** prohibido un barrel que re-exporta todo desde cualquier subcarpeta o barrels anidados en cascada.
+
+**Por qué:** es la causa #1 de dependencias circulares y de bundles que no hacen tree-shaking.
+
+```ts
+// features/orders/index.ts ✅
+export { OrderList } from "./components/OrderList";
+export { useOrders } from "./hooks/useOrders";
+export type { Order } from "./types";
+// NO exportar internals (OrderRow, formatOrderStatus)
+```
+
+---
+
+## 04. Component Rules
+
+### 4.1 Un componente, una responsabilidad
+
+**[REQUIRED]** Un componente hace una sola cosa. **[RECOMMENDED]** como heurística de tamaño: ~150-200 líneas sin imports/tipos — superarlo es señal (no ley) de que conviene dividir.
+
+**Por qué el tamaño es heurística y no ley:** el número en sí no es lo que importa — lo que importa es si el componente mezcla responsabilidades (fetch + validación + formato + 3 vistas). Un componente de 250 líneas con una sola responsabilidad clara puede estar bien; uno de 120 líneas que hace 4 cosas distintas está mal. Preguntas para decidir: ¿tiene estado no relacionado entre sí?, ¿renderiza secciones visualmente independientes?, ¿mezcla lógica de negocio con presentación?
+
+```tsx
+// ❌ Mezcla fetch + formato + 3 estados visuales
+function OrderPage() {
+  const [orders, setOrders] = useState([]);
+  useEffect(() => { fetch("/api/orders")... }, []);
+  // ...
+}
+
+// ✅ Dividido por responsabilidad
+function OrderPage() {
+  const { data, isLoading, isError, error } = useOrders();
+  if (isLoading) return <OrderListSkeleton />;
+  if (isError) return <ErrorState message={error.message} />;
+  if (!data?.length) return <EmptyState message="No hay órdenes aún" />;
+  return <OrderList orders={data} />;
+}
+```
+
+### 4.2 Estados obligatorios en componentes que consumen datos
+
+**[REQUIRED]** Todo componente que obtiene datos maneja explícitamente 4 estados: loading, error, empty, success. Ninguno se omite en producción — ver ejemplo arriba en 4.1. Cómo diseñar bien cada uno (skeleton vs spinner, tipos de empty state, copy de error) en [FRONTEND_STATES_PATTERNS.md](../Patterns/FRONTEND_STATES_PATTERNS.md) (Nivel 2).
+
+### 4.3 UI separada de lógica
+
+**[REQUIRED]** Un componente presentacional no sabe de dónde vienen los datos ni cómo se calculan — los recibe por props o por un hook dedicado.
+
+```
+ProductCard/
+├── ProductCard.tsx       # presentación pura
+├── useProductCard.ts     # lógica no trivial (ej. cálculo de descuento)
+├── types.ts
+└── ProductCard.test.tsx
+```
+
+### 4.4 Props
+
+**[REQUIRED]** Interface explícita, nunca `props: any`. **[RECOMMENDED]** máximo ~7 props — más que eso, agrupar en objeto de configuración o dividir el componente. **[REQUIRED]** evitar prop drilling de más de 2 niveles — usar Context o recomponer el árbol.
+
+### 4.5 Composición sobre configuración
+
+**[RECOMMENDED]** Preferir componer componentes pequeños sobre un componente con muchas props booleanas activando variantes.
+
+```tsx
+// ❌ 15 props booleanas
+<Card showHeader showFooter compact hasShadow hasBorder rounded ... />
+// ✅ Composición
+<Card><Card.Header/><Card.Body/><Card.Footer/></Card>
+```
+
+Antes de asumir que el patrón visual correcto es una `Card`, ver [FRONTEND_UI_PATTERNS.md](../Patterns/FRONTEND_UI_PATTERNS.md) — no siempre lo es (sección 1.12).
+
+### 4.6 Reutilización: shared vs feature
+
+**[REQUIRED]** Un componente usado en 2+ features sube a `shared/`. Uno usado en 1 solo feature se queda ahí — no se sube "por si acaso".
+
+**Por qué:** subir código "por si se reutiliza después" genera acoplamiento a un único caso de uso real disfrazado de código compartido, y complica el componente con flexibilidad que nadie usa todavía.
+
+---
+
+## 05. State Management
+
+**[REQUIRED]** Árbol de decisión — se usa la primera opción de la lista que resuelva el problema, en este orden:
+
+1. **UI state local** (`useState`/`useReducer`) — vive en el componente que lo necesita.
+2. **Lift state up** — dos componentes hermanos comparten estado → sube al padre común.
+3. **Server state** (React Query/SWR) — cualquier dato que viene del backend.
+4. **Global state** (Context o store como Zustand) — solo lo verdaderamente transversal (usuario autenticado, permisos, config de la app).
+
+**[REQUIRED]** Server state y client/UI state **nunca se mezclan en el mismo store**.
+
+**Por qué:** meter datos de servidor en `useState` + `useEffect` manual es la causa más común de "loading infinito" y datos desincronizados — una librería de server state ya resuelve cache, revalidación y race conditions; reimplementarlo a mano reintroduce esos bugs.
+
+```ts
+// ✅ Server state
+function useOrders() {
+  return useQuery({ queryKey: ["orders"], queryFn: () => apiClient.get<Order[]>("/orders") });
+}
+// ✅ Global UI state — nunca datos que vengan del backend
+const useAuthStore = create<{ user: User | null; setUser: (u: User|null)=>void }>((set)=>({
+  user: null, setUser: (user) => set({ user }),
+}));
+```
+
+---
+
+## 06. API Integration
+
+### 6.1 Cliente único
+
+**[REQUIRED]** Toda llamada de red pasa por un cliente centralizado. Ningún componente ni hook llama a la capa de red directamente.
+
+```ts
+class ApiClient {
+  constructor(private baseUrl: string) {}
+  async get<T>(path: string): Promise<T> {
+    const res = await fetch(`${this.baseUrl}${path}`, { headers: this.buildHeaders() });
+    if (!res.ok) throw normalizeError(res);
+    return res.json();
+  }
+  private buildHeaders() {
+    const token = getAuthToken();
+    return { "Content-Type": "application/json", ...(token && { Authorization: `Bearer ${token}` }) };
+  }
+}
+export const apiClient = new ApiClient(import.meta.env.VITE_API_URL);
+```
+
+### 6.2 Contratos tipados
+
+**[REQUIRED]** Cada endpoint tiene un tipo de request/response explícito. **[REQUIRED]** cuando el dato viene de fuera de tu control (backend de terceros, respuesta que puede cambiar sin aviso), se valida en runtime, no solo se asume el tipo de TypeScript.
+
+```ts
+const OrderSchema = z.object({ id: z.string(), amount: z.number(), status: z.enum(["pending","paid","failed"]) });
+type Order = z.infer<typeof OrderSchema>;
+```
+
+### 6.3 Errores normalizados
+
+**[REQUIRED]** Todo error de red se normaliza a una forma conocida antes de llegar al componente. El componente nunca trabaja con el error crudo de la petición.
+
+```ts
+interface AppError { code: string; message: string; cause?: unknown; }
+```
+
+Mensaje al usuario: accionable, sin stack traces ni códigos internos. El detalle técnico va a logging, no a la UI.
+
+### 6.4 BFF cuando hay múltiples backends
+
+**[RECOMMENDED]** Si el frontend habla con más de un backend (ej. Supabase + Workers + terceros) y la agregación es compleja, esa orquestación vive en un Worker (BFF), no en el cliente.
+
+**Por qué:** evita exponer múltiples API keys al cliente y evita duplicar lógica de agregación si hay más de un frontend consumiendo los mismos datos.
+
+### 6.5 Variables de entorno tipadas
+
+**[REQUIRED]** Un único punto de acceso a variables de entorno, validado al arrancar. No se accede a la variable de entorno cruda dispersa por el código.
+
+```ts
+const env = { apiUrl: import.meta.env.VITE_API_URL as string };
+if (!env.apiUrl) throw new Error("VITE_API_URL no está definida");
+export default env;
+```
+
+### 6.6 El frontend no tiene lógica de backend — la autoridad vive en el Worker
+
+**[REQUIRED]** El frontend **no ejecuta lógica de servidor**: nada de acceso directo a la base de datos, ni reglas de negocio autoritativas, ni validación que se dé por definitiva. Toda validación real de entrada, toda regla de negocio y todo acceso a datos (D1/R2/KV) viven en el **Worker** (`02_Backend/BACKEND_ENGINEERING_STANDARD.md` §00 y §05). La validación del cliente (zod + react-hook-form, sección 9.2) existe **solo para UX** — feedback inmediato mientras el usuario escribe — y el Worker la **re-valida siempre**, porque el cliente es manipulable (DevTools, requests directos a la API, extensiones).
+
+**Por qué:** un chequeo que solo vive en el frontend no existe para un atacante — se saltea con un `fetch` directo al endpoint. Además, duplicar la regla de negocio en el cliente crea dos fuentes de verdad que divergen. El frontend presenta y da feedback; el Worker decide. Un mismo esquema `zod` puede compartirse entre ambos, pero la ejecución autoritativa es la del servidor, nunca la del cliente — el cliente nunca asume "como validé en el form, va a pasar", siempre trata la respuesta del Worker (`success/error`, sección 6.3) como la verdad.
+
+---
+
+## 07. TypeScript Rules
+
+### 7.1 TypeScript siempre
+
+**[REQUIRED]** Todo proyecto nuevo usa TypeScript desde el primer commit, aunque sea un prototipo rápido.
+
+**Por qué:** esto cierra directamente una deuda técnica ya identificada de TS inconsistente entre proyectos — "lo tipo después" nunca pasa en la práctica.
+
+### 7.2 Modo estricto
+
+**[REQUIRED]** `strict: true` en `tsconfig.json` en todo proyecto.
+
+### 7.3 Prohibido `any`
+
+**[REQUIRED]** Si el tipo real no se conoce, se usa `unknown` y se valida (con `zod` u otro parser), no `any`.
+
+**Excepción documentada:** `// TODO: tipar (fecha/ticket)` sobre código de terceros sin tipos, nunca como default permanente.
+
+### 7.4 `type` vs `interface`
+
+**[RECOMMENDED]** `interface` para formas de objetos/props; `type` para uniones, tuplas y tipos derivados.
+
+### 7.5 Discriminated unions para estados
+
+**[RECOMMENDED]** Modelar estados mutuamente excluyentes como union discriminada, no como flags booleanos combinables.
+
+```ts
+type FetchState<T> =
+  | { status: "idle" } | { status: "loading" }
+  | { status: "error"; error: AppError } | { status: "success"; data: T };
+```
+
+**Por qué:** evita el anti-patrón `{ data?: T; loading: boolean; error?: string }`, donde el compilador permite combinaciones imposibles (`loading: true` y `data` presente a la vez).
+
+### 7.6 No duplicar tipos entre capas
+
+**[REQUIRED]** Si el backend genera tipos (Supabase, OpenAPI codegen), esos son la fuente de verdad — no se re-escriben a mano en frontend.
+
+---
+
+## 08. Routing Rules
+
+### 8.1 Rutas centralizadas
+
+**[REQUIRED]** La definición de rutas vive en un solo lugar del proyecto (`app/routes/`), no dispersa dentro de cada feature.
+
+### 8.2 Code splitting por ruta
+
+**[REQUIRED]** Toda ruta que no sea la primera pantalla se carga de forma diferida (`lazy`/`import()`), no se manda todo el árbol de features en el bundle inicial.
+
+**Por qué:** impacta directamente el tiempo de carga inicial, que es el Core Web Vital más visible para el usuario (ver sección 11).
+
+### 8.3 Rutas protegidas centralizadas
+
+**[REQUIRED]** La lógica de "¿puede ver esto?" vive en un solo componente/guard, no repetida como `if (!user)` dentro de cada página.
+
+Ver también [FRONTEND_NAVIGATION_PATTERNS.md](../Patterns/FRONTEND_NAVIGATION_PATTERNS.md) (Nivel 2) para qué patrón de navegación (navbar, sidebar, bottom nav) corresponde a cada tipo de producto.
+
+### 8.4 Nomenclatura de rutas
+
+**[RECOMMENDED]** URLs en `kebab-case`. **[REQUIRED]** params del router tipados explícitamente, no asumidos sin chequeo cuando el componente los necesita sí o sí.
+
+---
+
+## 09. Forms Rules
+
+Para formularios de autenticación (login, registro, recuperación de contraseña) ver [FRONTEND_AUTH_PATTERNS.md](FRONTEND_AUTH_PATTERNS.md) (Nivel 2) — cubre layouts, orden de campos, seguridad UX y accesibilidad específica de auth además de estas reglas base.
+
+### 9.1 Librería de formularios + validación declarativa
+
+**[REQUIRED]** para formularios de 3+ campos: gestión de estado y validación con una librería declarativa (ej. `react-hook-form` + `zod`), no `useState` manual por campo.
+
+**Por qué:** el manejo manual duplica lógica de validación entre campos y no escala — cada campo nuevo repite el mismo patrón de estado/error a mano.
+
+```tsx
+const LoginSchema = z.object({ email: z.string().email(), password: z.string().min(8) });
+const { register, handleSubmit, formState: { errors } } = useForm({ resolver: zodResolver(LoginSchema) });
+```
+
+### 9.2 Validación en dos capas
+
+**[REQUIRED]** La validación del cliente es solo UX (feedback inmediato) — **nunca** es la única línea de defensa. La validación real vuelve a ocurrir en el backend (ver `05_Security` del handbook).
+
+### 9.3 Estados de formulario
+
+**[REQUIRED]** `idle → submitting → success | error`. El submit se deshabilita durante `submitting` (evita doble-envío).
+
+### 9.4 Accesibilidad de formularios
+
+**[REQUIRED]** Todo input tiene `<label>` asociado (no solo `placeholder`). Errores anunciados vía `aria-describedby` + `aria-invalid`.
+
+---
+
+## 10. CSS Architecture
+
+### 10.1 Un solo enfoque de estilos por proyecto
+
+**[REQUIRED]** No mezclar Tailwind + CSS Modules + styled-components + SCSS en el mismo proyecto. Se elige uno.
+
+### 10.2 Orden de clases determinístico
+
+**[RECOMMENDED]** Formateo automático del orden de clases (ej. `prettier-plugin-tailwindcss`) para que no dependa del criterio de quien escribe.
+
+### 10.3 Variantes declarativas, no condicionales sueltos
+
+**[RECOMMENDED]** Variantes de un componente definidas de forma declarativa (ej. `cva`), no cadenas de `if`/template strings repetidas.
+
+### 10.4 `@apply` con moderación
+
+**[RECOMMENDED]** Solo para patrones de bajo nivel reusados por 10+ elementos, nunca como forma de "no escribir clases en el JSX" — eso reintroduce el problema de estilos desconectados del markup que consumen.
+
+---
+
+## 11. Performance
+
+### 11.1 Presupuesto de bundle
+
+**[RECOMMENDED]** Auditar el tamaño del bundle inicial antes de cada release grande (no solo cuando "se siente lento"). Objetivo orientativo: bundle de entrada liviano — el número exacto depende del proyecto, lo que no se negocia es medirlo, no asumirlo.
+
+### 11.2 Memoización con evidencia, no por defecto
+
+**[REQUIRED]** `useMemo`/`useCallback`/`React.memo` se agregan cuando hay evidencia medida de un problema de rendimiento, no preventivamente en cada componente.
+
+**Por qué:** memoización innecesaria añade complejidad de lectura y en varios casos empeora el rendimiento (comparación de dependencias cuesta más que el render que evita).
+
+### 11.3 Listas largas
+
+**[RECOMMENDED]** Listas con muchos elementos (decenas a cientos) usan virtualización, no renderizan todo el DOM de una vez.
+
+### 11.4 Core Web Vitals como objetivo real
+
+**[REQUIRED]** LCP < 2.5s, INP < 200ms, CLS < 0.1, medidos en condiciones reales (no solo en localhost) antes de marcar una feature grande como terminada.
+
+**Por qué este número no es arbitrario:** son los umbrales que Google usa para clasificar una página como "buena experiencia" y afectan directamente SEO y conversión — no es una preferencia interna, es un estándar de la industria.
+
+---
+
+## 12. Frontend Security
+
+> Detalle ampliado en `05_Security` (pendiente en el handbook). Esto es lo específico de frontend.
+
+### 12.1 Nunca confiar en el cliente
+
+**[REQUIRED]** Toda validación de negocio real (permisos, precios, límites) se re-valida en el backend. El frontend valida solo para UX.
+
+### 12.2 Cero secretos en el bundle
+
+**[REQUIRED]** Ninguna API key privada ni credencial de terceros en código que se compile al cliente. Si algo requiere secreto, esa llamada pasa por el BFF (sección 6.4).
+
+### 12.3 XSS
+
+**[REQUIRED]** Prohibido interpolar HTML de usuario sin sanitizar. `dangerouslySetInnerHTML` (o equivalente) solo con contenido saneado explícitamente y justificado en comentario.
+
+### 12.4 Dependencias
+
+**[RECOMMENDED]** Auditoría de dependencias antes de releases grandes; no agregar paquetes de baja confianza para resolver algo trivial.
+
+---
+
+## 13. Accessibility
+
+> Resumen `REQUIRED` de siempre. Profundidad completa (ARIA, gestión de foco, testing de accesibilidad, `prefers-reduced-motion`) en [FRONTEND_ACCESSIBILITY_STANDARD.md](../UI_Components/FRONTEND_ACCESSIBILITY_STANDARD.md) (Nivel 2).
+
+### 13.1 HTML semántico primero
+
+**[REQUIRED]** Elementos nativos (`button`, `a`, `nav`, `main`) sobre `div` con eventos simulados. Un `div` con click sin rol ni soporte de teclado es un bloqueador de accesibilidad. Estándar completo (qué etiqueta usar en cada caso, jerarquía de headings, landmarks) en [FRONTEND_HTML_STRUCTURE_STANDARD.md](FRONTEND_HTML_STRUCTURE_STANDARD.md) (Nivel 2).
+
+### 13.2 Navegación por teclado
+
+**[REQUIRED]** Todo elemento interactivo es alcanzable y operable por teclado, sin trampas de foco. Modales devuelven el foco al cerrarse.
+
+### 13.3 `focus-visible` nunca se elimina sin reemplazo
+
+**[REQUIRED]** Un indicador de foco visible siempre existe para navegación por teclado.
+
+### 13.4 Contraste
+
+**[REQUIRED]** Contraste mínimo WCAG AA (4.5:1 texto normal, 3:1 texto grande), validado al definir la paleta, no al final del proyecto.
+
+**Por qué este número no es arbitrario:** es el estándar internacional de accesibilidad (WCAG 2.1 AA); por debajo de eso, una parte real de usuarios no puede leer el contenido.
+
+### 13.5 Texto alternativo
+
+**[REQUIRED]** `alt` descriptivo en imágenes con significado; `alt=""` explícito en decorativas.
+
+---
+
+## 14. Testing
+
+**[RECOMMENDED]** Pirámide de testing: unit (funciones puras y hooks complejos) > component (Testing Library, para lógica condicional relevante) > e2e (solo golden paths críticos: login, checkout, flujo principal).
+
+**[REQUIRED]** No se persigue % de cobertura como meta — se testea lo que rompe el negocio si falla.
+
+**Por qué:** perseguir un porcentaje produce tests que verifican implementación en vez de comportamiento, y da falsa sensación de seguridad.
+
+**[RECOMMENDED]** No testear: detalles de implementación interna, snapshots exactos de CSS, librerías de terceros ya testeadas.
+
+---
+
+## 15. Git Workflow
+
+**[RECOMMENDED]** Ramas con prefijo + descripción (`feature/order-history`, `fix/login-redirect`).
+
+**[REQUIRED]** Commits en formato Conventional Commits (`feat:`, `fix:`, `refactor:`, `chore:`, `docs:`, `test:`).
+
+**[RECOMMENDED]** PR revisable en menos de ~20 minutos; features grandes se parten en PRs incrementales.
+
+**[REQUIRED]** Antes de mergear: build, typecheck y lint pasan; sin `console.log` de debug ni código comentado "por si acaso".
+
+---
+
+## 16. Documentation
+
+**[REQUIRED]** Cada repo tiene un `README.md`: qué es, cómo correrlo local (con `.env.example`), stack, dónde está desplegado.
+
+**[RECOMMENDED]** Comentarios solo para el "por qué" no obvio (restricción oculta, workaround de un bug específico) — nunca repitiendo lo que el código ya dice.
+
+**[RECOMMENDED]** Cambios de arquitectura grandes se documentan en 2-3 párrafos (contexto, decisión, consecuencias) — ADR ligero.
+
+---
+
+## 17. Build & Deployment
+
+**[REQUIRED]** `.env.example` versionado sin valores reales; `.env.local`/`.env.production` nunca en git.
+
+**[RECOMMENDED]** Todo PR genera un preview deploy antes de mergear a producción.
+
+**[REQUIRED]** CI mínimo (typecheck + lint + build + tests relevantes) bloqueando el deploy si falla.
+
+---
+
+## Checklist rápido antes de dar por terminado un componente/feature
+
+- [ ] ¿Usa tokens del design system (color/spacing/tipografía), cero valores mágicos? (01)
+- [ ] ¿Vive en la carpeta de feature correcta, expone solo API pública? (02, 03)
+- [ ] ¿Una responsabilidad clara, UI separada de lógica? (04)
+- [ ] ¿Server state y UI/global state nunca mezclados? (05)
+- [ ] ¿Toda llamada a datos pasa por el cliente único, con errores normalizados? (06)
+- [ ] ¿Tipado estricto, sin `any`, contratos validados en runtime si el dato es externo? (07)
+- [ ] ¿Formularios con validación declarativa y estados idle/submitting/success/error? (09)
+- [ ] ¿Loading/error/empty/success manejados explícitamente? (04.2)
+- [ ] ¿Accesible por teclado, con foco visible, labels y contraste AA? (13)
+- [ ] ¿Test si la lógica lo amerita? (14)
+- [ ] ¿Commit sigue Conventional Commits? (15)
+
+
+
+################################################################################
+### ARCHIVO: 02_Backend/BACKEND_ENGINEERING_STANDARD.md
+### URL: https://handbook-explorer.pages.dev/02_Backend/BACKEND_ENGINEERING_STANDARD
+################################################################################
+
+---
+title: "BACKEND ENGINEERING STANDARD"
+category: 02_Backend
+doc_type: estandar
+tags:
+  - standards
+  - conventions
+  - workers
+  - rest-api
+  - validation
+  - error-handling
+summary: "Nivel 1 del dominio Backend. Define la arquitectura multi-worker, handlers, servicios, middleware (auth, CORS, logging), validación, formato de respuesta, manejo de errores y testing para Cloudflare Workers."
+keywords:
+  - cloudflare-workers
+  - handlers
+  - middleware
+  - services
+  - deployment
+updated: 2026-07-26
+status: current
+---
+
+# BACKEND ENGINEERING STANDARD
+
+> Nivel 1 del handbook para el dominio Backend. Sigue las convenciones de [00_HANDBOOK_FORMAT.md](../00_HANDBOOK_FORMAT.md) — cada regla es `[REQUIRED]` o `[RECOMMENDED]`, escrita primero de forma agnóstica y después con una implementación de referencia en el stack actual (Cloudflare Workers, patrón multi-worker, Supabase).
+>
+> Este documento está fundado en el código real de `E:\workers-template` (13 workers en producción), no en una convención genérica de Node/Express. Cada regla marcada con "Evidencia real" cita el problema exacto ya presente en ese template — esto no es teoría, es deuda técnica medible hoy: `getCorsHeaders()` está redefinida idéntica en 7 de 13 workers, el chequeo de `Authorization: Bearer` está copiado en 6, y `createClient(env.SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY)` se repite 40 veces en todo el template.
+>
+> Objetivo: que un worker nuevo, escrito por una IA o por mí, no repita la misma deuda que ya tienen los 13 actuales.
+
+---
+
+## 00. Plataforma — el backend SIEMPRE es un Worker, nunca Pages Functions
+
+**[REQUIRED]** El backend de todo proyecto se despliega como un **Cloudflare Worker** independiente (patrón multi-worker, sección 07), **nunca** como Pages Functions embebidas en el deploy del frontend. Frontend (Cloudflare Pages / assets estáticos) y backend (Worker) son **dos despliegues separados**: el frontend consume la API del Worker por su URL, con CORS centralizado (sección 03).
+
+**Por qué:** todos los backends de este handbook son Workers standalone — es la convención fija del stack, no una decisión que se replantea por proyecto. Un Worker se versiona, observa (sección 10), escala y despliega (sección 16) de forma independiente del frontend; meter la lógica de backend dentro de `functions/` de Pages la acopla al ciclo de build del frontend, parte el runtime en dos y rompe la reutilización de todos los patrones de este estándar (que están fundados en `E:\workers-template`, no en Pages Functions). Ante la pregunta "¿Pages Functions o Worker?": siempre Worker.
+
+**Implementación (Cloudflare):** carpeta/proyecto de worker propia con su `wrangler.jsonc` (`main`, `compatibility_date`, bindings D1/R2/KV), deploy con `wrangler deploy`. El frontend en Pages apunta a la URL del Worker vía variable de entorno (`VITE_API_URL` o equivalente); los bindings de datos (D1, R2, KV) viven en el **Worker**, no en el proyecto de Pages. La autenticación viaja por `Authorization: Bearer <token>` (sección 04), no por cookie de sesión acoplada al dominio — coherente con que la API es un servicio aparte consumido cross-origin.
+
+---
+
+## 01. API Response Format
+
+**[REQUIRED]** Toda respuesta HTTP (éxito o error) se construye con un helper único reutilizado en todo el worker, nunca `JSON.stringify(...)` + `headers: {...}` repetido en cada rama del handler.
+
+**Evidencia real:** en `user-worker/src/index.js` y `auth-worker/src/index.js`, el bloque `new Response(JSON.stringify({ error: ... }), { status, headers: { 'Content-Type': 'application/json', ...corsHeaders } })` aparece copiado 4-6 veces por archivo, con el `Content-Type` y el spread de `corsHeaders` repetidos a mano cada vez — un olvido de una sola coma rompe esa respuesta en silencio.
+
+**Implementación (Cloudflare Workers):**
+```js
+function jsonResponse(body, status, corsHeaders) {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { "Content-Type": "application/json", ...corsHeaders },
+  });
+}
+const ok = (data, corsHeaders) => jsonResponse({ success: true, data }, 200, corsHeaders);
+const fail = (code, message, status, corsHeaders) =>
+  jsonResponse({ success: false, error: { code, message } }, status, corsHeaders);
+```
+
+**[REQUIRED]** La forma del error (`{ success: false, error: { code, message } }`) coincide con el `AppError` que espera el cliente de API del frontend (`FRONTEND_ENGINEERING_STANDARD.md` sección 6.3) — el backend y el frontend de este handbook comparten el mismo contrato de error, no dos formatos que alguien tiene que traducir en el medio.
+
+---
+
+## 02. Arquitectura del Worker — capas, no todo en `fetch()`
+
+**[REQUIRED]** Un worker separa: **router** (qué ruta llama a qué handler) → **middleware** (auth, CORS) → **handler** (orquesta, sin lógica de negocio pesada) → **service** (lógica de negocio) → **acceso a datos** (Supabase/R2/KV). No toda la lógica vive dentro del único bloque `if (path === ...)` de `fetch()`.
+
+**Evidencia real:** `user-worker/src/index.js` tiene el chequeo de auth, la validación del `Content-Type`, el parseo de `multipart/form-data`, la detección de tipo de archivo por magic bytes, el límite de tamaño, y la subida a R2 — todo en un único bloque `if` de ~70 líneas dentro de `fetch()`. Mismo problema que un componente de frontend que hace fetch + validación + formato + render en un solo lugar (`FRONTEND_ENGINEERING_STANDARD.md` sección 04).
+
+**Implementación:**
+```
+worker-name/
+├── src/
+│   ├── index.js          # solo router + arma la Response final
+│   ├── middleware/
+│   │   ├── cors.js
+│   │   └── auth.js
+│   ├── handlers/
+│   │   └── uploadAvatar.js
+│   ├── services/
+│   │   └── avatarService.js
+│   └── lib/
+│       └── response.js   # jsonResponse/ok/fail de la sección 01
+└── wrangler.toml
+```
+
+---
+
+## 03. CORS centralizado
+
+**[REQUIRED]** `getCorsHeaders()` vive en un solo módulo compartido, no redefinida por worker.
+
+**Evidencia real:** la misma función (idéntica salvo el método permitido) está copiada en `admin-worker`, `auth-worker`, `communications-worker`, `payments-worker`, `trading-worker` y `user-worker` — 6 copias del mismo código, que ya empezaron a divergir levemente entre sí (algunos incluyen `Access-Control-Allow-Credentials`, otros no).
+
+**[RECOMMENDED]** Si el patrón multi-worker sigue creciendo, ese módulo compartido vive en un paquete interno (`shared/http/cors.js`) importado por cada worker, no copiado.
+
+---
+
+## 04. Autenticación — middleware único, no repetido por ruta
+
+**[REQUIRED]** La validación de `Authorization: Bearer <token>` + `supabase.auth.getUser(token)` es una función reusada (`requireAuth(request, env)`), no reescrita en cada handler.
+
+**Evidencia real:** el bloque `if (!authHeader?.startsWith('Bearer '))` seguido de `supabase.auth.getUser(token)` aparece igual en `user-worker` y `auth-worker`, y se repetirá en cada worker nuevo que necesite auth si no se centraliza ahora.
+
+**Implementación:**
+```js
+async function requireAuth(request, env) {
+  const authHeader = request.headers.get("Authorization");
+  if (!authHeader?.startsWith("Bearer ")) return { error: fail("UNAUTHORIZED", "No autorizado.", 401) };
+  const supabase = createClient(env.SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY);
+  const { data: { user }, error } = await supabase.auth.getUser(authHeader.replace("Bearer ", ""));
+  if (error || !user) return { error: fail("UNAUTHORIZED", "Token inválido o expirado.", 401) };
+  return { user, supabase };
+}
+```
+
+---
+
+## 05. Validación de entrada
+
+**[REQUIRED]** El body/params de cada request se valida contra un schema (`zod`, mismo que usa el frontend — `FRONTEND_ENGINEERING_STANDARD.md` sección 6.2), no con `if` sueltos verificando campo por campo.
+
+**Evidencia real:** en `user-worker`, la validación del archivo subido es una cadena de `if (!file)`, `if (typeof file === 'string')`, `if (!file.type?.startsWith('image/'))` sin un schema — frágil ante un caso no previsto, y sin mensaje de error consistente entre validaciones.
+
+**[REQUIRED]** El backend **nunca** confía en que el frontend ya validó — la validación del cliente es solo UX (`FRONTEND_ENGINEERING_STANDARD.md` sección 9.2); la única validación real es la del servidor.
+
+---
+
+## 06. Variables de entorno — validadas una vez, no por ruta
+
+**[REQUIRED]** Las variables de entorno requeridas se validan al primer punto de entrada del worker, no repetidas como `if (!env.SUPABASE_URL || !env.SUPABASE_SERVICE_ROLE_KEY)` dentro de cada rama.
+
+**Evidencia real:** ese chequeo aparece calcado en `user-worker` y `auth-worker`.
+
+**[REQUIRED]** Secretos nunca se comitean — se configuran con `wrangler secret put <NAME>`, documentados como comentario al inicio del archivo o en el `README.md` del worker. Esto ya se hace bien en el template actual (ver encabezado de `user-worker/src/index.js`) — se mantiene como estándar, no se cambia.
+
+---
+
+## 07. Patrón multi-worker — un worker, una responsabilidad
+
+**[REQUIRED]** Cada worker tiene un dominio de responsabilidad claro (auth, pagos, trading, usuarios...) — mismo principio que la arquitectura por feature del frontend (`FRONTEND_ENGINEERING_STANDARD.md` sección 02), aplicado a nivel de servicio en vez de a nivel de carpeta.
+
+**[REQUIRED]** Antes de agregar una ruta nueva a un worker existente, se pregunta: ¿esta ruta pertenece al dominio de este worker, o es un dominio nuevo que merece su propio worker? Agregar de más a un worker existente porque "ya está desplegado" reproduce el mismo anti-patrón que un componente de frontend que crece sin límite.
+
+---
+
+## 08. TypeScript
+
+**[REQUIRED]** Todo worker **nuevo** se escribe en TypeScript desde el primer commit — mismo estándar no-negociable que el frontend (`FRONTEND_ENGINEERING_STANDARD.md` sección 07).
+
+**Estado real:** los 13 workers de `workers-template` están en JavaScript plano, sin tipos. Esto es deuda técnica ya identificada (ver memoria de proyecto), no un ejemplo a seguir. **[RECOMMENDED]** migrar un worker a TS quede como parte del próximo cambio importante en ese worker, no una migración forzada de golpe de los 13 al mismo tiempo.
+
+---
+
+## 09. Manejo de errores
+
+**[REQUIRED]** Errores devueltos al cliente siguen el contrato de la sección 01 (`{ success: false, error: { code, message } }`), con `code` estable (`UNAUTHORIZED`, `VALIDATION_ERROR`, `NOT_FOUND`...) que el frontend puede usar para lógica condicional, y `message` en español, seguro de mostrar al usuario (mismo principio de `FRONTEND_ENGINEERING_STANDARD.md` sección 6.3 — nunca un stack trace ni detalle interno).
+
+**[REQUIRED]** El detalle técnico real del error (para debugging) se registra en logs del lado del servidor (sección 10), nunca se envía al cliente.
+
+---
+
+## 10. Logging y observabilidad
+
+**[REQUIRED]** Logs estructurados (objeto, no string concatenado a mano) para poder filtrarlos después. **[REQUIRED]** nunca se loguea un secreto, token completo, o dato personal sensible — un token se trunca o se omite del log.
+
+**[RECOMMENDED]** Cada request lleva un identificador de correlación (request ID) para poder rastrear un caso específico across logs cuando un usuario reporta un problema.
+
+---
+
+## 11. Rate limiting y abuso
+
+**[REQUIRED]** Todo endpoint público que recibe input externo sin autenticación previa (webhooks, formularios públicos) tiene algún límite de tasa — sin esto, un endpoint como `mt5-webhook-worker` o `telegram-worker` es un vector de abuso directo.
+
+**[RECOMMENDED]** Cloudflare Rate Limiting o un contador en KV/Durable Object como primera línea de defensa antes de llegar a la lógica de negocio.
+
+---
+
+## 12. Webhooks
+
+**[REQUIRED]** Todo webhook entrante (MT5, Telegram, pagos) verifica la firma/token del remitente antes de procesar el payload — nunca se confía en un POST solo porque llegó a la URL correcta.
+
+**[REQUIRED]** El procesamiento es idempotente — un webhook puede reintentarse/duplicarse por el proveedor, procesar el mismo evento dos veces no debe duplicar el efecto (ej. cobrar dos veces, enviar la señal dos veces).
+
+**[RECOMMENDED]** Responder rápido (ack inmediato) y procesar trabajo pesado de forma asíncrona (Queue/Durable Object) en vez de bloquear la respuesta HTTP con lógica larga.
+
+---
+
+## 13. Acceso a datos (Supabase)
+
+**[REQUIRED]** La `SUPABASE_SERVICE_ROLE_KEY` (acceso admin, bypassea Row Level Security) solo se usa server-side — nunca llega al frontend (ya exigido en `FRONTEND_ENGINEERING_STANDARD.md` sección 12.2, reforzado aquí desde el lado que sí la posee).
+
+**[REQUIRED]** Columnas explícitas en cada `select()` (`.select('status, role, created_at')`, no `.select('*')` por defecto) — ya se hace bien en varias partes del template actual, se mantiene como estándar: evita traer columnas sensibles o pesadas que la ruta no necesita.
+
+**[RECOMMENDED]** Decidir explícitamente, por tabla, si la autorización se resuelve con Row Level Security de Postgres o a nivel de aplicación (el Service Role la bypassea) — no asumir que RLS protege algo que en realidad se accede siempre con la key admin.
+
+---
+
+## 14. Testing
+
+**[REQUIRED]** Lógica de negocio (services) con unit tests, independiente del runtime de Cloudflare. **[RECOMMENDED]** tests de integración del `fetch()` del worker con `@cloudflare/vitest-pool-workers` (o Miniflare) para los flujos críticos (auth, pagos, webhooks).
+
+**Estado real:** ningún worker del template tiene tests hoy — mismo principio que el frontend (`FRONTEND_ENGINEERING_STANDARD.md` sección 14): no se persigue cobertura total, se prioriza lo que rompe el negocio si falla (auth, pagos, procesamiento de señales).
+
+---
+
+## 15. Documentación por worker
+
+**[REQUIRED]** Cada worker documenta, como mínimo: qué hace, variables de entorno requeridas, bindings (R2/KV/D1) requeridos. Ya se hace bien como comentario al inicio de `index.js` en varios workers del template — el estándar es formalizar eso en un `README.md` por worker a medida que crece, no solo un comentario.
+
+---
+
+## 16. Despliegue
+
+**[REQUIRED]** Un `wrangler.toml` por worker con `compatibility_date` explícito (no omitido). Secretos vía `wrangler secret put`, nunca en el `.toml` ni comiteados. **[RECOMMENDED]** entornos separados (dev/staging/prod) cuando el worker maneja datos reales de usuarios (pagos, auth) — no todos los workers lo necesitan desde el día uno.
+
+---
+
+## 17. Git Workflow
+
+Mismas reglas que `FRONTEND_ENGINEERING_STANDARD.md` sección 15 (Conventional Commits, PR revisable, CI mínimo antes de mergear) — no se duplican aquí, aplican igual a los workers.
+
+---
+
+## Checklist rápido antes de dar por terminado un worker/endpoint
+
+- [ ] ¿Respuestas (éxito y error) construidas con un helper único, no `JSON.stringify` repetido?
+- [ ] ¿Router → middleware → handler → service → datos, no todo en el bloque de `fetch()`?
+- [ ] ¿CORS y auth centralizados, no copiados de otro worker?
+- [ ] ¿Input validado con schema, nunca confiando en que el frontend ya validó?
+- [ ] ¿Variables de entorno validadas una vez, secretos nunca comiteados?
+- [ ] ¿Worker nuevo en TypeScript?
+- [ ] ¿Error devuelto con `code` + `message` en español, sin detalle técnico?
+- [ ] ¿Webhooks con verificación de firma e idempotencia?
+- [ ] ¿`SUPABASE_SERVICE_ROLE_KEY` solo server-side, columnas explícitas en cada `select()`?
+- [ ] ¿Test al menos del flujo crítico si el worker maneja auth/pagos/señales?
+
+---
+
+## 18. Workers como Único Backend
+
+**[REQUIRED]** Este stack no tiene Express, Fastify, Django, ni VPS. Workers es el backend para TODOS los clientes: web, mobile (React Native/Expo), desktop (Tauri), IoT.
+
+Documento completo: `02_Backend/WORKERS_AS_BACKEND.md`
+
+Reglas rápidas:
+- **WORKER-001:** Un solo stack de Workers para todos los clientes.
+- **WORKER-002:** NUNCA un framework de servidor tradicional.
+- **WORKER-003:** Lógica de negocio en Services, no en el handler.
+- **WORKER-004:** Comunicación interna siempre con Service Bindings, nunca HTTP.
+
+---
+
+## 19. Notificaciones (Email + Push + In-App)
+
+**[REQUIRED]** Todo sistema de notificaciones sigue el estándar `02_Backend/NOTIFICATIONS_STANDARD.md`.
+
+### Canales disponibles
+
+| Canal | Tecnología | Cuándo usarlo |
+|---|---|---|
+| Email | Resend + React Email | Transaccional, magic links, resúmenes semanales |
+| Web Push | VAPID + Service Worker | Usuarios en navegador (online o con permisos) |
+| Mobile Push | Expo Push → FCM/APNs | App React Native/Expo instalada |
+| In-App | Supabase Realtime | Usuario activo en la app (badge + lista) |
+
+### Reglas críticas
+
+**[REQUIRED] NOTIF-001:** Email NUNCA con HTML crudo. Siempre React Email templates en `packages/email-templates`.
+
+**[REQUIRED] NOTIF-002:** Emails se encolan en `NOTIF_QUEUE`. El handler HTTP no espera el envío.
+
+**[REQUIRED] NOTIF-003:** VAPID private key solo en secretos del Worker. NUNCA en variables del frontend.
+
+**[REQUIRED] NOTIF-004:** Push subscriptions con error 410 (expiradas) se eliminan automáticamente.
+
+**[REQUIRED] NOTIF-005:** Mobile push usa Expo Push Service. NUNCA FCM ni APNs directo.
+
+### Ejemplo mínimo de uso
+
+```typescript
+// Desde cualquier Worker, encolar una notificación — NUNCA await directo
+await env.NOTIF_QUEUE.send({
+  channel:  'email',
+  template: 'invitation',
+  to:       recipientEmail,
+  data:     { inviterName: user.name, teamName: team.name, joinUrl }
+})
+
+await env.NOTIF_QUEUE.send({
+  channel: 'web-push',
+  userId:  recipientId,
+  payload: { title: 'Nueva mención', body: `${user.name} te mencionó en ${doc.title}`, url: `/docs/${doc.id}` }
+})
+```
+
+
+
+################################################################################
+### ARCHIVO: 03_API/API_ENGINEERING_STANDARD.md
+### URL: https://handbook-explorer.pages.dev/03_API/API_ENGINEERING_STANDARD
+################################################################################
+
+---
+title: "API ENGINEERING STANDARD"
+category: 03_API
+doc_type: estandar
+tags:
+  - standards
+  - conventions
+  - rest-api
+  - error-handling
+  - validation
+summary: "Nivel 1 del dominio API. Define el contrato hacia afuera del sistema: rutas, métodos HTTP, códigos de respuesta, envelope de respuesta, códigos de error estables, versionado, paginación, auth, rate limiting e idempotencia."
+keywords:
+  - rest
+  - envelope
+  - http-status
+  - contracts
+  - openapi
+updated: 2026-07-26
+status: current
+---
+
+# API ENGINEERING STANDARD
+
+> Nivel 1 del handbook para el dominio API. Sigue las convenciones de [00_HANDBOOK_FORMAT.md](../00_HANDBOOK_FORMAT.md) — cada regla es `[REQUIRED]` o `[RECOMMENDED]`, escrita primero de forma agnóstica y después con una implementación de referencia en el stack actual (Cloudflare Workers multi-worker, Supabase, frontend React).
+>
+> **Relación con el Backend:** [BACKEND_ENGINEERING_STANDARD.md](../02_Backend/BACKEND_ENGINEERING_STANDARD.md) define *cómo se construye* un worker (capas, helpers, middleware, logging). Este documento define *el contrato hacia afuera*: qué promete la API a cualquier cliente que la consuma (hoy, el frontend React; mañana, una app móvil o un tercero). Ninguna regla del Backend se repite aquí — cuando aplica, se declara "hereda de Backend §X".
+>
+> **Contexto de diseño:** developer solo / equipo muy pequeño, SaaS cuyo único consumidor actual es el propio frontend. Eso permite decisiones deliberadamente simples (sin versionado prematuro, sin OpenAPI completo) que este documento hace explícitas para que una IA no "mejore" la API agregando complejidad que nadie pidió.
+
+---
+
+## 01. Diseño de recursos y naming de rutas
+
+**[REQUIRED]** Las rutas nombran **recursos** (sustantivos en plural, en inglés, `kebab-case`), no acciones: `/subscriptions`, `/payment-methods` — nunca `/getSubscriptions` ni `/createPayment`. La acción la expresa el método HTTP (sección 02).
+
+**Por qué:** con recursos + métodos, un cliente (humano o IA) puede predecir la ruta de una operación sin leer documentación: si existe `GET /invoices`, existe con altísima probabilidad `GET /invoices/:id`. Con rutas-verbo cada endpoint es un caso especial que hay que memorizar.
+
+**[REQUIRED]** Jerarquía de anidado: máximo 2 niveles (`/users/:id/subscriptions` sí; `/users/:id/subscriptions/:id/invoices/:id` no). Si un recurso anidado necesita accederse por su propio id, se promueve a ruta raíz (`/invoices/:id`) con el padre como filtro (`/invoices?subscription_id=...`).
+
+**Por qué:** más de 2 niveles obliga al cliente a conocer toda la cadena de ids para llegar a un recurso que ya tiene id propio, y multiplica rutas equivalentes para el mismo dato — dos formas de pedir lo mismo es una fuente de bugs de caché y de autorización.
+
+**[RECOMMENDED]** Apartarse de REST cuando la operación no es un CRUD sobre un recurso: acciones de negocio se modelan como sub-ruta verbo bajo el recurso, con POST: `POST /subscriptions/:id/cancel`, `POST /invoices/:id/retry-payment`. No se fuerza un `PATCH { status: "cancelled" }` cuando la operación tiene efectos colaterales (emails, webhooks, prorrateos) que un "cambio de campo" esconde.
+
+**Por qué:** REST es un medio (predictibilidad), no un fin. Una acción disfrazada de cambio de estado miente sobre sus efectos; el verbo explícito documenta que ahí pasa algo más que un UPDATE.
+
+**Implementación (multi-worker):** cada worker es dueño de un prefijo de ruta que coincide con su dominio de responsabilidad (hereda de Backend §07): `payments-worker` sirve `/payments/*` y `/invoices/*`; `user-worker` sirve `/users/*`. Un recurso nunca se sirve desde dos workers — el prefijo de ruta es el mapa público del patrón multi-worker.
+
+---
+
+## 02. Métodos HTTP y semántica
+
+**[REQUIRED]** Los métodos se usan con su semántica estándar, sin excepciones:
+
+| Método | Uso | Idempotente |
+|---|---|---|
+| GET | Leer. **Nunca** muta estado. | Sí |
+| POST | Crear recurso / ejecutar acción de negocio | No (salvo sección 11) |
+| PATCH | Actualización **parcial** — solo los campos enviados | No garantizada |
+| PUT | Reemplazo **completo** del recurso | Sí |
+| DELETE | Eliminar (o soft-delete, según el recurso) | Sí |
+
+**Por qué la idempotencia importa:** navegadores, proxies y librerías de fetch reintentan automáticamente métodos idempotentes ante fallos de red. Un GET que muta o un PUT que no es realmente idempotente convierte cada reintento invisible en un efecto duplicado que nadie puede reproducir después.
+
+**[REQUIRED]** Default para actualizaciones: **PATCH**. PUT solo cuando el cliente realmente envía la representación completa del recurso (raro en este SaaS). Un PATCH ignora campos ausentes; nunca los interpreta como "borrar el campo".
+
+**Por qué:** el frontend casi siempre edita un subconjunto (un formulario de perfil no envía todas las columnas). Exigir PUT obligaría al cliente a leer-antes-de-escribir siempre, y un campo olvidado borraría datos en silencio.
+
+**[REQUIRED]** DELETE sobre un recurso ya eliminado responde 404 (o 204 si se decide tratarlo como idempotente puro) — pero la decisión es una sola para toda la API, no por endpoint.
+
+---
+
+## 03. Códigos de estado
+
+**[REQUIRED]** El código de estado HTTP refleja el resultado real. **Nunca** se responde `200` con un error en el body — un 200 con `{ success: false }` rompe todo lo que razona por status (caché HTTP, monitoreo, interceptores del frontend, reintentos automáticos).
+
+**[REQUIRED]** Vocabulario acotado — estos y solo estos, salvo caso justificado por escrito:
+
+| Código | Cuándo |
+|---|---|
+| 200 | GET/PATCH/PUT exitoso, y POST de acción de negocio |
+| 201 | POST que creó un recurso (body: el recurso creado) |
+| 204 | Éxito sin body (DELETE, y respuesta a preflight OPTIONS) |
+| 400 | Input inválido: body, query params o headers que no pasan el schema |
+| 401 | Sin token, token inválido o expirado |
+| 403 | Token válido, pero sin permiso para este recurso |
+| 404 | Recurso inexistente — **también** cuando existe pero pertenece a otro usuario |
+| 409 | Conflicto de estado: duplicado, transición inválida (cancelar lo ya cancelado) |
+| 429 | Rate limit excedido (hereda de Backend §11) |
+| 500 | Error interno no previsto. Mensaje genérico, detalle solo en logs (Backend §09) |
+
+**Por qué acotado:** un catálogo corto y estable permite que el interceptor del frontend maneje cada código con una sola rama global (401 → re-login, 429 → backoff, 500 → toast genérico). Cada código exótico (418, 451, 402...) es una rama más que alguien tiene que escribir y testear.
+
+**Por qué 404 y no 403 para recursos ajenos:** responder 403 confirma a un atacante que el id existe — enumeración de recursos. 404 no filtra información. (Excepción consciente: recursos donde la existencia es pública por diseño.)
+
+**[RECOMMENDED]** No usar 422 para validación — 400 cubre todo input inválido en esta API. Distinguir 400/422 es una sutileza que duplica ramas sin beneficio para un solo consumidor.
+
+### 401/403 Decision Tree (Cross-domain)
+
+**[REQUIRED]** Reglas exactas de orquestación cuando falla la autenticación/autorización:
+
+1. **Interceptor HTTP global (Frontend)** detecta el `401`.
+2. Si existe un *refresh token* → intenta renovar la sesión de forma invisible.
+3. Si la renovación falla o no hay token → limpia el storage local + redirige a `/login?redirect={url}`.
+4. **El Backend NUNCA redirige**, solo devuelve el `401` en formato JSON (`{ success: false, error: ... }`).
+5. **Error 403 (prohibido)** → El frontend muestra la página de error 403 (ver `FRONTEND_ERROR_PAGES_STANDARD.md`), **NO redirige al login**. Redirigir al login un 403 atrapa al usuario en un loop infinito si ya está logueado pero no tiene permisos.
+
+---
+
+## 04. Formato de respuesta estándar
+
+El envelope (`{ success: true, data }` / `{ success: false, error: { code, message } }`) y el helper único que lo construye **heredan de Backend §01 y §09** — no se redefinen aquí. Este documento agrega lo que el contrato promete al cliente:
+
+**[REQUIRED]** `error.code` es un identificador estable en `SCREAMING_SNAKE_CASE`, legible por máquina, y es **parte del contrato**: el frontend puede hacer `if (error.code === "SUBSCRIPTION_ALREADY_CANCELLED")`. Renombrar un `code` existente es un breaking change (sección 07). `error.message` es para humanos, en español, y puede cambiar libremente — el cliente **nunca** hace lógica sobre el texto del message.
+
+**Por qué:** separar máquina/humano en campos distintos es lo que permite mejorar los mensajes sin romper clientes, y traducirlos sin tocar lógica.
+
+**[REQUIRED]** Los errores de validación (400) incluyen el detalle por campo, para que el frontend pinte el error junto al input y no como toast genérico:
+
+```json
+{
+  "success": false,
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "Datos inválidos.",
+    "details": [
+      { "field": "email", "message": "Formato de email inválido." }
+    ]
+  }
+}
+```
+
+**[REQUIRED]** Convenciones de los datos en `data`: claves en `snake_case` (coinciden con las columnas de Postgres/Supabase — sin capa de renombrado que mantener), fechas en ISO 8601 UTC (`2026-07-20T14:30:00Z`), montos de dinero en **enteros de la unidad mínima** (centavos) + campo `currency`, nunca floats.
+
+**Por qué:** cada conversión de formato entre capas es un lugar donde desincronizarse; los floats en dinero producen errores de redondeo reales en sumas y prorrateos.
+
+---
+
+## 05. Paginación
+
+**[REQUIRED]** Todo endpoint que lista una colección que crece con el uso (invoices, eventos, logs, mensajes) es paginado desde el día uno — nunca "devolver todo" con la promesa de paginar después, porque el frontend se construye asumiendo la lista completa y paginar después es un breaking change.
+
+**[REQUIRED]** Defaults y límites: `limit` default **20**, máximo **100**. El objetivo real es mantener la respuesta por debajo de ~100KB y el query de DB por debajo del presupuesto de latencia del endpoint (<500ms p95); 20/100 es la heurística actual para lograrlo y puede recalibrarse por endpoint si se mide.
+
+**[RECOMMENDED]** Estrategia según el caso:
+
+- **Cursor** (`?cursor=...&limit=20`) para listas que el usuario final scrollea y que reciben inserciones constantes (feeds, historiales). El cursor es opaco para el cliente (ej. base64 de `created_at` + `id` del último ítem).
+- **Offset** (`?page=2&limit=20`) aceptable para tablas de admin pequeñas y acotadas donde "saltar a la página 5" y el total importan más que la consistencia.
+
+**Por qué:** con offset, una inserción entre página 1 y 2 duplica o saltea ítems, y `OFFSET 10000` obliga a la DB a leer y descartar 10.000 filas; el cursor es estable ante inserciones y de costo constante. Pero el cursor no puede saltar a una página arbitraria — por eso la regla es por caso de uso, no dogma.
+
+**[REQUIRED]** La respuesta paginada declara cómo continuar, dentro del envelope estándar:
+
+```json
+{
+  "success": true,
+  "data": [ ... ],
+  "pagination": { "next_cursor": "eyJj...", "has_more": true, "limit": 20 }
+}
+```
+
+(`next_cursor: null` cuando no hay más. En modo offset: `page`, `total_count`, `has_more`.)
+
+**Implementación (Supabase):** cursor con `.gt()/.lt()` sobre `(created_at, id)` + `.order(...)` + `.limit(n + 1)` (el ítem extra revela `has_more` sin un `count` adicional); offset con `.range(from, to)`. Columnas explícitas siempre (hereda de Backend §13).
+
+---
+
+## 06. Filtrado y ordenado
+
+**[REQUIRED]** Filtros y orden viajan como query params planos y predecibles: `?status=active&sort=created_at&order=desc`. Nada de mini-lenguajes de query (`?filter=status:eq:active`) — si un endpoint necesita búsqueda compleja, se crea un endpoint de búsqueda explícito, no un DSL genérico.
+
+**Por qué:** un DSL de filtrado es una superficie de parsing, validación y seguridad enorme para un SaaS con un solo consumidor; los params planos se validan con el mismo schema que el body.
+
+**[REQUIRED]** Los campos filtrables y ordenables son una **whitelist explícita por endpoint**, validada con schema (hereda de Backend §05). Un `sort` fuera de la whitelist responde 400 — jamás se interpola el valor del query param en el query de DB.
+
+**Por qué:** sin whitelist, `?sort=password_hash` ordena (y por tanto filtra por inferencia binaria) columnas sensibles, y cualquier interpolación directa es inyección esperando su turno. La whitelist además protege a la DB: solo se permite ordenar por columnas indexadas.
+
+**Implementación (zod):**
+```ts
+const listInvoicesQuery = z.object({
+  status: z.enum(["draft", "paid", "void"]).optional(),
+  sort: z.enum(["created_at", "amount"]).default("created_at"),
+  order: z.enum(["asc", "desc"]).default("desc"),
+  limit: z.coerce.number().int().min(1).max(100).default(20),
+  cursor: z.string().optional(),
+});
+```
+
+---
+
+## 07. Versionado
+
+**[REQUIRED]** **No se versiona la API todavía.** Sin prefijo `/v1`, sin header de versión. El único consumidor es el propio frontend, que se despliega junto con los workers — versionar hoy es mantener dos contratos para cero clientes externos.
+
+**Por qué:** el versionado existe para no romper clientes que no controlás. Mientras todos los clientes son propios y se despliegan coordinados, la "versión" es el deploy. Agregar `/v1` "por si acaso" es complejidad especulativa — exactamente lo que una IA tiende a agregar por defecto y este documento prohíbe.
+
+**[REQUIRED]** El costo de esa decisión es la disciplina de **cambios compatibles primero**. Son compatibles (se hacen sin aviso): agregar campos a una respuesta, agregar campos **opcionales** al request, agregar endpoints, agregar valores a un enum **que el cliente trata con default case**. Son breaking (prohibidos sin migración): renombrar/eliminar campos o `error.code`s, volver requerido lo opcional, cambiar tipos o semántica de un campo, cambiar códigos de estado.
+
+**Corolario para el cliente [REQUIRED]:** el frontend ignora campos desconocidos en las respuestas (no valida "exactamente estas claves y ninguna más") — es lo que hace baratos los cambios aditivos.
+
+**[REQUIRED]** Cuando un breaking change sea inevitable: primero se agrega el campo/endpoint nuevo conviviendo con el viejo (expand), se migra el frontend, y solo entonces se elimina el viejo (contract) — nunca un deploy que rompe y arregla "a la vez", porque entre el deploy del worker y el del frontend hay usuarios con la versión anterior cargada en el navegador.
+
+**[RECOMMENDED]** El día que exista un cliente que no controlás (API pública, app móvil con ciclo de release lento), ese es el disparador para introducir versionado — por prefijo de ruta (`/v2/...`), que es lo que el patrón de routing por prefijo de la sección 01 ya soporta sin tocar los workers existentes.
+
+---
+
+## 08. Validación de entrada y contratos compartidos
+
+La validación con schema en el borde del worker hereda de Backend §05 (incluido: nunca confiar en que el frontend validó). Este documento agrega el contrato de tipos:
+
+**[REQUIRED]** Los tipos del contrato (shapes de request/response, `error.code`s) tienen **una sola fuente de verdad compartida** entre frontend y workers — no dos declaraciones paralelas que alguien mantiene sincronizadas a mano.
+
+**Por qué:** dos copias del mismo tipo divergen en silencio; el bug aparece como un `undefined` en producción, no como un error de compilación. Con fuente única, un cambio de contrato rompe la compilación de ambos lados — que es exactamente donde querés enterarte.
+
+**Implementación (TypeScript + zod):** los schemas zod viven en un paquete compartido del monorepo (`shared/contracts/`), y los tipos se derivan de ellos — el schema valida en runtime en el worker y tipa en compile-time en ambos lados:
+
+```ts
+// shared/contracts/invoices.ts
+export const createInvoiceBody = z.object({
+  subscription_id: z.string().uuid(),
+  amount_cents: z.number().int().positive(),
+  currency: z.enum(["USD", "MXN"]),
+});
+export type CreateInvoiceBody = z.infer<typeof createInvoiceBody>;
+```
+
+**[RECOMMENDED]** Los tipos de las filas de la DB se generan desde Supabase (`supabase gen types typescript`) en el mismo paquete compartido, en vez de escribirse a mano — misma lógica de fuente única, aplicada al schema de la DB.
+
+---
+
+## 09. CORS — configuración correcta
+
+La centralización del módulo CORS hereda de Backend §03. Este documento fija **qué valores** son correctos:
+
+**[REQUIRED]** `Access-Control-Allow-Origin` responde con **el origin específico** del request si está en la whitelist de origins permitidos (los dominios del frontend), o no responde CORS en absoluto. Nunca `*` en una API autenticada.
+
+**Por qué:** `*` significa "cualquier página web del mundo puede leer las respuestas de esta API desde el navegador de tus usuarios". Además, la especificación prohíbe combinar `Access-Control-Allow-Credentials: true` con origin `*` — el navegador bloquea la respuesta; la combinación no es solo insegura, es no-funcional. Y como la whitelist tiene varios origins (prod, staging, localhost), el header debe ecoar el origin concreto validado, junto con `Vary: Origin` para no envenenar cachés intermedias.
+
+**[REQUIRED]** El preflight `OPTIONS` se responde antes del middleware de auth (un preflight nunca trae `Authorization`), con 204, y `Access-Control-Allow-Headers` incluye exactamente los headers que la API acepta: `Authorization, Content-Type, Idempotency-Key`. Un header custom nuevo (sección 11) que se olvida aquí produce errores CORS que parecen bugs de auth.
+
+**[RECOMMENDED]** `Access-Control-Max-Age` para cachear el preflight y ahorrar un round-trip por request. El objetivo es reducir latencia percibida; como referencia, los navegadores capan este valor a un máximo propio (del orden de horas — verificar en docs oficiales el cap vigente por navegador), así que un valor de `86400` es seguro de declarar aunque el navegador lo recorte.
+
+**Implementación (Workers):**
+```ts
+const ALLOWED_ORIGINS = ["https://app.example.com", "http://localhost:5173"];
+function corsHeaders(request: Request) {
+  const origin = request.headers.get("Origin");
+  if (!origin || !ALLOWED_ORIGINS.includes(origin)) return {};
+  return {
+    "Access-Control-Allow-Origin": origin,
+    "Access-Control-Allow-Methods": "GET,POST,PATCH,PUT,DELETE,OPTIONS",
+    "Access-Control-Allow-Headers": "Authorization, Content-Type, Idempotency-Key",
+    "Access-Control-Max-Age": "86400",
+    "Vary": "Origin",
+  };
+}
+```
+
+---
+
+## 10. Autenticación en la API
+
+El middleware `requireAuth` único hereda de Backend §04. Este documento fija el contrato de auth:
+
+**[REQUIRED]** La API se autentica con `Authorization: Bearer <access_token>` donde el token es el JWT de sesión de Supabase Auth del usuario — nunca cookies propias, nunca API keys inventadas, nunca el token en query param (los query params terminan en logs y en el historial del navegador).
+
+**[REQUIRED]** Todo endpoint es **autenticado por defecto**. Los endpoints públicos son una whitelist explícita y corta declarada en el router de cada worker (ej. `GET /health`, webhooks — que se autentican por firma, Backend §12, no por Bearer). Un endpoint sin auth es una decisión visible en el código, jamás un olvido posible.
+
+**Por qué:** el fallo seguro. Si el default es "abierto salvo que se proteja", cada endpoint nuevo nace como potencial fuga; si el default es "cerrado salvo whitelist", el peor olvido posible es un 401 de más.
+
+**[REQUIRED]** El worker verifica el token en **cada** request — nunca confía en un `user_id` que venga en el body o en la URL como identidad. El id del usuario autenticado sale exclusivamente del token verificado; un `user_id` en la ruta solo se usa tras comprobar que coincide con (o que el rol del token puede acceder a) ese recurso.
+
+**Por qué:** el patrón `POST /users/:id/...` donde el handler cree en el `:id` es el IDOR clásico — cualquier usuario autenticado opera sobre cualquier otro cambiando un número en la URL.
+
+**[RECOMMENDED]** Verificación del JWT **local** (firma + expiración contra las claves públicas de Supabase) en vez de un round-trip a `supabase.auth.getUser()` por request, en los endpoints de alto tráfico. Supabase soporta claves de firma asimétricas con endpoint JWKS para esto — verificar en docs oficiales el mecanismo vigente y su configuración antes de implementarlo; `getUser()` (que sí valida contra el servidor, incluyendo revocación) sigue siendo el default correcto para endpoints sensibles (pagos, cambios de cuenta).
+
+**Por qué:** el trade-off real es latencia vs revocación inmediata — la verificación local no se entera de un logout/ban hasta que el token expira. La regla es elegir por endpoint según qué duele más, no aplicar uno de los dos a ciegas.
+
+---
+
+## 11. Idempotencia en escrituras críticas
+
+**[REQUIRED]** Toda operación de escritura **no idempotente por naturaleza cuyo duplicado cuesta dinero o estado irrecuperable** (crear un pago, crear una suscripción, disparar un envío) acepta un header `Idempotency-Key` (UUID generado por el cliente por intento-de-operación, reutilizado en cada retry de ese intento). Mismo key ⇒ la API devuelve la respuesta original almacenada, sin re-ejecutar el efecto.
+
+**Por qué:** el cliente no puede distinguir "el request nunca llegó" de "llegó, se ejecutó, y la respuesta se perdió". Sin idempotencia, su única opción segura es no reintentar (y perder operaciones) o reintentar (y duplicar cobros). Es el mismo principio que Backend §12 exige para webhooks entrantes, aplicado a la dirección opuesta: aquí el que reintenta es nuestro propio cliente.
+
+**[REQUIRED]** El registro de keys usadas vive en un almacenamiento con **garantía real contra duplicados** para operaciones de dinero: una tabla de Postgres/Supabase con unique constraint sobre el key (el insert duplicado falla de forma atómica y ahí se responde el resultado guardado). Un almacenamiento eventualmente consistente (como Workers KV) **no** sirve como única barrera para pagos — dos requests casi simultáneos pueden ambos "no ver" el key y ejecutar el cobro dos veces.
+
+**Por qué el detalle de consistencia:** la ventana de replicación de un store eventual es exactamente la ventana en la que ocurren los double-clicks y los retries agresivos — el caso que la idempotencia existe para cubrir.
+
+**[RECOMMENDED]** Los registros de idempotencia expiran (referencia: 24h) — el objetivo es cubrir la ventana realista de retries del cliente sin acumular una tabla infinita, no garantizar unicidad eterna.
+
+**[RECOMMENDED]** GET, PUT y DELETE no necesitan `Idempotency-Key` — ya son idempotentes por semántica (sección 02). No agregar el header donde no compra nada.
+
+---
+
+## 12. Timeouts y reintentos — qué promete la API
+
+**[REQUIRED]** Presupuesto de latencia explícito: un endpoint síncrono responde en **<500ms p95**; el objetivo real es que la UI pueda mostrar resultado sin estados de carga eternos y que ningún request se acerque a los límites de ejecución del runtime. Todo trabajo que no cabe en ese presupuesto (envío de emails, generación de reportes, llamadas a terceros lentos) se responde `202`-style: se encola (Queues/Durable Objects, hereda el patrón de Backend §12) y el cliente consulta el estado por polling a un recurso de estado — no se mantiene el request abierto.
+
+### API-007: Presupuesto de Latencia por Tipo de Endpoint
+
+| Tipo de Endpoint | Latencia p95 | Justificación |
+|---|---|---|
+| CRUD estándar | <500ms | Presupuesto general |
+| Dashboard / Analytics | <200ms | Percepción de instantaneidad |
+| Webhooks entrantes | <100ms | Responder rápido, procesar después |
+| Export / PDF | <30s | Jobs largos usan Queues |
+
+**[REQUIRED] Para lograr <200ms en dashboards:**
+1. Usar agregados precomputados (vistas materializadas o tablas de métricas/resumen acumulado).
+2. NUNCA hacer agregaciones pesadas en tiempo real (`COUNT(*)`, `SUM()`) sobre tablas principales con millones de filas.
+3. Usar índices compuestos `(team_id, day)` o `(user_id, created_at)` para queries de series temporales.
+4. Definir encabezados de caché `Cache-Control: private, no-store` (datos por usuario/tenant, no caché compartida).
+5. Frontend: Carga diferida (lazy load) de librerías de gráficos y Skeletons de UI del tamaño exacto del gráfico.
+
+**Por qué:** además de la UX, el runtime impone límites duros de CPU por request según el plan (verificar en docs oficiales de Cloudflare Workers los valores vigentes del plan contratado) — diseñar endpoints largos es diseñar contra el techo de la plataforma.
+
+**[REQUIRED]** Contrato de reintentos para el cliente (el frontend lo implementa en su capa de API): reintentar automáticamente **solo** requests idempotentes (GET/PUT/DELETE, y POST con `Idempotency-Key`), solo ante fallos de red / 429 / 5xx (nunca ante 4xx, que son deterministas), con backoff exponencial y un máximo de 2-3 intentos. Un 429 se respeta: si trae `Retry-After`, ese es el mínimo a esperar.
+
+**Por qué:** los reintentos sin estas tres condiciones (idempotencia, clase de error correcta, backoff) son la receta del efecto duplicado y de la tormenta de retries que convierte una degradación breve en un incidente.
+
+---
+
+## 13. Documentación mínima viable del contrato
+
+**[REQUIRED]** Cada worker documenta su contrato público en su `README.md` (extiende Backend §15, que ya exige README por worker): por endpoint — método + ruta, auth (público/Bearer/firma), shape de request y response (o referencia al schema compartido de la sección 08), `error.code`s que puede devolver, y si es paginado/idempotente. Formato: markdown simple, mantenido en el mismo PR que cambia el endpoint.
+
+**Por qué markdown y no OpenAPI:** el consumidor principal de esta documentación es una IA generando código y el propio developer — ambos leen markdown en el repo con cero toolchain. Un spec OpenAPI completo es mantenimiento constante para un solo consumidor interno; es complejidad especulativa hoy (misma lógica que la sección 07).
+
+**[REQUIRED]** La fuente de verdad de los *shapes* es el paquete de contratos compartido (sección 08) — el README enlaza a los schemas, no los transcribe. Documentación que duplica el tipo a mano miente en cuanto el tipo cambia.
+
+**[RECOMMENDED]** El catálogo global de `error.code`s (los transversales: `UNAUTHORIZED`, `VALIDATION_ERROR`, `NOT_FOUND`, `RATE_LIMITED`, `INTERNAL`) vive en un solo archivo del paquete compartido, exportado como constantes — agregar un code nuevo pasa por ahí, lo que evita que dos workers inventen dos nombres para el mismo error.
+
+**[RECOMMENDED]** Disparador para adoptar OpenAPI: el día que exista un consumidor externo (sección 07) — mismo evento que dispara el versionado. Antes de eso, no.
+
+---
+
+## Checklist rápido antes de dar por terminado un endpoint
+
+- [ ] ¿Ruta con sustantivo plural, máximo 2 niveles de anidado, servida por el worker dueño del prefijo?
+- [ ] ¿Método con semántica correcta — GET nunca muta, PATCH parcial como default, acciones de negocio como `POST /recurso/:id/accion`?
+- [ ] ¿Status code del catálogo de la sección 03 — nunca 200 con error en el body, 404 (no 403) para recursos de otro usuario?
+- [ ] ¿Errores con `code` estable del catálogo compartido + `details` por campo en validación?
+- [ ] ¿`snake_case`, fechas ISO 8601 UTC, dinero en centavos enteros + `currency`?
+- [ ] ¿Colección que crece → paginada desde el día uno, con `limit` default 20 / max 100 y bloque `pagination` en la respuesta?
+- [ ] ¿`sort`/filtros validados contra whitelist explícita — nunca interpolados al query?
+- [ ] ¿Sin `/v1` ni versionado; el cambio es aditivo, o siguió expand → migrar → contract?
+- [ ] ¿Shapes de request/response desde el paquete de contratos compartido, no tipados dos veces?
+- [ ] ¿CORS con origin ecoado desde whitelist + `Vary: Origin` — jamás `*`; header nuevo agregado al preflight?
+- [ ] ¿Autenticado por defecto; identidad solo desde el token verificado, nunca del body/URL?
+- [ ] ¿Escritura crítica con `Idempotency-Key` respaldado por unique constraint en Postgres (no solo KV)?
+- [ ] ¿Trabajo >500ms encolado con recurso de estado, no request abierto?
+- [ ] ¿README del worker actualizado en el mismo PR — endpoint, auth, codes, link a schemas?
+
+
+
+################################################################################
+### ARCHIVO: 04_Database/DATABASE_ENGINEERING_STANDARD.md
+### URL: https://handbook-explorer.pages.dev/04_Database/DATABASE_ENGINEERING_STANDARD
+################################################################################
+
+---
+title: "DATABASE ENGINEERING STANDARD"
+category: 04_Database
+doc_type: estandar
+tags:
+  - standards
+  - conventions
+  - postgres
+  - supabase
+  - rls
+  - migrations
+  - naming
+summary: "Nivel 1 del dominio Database. Define reglas de Postgres/Supabase: naming de tablas y columnas, tipos de datos, timestamps, constraints, índices, RLS, migraciones versionadas y backups."
+keywords:
+  - postgresql
+  - sql
+  - schema
+  - row-level-security
+  - auth
+  - triggers
+updated: 2026-07-26
+status: current
+---
+
+# DATABASE ENGINEERING STANDARD
+
+> Nivel 1 del handbook para el dominio Database. Sigue las convenciones de [00_HANDBOOK_FORMAT.md](../00_HANDBOOK_FORMAT.md) — cada regla es `[REQUIRED]` o `[RECOMMENDED]`, escrita primero de forma agnóstica (Postgres relacional en general) y después con una implementación de referencia en el stack actual (Supabase/Postgres, consumido desde Cloudflare Workers).
+>
+> Contexto de operación: developer solo / equipo muy pequeño, productos SaaS. La consecuencia práctica: no hay un DBA que revise cada esquema ni un equipo que detecte un `float` guardando dinero seis meses después. La base de datos tiene que defenderse sola — con tipos correctos, constraints y RLS — porque nadie más la va a defender.
+>
+> Este documento lo consumen IAs (Claude Code) al generar esquemas, migraciones y queries. Por eso las convenciones son deliberadamente rígidas: una IA que encuentra `users`, `orders`, `order_items` con FKs `user_id`/`order_id` puede inferir el resto del esquema sin adivinar; una IA que encuentra `tblUsers`, `Orders` y `id_de_orden` mezclados va a producir queries inconsistentes con el resto del sistema.
+>
+> Relación con otros documentos: el acceso a datos desde workers (helpers, `select` explícito, service role solo server-side) ya está regulado en `02_Backend/BACKEND_ENGINEERING_STANDARD.md` sección 13 — aquí no se repite, se profundiza el lado de la base de datos.
+
+---
+
+## 00. Las 7 Reglas Inquebrantables de Base de Datos
+
+**[REQUIRED]** Si rompes alguna de estas reglas, el PR será rechazado sin discusión. Son los cimientos de la estabilidad de los datos.
+
+1. **DB-001: NUNCA `SELECT *`.** Cada consulta (SQL o Prisma/Supabase-js) DEBE especificar exactamente las columnas necesarias (`.select('id, name')`). El wildcard destruye la latencia y rompe contratos cuando se añaden columnas sensibles.
+2. **DB-002: NUNCA FK sin índice explícito.** Toda clave foránea (`user_id references users(id)`) DEBE tener su propio `CREATE INDEX` en la misma migración. Sin índice, los deletes en cascada bloquean la tabla entera.
+3. **DB-003: Migración sin DOWN = RECHAZADO.** Toda migración SQL debe ser reversible (incluir el script `down`). Si por naturaleza técnica es irreversible (ej: un `DROP TABLE` donde se borran datos masivos irreparables), DEBE justificarse explícitamente en el PR.
+4. **DB-004: Mutaciones complejas requieren transacciones.** Múltiples escrituras dependientes DEBEN ocurrir dentro de un `BEGIN/COMMIT`. Si la base de datos no soporta transacciones distribuidas o anidadas con seguridad, se DEBE usar `SAVEPOINT` para manejo de errores granulares.
+5. **DB-005: Todo dato PII o sensible DEBE estar cifrado.** Tokens, claves API o datos médicos NUNCA viven en texto plano. (Ver Seguridad).
+6. **DB-006: NUNCA triggers para lógica de negocio.** Los triggers son invisibles en el código del servidor y una pesadilla de depurar. Usar triggers SOLO para auditoría (timestamps, history logs) o integridad referencial dura. La lógica de negocio va en el Worker.
+7. **DB-007: RLS OBLIGATORIO.** Toda tabla que guarde datos vinculados a un usuario (tabla con `user_id`) DEBE tener habilitado Row Level Security (`ALTER TABLE x ENABLE ROW LEVEL SECURITY`). Cero excepciones.
+
+---
+
+## 01. Naming — una sola convención, sin excepciones
+
+**[REQUIRED]** Tablas en `snake_case`, en plural: `users`, `orders`, `order_items`, `payment_methods`.
+
+**[REQUIRED]** Columnas en `snake_case`, en singular: `email`, `created_at`, `stripe_customer_id`.
+
+**[REQUIRED]** Foreign keys se nombran `<tabla_singular>_id`: la FK hacia `users` es `user_id`, hacia `orders` es `order_id`. Si una tabla tiene dos FKs a la misma tabla, se prefija el rol: `sender_id` y `recipient_id` (ambas hacia `users`), no `user_id_1` y `user_id_2`.
+
+**[REQUIRED]** Nunca identificadores que requieran comillas en Postgres: nada de mayúsculas (`"Users"`), espacios, ni palabras reservadas (`user`, `order` a secas como nombre de tabla — por eso el plural también ayuda: `users` y `orders` no chocan con las palabras reservadas `user` y `order`).
+
+**Por qué:** la consistencia de naming no es estética — es predictibilidad. Para una IA que genera queries, un esquema consistente convierte "adivinar el nombre de la columna" en "derivarlo mecánicamente": si existe la tabla `subscriptions` y la tabla `users`, la FK *tiene* que llamarse `user_id` y el join se escribe solo. Cada excepción a la convención es un lugar donde la IA (o yo, en seis meses) genera un query contra una columna que no existe. Y los identificadores con mayúsculas en Postgres obligan a comillas dobles en cada query para siempre — un impuesto permanente por una decisión de un segundo.
+
+**Implementación (Postgres):**
+
+```sql
+create table subscriptions (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null references users (id) on delete cascade,
+  plan text not null,
+  created_at timestamptz not null default now()
+);
+```
+
+---
+
+## 02. Tipos de datos — el tipo correcto es una regla de negocio
+
+### 2.1 Primary keys: `uuid` por defecto, `bigint` cuando el volumen lo justifica
+
+**[REQUIRED]** Toda tabla tiene una PK explícita llamada `id`. **[RECOMMENDED]** `uuid` (generada con `gen_random_uuid()`) como default para tablas cuyos IDs viajan al cliente (usuarios, órdenes, recursos de API).
+
+**Por qué:** un `uuid` no es adivinable ni enumerable — con `bigint` secuencial, `/orders/1042` le dice a un atacante que existe `/orders/1041` y cuántas órdenes tiene el negocio. Además el `uuid` puede generarse en el cliente o el worker antes del insert, útil para operaciones idempotentes. Es la opción segura por defecto para un SaaS.
+
+**[RECOMMENDED]** `bigint generated always as identity` para tablas internas de altísimo volumen que nunca exponen su ID (logs de eventos, tablas de auditoría, colas): ocupa la mitad (8 vs 16 bytes), y al ser secuencial produce índices B-tree más compactos y con mejor localidad de inserción que un uuid aleatorio.
+
+**[REQUIRED]** Nunca `serial` — `generated always as identity` es el reemplazo estándar SQL y evita los problemas de permisos/ownership de las secuencias implícitas de `serial`.
+
+### 2.2 Fechas: `timestamptz` siempre, `timestamp` nunca
+
+**[REQUIRED]** Toda columna de fecha-hora es `timestamptz`. `timestamp` (sin zona) está prohibido.
+
+**Por qué:** `timestamp` sin zona no guarda un instante — guarda una foto ambigua que significa cosas distintas según la zona horaria de quien la lee. Con usuarios en varias zonas (cualquier SaaS), servidor en UTC y Workers ejecutando en el edge de medio mundo, esa ambigüedad produce bugs de horas de diferencia imposibles de rastrear. `timestamptz` guarda el instante real (internamente en UTC) y lo convierte al leer. No cuesta nada más y elimina la clase entera de bugs.
+
+**[RECOMMENDED]** `date` (sin hora) solo cuando el dato es genuinamente un día de calendario sin instante asociado (fecha de nacimiento, día de facturación) — no como atajo para "no me importa la hora".
+
+### 2.3 Dinero: `numeric`, nunca `float`
+
+**[REQUIRED]** Todo valor monetario se guarda como entero en la unidad mínima (`amount_cents bigint` + columna `currency`) — nunca `real`, `double precision` ni `float`.
+
+**Por qué:** los flotantes binarios no pueden representar exactamente valores decimales como 0.10 — los errores de redondeo se acumulan y terminan en un balance que no cuadra por centavos, que es el peor bug posible en un SaaS con pagos: pequeño, silencioso y destructor de confianza. Y el entero-en-centavos (el modelo de Stripe) es además el formato que el contrato de API ya exige en las respuestas (`03_API` §04) — guardar centavos en la DB elimina una conversión permanente entre capas.
+
+**[RECOMMENDED]** `numeric` (con precisión explícita, ej. `numeric(12,2)`) es la alternativa aceptable solo cuando se necesita aritmética decimal en SQL (agregaciones contables, tasas con más de 2 decimales) — y en ese caso la conversión a centavos ocurre en un solo helper del worker, no dispersa por endpoint. Nunca mezclar ambas convenciones en el mismo proyecto.
+
+### 2.4 Texto: `text` por defecto
+
+**[REQUIRED]** Columnas de texto usan `text`. No se usa `varchar(n)` como pseudo-validación.
+
+**Por qué:** en Postgres, `text` y `varchar` tienen exactamente el mismo rendimiento y almacenamiento — `varchar(255)` no es "más eficiente", es un límite arbitrario heredado de MySQL que un día trunca un dato legítimo. Si un campo tiene un límite real de negocio (un handle de máximo 30 caracteres), eso es una regla de negocio y se expresa como `CHECK (char_length(handle) <= 30)`, que es explícito, tiene nombre y da un error claro.
+
+### 2.5 `jsonb`: para datos genuinamente sin esquema, no para evitar modelar
+
+**[RECOMMENDED]** `jsonb` (nunca `json`, que no se indexa y guarda texto crudo) cuando la forma del dato es genuinamente variable y opaca para el negocio: payloads crudos de webhooks, respuestas de APIs externas archivadas, preferencias libres de UI.
+
+**[REQUIRED]** No usar `jsonb` para datos con estructura conocida y estable que el negocio consulta o filtra. Señales de alarma que indican que ese `jsonb` debía ser columnas o una tabla: se hace `WHERE data->>'status' = ...` con frecuencia, se necesita un CHECK o NOT NULL sobre un campo interno, o distintas filas guardan las mismas claves siempre.
+
+**Por qué:** cada campo dentro de un `jsonb` renuncia a todo lo que este documento exige en las secciones 5 y 6 — tipos, NOT NULL, CHECK, FKs e índices simples. `jsonb` es una válvula de escape para lo que no se puede modelar, no un atajo para no modelar. Para una IA es además una trampa: un campo `metadata jsonb` no documenta qué claves existen, y el código que lo lee se llena de accesos a claves que quizá no están.
+
+---
+
+## 03. Columnas estándar en toda tabla
+
+**[REQUIRED]** Toda tabla tiene como mínimo:
+
+| Columna | Tipo | Regla |
+|---|---|---|
+| `id` | `uuid` o `bigint` (sección 2.1) | PK, nunca reutilizada |
+| `created_at` | `timestamptz not null default now()` | inmutable después del insert |
+| `updated_at` | `timestamptz not null default now()` | mantenida por trigger, no por el código |
+
+**[REQUIRED]** `updated_at` se actualiza con un trigger de base de datos, no confiando en que cada UPDATE del código lo setee.
+
+**Por qué:** si `updated_at` depende del código, vale exactamente lo que valga el UPDATE más descuidado que toque la tabla — un update manual desde el SQL editor, un script de migración de datos o un worker nuevo que lo olvida, y la columna miente para siempre. El trigger vive donde vive el dato y aplica sin excepción. `created_at`/`updated_at` en toda tabla cuestan nada y son la primera herramienta de debugging ("¿cuándo cambió esto?") en un equipo sin más observabilidad.
+
+**Implementación (Supabase):** la extensión `moddatetime` viene disponible en Supabase:
+
+```sql
+create extension if not exists moddatetime schema extensions;
+
+create trigger handle_updated_at
+  before update on orders
+  for each row execute procedure moddatetime (updated_at);
+```
+
+### 3.1 Soft delete: decisión explícita por tabla, no default global
+
+**[RECOMMENDED]** Soft delete (`deleted_at timestamptz null`) solo en tablas donde el negocio lo necesita: datos que el usuario puede querer recuperar, o registros referenciados por historial que debe sobrevivir (una orden pagada no desaparece porque se borró el producto).
+
+**[REQUIRED]** Si una tabla usa soft delete, *todas* las lecturas de esa tabla filtran `deleted_at is null` — en Supabase esto se resuelve en la política RLS de SELECT o en una vista, no confiando en que cada query lo recuerde. Y los UNIQUE de esa tabla se vuelven índices únicos parciales (`unique ... where deleted_at is null`), porque si no, un email "borrado" bloquea el re-registro para siempre.
+
+**Por qué no por defecto:** el soft delete global es deuda disfrazada de prudencia — cada tabla con `deleted_at` complica cada query, cada UNIQUE y cada FK (¿qué significa una FK hacia una fila "borrada"?). Para borrado real con obligación de retención, el backup (sección 10) ya cubre la recuperación ante errores. Hard delete es el default; soft delete es una feature de negocio que se decide tabla por tabla.
+
+---
+
+## 04. Modelado — normalización pragmática
+
+**[REQUIRED]** Punto de partida: tercera forma normal informal — cada hecho vive en un solo lugar. Si el nombre del plan aparece copiado en `subscriptions.plan_name` y en `plans.name`, uno de los dos va a estar desactualizado; la FK existe para eso.
+
+**[REQUIRED]** Relaciones muchos-a-muchos se modelan con tabla puente con nombre propio: `users` ↔ `projects` se resuelve con `project_members (project_id, user_id, role, created_at)` — nunca con un array de IDs (`project_ids uuid[]`) ni un `jsonb` de miembros en una de las dos tablas.
+
+**Por qué:** un array de FKs no es una FK — Postgres no valida que esos IDs existan, no puede hacer `on delete` sobre ellos, y el join inverso ("¿en qué proyectos está este usuario?") se vuelve un scan. La tabla puente da integridad referencial, índices en ambas direcciones y un lugar natural para los atributos de la relación (rol, fecha de ingreso), que siempre terminan apareciendo.
+
+**[RECOMMENDED]** Denormalizar (copiar un dato) solo en dos casos legítimos, y documentando el porqué en un comentario de la migración:
+
+1. **Snapshot histórico** — el dato *debe* congelarse: `order_items.unit_price` copia el precio al momento de la compra, porque el precio del producto cambia y la orden no debe cambiar con él. Esto no es denormalización por rendimiento, es corrección del modelo.
+2. **Rendimiento medido** — un contador o agregado (`projects.member_count`) solo después de que un `explain analyze` mostró que el join/count real es un problema, y siempre mantenido por trigger o job, no por el código de aplicación.
+
+**Por qué el orden importa:** denormalizar "por si acaso" crea el trabajo permanente de mantener copias sincronizadas para resolver un problema de rendimiento que todavía no existe. A la escala de un SaaS de equipo pequeño, Postgres hace joins de millones de filas sin despeinarse — el join no es el enemigo; el dato duplicado sin dueño sí.
+
+---
+
+## 05. Constraints — la integridad vive en la base de datos
+
+**[REQUIRED]** `NOT NULL` es el default de toda columna; `NULL` se permite solo cuando "ausente" es un estado real del negocio (ej. `canceled_at`). Cada columna nullable es una rama `if` más en todo el código que la lee.
+
+**[REQUIRED]** Reglas de dominio simples se expresan como `CHECK` con nombre: `check (amount_cents >= 0)`, `check (status in ('draft','active','canceled'))`, `check (char_length(handle) between 3 and 30)`.
+
+**[REQUIRED]** Unicidad de negocio se declara con `UNIQUE` en la base — nunca solo con un "verifiqué antes de insertar" en el código, que pierde la carrera entre dos requests concurrentes.
+
+**[REQUIRED]** Toda FK declara su `ON DELETE` explícitamente — la decisión de qué pasa con las filas hijas al borrar la madre es una decisión de negocio, no un default heredado:
+
+- `on delete cascade` — el hijo no tiene sentido sin el padre (`order_items` → `orders`).
+- `on delete restrict` — borrar el padre con hijos vivos es un error de negocio (no se borra un `plan` con suscripciones activas).
+- `on delete set null` — el hijo sobrevive y el vínculo era opcional (`tickets.assigned_to` → `users`).
+
+**Por qué la integridad vive en la DB y no solo en el código:** la base de datos es el único punto por el que pasan *todos* los caminos de escritura — cada worker, el SQL editor del dashboard, un script de un solo uso, el código que una IA genere el año que viene. Una validación en el código protege un camino; un constraint los protege todos, incluso contra requests concurrentes (los constraints son atómicos; un check-then-insert en el código no lo es). En un equipo de una persona sin QA, los constraints son el revisor que nunca duerme: convierten "dato corrupto descubierto en tres meses" en "error explícito en el momento de escribirlo". La validación en el worker (Backend sección 05) sigue existiendo — pero para dar buenos mensajes de error, no como única defensa.
+
+```sql
+create table order_items (
+  id uuid primary key default gen_random_uuid(),
+  order_id uuid not null references orders (id) on delete cascade,
+  product_id uuid not null references products (id) on delete restrict,
+  quantity int not null check (quantity > 0),
+  unit_price_cents bigint not null check (unit_price_cents >= 0),
+  created_at timestamptz not null default now(),
+  unique (order_id, product_id)
+);
+```
+
+---
+
+## 06. Índices — los justos, en el lugar justo
+
+**[REQUIRED]** Toda FK tiene un índice. Postgres **no** indexa FKs automáticamente (solo PKs y UNIQUE) — una FK sin índice hace que cada join por esa columna y cada `on delete` sobre la tabla madre escaneen la tabla hija completa.
+
+**[REQUIRED]** Se indexan las columnas que aparecen con frecuencia en `WHERE` u `ORDER BY` de queries reales del producto (ej. `orders(user_id, created_at desc)` para "mis órdenes recientes"). Índices compuestos: la columna de igualdad primero, la de rango/orden después.
+
+**[RECOMMENDED]** Índice parcial cuando solo se consulta un subconjunto estable de filas: `create index on orders (user_id) where status = 'pending'` — más pequeño, más rápido, y solo se actualiza cuando cambia una fila del subconjunto. El caso obligado ya apareció en 3.1: los UNIQUE de tablas con soft delete.
+
+**[REQUIRED]** Ante una query lenta, el diagnóstico es `explain analyze` (mirar `Seq Scan` sobre tablas grandes donde se esperaba un índice), no agregar índices por intuición. En Supabase, además: el Query Performance del dashboard (basado en `pg_stat_statements`) muestra las queries más costosas acumuladas, y los Advisors señalan FKs sin índice e índices nunca usados.
+
+**Por qué no indexar todo:** cada índice se paga en cada INSERT/UPDATE/DELETE (todos los índices de la tabla se actualizan) y en almacenamiento. Sobre-indexar una tabla de escritura frecuente puede costar más de lo que ahorra — y los índices que nadie usa son deuda pura. El criterio es siempre: índice porque una query real lo necesita, no porque la columna existe.
+
+---
+
+## 07. Row Level Security (Supabase) — la autorización vive junto al dato
+
+**[REQUIRED]** RLS habilitado (`alter table ... enable row level security`) en **toda** tabla del schema `public` — sin excepción, incluso en tablas que "solo se acceden desde el worker". En Supabase, el schema `public` está expuesto por la API auto-generada (PostgREST): una tabla sin RLS es legible y escribible por cualquiera que tenga la publishable/anon key, que por definición es pública porque viaja en el frontend.
+
+**Por qué:** este es el error más caro posible en Supabase, y es silencioso — la app funciona exactamente igual con y sin RLS, hasta que alguien abre la consola del navegador, copia la anon key y descarga la tabla entera. Habilitar RLS sin políticas deja la tabla cerrada (deny by default), que es el estado seguro: una tabla cerrada de más produce un bug visible; una tabla abierta de más produce una filtración invisible.
+
+**[REQUIRED]** Patrón base para tablas con dueño — columna `user_id` + una política por operación:
+
+```sql
+alter table documents enable row level security;
+
+create policy "select own documents" on documents
+  for select using ((select auth.uid()) = user_id);
+
+create policy "insert own documents" on documents
+  for insert with check ((select auth.uid()) = user_id);
+
+create policy "update own documents" on documents
+  for update using ((select auth.uid()) = user_id)
+  with check ((select auth.uid()) = user_id);
+
+create policy "delete own documents" on documents
+  for delete using ((select auth.uid()) = user_id);
+```
+
+Detalles que importan: `using` filtra las filas visibles/afectadas, `with check` valida las filas resultantes de INSERT/UPDATE (sin `with check`, un update podría reasignar la fila a otro usuario). Envolver `auth.uid()` en `(select auth.uid())` permite a Postgres evaluarlo una vez por query en vez de una vez por fila — es la forma recomendada por Supabase para que las políticas no degraden queries grandes.
+
+**[REQUIRED]** El `service_role` key **bypasea RLS por completo** (el rol tiene el atributo `bypassrls`). Implicaciones no negociables: (1) nunca sale del servidor — ya exigido en Backend sección 13; (2) todo código que la usa debe hacer su propia autorización explícita (filtrar por el user autenticado en el query), porque RLS ya no lo protege; (3) por eso el default en Workers es operar con el token del usuario cuando la operación es "en nombre del usuario" (sección 09), y reservar el service role para operaciones genuinamente administrativas (webhooks, jobs, agregados cross-usuario).
+
+**[RECOMMENDED]** Las políticas RLS son la *última* línea de autorización, no la única capa de lógica: reglas complejas de negocio (planes, límites, estados) viven en el worker, y RLS garantiza el invariante mínimo — "nadie lee ni escribe filas que no le pertenecen" — incluso si el worker tiene un bug.
+
+---
+
+## 08. Migraciones — el esquema vive en el repo
+
+**[REQUIRED]** Todo cambio de esquema —tablas, columnas, índices, políticas RLS, triggers, extensiones— es una migración SQL versionada en el repositorio. El dashboard de Supabase en producción es de **solo lectura** para el esquema: nunca se crea ni altera nada a mano ahí.
+
+**Por qué:** un cambio manual en producción es un cambio que no existe en ningún lado — no se puede revisar, ni reproducir en un entorno nuevo, ni entender seis meses después, y la próxima migración puede chocar contra un estado que el repo no conoce. Para un solo developer la tentación del dashboard es máxima ("es un cambio chiquito") y el costo también: el repo deja de ser la verdad, y una IA que lee el repo para generar código genera contra un esquema que ya no existe. Las migraciones son al esquema lo que git es al código.
+
+**Implementación (Supabase CLI):**
+
+```
+supabase/migrations/
+├── 20260701120000_create_users.sql
+├── 20260703093000_create_orders.sql
+└── 20260710150000_add_orders_status_index.sql
+```
+
+`supabase migration new <nombre>` crea el archivo; se prueba primero contra la base local (`supabase db reset`) o una branch de Supabase, y se aplica a producción con `supabase db push` (o CI). Nombres descriptivos de la acción: `create_orders`, `add_orders_status_index` — no `fix2`.
+
+**[REQUIRED]** Con código ya desplegado, los cambios de esquema son **aditivos primero** (expand → migrate → contract). El worker desplegado y la migración no se aplican en el mismo instante — durante la ventana entre ambos, código viejo corre contra esquema nuevo. Renombrar o borrar una columna en un solo paso rompe producción durante esa ventana. El orden seguro:
+
+1. **Expandir** — agregar la columna/tabla nueva (nullable o con default; el código viejo la ignora sin romperse).
+2. **Migrar** — desplegar código que escribe/lee lo nuevo; backfill de datos si hace falta.
+3. **Contraer** — solo cuando nada referencia lo viejo, una migración posterior lo elimina.
+
+**[RECOMMENDED]** Columnas `NOT NULL` sobre tablas existentes se agregan en dos pasos (agregar con default o backfill → luego `set not null`), y en tablas grandes con cuidado de locks — un `alter table` que reescribe la tabla la bloquea mientras dura.
+
+---
+
+## 09. Queries desde Workers
+
+**[REQUIRED]** Cero SQL construido por concatenación/interpolación de strings con input externo — sin excepciones. Con `supabase-js`, los métodos del query builder (`.eq()`, `.in()`, `.insert()`) parametrizan por diseño; si se necesita SQL arbitrario, va en una función de Postgres (`create function`) invocada con `.rpc('fn', { params })`, donde los parámetros son argumentos tipados, no texto pegado.
+
+**Por qué:** la inyección SQL sigue siendo la vulnerabilidad más barata de explotar y la más barata de prevenir — la parametrización la elimina por construcción. La regla es absoluta precisamente para que una IA nunca tenga que juzgar si "este caso es seguro".
+
+**[REQUIRED]** Columnas explícitas en cada select — ya es regla en Backend sección 13; desde el lado de la DB se agrega el porqué de esquema: `select('*')` acopla el código a *todas* las columnas presentes y futuras de la tabla. Cada columna nueva (quizá sensible, quizá pesada) viaja automáticamente a todos los consumidores que hicieron `*`, y el contrato real entre worker y tabla queda implícito.
+
+**[REQUIRED]** N+1 prohibido: nunca un query por elemento de una lista dentro de un loop. Supabase/PostgREST resuelve relaciones en un solo request con selects anidados:
+
+```js
+// ❌ N+1: 1 query por orden
+const { data: orders } = await supabase.from("orders").select("id, total_cents").eq("user_id", userId);
+for (const o of orders) {
+  const { data: items } = await supabase.from("order_items").select("...").eq("order_id", o.id);
+}
+
+// ✅ 1 solo request: embedding por la FK
+const { data: orders } = await supabase
+  .from("orders")
+  .select("id, total_cents, created_at, order_items ( product_id, quantity, unit_price_cents )")
+  .eq("user_id", userId);
+```
+
+**Por qué importa doble en Workers:** cada query desde un Worker es un round-trip HTTP al servidor de Supabase — no hay conexión persistente ni pool local. Un N+1 de 50 elementos son 50 round-trips secuenciales de red real; el mismo dato en un request llega en uno.
+
+**[REQUIRED]** Toda lista que puede crecer sin límite se pagina en el servidor (`.range()`, o keyset por `created_at`/`id` para listas largas) — nunca "traer todo y cortar en el código".
+
+**[RECOMMENDED]** Operaciones "en nombre del usuario" se ejecutan con el JWT del usuario (cliente creado con el token del request en el header `Authorization`), de modo que RLS aplica y autoriza; el service role queda para lo administrativo (sección 07). Así un bug de filtro en el worker degrada a "el usuario ve sus propios datos" en vez de "el usuario ve los datos de todos".
+
+---
+
+## 10. Backups y recuperación
+
+**[REQUIRED]** Antes de poner datos reales de usuarios en producción, se conoce y documenta la respuesta a tres preguntas: ¿con qué frecuencia hay backup?, ¿cuánto se retiene?, ¿cuánto dato como máximo se pierde ante un desastre (RPO)? Si la respuesta depende del plan contratado del proveedor, se verifica en la documentación oficial vigente en ese momento — los detalles por plan cambian y no se citan aquí como si fueran fijos.
+
+**Estado en Supabase (verificar en docs oficiales los detalles del plan contratado):** los planes de pago incluyen backups automáticos diarios; Point-in-Time Recovery (PITR) es un add-on que permite restaurar a un instante arbitrario, bajando el RPO de "hasta un día de datos perdidos" a minutos. Para un SaaS con datos transaccionales (pagos, órdenes), **[RECOMMENDED]** PITR activo — un día entero de órdenes perdidas no es un incidente, es el negocio.
+
+**[REQUIRED]** El backup existe cuando el restore está probado, no antes. Al menos una vez antes del launch (y tras cambios grandes de esquema), se ejecuta una restauración real a un proyecto/entorno separado y se verifica que los datos están completos y la app arranca contra ellos. Un backup jamás restaurado es una esperanza, no un plan.
+
+**Por qué:** el escenario más probable de pérdida de datos en un equipo de una persona no es la caída del proveedor — es un `update` sin `where` o una migración destructiva ejecutada por uno mismo (o por una IA con acceso a la base). El backup —y saber restaurarlo bajo presión, habiendo practicado— es la red de seguridad contra el propio error.
+
+**[RECOMMENDED]** Los cambios destructivos deliberados (borrar tabla/columna con datos) se hacen con red doble: backup verificado reciente + la fase "contract" de la sección 08, nunca como primer paso.
+
+---
+
+## 11. Datos sensibles
+
+**[REQUIRED]** Nunca se guardan en texto plano: contraseñas (en ninguna forma reversible), tokens de acceso/refresh de terceros sin cifrar, números completos de tarjeta (eso vive en el proveedor de pagos — se guarda el `customer_id`/`payment_method_id` de Stripe, jamás el PAN), ni secretos de API propios (esos van en secretos del Worker, Backend sección 06 — no en una tabla).
+
+**[REQUIRED]** El hashing de contraseñas lo maneja Supabase Auth (bcrypt, en `auth.users`) — **nunca** se implementa un login propio con columna `password` en una tabla del schema `public`, ni se duplica el email/identidad fuera de Auth más allá de una tabla `profiles` referenciando `auth.users (id)`.
+
+**Por qué:** el manejo de credenciales es el problema con mayor castigo por error y menor recompensa por resolverlo uno mismo — está completamente resuelto por la plataforma. Una tabla propia de passwords es la forma más rápida de convertir una filtración menor en una catástrofe.
+
+**[REQUIRED]** PII (nombre, email, teléfono, dirección) se trata con minimización: se guarda solo la que el producto usa de verdad, se sabe en qué tablas vive (inventario mínimo documentado), y nunca aparece en logs (Backend sección 10) ni en tablas de eventos/analytics donde sobrevive fuera de control.
+
+**[RECOMMENDED]** Secretos que la aplicación debe poder leer (API keys de terceros por usuario, tokens OAuth) se guardan cifrados — en Supabase, Vault cifra el valor en reposo y expone el descifrado solo vía SQL con los permisos adecuados; la alternativa agnóstica es cifrado a nivel de aplicación con la key fuera de la base. El criterio: si un dump de la tabla cae en manos equivocadas, esos valores no deben ser utilizables.
+
+**[RECOMMENDED]** Para PII de alto riesgo más allá de lo básico (documentos de identidad, datos de salud, financieros detallados), la primera pregunta es si de verdad hay que guardarla — el dato que no se guarda es el único que no se puede filtrar.
+
+---
+
+## Checklist — antes de dar por terminado un esquema o una migración
+
+**Naming y tipos**
+- [ ] ¿Tablas `snake_case` plural, columnas `snake_case`, FKs `<tabla_singular>_id`, nada que requiera comillas?
+- [ ] ¿PK `id` (`uuid` para IDs expuestos; `bigint identity` solo interno de alto volumen), nunca `serial`?
+- [ ] ¿Toda fecha-hora es `timestamptz`? ¿Dinero en `*_cents bigint` + `currency` (alineado con `03_API` §04), jamás float?
+- [ ] ¿`text` (+ CHECK si hay límite real) en vez de `varchar(n)`? ¿Cada `jsonb` es genuinamente sin esquema y no pereza de modelado?
+
+**Columnas estándar y modelado**
+- [ ] ¿`id`, `created_at`, `updated_at` en toda tabla, con `updated_at` por trigger?
+- [ ] ¿Soft delete solo donde el negocio lo pide, con filtro garantizado (RLS/vista) y UNIQUE parciales?
+- [ ] ¿Cada hecho en un solo lugar? ¿Muchos-a-muchos con tabla puente, no arrays de IDs?
+- [ ] ¿Cada denormalización es snapshot histórico o rendimiento medido, documentada en la migración?
+
+**Constraints e índices**
+- [ ] ¿`NOT NULL` por defecto, CHECKs para dominios simples, UNIQUE en la base (no solo en código)?
+- [ ] ¿Toda FK con `ON DELETE` explícito y decidido por negocio?
+- [ ] ¿Toda FK indexada? ¿Índices respaldados por queries reales (y `explain analyze` ante lentitud), no por intuición?
+
+**RLS y acceso**
+- [ ] ¿RLS habilitado en TODA tabla de `public`, con políticas por operación (`using` + `with check`, `(select auth.uid())`)?
+- [ ] ¿Todo camino que usa service role hace autorización explícita propia? ¿Operaciones de usuario con el JWT del usuario?
+
+**Migraciones y queries**
+- [ ] ¿El cambio es una migración versionada en el repo — cero cambios manuales en el dashboard de producción?
+- [ ] ¿Aditiva primero (expand → migrate → contract) si hay código desplegado?
+- [ ] ¿Queries parametrizadas siempre, columnas explícitas, sin N+1 (embedding), listas paginadas?
+
+**Backups y datos sensibles**
+- [ ] ¿Plan de backup conocido y documentado (frecuencia/retención/RPO, verificado en docs del plan)? ¿Restore probado al menos una vez?
+- [ ] ¿Nada prohibido en texto plano (passwords, PAN, tokens sin cifrar)? ¿Auth de Supabase para credenciales, PII minimizada y fuera de logs?
+
+---
+
+## REGLAS INQUEBRANTABLES (DB-001 a DB-009)
+
+### DB-001: SELECT * PROHIBIDO
+### DB-002: FK SIN ÍNDICE PROHIBIDO  
+### DB-003: MIGRACIÓN SIN ROLLBACK PROHIBIDO
+### DB-004: TRANSACCIÓN > 10 ROWS SIN SAVEPOINT PROHIBIDO
+### DB-005: DATO SENSIBLE EN TEXTO PLANO PROHIBIDO
+### DB-006: TRIGGER PARA LÓGICA DE NEGOCIO PROHIBIDO (solo auditoría)
+### DB-007: RLS OBLIGATORIO EN TABLAS CON USER_ID
+### DB-008: DINERO EN FLOAT/DOUBLE PROHIBIDO (solo bigint centavos)
+### DB-009: FECHAS SIN TIMEZONE PROHIBIDO (solo timestamptz)
+
+
+
+################################################################################
+### ARCHIVO: 05_Security/SECRET_LEAK_PREVENTION_STANDARD.md
+### URL: https://handbook-explorer.pages.dev/05_Security/SECRET_LEAK_PREVENTION_STANDARD
+################################################################################
+
+---
+title: "Estándar de Prevención de Fugas de Secretos en Bundles y Frontend"
+category: 05_Security
+doc_type: estandar
+tags: [seguridad, secretos, vite, bundle, frontend, backend-proxy, pre-build]
+summary: "Reglas SEC-LEAK-001 a SEC-LEAK-005 para garantizar cero secretos en bundles de cliente (Vite, React, APK, Tauri). Define la arquitectura de proxy para APIs de terceros (MetaApi, Stripe), el peligro del prefijo VITE_ y el escáner de pre-build obligatorio."
+keywords: [secretos, bundles, vite, frontend, metaapi, stripe, leak, scanner, pre-build, rls, workers]
+updated: 2026-08-14
+status: VERIFIED
+confidence: 100%
+reviewed: false
+sources:
+  - "OWASP ASVS v4.0.3 — V14.2 Dependency and Secrets Management"
+  - "Vite Documentation — Env Variables and Modes"
+  - "05_Security/SECURITY_ENGINEERING_STANDARD.md"
+  - "05_Security/MOBILE_SECURITY_STANDARD.md"
+---
+
+# ESTÁNDAR DE PREVENCIÓN DE FUGAS DE SECRETOS EN BUNDLES (SEC-LEAK)
+
+> **Capa 1 (la regla):** Todo archivo que se compile y distribuya al cliente (HTML, JS de Vite, bundle de React Native/Expo, binario de Tauri) es de acceso público por definición. Está estrictamente prohibido incluir tokens privados, JWTs de servicio, API keys con permisos de escritura o credenciales de terceros en el código del cliente.
+> 
+> **Capa 2 (implementación):** Toda llamada a APIs de terceros que requiera un secreto (MetaApi, Stripe, Resend, Telegram bots, bases de datos) se realiza exclusivamente a través de un **Cloudflare Worker / backend privado** que actúa como intermediario (Backend-for-Frontend).
+
+---
+
+## 1. Reglas Inquebrantables de Manejo de Secretos
+
+### SEC-LEAK-001: La Trampa del Prefijo `VITE_` / `NEXT_PUBLIC_`
+
+**[REQUIRED]** El prefijo `VITE_` en Vite (o `NEXT_PUBLIC_` en Next.js) **incrusta el valor en texto plano directamente en el archivo JavaScript final** durante `npm run build`. 
+
+* **Permitido con `VITE_`:** Únicamente valores diseñados para ser públicos por arquitectura:
+  * `VITE_SUPABASE_URL` (URL pública del proyecto).
+  * `VITE_SUPABASE_ANON_KEY` (clave anónima protegida por RLS).
+  * `VITE_API_BASE_URL` (URL pública de tu worker/backend).
+* **Terminantemente Prohibido con `VITE_`:**
+  * ❌ `VITE_METAAPI_TOKEN` / `VITE_METAAPI_ACCOUNT_ID`
+  * ❌ `VITE_STRIPE_SECRET_KEY` (o `sk_live_...`)
+  * ❌ `VITE_SUPABASE_SERVICE_ROLE` (clave maestra que salta RLS)
+  * ❌ `VITE_RESEND_API_KEY` / `VITE_SENDGRID_API_KEY`
+  * ❌ `VITE_TELEGRAM_BOT_TOKEN`
+
+**Por qué:** Cualquier usuario que abra la herramienta de desarrollador (`F12` → Network o Sources) o un escáner automatizado puede leer el bundle compilado y robar la credencial en menos de 5 segundos.
+
+---
+
+### SEC-LEAK-002: Arquitectura Obligatoria de Backend Proxy
+
+**[REQUIRED]** Si el frontend necesita interactuar con un servicio que exige una API key secreta o un JWT con permisos de administración (ej. MetaApi para abrir operaciones de trading o consultar balances), **el frontend nunca contacta directamente a MetaApi**.
+
+```
+❌ ARQUITECTURA INSEGURA (Fuga de Secretos):
+[ Frontend (Navegador) ] ──(con VITE_METAAPI_TOKEN en el bundle)──► [ MetaApi Server ]
+                               ▲
+                 Cualquiera extrae el token del JS
+
+✅ ARQUITECTURA SEGURA (Backend Proxy con Cloudflare Worker):
+[ Frontend (Navegador) ] 
+       │ (1. fetch con Token de Sesión del Usuario / Bearer JWT)
+       ▼
+[ Cloudflare Worker (Backend Privado) ]
+       │ (2. requireAuth(): valida sesión y permisos del usuario)
+       │ (3. Usa env.METAAPI_TOKEN inyectado en producción como secreto seguro)
+       ▼
+[ MetaApi Server (API Externa) ]
+```
+
+#### Implementación de Referencia en Worker:
+
+```typescript
+// backend/src/handlers/trading.ts
+import { requireAuth } from '../middleware/auth'
+
+export async function handleGetAccounts(request: Request, env: Env) {
+  // 1. Validar que la petición proviene de un usuario legítimo
+  const user = await requireAuth(request, env)
+  if (!user) {
+    return new Response(
+      JSON.stringify({ success: false, error: { code: 'UNAUTHORIZED', message: 'No autorizado' } }),
+      { status: 401, headers: { 'Content-Type': 'application/json' } }
+    )
+  }
+
+  // 2. Usar el secreto que vive EXCLUSIVAMENTE en el entorno del Worker (wrangler secret put)
+  const metaApiResponse = await fetch('https://mt-client-api-v1.agiliumtrade.agiliumtrade.ai/users/current/accounts', {
+    headers: {
+      'auth-token': env.METAAPI_SECRET_TOKEN,
+      'Content-Type': 'application/json'
+    }
+  })
+
+  const accounts = await metaApiResponse.json()
+  
+  // 3. Filtrar y devolver solo las cuentas que pertenecen a este usuario
+  return new Response(JSON.stringify({ ok: true, data: accounts }), {
+    headers: { 'Content-Type': 'application/json' }
+  })
+}
+```
+
+---
+
+### SEC-LEAK-003: Escáner Pre-Build Obligatorio contra Fugas
+
+**[REQUIRED]** Todo proyecto frontend debe incluir un paso de escaneo en su script `npm run build` o en el hook pre-commit que bloquee la compilación si detecta patrones de tokens JWT, private keys o API keys en el código fuente o en la carpeta `dist/`.
+
+#### Script de Escaneo Automático (`tools/scan-bundle-secrets.mjs`):
+
+```javascript
+import fs from 'fs'
+import path from 'path'
+
+// Patrones sin flag /g para garantizar determinismo estricto con RegExp.test()
+const FORBIDDEN_PATTERNS = [
+  { name: 'JWT Token con claims sensibles', regex: /eyJhbGciOi[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+/ },
+  { name: 'Stripe Secret Key', regex: /sk_live_[0-9a-zA-Z]{24,}/ },
+  { name: 'Stripe Restricted Key', regex: /rk_live_[0-9a-zA-Z]{24,}/ },
+  { name: 'Private Key PEM', regex: /-----BEGIN [A-Z ]*PRIVATE KEY-----/ },
+  { name: 'AWS Access Key', regex: /AKIA[0-9A-Z]{16}/ },
+  { name: 'Supabase Service Role', regex: /service_role/i }
+]
+
+const TARGET_DIRS = process.argv.slice(2).length > 0 ? process.argv.slice(2) : ['./dist', './src']
+
+function scanDirectory(dir) {
+  if (!fs.existsSync(dir)) return 0
+
+  let foundViolations = 0
+  const files = fs.readdirSync(dir)
+
+  for (const file of files) {
+    const fullPath = path.join(dir, file)
+    const stat = fs.statSync(fullPath)
+
+    if (stat.isDirectory()) {
+      foundViolations += scanDirectory(fullPath)
+    } else if (file.endsWith('.js') || file.endsWith('.ts') || file.endsWith('.tsx') || file.endsWith('.html')) {
+      if (file.includes('scan-bundle-secrets') || file === 'package-lock.json' || file === 'INDEX.json') continue
+
+      const content = fs.readFileSync(fullPath, 'utf8')
+      for (const pattern of FORBIDDEN_PATTERNS) {
+        if (pattern.regex.test(content)) {
+          // Si es un patrón JWT pero corresponde a una anon key pública explícita (no service_role)
+          if (pattern.name.includes('JWT') && content.includes('sb_publishable_') && !content.includes('service_role')) {
+            continue
+          }
+
+          console.error(`\x1b[31m[ERROR DE SEGURIDAD] Se detectó ${pattern.name} en: ${fullPath}\x1b[0m`)
+          foundViolations++
+        }
+      }
+    }
+  }
+  return foundViolations
+}
+
+console.log(`🔍 Escaneando directorios (${TARGET_DIRS.join(', ')}) en busca de secretos expuestos...`)
+let violations = 0
+for (const dir of TARGET_DIRS) {
+  violations += scanDirectory(dir)
+}
+
+if (violations > 0) {
+  console.error(`\x1b[31m❌ BUILD BLOQUEADO: Se encontraron ${violations} secretos en los archivos analizados.\x1b[0m`)
+  process.exit(1)
+} else {
+  console.log('\x1b[32m✅ Escaneo completado: 0 secretos expuestos.\x1b[0m')
+}
+```
+
+* **Integración en `package.json`:**
+  ```json
+  "scripts": {
+    "build": "vite build && node tools/scan-bundle-secrets.mjs"
+  }
+  ```
+
+---
+
+## 2. Protocolo de Verificación: ANTES de Crear y Desplegar un Proyecto
+
+### Checklist Pre-Arranque (Paso a Paso)
+
+Antes de escribir código o promover una nueva funcionalidad:
+
+- [ ] **1. Matriz de Variables de Entorno (.env):**
+  - Todo lo que esté en `.env` del frontend solo lleva credenciales públicas (`VITE_SUPABASE_ANON_KEY`, `VITE_SUPABASE_URL`).
+  - Todo secreto de backend se almacena en el Worker mediante `wrangler secret put <NOMBRE>` o en `.dev.vars` (nunca en `.env` del frontend).
+- [ ] **2. Cero Tokens de Terceros en Frontend:**
+  - ¿La app usa MetaApi, Stripe, Resend o Telegram? ➔ **El SDK solo se instala y ejecuta en el Worker/Backend**, nunca en `src/` de React.
+- [ ] **3. Gitignore Estricto:**
+  - `.env`, `.env.local`, `.dev.vars` y `*.pem` están en `.gitignore`.
+  - Verificación: `git ls-files | grep -E "^\.env"` no devuelve nada.
+- [ ] **4. Auditoría de Bundle Compilado:**
+  - Tras ejecutar `npm run build`, correr el verificador:
+    ```bash
+    grep -rnE "eyJhbGciOi|sk_live_|BEGIN [A-Z ]*PRIVATE KEY" dist/
+    ```
+  - Debe devolver **0 coincidencias**.
+- [ ] **5. Verificación de RLS en Tablas:**
+  - Cada tabla consultada desde el frontend tiene RLS activo y no permite lectura global anónima sin sesión.
+
+
+
+################################################################################
+### ARCHIVO: 10_Code_Quality/AGENCY_CODING_STANDARD.md
+### URL: https://handbook-explorer.pages.dev/10_Code_Quality/AGENCY_CODING_STANDARD
+################################################################################
+
+---
+title: "Estándar de Codificación y Calidad de Agencia"
+category: 10_Code_Quality
+doc_type: estandar
+tags: [code-quality, clean-code, error-handling, zod, envelope, typescript]
+summary: "Reglas de codificación obligatorias para la agencia: validación estricta de inputs con Zod, tratamiento real de errores (prohibido try/catch vacíos y falsos 200 OK), formato de envelope estándar { ok, data } / { ok, error } y principios de Clean Code pragmático."
+keywords: [clean-code, error-handling, zod, envelope, typescript, estandares, calidad]
+updated: 2026-08-14
+status: VERIFIED
+confidence: 100%
+reviewed: false
+sources:
+  - "02_Backend/BACKEND_ENGINEERING_STANDARD.md"
+  - "03_API/API_ENGINEERING_STANDARD.md"
+  - "10_Code_Quality/Reviews/CODE_REVIEW_STANDARD.md"
+---
+
+# ESTÁNDAR DE CODIFICACIÓN Y CALIDAD DE AGENCIA
+
+> **Objetivo:** Garantizar que todo el código escrito en la agencia (por humanos o IAs) sea predecible, seguro, fácil de mantener por cualquier miembro del equipo y libre de vicios clásicos de programación.
+
+---
+
+## 1. Reglas Inquebrantables de Manejo de Errores
+
+### ERR-001: Tratar los Errores como Errores (Cero Falsos 200 OK)
+
+**[REQUIRED]** Si una operación falla (falló la base de datos, credenciales inválidas, saldo insuficiente o input erróneo), **el código de estado HTTP DEBE reflejar el fallo** (`400`, `401`, `403`, `404`, `422`, `500`).
+
+* ❌ **PROHIBIDO:** Devolver `HTTP 200 OK` con un cuerpo `{ error: "No autorizado" }` o `{ success: false }`.
+* ❌ **PROHIBIDO:** Bloques `try { ... } catch (e) {}` vacíos que silencian excepciones sin loguear ni propagar.
+
+```typescript
+// ❌ CÓDIGO MALO (Falso 200 y error silenciado):
+try {
+  await db.update(...)
+} catch (e) {
+  return new Response(JSON.stringify({ ok: false, error: 'Ocurrió un error' }), { status: 200 })
+}
+
+// ✅ CÓDIGO CORRECTO:
+try {
+  const result = await db.update(...)
+  return new Response(JSON.stringify({ ok: true, data: result }), { status: 200 })
+} catch (err) {
+  console.error('[DATABASE_ERROR]', err)
+  return new Response(JSON.stringify({
+    ok: false,
+    error: 'No se pudo actualizar el registro',
+    code: 'DB_UPDATE_FAILED'
+  }), { status: 500 })
+}
+```
+
+---
+
+### ERR-002: Formato de Envelope Estándar en Todas las Respuestas
+
+**[REQUIRED]** Toda respuesta de API JSON debe seguir estrictamente el contrato canónico definido en `02_Backend/BACKEND_ENGINEERING_STANDARD.md §01` y `03_API/API_ENGINEERING_STANDARD.md §04`:
+
+```typescript
+// 1. Respuesta Exitosa:
+interface ApiResponseSuccess<T> {
+  success: true
+  data: T
+}
+
+// 2. Respuesta de Error:
+interface ApiResponseError {
+  success: false
+  error: {
+    code: string        // Código máquina estable en SCREAMING_SNAKE_CASE (ej. "INVALID_CREDENTIALS")
+    message: string     // Mensaje legible para humanos en español
+    details?: unknown   // Detalles de validación Zod o campo si aplica
+  }
+}
+```
+
+---
+
+## 2. Validación Rigurosa de Entradas (`S-001`)
+
+**[REQUIRED]** Ni el backend ni el frontend confían en datos sin validar:
+* **Frontend:** Valida formularios con Zod antes de enviar la petición (mejora UX y feedback inmediato).
+* **Backend:** Valida el body, los query params y las cabeceras con Zod antes de ejecutar cualquier lógica o consulta a base de datos.
+* Todo schema Zod descarta propiedades no declaradas (`.strict()` o descarte automático de `safeParse`).
+
+---
+
+## 3. Principios de Clean Code Pragmático
+
+1. **Funciones Cortas y Enfocadas:** Una función hace una sola cosa bien y no debe exceder de ~40 líneas.
+2. **Early Returns (Evitar el código pirámide):** Retornar de inmediato en las condiciones de error o borde para mantener el flujo principal en el nivel de indentación raíz:
+   ```typescript
+   // ✅ CORRECTO:
+   function processOrder(order: Order, user: User) {
+     if (!user.isActive) return { success: false, error: { code: 'USER_INACTIVE', message: 'Usuario inactivo' } }
+     if (order.items.length === 0) return { success: false, error: { code: 'EMPTY_ORDER', message: 'Orden vacía' } }
+     
+     // Flujo principal limpio
+     return executeOrder(order)
+   }
+   ```
+4. **Matriz Única de Nomenclatura Global [REQUIRED]:**
+   Para eliminar ambigüedad entre dominios, todo el código y archivos siguen esta tabla canónica sin excepciones:
+
+   | Elemento | Convención | Ejemplo |
+   |---|---|---|
+   | **Carpetas / Directorios** | `kebab-case` | `features/order-checkout/`, `ui-components/` |
+   | **Componentes React** | `PascalCase` (`.tsx`) | `OrderSummary.tsx`, `UserCard.tsx` |
+   | **Hooks** | `camelCase` con prefijo `use` | `useAuth.ts`, `useWindowSize.ts` |
+   | **Utilidades / Servicios / Handlers** | `camelCase` | `formatCurrency.ts`, `authService.ts` |
+   | **Variables y Funciones** | `camelCase` | `userProfile`, `calculateSubtotal()` |
+   | **Tipos e Interfaces** | `PascalCase` | `OrderState`, `ApiResponseSuccess` |
+   | **Base de Datos (Tablas y Columnas)** | `snake_case` | `order_items`, `created_at` |
+   | **Rutas y Endpoints HTTP** | `kebab-case` | `/api/v1/user-profiles`, `/auth/refresh-token` |
+
+
+

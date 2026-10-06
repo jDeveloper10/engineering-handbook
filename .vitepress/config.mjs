@@ -35,6 +35,7 @@ const ETIQUETA_CATEGORIA = {
   '13_AI_Rules': 'AI Rules',
   '14_DX': 'Developer Experience',
   '15_Knowledge_System': 'Knowledge System',
+  '16_Accounting': 'Accounting',
   root: 'Raíz del handbook',
 }
 
@@ -58,7 +59,7 @@ const ORDEN_CATEGORIAS = [
   'root', '00_Fundamentos', '01_Frontend', '02_Backend', '03_API', '04_Database',
   '05_Security', '06_Testing', '07_DevOps', '08_Cloud', '09_Architecture',
   '10_Code_Quality', '10_Product', '11_Debugging', '12_Documentation',
-  '13_AI_Rules', '14_DX', '15_Knowledge_System',
+  '13_AI_Rules', '14_DX', '15_Knowledge_System', '16_Accounting',
 ]
 
 /**
@@ -125,7 +126,7 @@ function construirSidebar() {
 
 export default {
   title: 'Engineering Handbook',
-  description: 'Base de conocimiento de estándares de ingeniería de software — 171 documentos, auto-ruteo para IA vía AGENTS.md.',
+  description: `Base de conocimiento de estándares de ingeniería de software — ${INDEX.docs.length} documentos, auto-ruteo para IA vía AGENTS.md.`,
   lang: 'es-ES',
   cleanUrls: true,
   lastUpdated: true,
@@ -144,11 +145,9 @@ export default {
   ],
 
   ignoreDeadLinks: [
-    // Ejemplos de código dentro de fences ```: DOCUMENTATION_STANDARD.md muestra una
-    // plantilla de README que referencia este mismo handbook desde OTRO repo — no es
-    // un enlace real del sitio, es texto ilustrativo. VitePress solo lo marcaría si
-    // alguna vez saliera de un bloque de código; este patrón cubre esa ruta exacta.
     /\/ENGINEERING_HANDBOOK\/AGENTS$/,
+    /\/LICENSE$/,
+    './LICENSE',
   ],
 
   head: [

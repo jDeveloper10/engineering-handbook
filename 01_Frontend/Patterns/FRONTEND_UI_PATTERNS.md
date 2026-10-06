@@ -184,6 +184,205 @@ Opción 4 — logos integrados y compactos:
 
 ---
 
+## 6. Más Allá de Cards, Menú Hamburguesa y Aside: Taxonomía Exhaustiva de Componentes de Interfaz
+
+**[REQUIRED] REGLA DE DIVERSIDAD DE COMPONENTES (`FE-CARD-001` / `FE-010`):**
+Está terminantemente prohibido caer en la "fatiga de cards" (*card fatigue*) o estructurar toda interfaz recurriendo mecánicamente por inercia a **cards idénticas, menú hamburguesa y aside**. El catálogo de una aplicación o web profesional es amplio, modular y multidimensional. Cada necesidad de visualización y flujo debe resolverse con el componente preciso de la siguiente taxonomía:
+
+### 6.1 Taxonomía de Componentes de Interfaz Moderna
+
+1. **Navegación:**
+   - `Navbar`: Barra de navegación superior para rutas globales y branding.
+   - `Sidebar`: Barra lateral o riel de navegación persistente para aplicaciones con múltiples niveles o herramientas de trabajo.
+   - `Bottom Navigation`: Barra de navegación fija inferior para dispositivos móviles (3 a 5 accesos directos principales).
+   - `Tabs`: Pestañas para alternar vistas o paneles dentro de un mismo nivel jerárquico sin recargar página.
+   - `Breadcrumbs`: Migas de pan que indican la jerarquía de navegación y permiten retroceder niveles.
+   - `Mega Menu`: Menú desplegable amplio estructurado por columnas/categorías para catálogos con gran volumen de secciones.
+   - `Dropdown Menu`: Menú flotante compacto desplegado al interactuar sobre un botón o disparador.
+   - `Command Palette`: Buscador interactivo modal por atajo de teclado (`Ctrl+K` / `Cmd+K`) para acciones y saltos de navegación instantáneos.
+
+2. **Contenido:**
+   - `Cards`: Contenedor autocontenido para ítems comparables (exclusivamente si cumple las 4 reglas de la Sección 4).
+   - `Accordions`: Paneles colapsables ideales para FAQs o contenido secundario que ahorra espacio vertical.
+   - `Carousels / Sliders`: Secuencia horizontal interactiva con controles de paginación/flechas para galerías o testimonios destacados.
+   - `Grids`: Rejillas visuales ordenadas para estructurar componentes o imágenes.
+   - `Listas`: Disposición vertical limpia con divisores sutiles, óptima para registros, transacciones o configuraciones.
+   - `Timelines`: Secuencia cronológica o procedimental conectada con líneas y nodos (procesos, historial, roadmaps).
+   - `Steppers`: Indicadores de progreso por pasos para wizards de registro, checkout o flujos secuenciales.
+   - `Masonry Layouts`: Disposición en cascada de altura variable, ideal para portafolios visuales o galerías de inspiración.
+   - `Feeds`: Flujo continuo de publicaciones, actividad o actualizaciones en orden cronológico inverso.
+
+3. **Acciones:**
+   - `Botones (Buttons)`: Botón estándar con variantes jerárquicas (primario, secundario, sutil, peligro).
+   - `Floating Action Button (FAB)`: Botón de acción flotante principal fijado en una esquina (habitual en interfaces móviles).
+   - `Split Button`: Botón dual que combina una acción primaria predeterminada con una flecha desplegable para variantes.
+   - `Icon Button`: Botón compacto representado únicamente por un ícono accesible con `aria-label` obligatorio.
+   - `Button Groups`: Conjunto de botones unidos visualmente para opciones mutuamente excluyentes o acciones coordinadas.
+
+4. **Formularios y Captura de Datos:**
+   - `Inputs`: Campos de texto, email, password, número y teléfono con validación en tiempo real.
+   - `Textarea`: Campo multilínea con autoexpansión para descripciones largas o notas.
+   - `Select`: Desplegable nativo para listas cortas y directas.
+   - `Autocomplete / Combobox`: Campo de texto con lista filtrable dinámica para conjuntos de datos medios y grandes.
+   - `Checkbox`: Selección múltiple de opciones independientes.
+   - `Radio`: Selección única dentro de un grupo excluyente.
+   - `Switch / Toggle`: Interruptor de activación/desactivación binaria de efecto inmediato.
+   - `Range Slider`: Control deslizante para selección intuitiva de valores continuos o rangos numéricos.
+   - `Date Picker`: Selector modal o desplegable de fechas y rangos temporales con calendario accesible.
+   - `Time Picker`: Selector horario específico con horas y minutos.
+   - `File Uploader`: Zona de subida de archivos con previsualización, barra de progreso y validación de tipos MIME y tamaño.
+   - `Drag & Drop Zone`: Área interactiva para arrastrar y soltar archivos o reordenar elementos en pantalla.
+
+5. **Ventanas y Capas (Overlays):**
+   - `Modal`: Ventana flotante centrada con fondo oscurecido (*backdrop*) que bloquea la interacción subyacente para decisiones críticas.
+   - `Dialog`: Ventana modal compacta para confirmaciones destructivas, avisos o preguntas directas (Aceptar / Cancelar).
+   - `Drawer`: Panel lateral deslizante que emerge y se oculta fuera del lienzo (*off-canvas*) al activarse.
+   - `Sheet`: Panel deslizante contextual (inferior *bottom sheet* en mobile, superior o lateral en desktop).
+   - `Off-Canvas`: Contenedor oculto fuera de la pantalla que se desliza al presionar un disparador.
+   - `Popover`: Ventana flotante no modal anclada contextualmente a un elemento específico para opciones rápidas.
+   - `Tooltip`: Mensaje flotante breve de texto que aparece exclusivamente en hover/focus para aclarar la función de un control.
+   - `Context Menu`: Menú flotante secundario que aparece al hacer clic derecho o mantener pulsado sobre un elemento específico.
+
+6. **Feedback y Notificaciones:**
+   - `Toast`: Notificación flotante temporal en una esquina, no bloqueante y con cierre automático.
+   - `Snackbar`: Notificación breve en la parte inferior de la pantalla, generalmente con una acción rápida (ej. "Deshacer").
+   - `Alert`: Bloque estático en la página para advertencias, errores críticos o avisos informativos.
+   - `Banner`: Franja de ancho completo en la parte superior del layout para anuncios del sistema o alertas globales.
+   - `Progress Bar`: Barra de avance continua o por porcentaje para operaciones asíncronas prolongadas.
+   - `Spinner`: Indicador de carga rotatorio para acciones breves e inmediatas.
+   - `Skeleton Loader`: Siluetas de pulso gris que imitan la forma del contenido antes de su carga, evitando el salto visual (*layout shift*).
+   - `Empty State`: Vista dedicada para cuando una lista o sección no tiene datos (ilustración/ícono, explicación y botón de acción principal).
+   - `Success / Error State`: Pantalla o bloque dedicado que comunica inequívocamente el resultado final de una operación.
+
+7. **Datos y Tablas:**
+   - `Tables`: Tablas HTML semánticas básicas para comparar pocos datos.
+   - `Data Tables`: Tablas avanzadas con ordenamiento por columnas, paginación, filtros multicriterio, selección de filas y exportación.
+   - `Pagination`: Controles numéricos o de página anterior/siguiente para navegación de grandes volúmenes de datos.
+   - `Filters`: Paneles o botones de filtrado facetado por etiquetas, fechas o rangos.
+   - `Sorting`: Controles explícitos de ordenamiento (alfabético, precio, fecha, relevancia).
+   - `Search Bar`: Barra de búsqueda con limpieza rápida y sugerencias instantáneas.
+   - `Chips / Tags`: Etiquetas compactas interactivas para clasificar, filtrar o remover atributos.
+   - `Badges`: Indicadores numéricos o de estado (ej. "Pendiente", "Completado", "3 nuevos").
+   - `Counters`: Marcadores numéricos visuales vinculados a datos reales.
+
+8. **Elementos Visuales y Multimedia:**
+   - `Avatar`: Imagen de perfil circular con iniciales de respaldo (*fallback*) y badge de estado en línea.
+   - `Gallery`: Cuadrícula o mosaico organizado para exhibir colecciones de imágenes de alta calidad.
+   - `Lightbox`: Visualizador a pantalla completa con fondo oscurecido para examinar fotos en alta resolución.
+   - `Image Viewer`: Componente con zoom interactivo, paneo y rotación para catálogos o radiografías clínicas.
+   - `Video Player`: Reproductor de video personalizado con controles accesibles, velocidad y marcas de tiempo.
+   - `Charts`: Gráficos analíticos (líneas, barras, áreas, pastel) para series temporales y distribución.
+   - `Graphs`: Redes de nodos y grafos para relaciones complejas.
+   - `Gauges`: Indicadores radiales tipo velocímetro para medir rendimiento, cumplimiento o cuotas.
+   - `Maps`: Mapas interactivos vectoriales o de geolocalización con marcadores personalizados.
+
+9. **E-commerce:**
+   - `Product Card`: Tarjeta de producto con foto, título, precio, badge de descuento y botón de compra/carrito.
+   - `Cart Drawer`: Panel deslizante lateral para ver y gestionar el carrito sin salir de la página actual.
+   - `Mini-Cart`: Desplegable compacto en el navbar para previsualizar los últimos artículos añadidos.
+   - `Quantity Selector`: Control de incremento/decremento numérico con botones `+` y `-`.
+   - `Price Block`: Bloque visual de precio con moneda, precio tachado anterior, impuestos y descuentos aplicados.
+   - `Wishlist`: Botón interactivo de guardado en lista de deseos con feedback animado.
+   - `Checkout Stepper`: Barra de progreso de compra por pasos (Dirección → Envío → Pago → Confirmación).
+   - `Coupon Input`: Campo con validación inmediata para aplicar códigos de descuento.
+   - `Rating / Reviews`: Estrellas interactivas con desglose numérico y lista de comentarios de clientes reales.
+
+10. **LMS / Plataformas de Cursos:**
+    - `Course Card`: Tarjeta de curso con portada, nivel, duración, instructor y badge de certificación.
+    - `Lesson List`: Lista estructurada de lecciones con indicadores de completado, candado (bloqueado) y duración.
+    - `Curriculum Accordion`: Acordeón colapsable por módulos o semanas formativas.
+    - `Progress Tracker`: Barra circular o lineal que mide el porcentaje de avance del alumno en el temario.
+    - `Video Lesson Player`: Reproductor de clases con velocidad variable, transcripción lateral y notas.
+    - `Quiz`: Componente interactivo de evaluación con selección múltiple, tiempo límite y retroalimentación inmediata.
+    - `Certificate Card`: Bloque visual conmemorativo con código de verificación QR y botón de descarga en PDF.
+    - `Module Navigation`: Botones persistentes de "Lección anterior" y "Marcar y continuar".
+
+11. **Dashboard y Analítica:**
+    - `Stat Cards`: Tarjetas métricas individuales con cifra clave, delta porcentual comparativo y micro-gráfico (*sparkline*).
+    - `KPI Widgets`: Bloques modulares con indicadores clave de rendimiento del negocio.
+    - `Activity Feed`: Flujo cronológico de eventos o logs recientes del sistema.
+    - `Quick Actions`: Fila o bloque de botones rápidos para las tareas más frecuentes del operador.
+    - `Recent Items`: Lista compacta de los últimos documentos, registros o clientes consultados.
+    - `Notifications Panel`: Panel lateral o desplegable con notificaciones no leídas y acciones de archivo.
+
+12. **Headers Especiales:**
+    - `Hero Section`: Sección de impacto principal sin clichés de IA (sin pill badges ni estadísticas ficticias obligatorias).
+    - `Sticky Header`: Encabezado que permanece visible en la parte superior durante el scroll, optimizando accesos rápidos.
+    - `Announcement Bar`: Franja delgada superior para mensajes clave, avisos de mantenimiento o promociones activas.
+    - `Promo Banner`: Bloque visual destacado para campañas temporales con CTA dedicado.
+    - `Search Header`: Encabezado centrado en la búsqueda para portales de documentación o bases de conocimiento.
+
+13. **Footers:**
+    - `Simple Footer`: Pie de página minimalista de una sola fila con copyright, enlaces legales y cambio de idioma.
+    - `Mega Footer`: Pie de página de 4 a 6 columnas con sitemap completo, newsletter, redes y certificaciones.
+    - `Social Links`: Fila de íconos vectoriales a redes sociales con estados hover calibrados.
+    - `Newsletter Block`: Formulario compacto de captura de email con aviso de privacidad y botón de suscripción.
+
+14. **Interacciones Modernas:**
+    - `Swipe Actions`: Gestos táctiles de deslizamiento lateral en móvil para acciones rápidas (ej. borrar o archivar un ítem).
+    - `Drag-and-Drop`: Arrastre visual para reordenar tareas (Kanban), subir archivos o personalizar paneles.
+    - `Resizable Panels`: Paneles con divisor arrastrable para ajustar el ancho entre áreas de trabajo (ej. editor de código / preview).
+    - `Collapsible Panels`: Paneles laterales que se contraen a una tira delgada de íconos para maximizar el área de datos.
+    - `Infinite Scroll`: Carga progresiva de registros al alcanzar el final del scroll (solo aplicable a feeds informales).
+    - `Pull-to-Refresh`: Gesto móvil de tirar hacia abajo para refrescar datos en tiempo real.
+    - `Hover Cards`: Tarjeta flotante que se despliega al posar el cursor sobre un link para previsualizar información sin navegar.
+
+15. **Estados de Interfaz:**
+    - `Loading State`: Estado visual de espera activo mediante skeleton o spinner.
+    - `Disabled State`: Estado desactivado con reducción de opacidad y `pointer-events: none` o atributo `disabled`.
+    - `Locked Content`: Bloque con desenfoque o candado indicando que requiere suscripción o permisos superiores.
+    - `Onboarding`: Secuencia de bienvenida guiada para nuevos usuarios.
+    - `Walkthrough / Coach Marks`: Puntos de atención flotantes interactivos que destacan funciones clave de la pantalla.
+    - `Confirmation Screen`: Pantalla de cierre que confirma una transacción o compra con resumen de operación.
+    - `Error Page 404 / 500`: Páginas de error amigables con código de estado real, explicación clara y botón de retorno al inicio.
+
+---
+
+### 6.2 Distinciones Clave: Componentes que Suelen Confundirse
+
+Es un error técnico grave tratar estos componentes como intercambiables:
+
+| Componente | Definición y Comportamiento | Rol Semántico / Uso Correcto |
+|---|---|---|
+| **Sidebar** | Navegación lateral persistente y fija en el layout de la página (no flota ni desaparece al hacer clic afuera). | Menú principal de aplicaciones con alta jerarquía (dashboards, admin, herramientas). |
+| **Aside** | Elemento semántico HTML (`<aside>`) para contenido tangencial o secundario al flujo principal. | Artículos relacionados, glosario, biografías de autor o widgets complementarios. |
+| **Drawer** | Panel lateral deslizante que emerge y se oculta fuera del lienzo (*off-canvas*) al activarse. | Menú de navegación en mobile, carrito de compras lateral o panel de filtros rápidos. |
+| **Sheet** | Panel deslizante similar al drawer, pero con flexibilidad direccional (puede emerger desde abajo como *bottom sheet*, arriba o los lados). | Formularios rápidos de edición o menús contextuales en dispositivos móviles. |
+| **Modal** | Ventana emergente centrada con capa oscurecedora (*backdrop*) que toma el foco y bloquea el resto de la interfaz. | Decisiones críticas, confirmaciones destructivas, pasarelas de pago o creación de recursos principales. |
+| **Popover** | Ventana flotante pequeña y no intrusiva, contextualmente anclada al botón o elemento que la disparó. | Selector de fecha en un botón, paleta de colores o detalles contextuales rápidos sin bloquear el fondo. |
+
+---
+
+### 6.3 Sistema Mínimo de Componentes (Design System Core)
+
+**[REQUIRED]** Todo proyecto profesional o plataforma debe contar con un catálogo o librería base que implemente de forma nativa como mínimo los siguientes componentes esenciales antes de considerarse maduro:
+
+```
+┌────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                               SISTEMA MÍNIMO DE COMPONENTES CORE                                       │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ 1.  Navbar         (Navegación principal superior)                                                    │
+│ 2.  Sidebar        (Navegación lateral fija de aplicación)                                            │
+│ 3.  Drawer         (Panel deslizante lateral / carrito / filtros)                                     │
+│ 4.  Modal          (Ventana emergente para flujos críticos)                                           │
+│ 5.  Cards          (Contenedores de catálogo / ítems comparables)                                     │
+│ 6.  Tabs           (Alternancia de paneles sin recarga)                                               │
+│ 7.  Accordion      (Contenido colapsable y FAQs)                                                      │
+│ 8.  Forms          (Colección completa de inputs, selects, toggles, textareas)                        │
+│ 9.  Table          (Tablas semánticas y Data Tables con paginación)                                   │
+│ 10. Toast          (Notificaciones no intrusivas con feedback de mutaciones)                          │
+│ 11. Dropdown       (Menús flotantes de opciones y acciones)                                           │
+│ 12. Tooltip        (Ayuda contextual accesible)                                                       │
+│ 13. Skeleton       (Carga progresiva sin saltos de layout)                                            │
+│ 14. Empty State    (Pantallas y bloques vacíos con guía y CTA de acción)                              │
+│ 15. Pagination     (Control de páginas para grandes conjuntos de datos)                               │
+│ 16. Search         (Barra de búsqueda con feedback dinámico)                                          │
+│ 17. Filters        (Filtros por facetas y ordenamiento)                                               │
+└────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
 ## Checklist rápido antes de maquetar una sección nueva
 
 - [ ] ¿Identifiqué el tipo de información antes de elegir el componente?
@@ -195,3 +394,6 @@ Opción 4 — logos integrados y compactos:
 - [ ] ¿La sección de beneficios de una landing tiene jerarquía visual real, o es un grid de N cards iguales?
 - [ ] ¿La prueba social combina métricas/testimonio con los logos, en vez de un Logo Cloud aislado con espacio vacío?
 - [ ] ¿Elegí cada patrón por el contenido disponible, no por costumbre del ecosistema de referencia?
+- [ ] ¿Evité la "fatiga de cards" recurriendo a la taxonomía completa de componentes (tabs, accordions, drawers, sheets, tables, steppers, etc.)?
+- [ ] ¿Distinguí con rigor técnico entre Sidebar (fijo), Aside (semántico), Drawer (off-canvas lateral), Sheet (deslizante multidireccional), Modal (crítico bloqueante) y Popover (anclado no intrusivo)?
+- [ ] ¿La plataforma o proyecto implementa el Sistema Mínimo de Componentes Core (Navbar + Sidebar + Drawer + Modal + Cards + Tabs + Accordion + Forms + Table + Toast + Dropdown + Tooltip + Skeleton + Empty State + Pagination + Search + Filters)?

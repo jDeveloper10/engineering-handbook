@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Angelin — Official Character Sheet & Pixel Art Assets</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #09090d;
+      --card-bg: #121218;
+      --card-border: rgba(255, 255, 255, 0.08);
+      --red: #ff0033;
+      --red-glow: rgba(255, 0, 51, 0.35);
+      --matte-black: #16161e;
+      --silver: #d1d5db;
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.5;
+      padding: 40px 24px 80px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* HEADER */
+    header {
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 24px;
+      margin-bottom: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .brand-tag {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--red);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+    h1 span { color: var(--red); }
+    .header-sub {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* SECTIONS */
+    section {
+      margin-bottom: 50px;
+    }
+    .sec-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .sec-title::before {
+      content: '';
+      width: 4px; height: 18px;
+      background: var(--red);
+      border-radius: 2px;
+      box-shadow: 0 0 10px var(--red);
+    }
+
+    .grid {
+      display: grid;
+      gap: 20px;
+    }
+    .grid-5 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+    .grid-4 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .grid-8 { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+
+    /* CARDS */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .card:hover {
+      border-color: rgba(255, 0, 51, 0.4);
+      transform: translateY(-2px);
+    }
+    .card-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 14px;
+      font-weight: 600;
+    }
+
+    /* COLOR PALETTE */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+    }
+    .swatch {
+      height: 90px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .swatch-info { text-align: left; }
+    .swatch-name { font-weight: 700; font-size: 0.9rem; }
+    .swatch-hex { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); }
+
+    /* PIXEL ART CANVAS CONTAINERS */
+    .pixel-box {
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+      background-image: 
+        linear-gradient(45deg, #181822 25%, transparent 25%), 
+        linear-gradient(-45deg, #181822 25%, transparent 25%), 
+        linear-gradient(45deg, transparent 75%, #181822 75%), 
+        linear-gradient(-45deg, transparent 75%, #181822 75%);
+      background-size: 16px 16px;
+      background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    /* SVG WRAPPERS */
+    svg { overflow: visible; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- HEADER -->
+    <header>
+      <div>
+        <div class="brand-tag">JCDigital · Mascot Design System</div>
+        <h1>Angelin <span>Character Sheet</span></h1>
+        <div class="header-sub">Model Sheet Oficial, Matriz de Expresiones, Animaciones y Assets Pixel Art</div>
+      </div>
+      <div>
+        <a href="angelin.html" style="background:var(--red); color:#fff; padding:10px 20px; border-radius:8px; text-decoration:none; font-weight:700; font-size:0.85rem; box-shadow: 0 0 15px var(--red-glow);">
+          Ver App Interactiva 🚀
+        </a>
+      </div>
+    </header>
+
+    <!-- 1. COLOR PALETTE -->
+    <section>
+      <div class="sec-title">01. Paleta de Colores Oficial</div>
+      <div class="palette-grid">
+        <div>
+          <div class="swatch" style="background:#121216;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Matte Black</div>
+            <div class="swatch-hex">#121216 · Cuerpo / Chasis</div>
+          </div>
+        </div>
+        <div>
+          <div class="swatch" style="background:#ff0033; box-shadow: 0 0 15px rgba(255,0,51,0.5);"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Deep Red Glow</div>
+            <div class="swatch-hex">#FF0033 · Acentos / Leds</div>
+          </div>
+        </div>
+        <div>
+          <div class="swatch" style="background:#ffffff; box-shadow: 0 0 15px rgba(255,255,255,0.5);"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">White LED</div>
+            <div class="swatch-hex">#FFFFFF · Ojos OLED</div>
+          </div>
+        </div>
+        <div>
+          <div class="swatch" style="background:#d1d5db;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Subtle Silver</div>
+            <div class="swatch-hex">#D1D5DB · Antena / Clips</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. CHARACTER TURNTABLE / VIEWS -->
+    <section>
+      <div class="sec-title">02. Turnaround 5 Vistas (Vistas de Modelo)</div>
+      <div class="grid grid-5">
+        
+        <!-- FRONT VIEW -->
+        <div class="card">
+          <svg width="120" height="150" viewBox="0 0 200 240">
+            <!-- Head -->
+            <rect x="36" y="30" width="128" height="80" rx="26" fill="#181820" stroke="#343444" stroke-width="2"/>
+            <rect x="46" y="42" width="108" height="56" rx="16" fill="#060609" stroke="rgba(255,0,51,0.3)"/>
+            <ellipse cx="74" cy="70" rx="8" ry="10" fill="#fff"/>
+            <ellipse cx="126" cy="70" rx="8" ry="10" fill="#fff"/>
+            <text x="94" y="90" font-family="monospace" font-size="10" fill="#ff0033" font-weight="700">›_</text>
+            <line x1="100" y1="30" x2="100" y2="15" stroke="#d1d5db" stroke-width="2.5"/>
+            <circle cx="100" cy="13" r="4" fill="#ff0033"/>
+            <!-- Torso -->
+            <path d="M 72 115 C 72 110, 128 110, 128 115 L 123 155 C 123 165, 77 165, 77 155 Z" fill="#141418" stroke="#282834" stroke-width="2"/>
+            <rect x="86" y="122" width="28" height="12" rx="3" fill="#060609"/>
+            <rect x="90" y="126" width="12" height="4" rx="1.5" fill="#ff0033"/>
+            <!-- Floating Hands -->
+            <circle cx="55" cy="140" r="9" fill="#141418" stroke="#2a2a36"/>
+            <circle cx="145" cy="140" r="9" fill="#141418" stroke="#2a2a36"/>
+          </svg>
+          <div class="card-label">Front View</div>
+        </div>
+
+        <!-- 3/4 VIEW -->
+        <div class="card">
+          <svg width="120" height="150" viewBox="0 0 200 240">
+            <!-- Head tilted 3/4 -->
+            <rect x="42" y="30" width="120" height="80" rx="26" fill="#181820" stroke="#343444" stroke-width="2"/>
+            <rect x="50" y="42" width="98" height="56" rx="16" fill="#060609" stroke="rgba(255,0,51,0.3)"/>
+            <ellipse cx="80" cy="70" rx="7" ry="10" fill="#fff"/>
+            <ellipse cx="122" cy="70" rx="8" ry="10" fill="#fff"/>
+            <text x="92" y="90" font-family="monospace" font-size="10" fill="#ff0033" font-weight="700">›_</text>
+            <line x1="106" y1="30" x2="108" y2="15" stroke="#d1d5db" stroke-width="2.5"/>
+            <circle cx="109" cy="13" r="4" fill="#ff0033"/>
+            <!-- Torso -->
+            <path d="M 74 115 C 74 110, 126 110, 126 115 L 121 155 C 121 165, 79 165, 79 155 Z" fill="#141418" stroke="#282834" stroke-width="2"/>
+            <!-- Floating Hands 3/4 -->
+            <circle cx="60" cy="142" r="9" fill="#141418" stroke="#2a2a36"/>
+            <circle cx="138" cy="138" r="8" fill="#141418" stroke="#2a2a36"/>
+          </svg>
+          <div class="card-label">3/4 View</div>
+        </div>
+
+        <!-- LEFT SIDE -->
+        <div class="card">
+          <svg width="120" height="150" viewBox="0 0 200 240">
+            <!-- Head side -->
+            <rect x="56" y="30" width="90" height="80" rx="26" fill="#181820" stroke="#343444" stroke-width="2"/>
+            <rect x="58" y="42" width="40" height="56" rx="12" fill="#060609" stroke="rgba(255,0,51,0.3)"/>
+            <ellipse cx="74" cy="70" rx="5" ry="9" fill="#fff"/>
+            <path d="M 144 65 Q 148 70 144 75" fill="none" stroke="#ff0033" stroke-width="3"/>
+            <line x1="100" y1="30" x2="100" y2="15" stroke="#d1d5db" stroke-width="2.5"/>
+            <circle cx="100" cy="13" r="4" fill="#ff0033"/>
+            <!-- Backpack Side -->
+            <rect x="122" y="118" width="18" height="34" rx="5" fill="#24242e"/>
+            <!-- Torso side -->
+            <path d="M 80 115 L 124 115 L 118 155 L 84 155 Z" fill="#141418" stroke="#282834" stroke-width="2"/>
+            <circle cx="70" cy="140" r="9" fill="#141418" stroke="#2a2a36"/>
+          </svg>
+          <div class="card-label">Left Side</div>
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="card">
+          <svg width="120" height="150" viewBox="0 0 200 240">
+            <!-- Head side right -->
+            <rect x="54" y="30" width="90" height="80" rx="26" fill="#181820" stroke="#343444" stroke-width="2"/>
+            <rect x="102" y="42" width="40" height="56" rx="12" fill="#060609" stroke="rgba(255,0,51,0.3)"/>
+            <ellipse cx="124" cy="70" rx="5" ry="9" fill="#fff"/>
+            <path d="M 56 65 Q 52 70 56 75" fill="none" stroke="#ff0033" stroke-width="3"/>
+            <line x1="100" y1="30" x2="100" y2="15" stroke="#d1d5db" stroke-width="2.5"/>
+            <circle cx="100" cy="13" r="4" fill="#ff0033"/>
+            <!-- Backpack Side left -->
+            <rect x="60" y="118" width="18" height="34" rx="5" fill="#24242e"/>
+            <!-- Torso side right -->
+            <path d="M 76 115 L 120 115 L 114 155 L 80 155 Z" fill="#141418" stroke="#282834" stroke-width="2"/>
+            <circle cx="130" cy="140" r="9" fill="#141418" stroke="#2a2a36"/>
+          </svg>
+          <div class="card-label">Right Side</div>
+        </div>
+
+        <!-- BACK VIEW -->
+        <div class="card">
+          <svg width="120" height="150" viewBox="0 0 200 240">
+            <!-- Head Back -->
+            <rect x="36" y="30" width="128" height="80" rx="26" fill="#181820" stroke="#343444" stroke-width="2"/>
+            <line x1="100" y1="30" x2="100" y2="15" stroke="#d1d5db" stroke-width="2.5"/>
+            <circle cx="100" cy="13" r="4" fill="#ff0033"/>
+            <!-- Torso Back -->
+            <path d="M 72 115 L 128 115 L 123 155 L 77 155 Z" fill="#141418" stroke="#282834" stroke-width="2"/>
+            <!-- Backpack Back -->
+            <rect x="82" y="120" width="36" height="38" rx="8" fill="#24242e" stroke="#2a2a36"/>
+            <rect x="88" y="126" width="6" height="24" rx="2" fill="#d1d5db"/>
+            <rect x="98" y="126" width="6" height="20" rx="2" fill="#ff0033"/>
+          </svg>
+          <div class="card-label">Back View</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. 16 FACIAL EXPRESSIONS MATRIX -->
+    <section>
+      <div class="sec-title">03. Matriz de 16 Expresiones Faciales (Pantalla OLED)</div>
+      <div class="grid grid-8">
+        
+        <!-- 1. Intelligent -->
+        <div class="card" style="padding:10px;">
+          <svg width="70" height="45" viewBox="0 0 100 60">
+            <rect width="100" height="60" rx="10" fill="#060609" stroke="rgba(255,0,51,0.3)"/>
+            <path d="M20 22 L40 22" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+            <path d="M60 22 L80 22" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+            <text x="44" y="46" font-family="monospace" font-size="10" fill="#ff0033">›_</text>
+          </svg>
+          <div class="card-label" style="font-size:0.65rem;">1. Intelligent</div>
+        </div>
+
+        <!-- 2. Friendly -->
+        <div class="card" style="padding:10px;">
+          <svg width="70" height="45" viewBox="0 0 100 60">
+            <rect width="100" height="60" rx="10" fill="#060609" stroke="rgba(255,0,51,0.3)"/>
+            <ellipse cx="30" cy="25" rx="6" ry="8" fill="#fff"/>
+            <ellipse cx="70" cy="25" rx="6" ry="8" fill="#fff"/>
+            <path d="M40 40 Q50 48 60 40" fill="none" stroke="#ff0033" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+          <div class="card-label" style="font-size:0.65rem;">2. Friendly</div>
+        </div>
+
+        <!-- 3. Curious -->
+        <div class="card" style="padding:10px;">
+          <svg width="70" height="45" viewBox="0 0 100 60">
+            <rect width="100" height="60" rx="10" fill="#060609" stroke="rgba(255,0,51,0.3)"/>
+            <circle cx="30" cy="22" r="7" fill="#fff"/>
+            <circle cx="70" cy="28" r="5" fill="#fff"/>
+            <text x="44" y="46" font-family="monospace" font-size="9" fill="#ff0033">?</text>
+          </svg>
+          <div class="card-label" style="font-size:0.65rem;">3. Curious</div>
+        </div>
+
+        <!-- 4. Creative -->
+        <div class="card" style="padding:10px;">
+          <svg width="70" height="45" viewBox="0 0 100 60">
+            <rect width="100" height="60" rx="10" fill="#060609" stroke="rgba(255,0,51,0.3)"/>
+            <polygon points="30,18 33,26 41,26 34,31 37,39 30,34 23,39 26,31 19,26 27,26" fill="#fff"/>
+            <polygon points="70,18 73,26 81,26 74,31 77,39 70,34 63,39 66,31 59,26 67,26" fill="#fff"/>
+          </svg>
+          <div class="card-label" style="font-size:0.65rem;">4. Creative</div>
+        </div>
+
+        <!-- 5. Professional -->
+        <div class="card" style="padding:10px;">
+          <svg width="70" height="45" viewBox="0 0 100 60">
+            <rect width="100" height="60" rx="10" fill="#060609" stroke="rgba(255,0,51,0.3)"/>
+            <rect x="20" y="24" width="22" height="4" fill="#fff"/>
+            <rect x="58" y="24" width="22" height="4" fill="#fff"/>
+            <rect x="42" y="40" width="16" height="3" fill="#ff0033"/>
+          </svg>
+          <div class="card-label" style="font-size:0.65rem;">5. Professional</div>
+        </div>
+
+        <!-- 6. Playful -->
+        <div class="card" style="padding:10px;">
+          <svg width="70" height="45" viewBox="0 0 100 60">
+            <rect width="100" height="60" rx="10" fill="#060609" stroke="rgba(255,0,51,0.3)"/>
+            <path d="M20 28 L36 18 L36 32 Z" fill="#fff"/>
+            <circle cx="70" cy="25" r="6" fill="#fff"/>
+            <text x="42" y="46" font-family="monospace" font-size="10" fill="#ff0033">P</text>
+          </svg>
+          <div class="card-label" style="font-size:0.65rem;">6. Playful</div>
+        </div>
+
+        <!-- 7. Coding Mode -->
+        <div class="card" style="padding:10px;">
+          <svg width="70" height="45" viewBox="0 0 100 60">
+            <rect width="100" height="60" rx="10" fill="#060609" stroke="rgba(255,0,51,0.3)"/>
+            <path d="M20 28 Q30 18 40 28" fill="none" stroke="#fff" stroke-width="3"/>
+            <path d="M60 28 Q70 18 80 28" fill="none" stroke="#fff" stroke-width="3"/>
+            <text x="36" y="46" font-family="monospace" font-size="9" fill="#ff0033">&lt;/&gt;</text>
+          </svg>
+          <div class="card-label" style="font-size:0.65rem;">7. Coding Mode</div>
+        </div>
+
+        <!-- 8. Surprised -->
+        <div class="card" style="padding:10px;">
+          <svg width="70" height="45" viewBox="0 0 100 60">
+            <rect width="100" height="60" rx="10" fill="#060609" stroke="rgba(255,0,51,0.3)"/>
+            <circle cx="30" cy="24" r="8" fill="#fff"/>
+            <circle cx="70" cy="24" r="8" fill="#fff"/>
+            <circle cx="50" cy="42" r="4" fill="#ff0033"/>
+          </svg>
+          <div class="card-label" style="font-size:0.65rem;">8. Surprised</div>
+        </div>
+
+        <!-- 9. Winking -->
+        <div class="card" style="padding:10px;">
+          <svg width="70" height="45" viewBox="0 0 100 60">
+            <rect width="100" height="60" rx="10" fill="#060609" stroke="rgba(255,0,51,0.3)"/>
+            <line x1="20" y1="24" x2="38" y2="24" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+            <ellipse cx="70" cy="24" rx="6" ry="8" fill="#fff"/>
+            <text x="44" y="46" font-family="monospace" font-size="9" fill="#ff0033">;) </text>
+          </svg>
+          <div class="card-label" style="font-size:0.65rem;">9. Winking</div>
+        </div>
+
+        <!-- 10. Thinking -->
+        <div class="card" style="padding:10px;">
+          <svg width="70" height="45" viewBox="0 0 100 60">
+            <rect width="100" height="60" rx="10" fill="#060609" stroke="rgba(255,0,51,0.3)"/>
+            <ellipse cx="30" cy="20" rx="6" ry="7" fill="#fff"/>
+            <ellipse cx="70" cy="20" rx="6" ry="7" fill="#fff"/>
+            <path d="M40 40 Q50 35 60 40" fill="none" stroke="#ff0033" stroke-width="3"/>
+          </svg>
+          <div class="card-label" style="font-size:0.65rem;">10. Thinking</div>
+        </div>
+
+        <!-- 11. Error State -->
+        <div class="card" style="padding:10px;">
+          <svg width="70" height="45" viewBox="0 0 100 60">
+            <rect width="100" height="60" rx="10" fill="#060609" stroke="rgba(255,0,51,0.3)"/>
+            <text x="22" y="28" font-family="monospace" font-size="12" fill="#ff0033" font-weight="700">X</text>
+            <text x="66" y="28" font-family="monospace" font-size="12" fill="#ff0033" font-weight="700">X</text>
+            <text x="32" y="46" font-family="monospace" font-size="8" fill="#ff0033">ERR 500</text>
+          </svg>
+          <div class="card-label" style="font-size:0.65rem;">11. Error State</div>
+        </div>
+
+        <!-- 12. Success / Deploy -->
+        <div class="card" style="padding:10px;">
+          <svg width="70" height="45" viewBox="0 0 100 60">
+            <rect width="100" height="60" rx="10" fill="#060609" stroke="rgba(255,0,51,0.3)"/>
+            <path d="M22 24 L32 32 L42 16" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/>
+            <path d="M60 24 L70 32 L80 16" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/>
+            <text x="35" y="48" font-family="monospace" font-size="8" fill="#ff0033">BUILD OK</text>
+          </svg>
+          <div class="card-label" style="font-size:0.65rem;">12. Deploy OK</div>
+        </div>
+
+        <!-- 13. Sleeping / Idle -->
+        <div class="card" style="padding:10px;">
+          <svg width="70" height="45" viewBox="0 0 100 60">
+            <rect width="100" height="60" rx="10" fill="#060609" stroke="rgba(255,0,51,0.3)"/>
+            <line x1="20" y1="26" x2="36" y2="26" stroke="#fff" stroke-width="3"/>
+            <line x1="64" y1="26" x2="80" y2="26" stroke="#fff" stroke-width="3"/>
+            <text x="44" y="46" font-family="monospace" font-size="9" fill="#ff0033">zzz</text>
+          </svg>
+          <div class="card-label" style="font-size:0.65rem;">13. Sleeping</div>
+        </div>
+
+        <!-- 14. Focused / Turbo -->
+        <div class="card" style="padding:10px;">
+          <svg width="70" height="45" viewBox="0 0 100 60">
+            <rect width="100" height="60" rx="10" fill="#060609" stroke="rgba(255,0,51,0.3)"/>
+            <polygon points="22,18 38,26 22,34" fill="#fff"/>
+            <polygon points="62,18 78,26 62,34" fill="#fff"/>
+            <text x="34" y="46" font-family="monospace" font-size="8" fill="#ff0033">TURBO</text>
+          </svg>
+          <div class="card-label" style="font-size:0.65rem;">14. Turbo Focus</div>
+        </div>
+
+        <!-- 15. Cheerful -->
+        <div class="card" style="padding:10px;">
+          <svg width="70" height="45" viewBox="0 0 100 60">
+            <rect width="100" height="60" rx="10" fill="#060609" stroke="rgba(255,0,51,0.3)"/>
+            <circle cx="30" cy="24" r="6" fill="#fff"/>
+            <circle cx="70" cy="24" r="6" fill="#fff"/>
+            <path d="M38 34 Q50 48 62 34 Z" fill="#ff0033"/>
+          </svg>
+          <div class="card-label" style="font-size:0.65rem;">15. Cheerful</div>
+        </div>
+
+        <!-- 16. Analyzing Data -->
+        <div class="card" style="padding:10px;">
+          <svg width="70" height="45" viewBox="0 0 100 60">
+            <rect width="100" height="60" rx="10" fill="#060609" stroke="rgba(255,0,51,0.3)"/>
+            <rect x="22" y="20" width="16" height="8" rx="2" fill="#fff"/>
+            <rect x="62" y="20" width="16" height="8" rx="2" fill="#fff"/>
+            <path d="M20 40 L80 40" stroke="#ff0033" stroke-width="2" stroke-dasharray="4 3"/>
+          </svg>
+          <div class="card-label" style="font-size:0.65rem;">16. Analyzing</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4. PIXEL ART ASSETS (32x32, 64x64, 128x128) -->
+    <section>
+      <div class="sec-title">04. Assets Pixel Art (32x32, 64x64, 128x128 — Fondo Transparente)</div>
+      <div class="grid grid-4">
+        
+        <!-- 32x32 -->
+        <div class="card">
+          <canvas id="px32" class="pixel-box" width="32" height="32" style="width:128px; height:128px;"></canvas>
+          <div class="card-label">32 x 32 px (Icon / Badge)</div>
+        </div>
+
+        <!-- 64x64 -->
+        <div class="card">
+          <canvas id="px64" class="pixel-box" width="64" height="64" style="width:128px; height:128px;"></canvas>
+          <div class="card-label">64 x 64 px (App / Sprite)</div>
+        </div>
+
+        <!-- 128x128 -->
+        <div class="card">
+          <canvas id="px128" class="pixel-box" width="128" height="128" style="width:160px; height:160px;"></canvas>
+          <div class="card-label">128 x 128 px (HD Sprite)</div>
+        </div>
+
+        <!-- ANIMATION PREVIEW -->
+        <div class="card">
+          <canvas id="pxAnim" class="pixel-box" width="64" height="64" style="width:128px; height:128px;"></canvas>
+          <div class="card-label">Idle / Walk Anim Live</div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    // GENERATE PIXEL ART MASCOT ON CANVASES NATIVELY
+    function drawAngelinPixel(canvas, size, frame = 0) {
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, size, size);
+
+      const scale = size / 32; // base resolution 32x32
+      const bob = Math.sin(frame * 0.2) * 1 * scale;
+
+      // Palette
+      const black = '#121216';
+      const frameColor = '#242430';
+      const red = '#ff0033';
+      const white = '#ffffff';
+      const screen = '#060609';
+
+      // 1. Shadow
+      ctx.fillStyle = 'rgba(255, 0, 51, 0.2)';
+      ctx.beginPath();
+      ctx.ellipse(16 * scale, (29) * scale, 8 * scale, 2 * scale, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // 2. Antenna
+      ctx.fillStyle = '#d1d5db';
+      ctx.fillRect(15.5 * scale, (2 + bob) * scale, 1 * scale, 3 * scale);
+      ctx.fillStyle = red;
+      ctx.fillRect(15 * scale, (1 + bob) * scale, 2 * scale, 2 * scale);
+
+      // 3. Head Outer Frame
+      ctx.fillStyle = frameColor;
+      ctx.fillRect(6 * scale, (4 + bob) * scale, 20 * scale, 14 * scale);
+
+      // 4. OLED Face Screen
+      ctx.fillStyle = screen;
+      ctx.fillRect(8 * scale, (6 + bob) * scale, 16 * scale, 10 * scale);
+
+      // 5. Eyes & Mouth
+      ctx.fillStyle = white;
+      ctx.fillRect(11 * scale, (9 + bob) * scale, 3 * scale, 4 * scale);
+      ctx.fillRect(18 * scale, (9 + bob) * scale, 3 * scale, 4 * scale);
+
+      ctx.fillStyle = red;
+      ctx.fillRect(12 * scale, (10 + bob) * scale, 1.5 * scale, 2 * scale);
+      ctx.fillRect(19 * scale, (10 + bob) * scale, 1.5 * scale, 2 * scale);
+
+      // Mouth (>_)
+      ctx.fillRect(15 * scale, (13 + bob) * scale, 2 * scale, 1 * scale);
+
+      // 6. Torso / Body
+      ctx.fillStyle = black;
+      ctx.fillRect(10 * scale, (19 + bob) * scale, 12 * scale, 7 * scale);
+
+      // Chest LED
+      ctx.fillStyle = red;
+      ctx.fillRect(13 * scale, (21 + bob) * scale, 3 * scale, 1.5 * scale);
+
+      // Floating Hands
+      const handSwing = Math.cos(frame * 0.2) * 1 * scale;
+      ctx.fillStyle = black;
+      ctx.fillRect((6) * scale, (21 + bob + handSwing) * scale, 3 * scale, 3 * scale);
+      ctx.fillRect((23) * scale, (21 + bob - handSwing) * scale, 3 * scale, 3 * scale);
+    }
+
+    // Render initial static canvases
+    drawAngelinPixel(document.getElementById('px32'), 32, 0);
+    drawAngelinPixel(document.getElementById('px64'), 64, 0);
+    drawAngelinPixel(document.getElementById('px128'), 128, 0);
+
+    // Live Animation loop for pxAnim
+    const animCanvas = document.getElementById('pxAnim');
+    let f = 0;
+    function loopAnim() {
+      f++;
+      drawAngelinPixel(animCanvas, 64, f);
+      requestAnimationFrame(loopAnim);
+    }
+    loopAnim();
+  </script>
+
+</body>
+</html>

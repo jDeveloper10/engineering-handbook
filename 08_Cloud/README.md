@@ -9,6 +9,15 @@ updated: 2026-07-09
 status: current
 ---
 
-# Cloud Engineering Standard
+# Dominio Cloud — Plataforma y Patrones
 
-> Pendiente. Ver [README.md](../README.md) raíz para el estado general del handbook y [00_HANDBOOK_FORMAT.md](../00_HANDBOOK_FORMAT.md) para las convenciones que este documento seguirá cuando se escriba.
+Este dominio define la infraestructura y patrones operativos de computación y almacenamiento en el Edge (Cloudflare).
+
+## Documentos del Dominio
+
+| Documento | Tipo | Descripción |
+|---|---|---|
+| [CLOUDFLARE_PLATFORM_STANDARD.md](CLOUDFLARE_PLATFORM_STANDARD.md) | Estándar | Plataforma completa: límites, Workers, KV, D1, R2, Queues, Durable Objects y WAF |
+| [PATRON_R2_UPLOAD_SEGURO.md](PATRON_R2_UPLOAD_SEGURO.md) | Patrón | Subida segura a R2 sin exponer llaves maestras en Vite/React |
+| [PATRON_GENERACION_PDF_EDGE.md](PATRON_GENERACION_PDF_EDGE.md) | Patrón | Generación de PDFs en Cloudflare Workers |
+| [ESCALABILIDAD_Y_MANTENIMIENTO.md](ESCALABILIDAD_Y_MANTENIMIENTO.md) | Estándar | Monitoreo con Sentry, connection pooling, caching en Edge y SLAs |

@@ -24,3 +24,18 @@ Desktop.ini
 # Sitio VitePress (E:\ENGINEERING_HANDBOOK\.vitepress) — generado, no se versiona
 .vitepress/cache/
 .vitepress/dist/
+
+# Logs
+*.log
+
+# Claude / Editor local
+.claude/
+
+# Python Cache
+__pycache__/
+*.pyc
+
+# Carpetas locales personales
+pruebas/
+cosas que me gustaron/
+

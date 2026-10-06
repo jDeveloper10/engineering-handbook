@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Angelin & Jeilica — JCDigital Dev Tamagotchi Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #07070a;
+      --panel-bg: rgba(16, 16, 22, 0.88);
+      --border: rgba(255, 255, 255, 0.08);
+      --red: #ff0033;
+      --red-glow: rgba(255, 0, 51, 0.35);
+      --cyan: #00e5ff;
+      --green: #00ff66;
+      --yellow: #ffcc00;
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: var(--bg); color: var(--text); font-family: var(--font-sans); }
+
+    /* Background tech grid */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 30%, rgba(255, 0, 51, 0.05) 0%, transparent 65%),
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      background-size: 100% 100%, 28px 28px, 28px 28px;
+      pointer-events: none;
+    }
+
+    /* TAMAGOTCHI HEADER & DASHBOARD STATS */
+    #dashboard {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      right: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      z-index: 20;
+    }
+
+    .brand-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .brand-logo {
+      width: 36px; height: 36px;
+      background: #121216;
+      border: 1px solid rgba(255, 0, 51, 0.3);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--red);
+      font-family: var(--font-mono);
+      font-weight: 800;
+      font-size: 0.95rem;
+      box-shadow: 0 0 8px rgba(255, 0, 51, 0.18);
+    }
+    .brand-name { font-weight: 900; font-size: 1.05rem; letter-spacing: -0.02em; }
+    .brand-name span { color: var(--red); }
+
+    /* MASCOT SELECTOR (ANGELIN / JEILICA / DUO) */
+    .mascot-selector {
+      display: flex;
+      gap: 4px;
+      background: rgba(16, 16, 22, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 4px;
+      border-radius: 10px;
+      margin-left: 12px;
+    }
+    .mascot-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      color: #9ca3af;
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 0.78rem;
+      padding: 5px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .mascot-btn.active {
+      background: rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    /* STATS BARS CONTAINER */
+    .stats-container {
+      display: flex;
+      gap: 12px;
+      background: var(--panel-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 12px;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+    }
+    .stat-bar-outer {
+      width: 50px;
+      height: 7px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .stat-bar-inner {
+      height: 100%;
+      width: 100%;
+      border-radius: 4px;
+      transition: width 0.3s ease;
+    }
+
+    /* BADGES */
+    .badges-container {
+      display: flex;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+    }
+    .badge {
+      background: var(--panel-bg);
+      border: 1px solid var(--border);
+      padding: 6px 10px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: 700;
+    }
+    .badge-money { color: #00ff66; border-color: rgba(0,255,102,0.3); }
+    .badge-level { color: #ffcc00; border-color: rgba(255,204,0,0.3); }
+
+    /* MASCOT STAGE & INDIVIDUAL CANVASES */
+    #angelin-stage {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .mascot-cv {
+      position: absolute;
+      width: 210px;
+      height: 210px;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+      cursor: grab;
+      user-select: none;
+      touch-action: none;
+      pointer-events: auto;
+      transform-style: preserve-3d;
+      filter: drop-shadow(0 12px 24px rgba(0,0,0,0.6));
+      transition: filter 0.2s;
+    }
+    .mascot-cv.dragging {
+      cursor: grabbing;
+      filter: drop-shadow(0 16px 32px rgba(0,0,0,0.85)) drop-shadow(0 0 12px rgba(255, 0, 51, 0.25));
+    }
+
+    /* SPEECH BUBBLES */
+    .speech-bubble {
+      position: fixed;
+      pointer-events: none;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: #ffffff;
+      background: rgba(16, 16, 22, 0.94);
+      border: 1px solid rgba(255, 0, 51, 0.25);
+      padding: 8px 14px;
+      border-radius: 10px 10px 10px 0;
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      z-index: 30;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.75), 0 0 10px rgba(255,0,51,0.12);
+    }
+    .speech-bubble.show { opacity: 1; transform: translateY(0); }
+    .speech-bubble::before { content: '>'; color: var(--red); margin-right: 6px; font-weight: 700; }
+
+    #bubble-jeilica {
+      border-color: rgba(0, 229, 255, 0.3);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.75), 0 0 10px rgba(0,229,255,0.15);
+    }
+    #bubble-jeilica::before { color: var(--cyan); }
+
+    /* CATEGORIZED ACTION DRAWER */
+    #action-drawer {
+      position: fixed;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(92vw, 980px);
+      background: rgba(14, 14, 18, 0.92);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 10px 14px;
+      z-index: 20;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.8);
+    }
+
+    /* CATEGORY TABS */
+    .cat-tabs {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      scrollbar-width: none;
+    }
+    .cat-tabs::-webkit-scrollbar { display: none; }
+
+    .tab-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--muted);
+      font-family: var(--font-sans);
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .tab-btn:hover, .tab-btn.active {
+      color: #ffffff;
+      background: rgba(255, 0, 51, 0.18);
+      border-color: rgba(255, 0, 51, 0.35);
+    }
+
+    /* ACTIONS GRID */
+    .actions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 6px;
+      max-height: 145px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+    .actions-grid::-webkit-scrollbar { width: 4px; }
+    .actions-grid::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
+
+    .act-btn {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      color: #e5e7eb;
+      font-family: var(--font-sans);
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 6px 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s, border-color 0.15s, transform 0.1s;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .act-btn:hover {
+      background: rgba(255, 0, 51, 0.2);
+      border-color: rgba(255, 0, 51, 0.4);
+      transform: translateY(-1px);
+    }
+    .act-btn:active { transform: scale(0.97); }
+
+    .pixel-particle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 26;
+      border-radius: 1px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TAMAGOTCHI DASHBOARD -->
+  <div id="dashboard">
+    <!-- Brand & Mascot Selector -->
+    <div class="brand-box">
+      <div class="brand-logo">JC</div>
+      <div>
+        <div class="brand-name" id="brand-title-display">Angelin <span>Tamagotchi</span></div>
+      </div>
+      <div class="mascot-selector">
+        <button class="mascot-btn active" id="btn-mascot-angelin" onclick="selectMascot('angelin')">🖤 Angelin</button>
+        <button class="mascot-btn" id="btn-mascot-jeilica" onclick="selectMascot('jeilica')">🤍 Jeilica</button>
+        <button class="mascot-btn" id="btn-mascot-duo" onclick="selectMascot('duo')">👥 Dúo (Juntos)</button>
+      </div>
+    </div>
+
+    <!-- Stats Bars -->
+    <div class="stats-container">
+      <div class="stat-item" title="Felicidad">
+        ❤️ <div class="stat-bar-outer"><div id="bar-happy" class="stat-bar-inner" style="width: 85%; background: #ff0055;"></div></div>
+      </div>
+      <div class="stat-item" title="Cafeína">
+        ☕ <div class="stat-bar-outer"><div id="bar-caffeine" class="stat-bar-inner" style="width: 70%; background: #ff9900;"></div></div>
+      </div>
+      <div class="stat-item" title="Energía">
+        🔋 <div class="stat-bar-outer"><div id="bar-energy" class="stat-bar-inner" style="width: 90%; background: #00ff66;"></div></div>
+      </div>
+      <div class="stat-item" title="Hambre">
+        🍕 <div class="stat-bar-outer"><div id="bar-hunger" class="stat-bar-inner" style="width: 80%; background: #ffcc00;"></div></div>
+      </div>
+      <div class="stat-item" title="Inspiración">
+        🧠 <div class="stat-bar-outer"><div id="bar-inspire" class="stat-bar-inner" style="width: 75%; background: #00e5ff;"></div></div>
+      </div>
+    </div>
+
+    <!-- Badges -->
+    <div class="badges-container">
+      <div class="badge badge-level" id="badge-lvl">⭐ Nivel 1</div>
+      <div class="badge badge-money" id="badge-money">💰 $1,250</div>
+      <div class="badge" id="badge-bugs">🐞 0</div>
+    </div>
+  </div>
+
+  <!-- INDIVIDUAL MASCOT CANVASES STAGE -->
+  <div id="angelin-stage">
+    <canvas id="cv-angelin" class="mascot-cv" width="48" height="48"></canvas>
+    <canvas id="cv-jeilica" class="mascot-cv" width="48" height="48" style="display: none;"></canvas>
+  </div>
+
+  <!-- INDIVIDUAL SPEECH BUBBLES -->
+  <div id="bubble-angelin" class="speech-bubble">¡Hola! Soy Angelin 🖤</div>
+  <div id="bubble-jeilica" class="speech-bubble">¡Hola! Soy Jeilica 🤍</div>
+
+  <!-- CATEGORIZED ACTION DRAWER -->
+  <div id="action-drawer">
+    <!-- Category Tabs -->
+    <div class="cat-tabs">
+      <button class="tab-btn active" data-cat="estados" onclick="switchCategory('estados', event)">😴 Estados</button>
+      <button class="tab-btn" data-cat="acciones" onclick="switchCategory('acciones', event)">👋 Acciones</button>
+      <button class="tab-btn" data-cat="dev" onclick="switchCategory('dev', event)">⌨️ Cosas de Dev</button>
+      <button class="tab-btn" data-cat="reacciones" onclick="switchCategory('reacciones', event)">😎 Reacciones</button>
+      <button class="tab-btn" data-cat="objetos" onclick="switchCategory('objetos', event)">☕ Objetos</button>
+      <button class="tab-btn" data-cat="animaciones" onclick="switchCategory('animaciones', event)">✨ Animaciones</button>
+      <button class="tab-btn" onclick="window.location.href='angelin-character-sheet.html'">Character Sheet 📄</button>
+    </div>
+
+    <!-- Dynamic Actions Grid -->
+    <div class="actions-grid" id="actions-grid"></div>
+  </div>
+
+  <script>
+    const cv1 = document.getElementById('cv-angelin');
+    const ctx1 = cv1.getContext('2d');
+    const bubble1 = document.getElementById('bubble-angelin');
+
+    const cv2 = document.getElementById('cv-jeilica');
+    const ctx2 = cv2.getContext('2d');
+    const bubble2 = document.getElementById('bubble-jeilica');
+
+    // ── TAMAGOTCHI GAME STATS ─────────────────────────────────────
+    let stats = {
+      happy: 85, caffeine: 70, energy: 90, hunger: 80, inspire: 75,
+      level: 1, xp: 0, money: 1250, bugs: 0, deploys: 0, prodErrors: 0
+    };
+
+    function updateStatsUI() {
+      document.getElementById('bar-happy').style.width = stats.happy + '%';
+      document.getElementById('bar-caffeine').style.width = stats.caffeine + '%';
+      document.getElementById('bar-energy').style.width = stats.energy + '%';
+      document.getElementById('bar-hunger').style.width = stats.hunger + '%';
+      document.getElementById('bar-inspire').style.width = stats.inspire + '%';
+
+      document.getElementById('badge-lvl').textContent = `⭐ Nivel ${stats.level}`;
+      document.getElementById('badge-money').textContent = `💰 $${stats.money.toLocaleString()}`;
+      document.getElementById('badge-bugs').textContent = `🐞 ${stats.bugs}`;
+    }
+
+    function addXP(amount) {
+      stats.xp += amount;
+      if (stats.xp >= stats.level * 100) {
+        stats.level++;
+        stats.xp = 0;
+        speakBoth(`🎉 ¡LEVEL UP! ¡Nivel ${stats.level}! ⭐`);
+        spawnConfetti();
+      }
+    }
+
+    // ── MASCOT SELECTOR (ANGELIN / JEILICA / DUO) ────────────────
+    let activeMascot = 'angelin';
+
+    function selectMascot(name) {
+      activeMascot = name;
+      document.querySelectorAll('.mascot-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(`btn-mascot-${name}`).classList.add('active');
+
+      const titleEl = document.getElementById('brand-title-display');
+
+      if (name === 'angelin') {
+        cv1.style.display = 'block';
+        cv2.style.display = 'none';
+        titleEl.innerHTML = 'Angelin <span>Tamagotchi</span>';
+        speakAngelin('¡Hola! Soy Angelin 🖤 (Edición Negro Mate)');
+      } else if (name === 'jeilica') {
+        cv1.style.display = 'none';
+        cv2.style.display = 'block';
+        titleEl.innerHTML = 'Jeilica <span>Tamagotchi</span>';
+        speakJeilica('¡Hola! Soy Jeilica 🤍 (Blanco Cerámico — Jeilin + Angélica)');
+      } else if (name === 'duo') {
+        cv1.style.display = 'block';
+        cv2.style.display = 'block';
+        titleEl.innerHTML = 'Dúo JCDigital <span>Angelin & Jeilica</span>';
+        speakAngelin('¡Hola! Soy Angelin 🖤');
+        speakJeilica('¡Y yo soy Jeilica 🤍! ¡Somos la dupla de JCDigital! 👾👾');
+      }
+    }
+
+    // ── SPEECH BUBBLE HELPERS ─────────────────────────────────────
+    function speakAngelin(text) {
+      bubble1.textContent = text;
+      bubble1.classList.add('show');
+      updateBubblePos(cv1, bubble1);
+      clearTimeout(bubble1._timer);
+      bubble1._timer = setTimeout(() => bubble1.classList.remove('show'), 3400);
+    }
+
+    function speakJeilica(text) {
+      bubble2.textContent = text;
+      bubble2.classList.add('show');
+      updateBubblePos(cv2, bubble2);
+      clearTimeout(bubble2._timer);
+      bubble2._timer = setTimeout(() => bubble2.classList.remove('show'), 3400);
+    }
+
+    function speakBoth(text) {
+      if (activeMascot === 'angelin') speakAngelin(text);
+      else if (activeMascot === 'jeilica') speakJeilica(text);
+      else { speakAngelin(text); speakJeilica(text); }
+    }
+
+    function updateBubblePos(cvEl, bubbleEl) {
+      const rect = cvEl.getBoundingClientRect();
+      let bx = rect.left + rect.width / 2 - bubbleEl.offsetWidth / 2;
+      let by = rect.top - 42;
+      bx = Math.max(12, Math.min(bx, window.innerWidth - bubbleEl.offsetWidth - 12));
+      by = Math.max(12, by);
+      bubbleEl.style.left = bx + 'px';
+      bubbleEl.style.top  = by + 'px';
+    }
+
+    // ── ACTION DATABASE (50+ ACTIONS CATEGORIZED) ─────────────────
+    const ACTION_DATABASE = {
+      estados: [
+        { icon: '😴', name: 'Dormir', mode: 'sleep', dialog: '😴 Zzz... Soñando con código clean sin bugs...' },
+        { icon: '🤔', name: 'Pensando', mode: 'think', dialog: '🤔 Pensando la mejor arquitectura de BD...' },
+        { icon: '🧠', name: 'Analizando', mode: 'analyze', dialog: '🧠 Analizando métricas p95 < 200ms...' },
+        { icon: '🛠️', name: 'Arreglando bugs', mode: 'fix', dialog: '🛠️ Corrigiendo NullPointerExceptions...' },
+        { icon: '🐛', name: 'Bug encontrado', mode: 'bug_found', dialog: '🐛 ¡Alerta! Un bug salvaje apareció.' },
+        { icon: '✅', name: 'Bug solucionado', mode: 'bug_fixed', dialog: '✅ ¡Bug eliminado! +1 a cazados.' },
+        { icon: '📦', name: 'Compilando', mode: 'compile', dialog: '📦 Compilando bundles de Vite...' },
+        { icon: '📥', name: 'Descargando deps', mode: 'deps', dialog: '📥 pnpm install (descargando el universo)...' },
+        { icon: '📤', name: 'Subiendo cambios', mode: 'push', dialog: '📤 Subiendo commits a GitHub...' },
+        { icon: '🔥', name: 'En producción', mode: 'prod', dialog: '🔥 Código corriendo en produccion.' },
+        { icon: '🚨', name: 'Alerta', mode: 'alert', dialog: '🚨 ¡Alerta HTTP 500! Checando logs...' },
+        { icon: '🎉', name: 'Build exitosa', mode: 'build_ok', dialog: '🎉 ¡Build exitosa en 1.2s!' },
+        { icon: '💥', name: 'Crash', mode: 'crash', dialog: '💥 ¡Crash! Out of Memory Heap Overflow.' },
+        { icon: '🤯', name: 'RAM Llena', mode: 'ram', dialog: '🤯 ¡RAM al 99%! Cerrando Chrome...' },
+        { icon: '⏳', name: 'Esperando', mode: 'wait', dialog: '⏳ Esperando aprobación de Pull Request...' }
+      ],
+      acciones: [
+        { icon: '💋', name: 'Dar Beso', mode: 'kiss', dialog: '💋 ¡Muak! ¡Beso de pareja cibernética! ❤️' },
+        { icon: '👋', name: 'Saludar', mode: 'wave', dialog: '¡Hola! Bienvenido a JCDigital 👋' },
+        { icon: '🙋', name: 'Saludar mano', mode: 'wave_high', dialog: '🙋 ¡Aquí estoy! ¿En qué te ayudo?' },
+        { icon: '👏', name: 'Aplaudir', mode: 'clap', dialog: '👏 ¡Excelente código! Aplausos.' },
+        { icon: '👍', name: 'Pulgar arriba', mode: 'thumbs', dialog: '👍 ¡Aprobado por el Handbook!' },
+        { icon: '❤️', name: 'Corazón', mode: 'love', dialog: '❤️ ¡Amo la ingeniería de software!' },
+        { icon: '🎵', name: 'Bailar', mode: 'dance', dialog: '🎵 ¡Bailando Lo-Fi Beats para codear!' },
+        { icon: '💃', name: 'Breakdance', mode: 'breakdance', dialog: '💃 ¡Breakdance cibernético!' },
+        { icon: '🕺', name: 'Moonwalk', mode: 'moonwalk', dialog: '🕺 Haciendo el Moonwalk...' },
+        { icon: '🎮', name: 'Jugar', mode: 'game', dialog: '🎮 Jugando un ratito en el break...' },
+        { icon: '📸', name: 'Selfie', mode: 'selfie', dialog: '📸 ¡Selfie con el equipo de JCDigital!' },
+        { icon: '🎤', name: 'Cantar', mode: 'sing', dialog: '🎤 Cantando: Hello World, Hello World ♪' },
+        { icon: '🥳', name: 'Celebrar', mode: 'party', dialog: '🥳 ¡Festejando el nuevo contrato!' },
+        { icon: '🤦', name: 'Facepalm', mode: 'facepalm', dialog: '🤦 ¿Quién borró la base de datos?' },
+        { icon: '🤷', name: 'Encogerse', mode: 'shrug', dialog: '🤷 Funciona en mi máquina local...' },
+        { icon: '🙇', name: 'Reverencia', mode: 'bow', dialog: '🙇 Reverencia al Lead Architect.' }
+      ],
+      dev: [
+        { icon: '⌨️', name: 'Escribiendo', mode: 'code', dialog: '⌨️ Escribiendo React + TypeScript...' },
+        { icon: '🔍', name: 'Revisando logs', mode: 'logs', dialog: '🔍 Inspeccionando tail logs de Wrangler...' },
+        { icon: '📚', name: 'Leyendo doc', mode: 'doc', dialog: '📚 Leyendo el Engineering Handbook...' },
+        { icon: '🧪', name: 'Ejecutando tests', mode: 'test', dialog: '🧪 Running vitest --coverage...' },
+        { icon: '❌', name: 'Test falló', mode: 'test_fail', dialog: '❌ 1 Test fallido: Assertion error.' },
+        { icon: '✅', name: 'Tests pasaron', mode: 'test_pass', dialog: '✅ 42/42 Tests pasaron con éxito!' },
+        { icon: '🔄', name: 'Refactorizando', mode: 'refactor', dialog: '🔄 Refactorizando componentes a custom hooks...' },
+        { icon: '🌿', name: 'Git Pull', mode: 'git_pull', dialog: '🌿 git pull origin main' },
+        { icon: '🚀', name: 'Git Push', mode: 'git_push', dialog: '🚀 git push --tags' },
+        { icon: '🔀', name: 'Merge', mode: 'git_merge', dialog: '🔀 Merge de la rama feature/angelin' },
+        { icon: '⚔️', name: 'Git Conflicto', mode: 'git_conflict', dialog: '⚔️ ¡Conflicto de Git! Resolviendo marcas...' },
+        { icon: '📋', name: 'Code Review', mode: 'code_review', dialog: '📋 Revisando Pull Request #108' },
+        { icon: '🤖', name: 'IA Generando', mode: 'ai_gen', dialog: '🤖 IA generando componentes con Zod schemas...' }
+      ],
+      reacciones: [
+        { icon: '😎', name: 'Modo hacker', mode: 'matrix', dialog: '😎 Hackeando el mainframe...' },
+        { icon: '😡', name: 'Enojado', mode: 'angry', dialog: '😡 ¡No toques mi archivo sin pedir permiso!' },
+        { icon: '😭', name: 'Llorando', mode: 'cry', dialog: '😭 ¡Buaaaa! Se cayó la API...' },
+        { icon: '😂', name: 'Riéndose', mode: 'laugh', dialog: '😂 ¡Jajaja! Ese bug estuvo muy gracioso.' },
+        { icon: '😱', name: 'Asustado', mode: 'scared', dialog: '😱 ¡Alguien subió credenciales al repo!' },
+        { icon: '🥶', name: 'Congelado', mode: 'frozen', dialog: '🥶 Servidor congelado por cold start...' },
+        { icon: '🥵', name: 'Sobrecalentado', mode: 'overheat', dialog: '🥵 CPU al 100%, ventiladores al máximo!' },
+        { icon: '🤩', name: 'Emocionado', mode: 'excited', dialog: '🤩 ¡Salió el nuevo framework!' },
+        { icon: '😵', name: 'Confundido', mode: 'confused', dialog: '😵 ¿Por qué este undefined es true?' },
+        { icon: '🥺', name: 'Mirada tierna', mode: 'cute', dialog: '🥺 ¿Me das un café, porfa?' }
+      ],
+      objetos: [
+        { icon: '☕', name: 'Taza de café', mode: 'coffee', dialog: '☕ Tomando café expreso. +30 Cafeína' },
+        { icon: '🍕', name: 'Pizza', mode: 'item_pizza', dialog: '🍕 ¡Ñam! Pizza de pepperoni. +30 Hambre' },
+        { icon: '🍔', name: 'Hamburguesa', mode: 'item_burger', dialog: '🍔 Hamburguesa doble queso. +35 Hambre' },
+        { icon: '🧋', name: 'Bubble Tea', mode: 'item_boba', dialog: '🧋 Tomando Boba Tea helado.' },
+        { icon: '🍪', name: 'Galleta', mode: 'item_cookie', dialog: '🍪 Galleta con chispas de chocolate.' },
+        { icon: '🖥️', name: 'Triple monitor', mode: 'item_monitors', dialog: '🖥️ ¡Setup de 3 monitores 4K!' },
+        { icon: '💻', name: 'Laptop', mode: 'item_laptop', dialog: '💻 MacBook Pro M3 Max activa.' },
+        { icon: '🧸', name: 'Peluche', mode: 'item_bear', dialog: '🧸 Abrazo al peluche dev.' },
+        { icon: '⚡', name: 'Rayo', mode: 'turbo', dialog: '⚡ Overclocking Turbo 5.0GHz' },
+        { icon: '❤️', name: 'Corazón flotante', mode: 'love', dialog: '❤️ Amor por la programación.' }
+      ],
+      animaciones: [
+        { icon: '✨', name: 'Brillar', mode: 'anim_sparkle', dialog: '✨ ¡Brillando con código impecable!' },
+        { icon: '🌈', name: 'Arcoíris', mode: 'anim_rainbow', dialog: '🌈 Paleta de colores Aurora_UI.' },
+        { icon: '💨', name: 'Correr', mode: 'anim_run', dialog: '💨 ¡Corriendo para entregar el sprint!' },
+        { icon: '🚀', name: 'Salir disparado', mode: 'deploy', dialog: '🚀 ¡Despegue de cohete a produccion!' },
+        { icon: '🪂', name: 'Caer del cielo', mode: 'anim_drop', dialog: '🪂 Caída libre desde el servidor.' },
+        { icon: '🛸', name: 'Abducido', mode: 'anim_ufo', dialog: '🛸 ¡Abducido por la nave IA!' },
+        { icon: '🌪️', name: 'Tornado', mode: 'spin', dialog: '🌪️ Girando en tornado 360°!' },
+        { icon: '👻', name: 'Fantasma', mode: 'anim_ghost', dialog: '👻 Modulo fantasma (Legacy Code)...' },
+        { icon: '💫', name: 'Teletransporte', mode: 'anim_teleport', dialog: '💫 Teletransportando a la Edge Network...' },
+        { icon: '📡', name: 'Escanear', mode: 'anim_scan', dialog: '📡 Escaneando pantalla por vulnerabilidades...' }
+      ]
+    };
+
+    function switchCategory(catKey, evt) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      if (evt && evt.currentTarget) evt.currentTarget.classList.add('active');
+      else {
+        const tab = document.querySelector(`.tab-btn[data-cat="${catKey}"]`);
+        if (tab) tab.classList.add('active');
+      }
+
+      const grid = document.getElementById('actions-grid');
+      if (!grid || !ACTION_DATABASE[catKey]) return;
+      grid.innerHTML = '';
+
+      ACTION_DATABASE[catKey].forEach(act => {
+        const btn = document.createElement('button');
+        btn.className = 'act-btn';
+        btn.innerHTML = `<span>${act.icon}</span> <span>${act.name}</span>`;
+        btn.onclick = () => executeAction(act);
+        grid.appendChild(btn);
+      });
+    }
+
+    let currentMode = 'idle';
+
+    function executeAction(act) {
+      currentMode = act.mode;
+      speakBoth(act.dialog);
+
+      if (act.mode === 'coffee') { stats.caffeine = Math.min(100, stats.caffeine + 30); stats.energy = Math.min(100, stats.energy + 15); }
+      if (act.mode.startsWith('item_')) { stats.hunger = Math.min(100, stats.hunger + 30); stats.happy = Math.min(100, stats.happy + 10); }
+      if (act.mode === 'code') { stats.inspire = Math.min(100, stats.inspire + 10); stats.money += 150; addXP(25); }
+      if (act.mode === 'bug_fixed') { stats.bugs++; stats.happy = Math.min(100, stats.happy + 15); stats.money += 300; addXP(40); }
+
+      updateStatsUI();
+    }
+
+    switchCategory('estados');
+
+    // ── PIXEL ART RENDER ENGINE FOR SINGLE SPRITE ──────────────────
+    let frame = 0;
+
+    function renderSpriteOnCtx(targetCtx, f, mode, mascotType) {
+      targetCtx.clearRect(0, 0, 48, 48);
+
+      const floatOffset = (mascotType === 'jeilica') ? 12 : 0;
+      const bobY = Math.round(Math.sin((f + floatOffset) * 0.06) * 1.8);
+
+      const isJeilica  = (mascotType === 'jeilica');
+      const blackBody  = isJeilica ? '#f1f5f9' : '#161620';
+      const blackFrame = isJeilica ? '#cbd5e1' : '#242432';
+      const redGlow    = isJeilica ? '#00e5ff' : '#ff0033';
+      const whiteEye   = isJeilica ? '#0f172a' : '#ffffff';
+      const silver     = isJeilica ? '#94a3b8' : '#d1d5db';
+      const screenBg   = isJeilica ? '#e2e8f0' : '#050508';
+
+      // 1. Shadow
+      targetCtx.fillStyle = isJeilica ? 'rgba(0, 229, 255, 0.25)' : 'rgba(255, 0, 51, 0.2)';
+      targetCtx.fillRect(16, 42, 16, 2);
+
+      // 2. Antenna
+      const antX = 23, antY = 5 + bobY;
+      targetCtx.fillStyle = silver; targetCtx.fillRect(antX, antY + 2, 2, 4);
+      targetCtx.fillStyle = (mode === 'turbo') ? '#ffff00' : redGlow;
+      targetCtx.fillRect(antX - 1, antY, 4, 3);
+
+      // 3. Backpack
+      targetCtx.fillStyle = blackBody; targetCtx.fillRect(11, 25 + bobY, 4, 10);
+      targetCtx.fillStyle = redGlow;   targetCtx.fillRect(10, 28 + bobY, 1, 4);
+
+      // 4. Head Frame
+      const hX = 13, hY = 10 + bobY;
+      targetCtx.fillStyle = blackFrame; targetCtx.fillRect(hX, hY, 22, 15);
+      targetCtx.fillStyle = redGlow;    targetCtx.fillRect(hX - 1, hY + 4, 1, 7); targetCtx.fillRect(hX + 22, hY + 4, 1, 7);
+
+      // 5. Screen
+      targetCtx.fillStyle = screenBg; targetCtx.fillRect(hX + 2, hY + 2, 18, 11);
+
+      // 6. DYNAMIC FACIAL EXPRESSIONS & OVERLAYS
+      if (mode === 'idle' || mode === 'wait' || mode === 'shrug' || mode === 'bow') {
+        targetCtx.fillStyle = whiteEye; targetCtx.fillRect(hX + 4, hY + 5, 4, 5); targetCtx.fillRect(hX + 14, hY + 5, 4, 5);
+        targetCtx.fillStyle = redGlow;  targetCtx.fillRect(hX + 6, hY + 6, 2, 3); targetCtx.fillRect(hX + 14, hY + 6, 2, 3);
+        targetCtx.fillRect(hX + 9, hY + 10, 2, 1); targetCtx.fillRect(hX + 12, hY + 10, 3, 1);
+      } else if (['code', 'compile', 'deps', 'push', 'git_pull', 'git_push', 'git_merge', 'refactor', 'ai_gen'].includes(mode)) {
+        targetCtx.fillStyle = whiteEye; targetCtx.fillRect(hX + 4, hY + 6, 4, 2); targetCtx.fillRect(hX + 14, hY + 6, 4, 2);
+        targetCtx.fillStyle = redGlow;  targetCtx.fillRect(hX + 8, hY + 10, 8, 1);
+      } else if (mode === 'think') {
+        targetCtx.fillStyle = whiteEye; targetCtx.fillRect(hX + 4, hY + 4, 4, 4); targetCtx.fillRect(hX + 14, hY + 4, 4, 4);
+        targetCtx.fillStyle = redGlow;  targetCtx.fillRect(hX + 6, hY + 4, 2, 2); targetCtx.fillRect(hX + 16, hY + 4, 2, 2);
+        targetCtx.fillRect(hX + 10, hY + 10, 2, 2);
+        targetCtx.fillStyle = silver; targetCtx.fillRect(hX + 22, hY - 2, 2, 2); targetCtx.fillRect(hX + 25, hY - 6, 3, 3);
+        targetCtx.fillStyle = '#ffffff'; targetCtx.fillRect(hX + 26, hY - 14, 12, 8); targetCtx.fillRect(hX + 25, hY - 13, 14, 6);
+        targetCtx.fillStyle = (f % 10 < 5) ? '#ffff00' : '#ffcc00'; targetCtx.fillRect(hX + 31, hY - 12, 3, 4);
+      } else if (mode === 'analyze') {
+        const scanX = (f % 16 < 8) ? 0 : 2;
+        targetCtx.fillStyle = whiteEye; targetCtx.fillRect(hX + 4, hY + 5, 4, 4); targetCtx.fillRect(hX + 14, hY + 5, 4, 4);
+        targetCtx.fillStyle = '#00e5ff'; targetCtx.fillRect(hX + 4 + scanX, hY + 6, 2, 2); targetCtx.fillRect(hX + 14 + scanX, hY + 6, 2, 2);
+        const hgX = hX + 22, hgY = hY - 14;
+        targetCtx.fillStyle = '#ffcc00'; targetCtx.fillRect(hgX, hgY, 8, 1); targetCtx.fillRect(hgX, hgY + 8, 8, 1);
+        targetCtx.fillStyle = 'rgba(255, 255, 255, 0.8)'; targetCtx.fillRect(hgX + 1, hgY + 1, 6, 2); targetCtx.fillRect(hgX + 2, hgY + 3, 4, 1);
+        targetCtx.fillRect(hgX + 3, hgY + 4, 2, 1); targetCtx.fillRect(hgX + 2, hgY + 5, 4, 1); targetCtx.fillRect(hgX + 1, hgY + 6, 6, 2);
+        targetCtx.fillStyle = '#ffff00'; targetCtx.fillRect(hgX + 2, hgY + 2, 4, 1); targetCtx.fillRect(hgX + 3, hgY + 3 + (f % 4), 1, 1); targetCtx.fillRect(hgX + 2, hgY + 7, 4, 1);
+      } else if (mode === 'sleep') {
+        targetCtx.fillStyle = whiteEye; targetCtx.fillRect(hX + 4, hY + 7, 4, 1); targetCtx.fillRect(hX + 14, hY + 7, 4, 1);
+        targetCtx.fillStyle = redGlow;  targetCtx.fillRect(hX + 10, hY + 10, 2, 1);
+        function drawPixelZ(zx, zy) {
+          targetCtx.fillStyle = '#00e5ff'; targetCtx.fillRect(zx, zy, 4, 1); targetCtx.fillRect(zx + 2, zy + 1, 1, 1);
+          targetCtx.fillRect(zx + 1, zy + 2, 1, 1); targetCtx.fillRect(zx, zy + 3, 4, 1);
+        }
+        const z1_Y = hY - 2 - (f % 14); const z2_Y = hY - 6 - ((f + 7) % 14);
+        if (z1_Y < hY) drawPixelZ(hX + 18, z1_Y); if (z2_Y < hY) drawPixelZ(hX + 23, z2_Y);
+      } else if (mode === 'bug_found') {
+        targetCtx.fillStyle = whiteEye; targetCtx.fillRect(hX + 4, hY + 4, 5, 6); targetCtx.fillRect(hX + 13, hY + 4, 5, 6);
+        targetCtx.fillStyle = redGlow;  targetCtx.fillRect(hX + 6, hY + 6, 2, 2); targetCtx.fillRect(hX + 14, hY + 6, 2, 2);
+        targetCtx.fillRect(hX + 10, hY + 11, 3, 2);
+        targetCtx.fillStyle = '#00e5ff'; targetCtx.fillRect(hX + 20, hY + 3 + (f % 4), 2, 3);
+        const wormWiggle = Math.sin(f * 0.4) * 2;
+        targetCtx.fillStyle = '#00ff66'; targetCtx.fillRect(38, 32 + bobY + wormWiggle, 6, 4); targetCtx.fillRect(44, 30 + bobY - wormWiggle, 4, 4);
+        targetCtx.fillStyle = '#ff0033'; targetCtx.fillRect(46, 31 + bobY - wormWiggle, 2, 2);
+      } else if (mode === 'deps') {
+        targetCtx.fillStyle = whiteEye; targetCtx.fillRect(hX + 4, hY + 6, 4, 2); targetCtx.fillRect(hX + 14, hY + 6, 4, 2);
+        targetCtx.fillStyle = redGlow;  targetCtx.fillRect(hX + 8, hY + 10, 8, 1);
+        for (let i = 0; i < 3; i++) {
+          const cardY = (f * 3 + i * 14) % 36; const cardX = hX - 2 + i * 8;
+          if (cardY < 24) {
+            targetCtx.fillStyle = '#00e5ff'; targetCtx.fillRect(cardX, cardY, 6, 4);
+            targetCtx.fillStyle = '#ffffff'; targetCtx.fillRect(cardX + 1, cardY + 1, 4, 2);
+            targetCtx.fillStyle = '#00ff66'; targetCtx.fillRect(cardX + 2, cardY + 1, 2, 1);
+          }
+        }
+      } else if (mode === 'fix') {
+        targetCtx.fillStyle = whiteEye; targetCtx.fillRect(hX + 4, hY + 5, 4, 4); targetCtx.fillRect(hX + 14, hY + 5, 4, 4);
+        targetCtx.fillStyle = '#00ff66'; targetCtx.fillRect(hX + 6, hY + 6, 2, 2); targetCtx.fillRect(hX + 14, hY + 6, 2, 2);
+        targetCtx.fillStyle = redGlow; targetCtx.fillRect(22, 33 + bobY, 4, 3);
+        const hammerSwing = (f % 8 < 4) ? -2 : 2; const hamX = 26, hamY = 25 + bobY + hammerSwing;
+        targetCtx.fillStyle = '#8b4513'; targetCtx.fillRect(hamX, hamY, 2, 6);
+        targetCtx.fillStyle = silver;  targetCtx.fillRect(hamX - 2, hamY - 2, 6, 3);
+        if (hammerSwing > 0) { targetCtx.fillStyle = '#ffff00'; targetCtx.fillRect(21, 31 + bobY, 2, 2); targetCtx.fillRect(27, 31 + bobY, 2, 2); }
+      } else if (mode === 'crash') {
+        const scatterH = Math.sin(f * 0.3) * 6; const scatterB = Math.cos(f * 0.3) * 5;
+        targetCtx.fillStyle = redGlow; targetCtx.fillRect(hX + 4 + scatterH, hY + 4, 5, 5); targetCtx.fillRect(hX + 13 - scatterH, hY + 4, 5, 5);
+        targetCtx.fillStyle = whiteEye; targetCtx.fillRect(hX + 6 + scatterH, hY + 6, 2, 2); targetCtx.fillRect(hX + 14 - scatterH, hY + 6, 2, 2);
+        targetCtx.fillStyle = silver; targetCtx.fillRect(antX - 8, antY - scatterH, 2, 4);
+        targetCtx.fillStyle = redGlow; targetCtx.fillRect(antX - 9, antY - 2 - scatterH, 4, 3);
+        targetCtx.fillStyle = blackBody; targetCtx.fillRect(4, 20 + scatterB, 5, 5); targetCtx.fillRect(39, 20 - scatterB, 5, 5);
+      } else if (mode === 'cry') {
+        // Crying eyes & falling cyan pixel tear drops
+        targetCtx.fillStyle = redGlow; targetCtx.fillRect(hX + 4, hY + 4, 5, 2); targetCtx.fillRect(hX + 13, hY + 4, 5, 2);
+        targetCtx.fillStyle = whiteEye; targetCtx.fillRect(hX + 5, hY + 6, 3, 2); targetCtx.fillRect(hX + 14, hY + 6, 3, 2);
+        targetCtx.fillStyle = redGlow; targetCtx.fillRect(hX + 9, hY + 11, 4, 1);
+        // Falling Cyan Tear Drops
+        const tearY = (f * 2) % 16;
+        targetCtx.fillStyle = '#00e5ff';
+        targetCtx.fillRect(hX + 3, hY + 6 + tearY, 2, 3);
+        targetCtx.fillRect(hX + 17, hY + 6 + tearY, 2, 3);
+      } else if (mode === 'kiss') {
+        // Kissing Happy Eyes ^_^ & Puckered Lips >3< with Blushing Cheeks
+        targetCtx.fillStyle = whiteEye; targetCtx.fillRect(hX + 4, hY + 6, 4, 1); targetCtx.fillRect(hX + 14, hY + 6, 4, 1);
+        targetCtx.fillRect(hX + 5, hY + 5, 2, 1); targetCtx.fillRect(hX + 15, hY + 5, 2, 1);
+        targetCtx.fillStyle = redGlow; targetCtx.fillRect(hX + 9, hY + 9, 4, 2); // Puckered kiss lips
+        targetCtx.fillStyle = '#ffb6c1'; targetCtx.fillRect(hX + 2, hY + 8, 3, 2); targetCtx.fillRect(hX + 17, hY + 8, 3, 2); // Blushing pink cheeks
+      } else if (mode === 'laugh') {
+        targetCtx.fillStyle = whiteEye; targetCtx.fillRect(hX + 4, hY + 5, 4, 2); targetCtx.fillRect(hX + 14, hY + 5, 4, 2);
+        targetCtx.fillRect(hX + 5, hY + 7, 2, 2); targetCtx.fillRect(hX + 15, hY + 7, 2, 2);
+        targetCtx.fillStyle = redGlow; targetCtx.fillRect(hX + 8, hY + 9, 6, 3);
+      } else if (mode === 'scared') {
+        const shk = (f % 4 < 2) ? -1 : 1;
+        targetCtx.fillStyle = whiteEye; targetCtx.fillRect(hX + 4 + shk, hY + 4, 5, 6); targetCtx.fillRect(hX + 13 + shk, hY + 4, 5, 6);
+        targetCtx.fillStyle = redGlow;  targetCtx.fillRect(hX + 6 + shk, hY + 6, 2, 2); targetCtx.fillRect(hX + 14 + shk, hY + 6, 2, 2);
+      } else if (mode === 'frozen') {
+        targetCtx.fillStyle = '#00e5ff'; targetCtx.fillRect(hX + 2, hY + 2, 18, 11);
+        targetCtx.fillStyle = whiteEye; targetCtx.fillRect(hX + 4, hY + 5, 4, 2); targetCtx.fillRect(hX + 14, hY + 5, 4, 2);
+      } else if (mode === 'overheat') {
+        targetCtx.fillStyle = redGlow; targetCtx.fillRect(hX + 4, hY + 5, 4, 4); targetCtx.fillRect(hX + 14, hY + 5, 4, 4);
+        targetCtx.fillStyle = '#ff9900'; targetCtx.fillRect(antX - 2, antY - 4 - (f % 4), 6, 4);
+      } else if (mode === 'excited') {
+        targetCtx.fillStyle = '#ffff00'; targetCtx.fillRect(hX + 5, hY + 4, 2, 6); targetCtx.fillRect(hX + 3, hY + 6, 6, 2);
+        targetCtx.fillRect(hX + 15, hY + 4, 2, 6); targetCtx.fillRect(hX + 13, hY + 6, 6, 2);
+      } else if (mode === 'confused') {
+        targetCtx.fillStyle = whiteEye; targetCtx.fillRect(hX + 4, hY + 5, 4, 4); targetCtx.fillRect(hX + 14, hY + 5, 4, 4);
+        targetCtx.fillStyle = '#ffff00'; targetCtx.fillRect(hX + 22, hY - 10, 4, 1); targetCtx.fillRect(hX + 25, hY - 9, 2, 2);
+      } else if (mode === 'cute') {
+        targetCtx.fillStyle = whiteEye; targetCtx.fillRect(hX + 3, hY + 4, 6, 6); targetCtx.fillRect(hX + 13, hY + 4, 6, 6);
+        targetCtx.fillStyle = '#0e0e12'; targetCtx.fillRect(hX + 5, hY + 6, 3, 3); targetCtx.fillRect(hX + 15, hY + 6, 3, 3);
+        targetCtx.fillStyle = '#ffb6c1'; targetCtx.fillRect(hX + 2, hY + 9, 3, 2); targetCtx.fillRect(hX + 17, hY + 9, 3, 2);
+      } else if (mode === 'coffee') {
+        targetCtx.fillStyle = whiteEye; targetCtx.fillRect(hX + 4, hY + 5, 4, 2); targetCtx.fillRect(hX + 14, hY + 5, 4, 2);
+        targetCtx.fillStyle = silver; targetCtx.fillRect(21, 31 + bobY, 6, 6); targetCtx.fillStyle = '#6f4e37'; targetCtx.fillRect(22, 31 + bobY, 4, 2);
+      } else if (mode === 'item_boba') {
+        targetCtx.fillStyle = whiteEye; targetCtx.fillRect(hX + 4, hY + 5, 4, 2); targetCtx.fillRect(hX + 14, hY + 5, 4, 2);
+        targetCtx.fillStyle = '#ff0077'; targetCtx.fillRect(24, 27 + bobY, 2, 4); targetCtx.fillStyle = '#00e5ff'; targetCtx.fillRect(21, 31 + bobY, 6, 7);
+      } else if (mode === 'item_monitors') {
+        targetCtx.fillStyle = whiteEye; targetCtx.fillRect(hX + 4, hY + 5, 4, 2); targetCtx.fillRect(hX + 14, hY + 5, 4, 2);
+        targetCtx.fillStyle = '#242432'; targetCtx.fillRect(2, 22 + bobY, 10, 8); targetCtx.fillRect(36, 22 + bobY, 10, 8);
+      } else if (mode === 'item_laptop') {
+        targetCtx.fillStyle = whiteEye; targetCtx.fillRect(hX + 4, hY + 5, 4, 2); targetCtx.fillRect(hX + 14, hY + 5, 4, 2);
+        targetCtx.fillStyle = '#242432'; targetCtx.fillRect(18, 28 + bobY, 12, 7); targetCtx.fillStyle = '#00e5ff'; targetCtx.fillRect(19, 29 + bobY, 10, 5);
+      } else if (mode === 'item_bear') {
+        targetCtx.fillStyle = whiteEye; targetCtx.fillRect(hX + 4, hY + 5, 4, 2); targetCtx.fillRect(hX + 14, hY + 5, 4, 2);
+        targetCtx.fillStyle = '#8b4513'; targetCtx.fillRect(20, 30 + bobY, 8, 7); targetCtx.fillRect(21, 26 + bobY, 6, 5);
+      } else if (mode === 'item_cookie') {
+        targetCtx.fillStyle = whiteEye; targetCtx.fillRect(hX + 4, hY + 5, 4, 2); targetCtx.fillRect(hX + 14, hY + 5, 4, 2);
+        targetCtx.fillStyle = '#d2b48c'; targetCtx.fillRect(21, 31 + bobY, 6, 6);
+      } else if (mode === 'item_pizza') {
+        targetCtx.fillStyle = whiteEye; targetCtx.fillRect(hX + 4, hY + 5, 4, 2); targetCtx.fillRect(hX + 14, hY + 5, 4, 2);
+        targetCtx.fillStyle = '#ffcc00'; targetCtx.fillRect(20, 31 + bobY, 7, 5);
+      } else if (mode === 'item_burger') {
+        targetCtx.fillStyle = whiteEye; ctx.fillRect(hX + 4, hY + 5, 4, 2); ctx.fillRect(hX + 14, hY + 5, 4, 2);
+        targetCtx.fillStyle = '#d2b48c'; targetCtx.fillRect(20, 30 + bobY, 8, 2); targetCtx.fillStyle = '#00ff66'; targetCtx.fillRect(20, 32 + bobY, 8, 1);
+      } else {
+        targetCtx.fillStyle = whiteEye; targetCtx.fillRect(hX + 4, hY + 5, 4, 5); targetCtx.fillRect(hX + 14, hY + 5, 4, 5);
+        targetCtx.fillStyle = redGlow;  targetCtx.fillRect(hX + 10, hY + 10, 4, 1);
+      }
+
+      // 7. Torso & Bloated Belly
+      if (mode === 'ram') {
+        const pulse = Math.round(Math.sin(f * 0.2) * 2);
+        targetCtx.fillStyle = blackBody; targetCtx.fillRect(10 - pulse, 25 + bobY, 28 + pulse * 2, 14);
+        targetCtx.fillStyle = redGlow; targetCtx.fillRect(14 - pulse, 28 + bobY, 20 + pulse * 2, 8);
+      } else {
+        targetCtx.fillStyle = blackBody; targetCtx.fillRect(17, 27 + bobY, 14, 10);
+        targetCtx.fillStyle = redGlow;   targetCtx.fillRect(20, 38 + bobY, 8, 1);
+      }
+
+      // Hands
+      let handL = 28 + bobY + Math.round(Math.sin(f * 0.15) * 1);
+      let handR = 28 + bobY + Math.round(Math.cos(f * 0.15) * 1);
+
+      if (mode === 'ram') {
+        handL = 29 + bobY; handR = 29 + bobY;
+        targetCtx.fillStyle = blackBody; targetCtx.fillRect(5, handL, 4, 4); targetCtx.fillRect(39, handR, 4, 4);
+      } else if (mode === 'wave' || mode === 'wave_high') {
+        handR = 12 + bobY + Math.round(Math.sin(f * 0.4) * 4);
+        targetCtx.fillStyle = blackBody; targetCtx.fillRect(12, handL, 4, 4); targetCtx.fillRect(32, handR, 4, 4);
+      } else if (mode === 'clap') {
+        handL = 26 + bobY; handR = 26 + bobY;
+        targetCtx.fillStyle = blackBody; targetCtx.fillRect(12, handL, 4, 4); targetCtx.fillRect(32, handR, 4, 4);
+      } else {
+        targetCtx.fillStyle = blackBody; targetCtx.fillRect(12, handL, 4, 4); targetCtx.fillRect(32, handR, 4, 4);
+      }
+    }
+
+    // ── INDIVIDUAL POINTER DRAG & PHYSICS SYSTEM ──────────────────
+    let pos1X = window.innerWidth / 2 - 170, pos1Y = window.innerHeight / 2 - 110;
+    let vel1X = 0, vel1Y = 0; let isDrag1 = false, dragStart1X = 0, dragStart1Y = 0, last1X = 0, last1Y = 0;
+
+    let pos2X = window.innerWidth / 2 + 30, pos2Y = window.innerHeight / 2 - 110;
+    let vel2X = 0, vel2Y = 0; let isDrag2 = false, dragStart2X = 0, dragStart2Y = 0, last2X = 0, last2Y = 0;
+    let wasSeparated = false;
+
+    // Angelin Drag Handlers
+    cv1.onpointerdown = (e) => {
+      isDrag1 = true; cv1.setPointerCapture(e.pointerId); cv1.classList.add('dragging');
+      dragStart1X = e.clientX - pos1X; dragStart1Y = e.clientY - pos1Y;
+      last1X = e.clientX; last1Y = e.clientY; vel1X = 0; vel1Y = 0;
+      currentMode = 'grab'; speakAngelin('¡Woah! ¡Me estás agarrando a mí! 😯');
+    };
+    cv1.onpointermove = (e) => {
+      if (!isDrag1) return;
+      pos1X = e.clientX - dragStart1X; pos1Y = e.clientY - dragStart1Y;
+      vel1X = e.clientX - last1X; vel1Y = e.clientY - last1Y;
+      last1X = e.clientX; last1Y = e.clientY;
+    };
+    cv1.onpointerup = cv1.onpointercancel = (e) => {
+      if (!isDrag1) return; isDrag1 = false; cv1.classList.remove('dragging');
+      if (Math.abs(vel1X) > 4 || Math.abs(vel1Y) > 4) speakAngelin('¡Waaaaaa! 💨 ¡Me lanzaste!');
+      else currentMode = 'idle';
+    };
+
+    // Jeilica Drag Handlers
+    cv2.onpointerdown = (e) => {
+      isDrag2 = true; cv2.setPointerCapture(e.pointerId); cv2.classList.add('dragging');
+      dragStart2X = e.clientX - pos2X; dragStart2Y = e.clientY - pos2Y;
+      last2X = e.clientX; last2Y = e.clientY; vel2X = 0; vel2Y = 0;
+      currentMode = 'grab'; speakJeilica('¡Oye! ¡Me estás agarrando a mí! 😯');
+    };
+    cv2.onpointermove = (e) => {
+      if (!isDrag2) return;
+      pos2X = e.clientX - dragStart2X; pos2Y = e.clientY - dragStart2Y;
+      vel2X = e.clientX - last2X; vel2Y = e.clientY - last2Y;
+      last2X = e.clientX; last2Y = e.clientY;
+    };
+    cv2.onpointerup = cv2.onpointercancel = (e) => {
+      if (!isDrag2) return; isDrag2 = false; cv2.classList.remove('dragging');
+      if (Math.abs(vel2X) > 4 || Math.abs(vel2Y) > 4) speakJeilica('¡Waaaaaa! 💨 ¡Lanzada por los aires!');
+      else currentMode = 'idle';
+    };
+
+    // ── MAIN ANIMATION LOOP FOR BOTH CANVASES ──────────────────────
+    function animate() {
+      requestAnimationFrame(animate);
+      frame++;
+
+      const floatY1 = isDrag1 ? 0 : Math.sin(frame * 0.05) * 6;
+      const floatY2 = isDrag2 ? 0 : Math.sin((frame + 12) * 0.05) * 6;
+
+      // Angelin Inertia Physics
+      if (!isDrag1) {
+        if (Math.abs(vel1X) > 0.1 || Math.abs(vel1Y) > 0.1) {
+          pos1X += vel1X; pos1Y += vel1Y; vel1X *= 0.94; vel1Y *= 0.94;
+          if (pos1X < 20 || pos1X > window.innerWidth - 240) { vel1X *= -0.7; pos1X = Math.max(20, Math.min(pos1X, window.innerWidth - 240)); }
+          if (pos1Y < 20 || pos1Y > window.innerHeight - 240) { vel1Y *= -0.7; pos1Y = Math.max(20, Math.min(pos1Y, window.innerHeight - 240)); }
+        }
+      }
+
+      // Jeilica Inertia Physics
+      if (!isDrag2) {
+        if (Math.abs(vel2X) > 0.1 || Math.abs(vel2Y) > 0.1) {
+          pos2X += vel2X; pos2Y += vel2Y; vel2X *= 0.94; vel2Y *= 0.94;
+          if (pos2X < 20 || pos2X > window.innerWidth - 240) { vel2X *= -0.7; pos2X = Math.max(20, Math.min(pos2X, window.innerWidth - 240)); }
+          if (pos2Y < 20 || pos2Y > window.innerHeight - 240) { vel2Y *= -0.7; pos2Y = Math.max(20, Math.min(pos2Y, window.innerHeight - 240)); }
+        }
+      }
+
+      // Kiss Attraction & Heart Spawner
+      if (currentMode === 'kiss' && activeMascot === 'duo' && !isDrag1 && !isDrag2) {
+        const midTargetX = window.innerWidth / 2;
+        const midTargetY = window.innerHeight / 2 - 100;
+        pos1X += (midTargetX - 160 - pos1X) * 0.12;
+        pos1Y += (midTargetY - pos1Y) * 0.12;
+
+        pos2X += (midTargetX + 10 - pos2X) * 0.12;
+        pos2Y += (midTargetY - pos2Y) * 0.12;
+
+        spawnKissHearts();
+      }
+
+      // DUO SEPARATION CRYING MECHANIC
+      let mascot1Mode = currentMode;
+      let mascot2Mode = currentMode;
+
+      if (activeMascot === 'duo') {
+        const duoDist = Math.hypot(pos1X - pos2X, pos1Y - pos2Y);
+        if (duoDist > 320) {
+          mascot1Mode = 'cry';
+          mascot2Mode = 'cry';
+          if (frame % 160 === 0 || !wasSeparated) {
+            speakAngelin('😭 ¡No me alejes de Jeilica!');
+            speakJeilica('😭 ¡Extraño a Angelin! ¡Regrésame!');
+          }
+          wasSeparated = true;
+        } else if (wasSeparated && duoDist <= 220) {
+          wasSeparated = false;
+          speakAngelin('🥰 ¡Juntos otra vez!');
+          speakJeilica('🥰 ¡Te extrañé!');
+          spawnKissHearts();
+        }
+      }
+
+      // Stage Transforms
+      cv1.style.transform = `translateY(${floatY1}px)`;
+      cv2.style.transform = `translateY(${floatY2}px)`;
+
+      cv1.style.left = pos1X + 'px'; cv1.style.top = pos1Y + 'px';
+      cv2.style.left = pos2X + 'px'; cv2.style.top = pos2Y + 'px';
+
+      updateBubblePos(cv1, bubble1);
+      updateBubblePos(cv2, bubble2);
+
+      // Render Individual Sprites
+      if (activeMascot === 'angelin' || activeMascot === 'duo') {
+        renderSpriteOnCtx(ctx1, frame, mascot1Mode, 'angelin');
+      }
+      if (activeMascot === 'jeilica' || activeMascot === 'duo') {
+        renderSpriteOnCtx(ctx2, frame, mascot2Mode, 'jeilica');
+      }
+    }
+
+    // 100% PURE PIXEL ART HEART PARTICLES GENERATOR (No text emojis!)
+    function spawnKissHearts() {
+      if (frame % 5 !== 0) return;
+      const midX = (pos1X + pos2X) / 2 + 95;
+      const midY = (pos1Y + pos2Y) / 2 - 30;
+
+      const c = document.createElement('canvas');
+      c.className = 'pixel-particle';
+      c.width = 32; c.height = 28;
+      c.style.left = (midX + (Math.random() - 0.5) * 45) + 'px';
+      c.style.top = midY + 'px';
+
+      const pCtx = c.getContext('2d');
+      pCtx.imageRendering = 'pixelated';
+
+      const colors = ['#ff0055', '#ff0033', '#00e5ff', '#ff00aa', '#ffcc00'];
+      const curColor = colors[Math.floor(Math.random() * colors.length)];
+
+      // Pixel Art Heart Matrix (7x6 pixels)
+      const heartGrid = [
+        [0, 1, 1, 0, 1, 1, 0],
+        [1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1],
+        [0, 1, 1, 1, 1, 1, 0],
+        [0, 0, 1, 1, 1, 0, 0],
+        [0, 0, 0, 1, 0, 0, 0]
+      ];
+
+      const scale = Math.floor(Math.random() * 2) + 3; // 3px or 4px per pixel
+      for (let r = 0; r < 6; r++) {
+        for (let col = 0; col < 7; col++) {
+          if (heartGrid[r][col] === 1) {
+            pCtx.fillStyle = (r === 1 && col === 1) ? '#ffffff' : curColor;
+            pCtx.fillRect(col * scale, r * scale, scale, scale);
+          }
+        }
+      }
+
+      document.body.appendChild(c);
+
+      let vy = -2.5 - Math.random() * 2, vx = (Math.random() - 0.5) * 2, opacity = 1;
+      function hLoop() {
+        opacity -= 0.025;
+        c.style.left = (parseFloat(c.style.left) + vx) + 'px';
+        c.style.top = (parseFloat(c.style.top) + vy) + 'px';
+        c.style.opacity = opacity;
+        if (opacity > 0) requestAnimationFrame(hLoop);
+        else c.remove();
+      }
+      hLoop();
+    }
+
+    // CONFETTI EFFECT
+    function spawnConfetti() {
+      for (let i = 0; i < 30; i++) {
+        const c = document.createElement('div');
+        c.className = 'pixel-particle';
+        c.style.background = ['#ff0033', '#00ff66', '#00e5ff', '#ffcc00'][i % 4];
+        c.style.width = '6px'; c.style.height = '6px';
+        c.style.left = (pos1X + 100) + 'px'; c.style.top = (pos1Y + 40) + 'px';
+        document.body.appendChild(c);
+        let vx = (Math.random() - 0.5) * 10, vy = -6 - Math.random() * 6, life = 0;
+        function cLoop() {
+          life++; vy += 0.3; c.style.left = (parseFloat(c.style.left) + vx) + 'px';
+          c.style.top = (parseFloat(c.style.top) + vy) + 'px';
+          c.style.opacity = (1 - life / 40);
+          if (life < 40) requestAnimationFrame(cLoop); else c.remove();
+        }
+        cLoop();
+      }
+    }
+
+    // Start App
+    updateStatsUI();
+    animate();
+    setTimeout(() => speakAngelin('¡Hola! Soy Angelin Dev Tamagotchi 👾'), 600);
+  </script>
+</body>
+</html>

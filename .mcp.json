@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "engineering-handbook": {
+      "command": "node",
+      "args": [
+        "C:/Users/JDeveloper/Desktop/tranbajo/Trabajo/ENGINEERING_HANDBOOK/mcp-server/index.mjs"
+      ]
+    }
+  }
+}

@@ -34,10 +34,13 @@ Todo lo demás son consecuencias de aplicar ese principio a un runtime distinto.
 | App de escritorio (Tauri) | [DESKTOP_SECURITY_STANDARD.md](DESKTOP_SECURITY_STANDARD.md) | el estándar base, que sigue aplicando al backend |
 | App móvil / APK (Android) | [MOBILE_SECURITY_STANDARD.md](MOBILE_SECURITY_STANDARD.md) | el estándar base, que sigue aplicando al backend |
 | Login, MFA, passkeys, magic links | [AUTH_MFA_STANDARD.md](AUTH_MFA_STANDARD.md) | [AUTH_ADVANCED_STANDARD.md](AUTH_ADVANCED_STANDARD.md) (SSO, SAML, sesiones) |
+| Prevención de fuga de secretos en bundles | [SECRET_LEAK_PREVENTION_STANDARD.md](SECRET_LEAK_PREVENTION_STANDARD.md) | Reglas SEC-LEAK, backend proxy y escáner pre-build |
 | Cobros, suscripciones, webhooks de pago | [PAYMENTS_SECURITY_STANDARD.md](PAYMENTS_SECURITY_STANDARD.md) | — |
 | GDPR, CCPA, términos, cookies | [LEGAL_COMPLIANCE_STANDARD.md](LEGAL_COMPLIANCE_STANDARD.md) | — |
 | Diseñar defensas / priorizar hardening | [THREAT_MODEL.md](THREAT_MODEL.md) | — |
 | Algo ya se rompió | [INCIDENT_RESPONSE.md](INCIDENT_RESPONSE.md) | — |
+| Verificar un proyecto antes de lanzarlo / después de una auditoría | [EXTERNAL_AUDIT_CHECKLIST.md](EXTERNAL_AUDIT_CHECKLIST.md) | comandos `curl`/`nmap` listos para copiar |
+| Auditoría defensiva con Kali Linux (WSL) | [AUDIT_TOOLKIT_KALI_WSL.md](AUDIT_TOOLKIT_KALI_WSL.md) | nmap, sslscan, ffuf, nuclei y checklist |
 
 ---
 
@@ -54,13 +57,16 @@ Nivel 2 — Por superficie de despliegue
 
 Nivel 2 — Por función transversal
   AUTH_MFA_STANDARD.md / AUTH_ADVANCED_STANDARD.md    identidad y sesión
+  SECRET_LEAK_PREVENTION_STANDARD.md                  cero secretos en bundles, proxy backend y pre-build scanner (SEC-LEAK)
   ESTANDAR_RATE_LIMITING.md                           abuso y cuota
   PAYMENTS_SECURITY_STANDARD.md                       dinero (PCI DSS)
   LEGAL_COMPLIANCE_STANDARD.md                        obligaciones legales
 
-Operación
-  THREAT_MODEL.md        qué puede pasar y qué prevenirlo cuesta menos que sufrirlo
-  INCIDENT_RESPONSE.md   runbook de la primera hora
+Operación y Auditoría
+  THREAT_MODEL.md               qué puede pasar y qué prevenirlo cuesta menos que sufrirlo
+  INCIDENT_RESPONSE.md          runbook de la primera hora
+  EXTERNAL_AUDIT_CHECKLIST.md   catálogo de pruebas de caja negra (curl/nmap) con evidencia real de proyectos propios
+  AUDIT_TOOLKIT_KALI_WSL.md     estándar y toolkit de auditoría automatizada en Kali Linux (WSL 2)
 ```
 
 **Regla de herencia (`00_HANDBOOK_FORMAT.md` §4):** los documentos de Nivel 2 **no repiten** el Nivel 1. Si `DESKTOP_SECURITY_STANDARD.md` no menciona la validación de inputs del backend, no es un olvido: es que `S-001` ya la exige y sigue vigente.

@@ -35,17 +35,16 @@ Eliminar:  Siempre con confirmación explícita
 
 ---
 
-## 3. Crear / Editar — modal vs página dedicada
+## 3. Crear / Editar — Matriz de Decisión según campos
 
-**[REQUIRED]** Árbol de decisión:
+**[REQUIRED]** La selección del componente para Crear o Editar sigue esta matriz estricta (ver [FRONTEND_MODALS_PATTERNS.md](FRONTEND_MODALS_PATTERNS.md)):
 
-```
-¿El formulario tiene menos de ~5 campos y no necesita contexto adicional?
-  Sí → Modal
-  No → ¿El usuario se beneficia de ver la lista de fondo mientras completa?
-         Sí → Drawer lateral
-         No → Página dedicada con su propia URL
-```
+| Si el formulario tiene... | La mejor opción de UI es... | Cuándo usarlo |
+|---|---|---|
+| **Solo 1 o 2 campos específicos** | **Edición en Línea (In-line Editing)** | Directo en la tabla sin modal (cambiar estado o precio rápido con botones ✓ y ✗). |
+| **1 a 8 campos (Rápido)** | **Modal (Diálogo Centrado)** | Acción corta y enfocada que detiene el flujo intencionalmente. |
+| **8 a 15 campos (Medio)** | **Drawer / Panel Lateral (Slide-over)** | Emerge desde el borde derecho, da amplio scroll vertical y mantiene visible la tabla de fondo (estilo HubSpot, Notion, Linear). Ideal para productos, insumos, clientes. |
+| **Más de 15 campos (Largo)** | **Página Completa Dedicada** | Formularios masivos o por secciones con URL propia compartible. |
 
 **Por qué:** un formulario largo dentro de un modal obliga a hacer scroll dentro de un contenedor pequeño y pierde la ventaja de tener una URL propia (no se puede compartir el link ni volver con el botón atrás del navegador).
 
